@@ -1,0 +1,150 @@
+<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="0" page="0" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- ===================== SCREEN 1: ADMIN LOGIN ===================== -->
+
+    <mxCell id="frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="label" value="1. Admin — Inicio de sesion" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="20" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="36" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Content area -->
+    <mxCell id="content" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="20" y="52" width="390" height="748" as="geometry"/>
+    </mxCell>
+
+    <!-- Heading -->
+    <mxCell id="heading" value="Panel de administracion" style="text;fontSize=22;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="36" y="160" width="348" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="subheading" value="Robotina Cooks" style="text;fontSize=14;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="36" y="198" width="348" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- Email field -->
+    <mxCell id="email_label" value="Correo electronico" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="52" y="260" width="200" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="email_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="52" y="284" width="316" height="48" as="geometry"/>
+    </mxCell>
+    <mxCell id="email_placeholder" value="admin@ejemplo.com" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="64" y="284" width="280" height="48" as="geometry"/>
+    </mxCell>
+
+    <!-- Password field -->
+    <mxCell id="pass_label" value="Contrasena" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="52" y="348" width="200" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="pass_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="52" y="372" width="316" height="48" as="geometry"/>
+    </mxCell>
+    <mxCell id="pass_placeholder" value="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="64" y="372" width="280" height="48" as="geometry"/>
+    </mxCell>
+
+    <!-- Login button -->
+    <mxCell id="login_btn" value="Iniciar sesion" style="rounded=3;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="52" y="448" width="316" height="52" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotation -->
+    <mxCell id="ann1" value="Login separado del de usuario — entidad Admin distinta" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="530" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="ann2" value="Aparece cuando ya existe un Admin creado (via setup wizard)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="548" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 2: SETUP WIZARD ===================== -->
+
+    <mxCell id="w_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="w_label" value="2. Setup wizard (primera vez — no existe Admin)" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="470" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="w_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="486" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Content area -->
+    <mxCell id="w_content" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="470" y="52" width="390" height="748" as="geometry"/>
+    </mxCell>
+
+    <!-- Heading -->
+    <mxCell id="w_heading" value="Configuracion inicial" style="text;fontSize=22;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="486" y="120" width="348" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="w_subheading" value="Crea la cuenta de administrador" style="text;fontSize=14;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="486" y="158" width="348" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- Email field -->
+    <mxCell id="w_email_label" value="Correo electronico" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="502" y="220" width="200" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="w_email_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="502" y="244" width="316" height="48" as="geometry"/>
+    </mxCell>
+    <mxCell id="w_email_placeholder" value="admin@ejemplo.com" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="514" y="244" width="280" height="48" as="geometry"/>
+    </mxCell>
+
+    <!-- Password field -->
+    <mxCell id="w_pass_label" value="Contrasena" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="502" y="308" width="200" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="w_pass_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="502" y="332" width="316" height="48" as="geometry"/>
+    </mxCell>
+    <mxCell id="w_pass_placeholder" value="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="514" y="332" width="280" height="48" as="geometry"/>
+    </mxCell>
+
+    <!-- Confirm password field -->
+    <mxCell id="w_confirm_label" value="Confirmar contrasena" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="502" y="396" width="200" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="w_confirm_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="502" y="420" width="316" height="48" as="geometry"/>
+    </mxCell>
+    <mxCell id="w_confirm_placeholder" value="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="514" y="420" width="280" height="48" as="geometry"/>
+    </mxCell>
+
+    <!-- Create button -->
+    <mxCell id="w_create_btn" value="Crear cuenta" style="rounded=3;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="502" y="496" width="316" height="52" as="geometry"/>
+    </mxCell>
+
+    <!-- Note -->
+    <mxCell id="w_note" value="Esta cuenta sera el administrador del sistema" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="486" y="560" width="348" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="w_ann1" value="Aparece solo en instalacion nueva (GET /api/setup devuelve required: true)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="610" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="w_ann2" value="Al completar: POST /api/setup, luego redirige al login de admin" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="628" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="w_ann3" value="Solo se puede acceder una vez — cuando no existe registro Admin" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="646" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

@@ -1,0 +1,124 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
+  <diagram id="oiJfFt6i0g0neAHbFFLY" name="pageWithNumber">
+    <mxGraphModel dx="-449" dy="-220" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="0" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lbl_rl" value="Lista de recetas (via Recetas en drawer)" style="text;fontSize=16;fontStyle=1;align=center;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="20" y="10" width="375" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_frame" value="" style="rounded=1;arcSize=4;strokeColor=#333333;strokeWidth=2;fillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="20" y="50" width="375" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_status" value="9:41" style="text;fontSize=10;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="36" y="62" width="50" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_burger" value="☰" style="text;fontSize=22;align=center;strokeColor=none;fillColor=none;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="30" y="86" width="36" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_title" value="Recetas" style="text;fontSize=17;fontStyle=1;align=center;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="20" y="86" width="375" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_divider" value="" style="fillColor=#DDDDDD;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="20" y="126" width="375" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_search" value="🔍  Buscar recetas..." style="rounded=1;strokeColor=#AAAAAA;fillColor=#F5F5F5;fontSize=13;align=left;spacingLeft=10;fontColor=#AAAAAA;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="40" y="138" width="335" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_sort" value="Orden: Nombre ↑" style="rounded=1;strokeColor=#CCCCCC;fillColor=#F0F0F0;fontSize=12;align=center;fontColor=#555555;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="40" y="190" width="150" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_filter" value="Filtrar ingrediente" style="rounded=1;strokeColor=#CCCCCC;fillColor=#F0F0F0;fontSize=12;align=center;fontColor=#555555;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="202" y="190" width="150" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="rc1_bg" value="" style="rounded=1;strokeColor=#DDDDDD;fillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="40" y="230" width="335" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="rc1_img" value="[img]" style="rounded=1;fillColor=#EEEEEE;strokeColor=#CCCCCC;fontSize=11;fontColor=#AAAAAA;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="52" y="240" width="72" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rc1_name" value="Espagueti a la Boloñesa" style="text;fontSize=14;fontStyle=1;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="136" y="250" width="226" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rc1_meta" value="45 min" style="text;fontSize=12;align=left;strokeColor=none;fillColor=none;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="136" y="280" width="226" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rc2_bg" value="" style="rounded=1;strokeColor=#DDDDDD;fillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="40" y="332" width="335" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="rc2_img" value="[img]" style="rounded=1;fillColor=#EEEEEE;strokeColor=#CCCCCC;fontSize=11;fontColor=#AAAAAA;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="52" y="342" width="72" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rc2_name" value="Pollo al Curry" style="text;fontSize=14;fontStyle=1;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="136" y="352" width="226" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rc2_meta" value="60 min" style="text;fontSize=12;align=left;strokeColor=none;fillColor=none;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="136" y="382" width="226" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rc3_bg" value="" style="rounded=1;strokeColor=#DDDDDD;fillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="40" y="434" width="335" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="rc3_img" value="[img]" style="rounded=1;fillColor=#EEEEEE;strokeColor=#CCCCCC;fontSize=11;fontColor=#AAAAAA;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="52" y="444" width="72" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rc3_name" value="Pan de Plátano" style="text;fontSize=14;fontStyle=1;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="136" y="454" width="226" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rc3_meta" value="80 min" style="text;fontSize=12;align=left;strokeColor=none;fillColor=none;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="136" y="484" width="226" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_fab" value="+" style="ellipse;fillColor=#333333;fontColor=#FFFFFF;strokeColor=#333333;fontSize=26;fontStyle=1;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="323" y="716" width="52" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_nav" value="Menú de navegación" style="text;fontSize=16;fontStyle=1;align=center;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="455" y="10" width="375" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nav_frame" value="" style="rounded=1;arcSize=4;strokeColor=#333333;strokeWidth=2;fillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="455" y="50" width="375" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="nav_dim" value="" style="fillColor=#000000;strokeColor=none;opacity=25;" parent="1" vertex="1">
+          <mxGeometry x="725" y="50" width="105" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="drawer_bg" value="" style="fillColor=#FFFFFF;strokeColor=#DDDDDD;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="455" y="50" width="270" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="drawer_hdr_bg" value="" style="fillColor=#F0F0F0;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="455" y="50" width="270" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="drawer_greeting" value="Hola," style="text;fontSize=13;align=left;strokeColor=none;fillColor=none;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="472" y="68" width="230" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="drawer_name" value="Juan" style="text;fontSize=22;fontStyle=1;align=left;strokeColor=none;fillColor=none;fontColor=#111111;" parent="1" vertex="1">
+          <mxGeometry x="472" y="86" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="drawer_family" value="Familia García  →" style="text;fontSize=13;align=left;strokeColor=none;fillColor=none;fontColor=#555555;" parent="1" vertex="1">
+          <mxGeometry x="472" y="118" width="230" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="drawer_hdiv" value="" style="fillColor=#DDDDDD;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="455" y="170" width="270" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nav_hoy_bg" value="" style="fillColor=#EBEBEB;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="455" y="171" width="270" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="nav_hoy_bar" value="" style="fillColor=#333333;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="455" y="171" width="4" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="nav_hoy_txt" value="☀  Hoy" style="text;fontSize=15;fontStyle=1;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="478" y="171" width="230" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="nav_rec_txt" value="🍳  Recetas" style="text;fontSize=15;align=left;strokeColor=none;fillColor=none;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="478" y="223" width="230" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="nav_plan_txt" value="📅  Planificador" style="text;fontSize=15;align=left;strokeColor=none;fillColor=none;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="478" y="275" width="230" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="drawer_bdiv" value="" style="fillColor=#DDDDDD;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="455" y="332" width="270" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nav_out_txt" value="→  Salir" style="text;fontSize=15;align=left;strokeColor=none;fillColor=none;fontColor=#CC3333;" parent="1" vertex="1">
+          <mxGeometry x="478" y="333" width="230" height="52" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

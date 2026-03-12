@@ -1,0 +1,224 @@
+<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="0" page="0" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- ===================== SCREEN A: WITH MEALS ===================== -->
+
+    <mxCell id="a_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_label" value="Estado A — Hoy: con recetas planificadas" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="20" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="a_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="36" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Top bar -->
+    <mxCell id="a_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_hamburger" value="&#9776;" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="28" y="56" width="36" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_topbar_title" value="Hoy" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="100" y="56" width="220" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Content area -->
+    <mxCell id="a_content" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="20" y="104" width="390" height="696" as="geometry"/>
+    </mxCell>
+
+    <!-- Greeting -->
+    <mxCell id="a_greeting" value="Hola, Maria" style="text;fontSize=22;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="36" y="120" width="300" height="36" as="geometry"/>
+    </mxCell>
+
+    <!-- Today's meals section -->
+    <mxCell id="a_meals_header" value="Recetas de hoy" style="text;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="36" y="176" width="200" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- Divider -->
+    <mxCell id="a_meals_divider" value="" style="fillColor=#dddddd;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="36" y="202" width="348" height="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Meal 1 -->
+    <mxCell id="a_m1" value="Tortilla espanola" style="text;fontSize=15;fillColor=none;strokeColor=none;align=left;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="36" y="212" width="300" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_m1_arrow" value="&#8250;" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;fontColor=#bbbbbb;" vertex="1" parent="1">
+      <mxGeometry x="370" y="212" width="24" height="32" as="geometry"/>
+    </mxCell>
+
+    <!-- Meal 2 -->
+    <mxCell id="a_m2" value="Ensalada cesar" style="text;fontSize=15;fillColor=none;strokeColor=none;align=left;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="36" y="248" width="300" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_m2_arrow" value="&#8250;" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;fontColor=#bbbbbb;" vertex="1" parent="1">
+      <mxGeometry x="370" y="248" width="24" height="32" as="geometry"/>
+    </mxCell>
+
+    <!-- Meal 3 -->
+    <mxCell id="a_m3" value="Pasta al pesto" style="text;fontSize=15;fillColor=none;strokeColor=none;align=left;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="36" y="284" width="300" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_m3_arrow" value="&#8250;" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;fontColor=#bbbbbb;" vertex="1" parent="1">
+      <mxGeometry x="370" y="284" width="24" height="32" as="geometry"/>
+    </mxCell>
+
+    <!-- Stats section -->
+    <mxCell id="a_stats_header" value="Tu actividad" style="text;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="36" y="346" width="200" height="24" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_stats_divider" value="" style="fillColor=#dddddd;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="36" y="372" width="348" height="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Stat box 1 -->
+    <mxCell id="a_stat1_bg" value="" style="fillColor=#f5f5f5;strokeColor=#eeeeee;strokeWidth=1;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="36" y="384" width="168" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_stat1_num" value="12" style="text;fontSize=26;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="36" y="390" width="168" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_stat1_label" value="recetas cocinadas este mes" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="36" y="428" width="168" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Stat box 2 -->
+    <mxCell id="a_stat2_bg" value="" style="fillColor=#f5f5f5;strokeColor=#eeeeee;strokeWidth=1;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="216" y="384" width="168" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_stat2_num" value="47" style="text;fontSize=26;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="216" y="390" width="168" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_stat2_label" value="recetas guardadas" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="216" y="428" width="168" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Stat box 3 (streak, full width) -->
+    <mxCell id="a_stat3_bg" value="" style="fillColor=#f5f5f5;strokeColor=#eeeeee;strokeWidth=1;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="36" y="476" width="348" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_stat3_text" value="Racha de 5 dias planificando" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="36" y="476" width="348" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- Proximamente label -->
+    <mxCell id="a_stats_future" value="Proximamente" style="text;fontSize=10;fillColor=none;strokeColor=none;align=right;fontColor=#bbbbbb;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="280" y="346" width="104" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="a_ann1" value="Nombres de receta son enlaces — toca para ir al detalle de la receta" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="554" width="390" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_ann2" value="Seccion de estadisticas es un placeholder — contenido real en fases futuras" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="572" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN B: EMPTY STATE ===================== -->
+
+    <mxCell id="b_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_label" value="Estado B — Hoy: sin recetas planificadas" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="470" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="b_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="486" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Top bar -->
+    <mxCell id="b_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_hamburger" value="&#9776;" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="478" y="56" width="36" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_topbar_title" value="Hoy" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="550" y="56" width="220" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Content area -->
+    <mxCell id="b_content" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="470" y="104" width="390" height="696" as="geometry"/>
+    </mxCell>
+
+    <!-- Greeting -->
+    <mxCell id="b_greeting" value="Hola, Maria" style="text;fontSize=22;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="486" y="120" width="300" height="36" as="geometry"/>
+    </mxCell>
+
+    <!-- Today's meals section -->
+    <mxCell id="b_meals_header" value="Recetas de hoy" style="text;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="486" y="176" width="200" height="24" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_meals_divider" value="" style="fillColor=#dddddd;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="486" y="202" width="348" height="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Empty state message -->
+    <mxCell id="b_empty" value="No hay recetas para hoy" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#bbbbbb;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="486" y="214" width="300" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Stats section (same as state A) -->
+    <mxCell id="b_stats_header" value="Tu actividad" style="text;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="486" y="272" width="200" height="24" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_stats_future" value="Proximamente" style="text;fontSize=10;fillColor=none;strokeColor=none;align=right;fontColor=#bbbbbb;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="730" y="272" width="104" height="24" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_stats_divider" value="" style="fillColor=#dddddd;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="486" y="298" width="348" height="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Stat box 1 -->
+    <mxCell id="b_stat1_bg" value="" style="fillColor=#f5f5f5;strokeColor=#eeeeee;strokeWidth=1;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="486" y="310" width="168" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_stat1_num" value="0" style="text;fontSize=26;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="486" y="316" width="168" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_stat1_label" value="recetas cocinadas este mes" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="486" y="354" width="168" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Stat box 2 -->
+    <mxCell id="b_stat2_bg" value="" style="fillColor=#f5f5f5;strokeColor=#eeeeee;strokeWidth=1;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="666" y="310" width="168" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_stat2_num" value="3" style="text;fontSize=26;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="666" y="316" width="168" height="36" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_stat2_label" value="recetas guardadas" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="666" y="354" width="168" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Stat box 3 -->
+    <mxCell id="b_stat3_bg" value="" style="fillColor=#f5f5f5;strokeColor=#eeeeee;strokeWidth=1;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="486" y="402" width="348" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_stat3_text" value="Racha de 0 dias planificando" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="486" y="402" width="348" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="b_ann1" value="Estado vacio: mensaje sutil, sin boton de accion (ir al planificador desde el drawer)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="480" width="390" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_ann2" value="Stats aun visibles en estado vacio — valores en cero o bajo" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="498" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

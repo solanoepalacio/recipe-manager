@@ -1,0 +1,432 @@
+<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="0" page="0" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- ===================== SCREEN 1: ALL COLLAPSED ===================== -->
+
+    <mxCell id="a_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_label" value="1. Planificador — Todos los dias colapsados" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="20" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="a_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="36" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Top bar with hamburger -->
+    <mxCell id="a_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_hamburger" value="&#9776;" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="28" y="56" width="36" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_topbar_title" value="Planificador" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="100" y="56" width="220" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Week navigation row -->
+    <mxCell id="a_week_nav" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="104" width="390" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_week_prev" value="&#8249;" style="text;fontSize=24;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="28" y="104" width="40" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_week_label" value="Semana del 10 - 16 mar" style="text;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="80" y="104" width="260" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_week_next" value="&#8250;" style="text;fontSize=24;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="358" y="104" width="40" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Day rows (all collapsed) -->
+    <!-- Lunes — has meals -->
+    <mxCell id="a_d1_bg" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="156" width="390" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d1_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="24" y="156" width="28" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d1_name" value="Lunes 10" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="54" y="156" width="150" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d1_summary" value="Tortilla, Ensalada cesar, Pasta al pesto" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="54" y="186" width="330" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Martes — has meals -->
+    <mxCell id="a_d2_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="216" width="390" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d2_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="24" y="216" width="28" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d2_name" value="Martes 11" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="54" y="216" width="150" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d2_summary" value="Galletas de avena, Pollo al horno" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="54" y="246" width="330" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Miercoles — empty -->
+    <mxCell id="a_d3_bg" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="276" width="390" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d3_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="24" y="276" width="28" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d3_name" value="Miercoles 12" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="54" y="276" width="150" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d3_summary" value="Sin recetas planificadas" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#bbbbbb;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="54" y="306" width="250" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Jueves — has one meal -->
+    <mxCell id="a_d4_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="336" width="390" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d4_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="24" y="336" width="28" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d4_name" value="Jueves 13" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="54" y="336" width="150" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d4_summary" value="Sopa de lentejas" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="54" y="366" width="250" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Viernes — empty -->
+    <mxCell id="a_d5_bg" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="396" width="390" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d5_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="24" y="396" width="28" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d5_name" value="Viernes 14" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="54" y="396" width="150" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d5_summary" value="Sin recetas planificadas" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#bbbbbb;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="54" y="426" width="250" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Sabado — empty -->
+    <mxCell id="a_d6_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="456" width="390" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d6_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="24" y="456" width="28" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d6_name" value="Sabado 15" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="54" y="456" width="150" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d6_summary" value="Sin recetas planificadas" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#bbbbbb;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="54" y="486" width="250" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Domingo — has meals -->
+    <mxCell id="a_d7_bg" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="516" width="390" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d7_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="24" y="516" width="28" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d7_name" value="Domingo 16" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="54" y="516" width="150" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_d7_summary" value="Paella, Tarta de queso" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="54" y="546" width="330" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="a_ann1" value="&#9654; indica colapsado — toca la fila para expandir" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="590" width="370" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_ann2" value="Resumen colapsado: nombres de recetas separados por coma, o texto vacio en gris" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="608" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_ann3" value="Varios dias se pueden expandir a la vez" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="626" width="370" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 2: TWO DAYS EXPANDED ===================== -->
+
+    <mxCell id="b_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_label" value="2. Planificador — Lunes y Miercoles expandidos" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="470" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="b_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="486" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Top bar -->
+    <mxCell id="b_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_hamburger" value="&#9776;" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="478" y="56" width="36" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_topbar_title" value="Planificador" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="550" y="56" width="220" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Week nav -->
+    <mxCell id="b_week_nav" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="104" width="390" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_week_prev" value="&#8249;" style="text;fontSize=24;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="478" y="104" width="40" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_week_label" value="Semana del 10 - 16 mar" style="text;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="530" y="104" width="260" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_week_next" value="&#8250;" style="text;fontSize=24;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="808" y="104" width="40" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- LUNES EXPANDED -->
+    <!-- Day header -->
+    <mxCell id="b_d1_header" value="" style="fillColor=#e8e8e8;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="156" width="390" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d1_arrow" value="&#9660;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="474" y="156" width="28" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d1_name" value="Lunes 10" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="504" y="156" width="150" height="40" as="geometry"/>
+    </mxCell>
+
+    <!-- Lunes meal entries -->
+    <mxCell id="b_d1_body" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="196" width="390" height="136" as="geometry"/>
+    </mxCell>
+
+    <!-- Meal 1 -->
+    <mxCell id="b_d1_m1_name" value="Tortilla espanola" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="204" width="280" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d1_m1_del" value="×" style="text;fontSize=18;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="822" y="204" width="28" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Meal 2 -->
+    <mxCell id="b_d1_m2_name" value="Ensalada cesar" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="238" width="280" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d1_m2_del" value="×" style="text;fontSize=18;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="822" y="238" width="28" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Meal 3 -->
+    <mxCell id="b_d1_m3_name" value="Pasta al pesto" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="272" width="280" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d1_m3_del" value="×" style="text;fontSize=18;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="822" y="272" width="28" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Add button -->
+    <mxCell id="b_d1_add" value="+ Anadir receta" style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="490" y="304" width="200" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- MARTES COLLAPSED -->
+    <mxCell id="b_d2_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="332" width="390" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d2_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="474" y="332" width="28" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d2_name" value="Martes 11" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="504" y="332" width="150" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d2_summary" value="Galletas de avena, Pollo al horno" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="504" y="362" width="330" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- MIERCOLES EXPANDED (empty day) -->
+    <mxCell id="b_d3_header" value="" style="fillColor=#e8e8e8;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="392" width="390" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d3_arrow" value="&#9660;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="474" y="392" width="28" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d3_name" value="Miercoles 12" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="504" y="392" width="150" height="40" as="geometry"/>
+    </mxCell>
+
+    <!-- Empty day body -->
+    <mxCell id="b_d3_body" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="432" width="390" height="64" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d3_empty" value="Sin recetas planificadas" style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#bbbbbb;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="490" y="436" width="250" height="24" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d3_add" value="+ Anadir receta" style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="490" y="464" width="200" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- JUEVES COLLAPSED -->
+    <mxCell id="b_d4_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="496" width="390" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d4_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="474" y="496" width="28" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d4_name" value="Jueves 13" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="504" y="496" width="150" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_d4_summary" value="Sopa de lentejas" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="504" y="526" width="250" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Remaining days fade out (Vie-Dom collapsed) -->
+    <mxCell id="b_fade" value="" style="fillColor=#f5f5f5;strokeColor=none;opacity=75;" vertex="1" parent="1">
+      <mxGeometry x="470" y="556" width="390" height="244" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_more" value="Viernes 14 ... Domingo 16  (colapsados, scroll)" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="580" width="390" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="b_ann1" value="&#9660; expandido / &#9654; colapsado — cabecera expandida tiene fondo mas oscuro" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="624" width="390" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_ann2" value="× elimina la receta del dia (sin confirmacion)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="642" width="390" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_ann3" value="+ Anadir receta abre el picker (pantalla 3)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="660" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 3: RECIPE PICKER BOTTOM SHEET ===================== -->
+
+    <mxCell id="c_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="920" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_label" value="3. Selector de receta (bottom sheet sobre planificador)" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="920" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="c_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="936" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Dimmed planner behind -->
+    <mxCell id="c_scrim" value="" style="fillColor=#666666;strokeColor=none;opacity=50;" vertex="1" parent="1">
+      <mxGeometry x="920" y="52" width="390" height="748" as="geometry"/>
+    </mxCell>
+
+    <!-- Dimmed planner rows (faint behind scrim) -->
+    <mxCell id="c_dim_row1" value="" style="fillColor=#cccccc;strokeColor=#bbbbbb;rounded=1;opacity=30;" vertex="1" parent="1">
+      <mxGeometry x="934" y="110" width="362" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_dim_row2" value="" style="fillColor=#cccccc;strokeColor=#bbbbbb;rounded=1;opacity=30;" vertex="1" parent="1">
+      <mxGeometry x="934" y="160" width="362" height="40" as="geometry"/>
+    </mxCell>
+
+    <!-- Bottom sheet surface -->
+    <mxCell id="c_sheet" value="" style="fillColor=#ffffff;strokeColor=#cccccc;strokeWidth=1;rounded=0;" vertex="1" parent="1">
+      <mxGeometry x="920" y="300" width="390" height="500" as="geometry"/>
+    </mxCell>
+
+    <!-- Drag handle -->
+    <mxCell id="c_drag" value="" style="fillColor=#cccccc;strokeColor=none;rounded=3;" vertex="1" parent="1">
+      <mxGeometry x="1085" y="310" width="60" height="5" as="geometry"/>
+    </mxCell>
+
+    <!-- Sheet title -->
+    <mxCell id="c_title" value="Anadir receta a Miercoles 12" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="936" y="324" width="350" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Search bar -->
+    <mxCell id="c_search_bg" value="" style="fillColor=#e8e8e8;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="936" y="362" width="358" height="42" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_search_text" value="Buscar receta..." style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#999999;" vertex="1" parent="1">
+      <mxGeometry x="950" y="362" width="200" height="42" as="geometry"/>
+    </mxCell>
+
+    <!-- Recipe list -->
+    <mxCell id="c_r1_bg" value="" style="fillColor=#ffffff;strokeColor=#eeeeee;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="414" width="390" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r1_name" value="Galletas de avena" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="940" y="414" width="280" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r1_time" value="30 min" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="940" y="440" width="100" height="20" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="c_r2_bg" value="" style="fillColor=#f9f9f9;strokeColor=#eeeeee;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="464" width="390" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r2_name" value="Tortilla espanola" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="940" y="464" width="280" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r2_time" value="45 min" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="940" y="490" width="100" height="20" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="c_r3_bg" value="" style="fillColor=#ffffff;strokeColor=#eeeeee;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="514" width="390" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r3_name" value="Pasta al pesto" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="940" y="514" width="280" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r3_time" value="20 min" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="940" y="540" width="100" height="20" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="c_r4_bg" value="" style="fillColor=#f9f9f9;strokeColor=#eeeeee;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="564" width="390" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r4_name" value="Pollo al horno" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="940" y="564" width="280" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r4_time" value="1 h 15 min" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="940" y="590" width="100" height="20" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="c_r5_bg" value="" style="fillColor=#ffffff;strokeColor=#eeeeee;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="614" width="390" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r5_name" value="Sopa de lentejas" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="940" y="614" width="280" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r5_time" value="50 min" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="940" y="640" width="100" height="20" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="c_r6_bg" value="" style="fillColor=#f9f9f9;strokeColor=#eeeeee;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="664" width="390" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r6_name" value="Ensalada cesar" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="940" y="664" width="280" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_r6_time" value="15 min" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="940" y="690" width="100" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="c_ann1" value="Toca una receta → se asigna al dia y se cierra el sheet" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="920" y="724" width="370" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_ann2" value="Titulo del sheet incluye el dia destino para dar contexto" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="920" y="742" width="370" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_ann3" value="Lista muestra nombre + tiempo total de cada receta" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="920" y="760" width="370" height="18" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

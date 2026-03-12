@@ -1,0 +1,415 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
+  <diagram id="W_rnaoYPZYUpmGPNSgJu" name="pageWithNumber">
+    <mxGraphModel dx="-669" dy="-254" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="0" page="0" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Estado 1: Vista inicial" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="20" y="880" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Estado 2: Al hacer scroll" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="450" y="880" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Estado 3: Modo edicion" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="880" y="880" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="" style="rounded=1;arcSize=3;strokeColor=#333333;fillColor=#ffffff;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="20" y="20" width="390" height="844" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="" style="fillColor=#e8e8e8;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="20" y="20" width="390" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="9:41" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="32" y="20" width="60" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="●●●" style="text;html=0;align=right;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="320" y="20" width="82" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="44" width="390" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="←" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=18;" parent="1" vertex="1">
+          <mxGeometry x="28" y="44" width="40" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="⋮" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=18;" parent="1" vertex="1">
+          <mxGeometry x="362" y="44" width="40" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="[ Foto ]" style="fillColor=#d0d0d0;strokeColor=#999999;align=center;verticalAlign=middle;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="92" width="390" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="292" width="390" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="19" value="Pollo al Curry" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=17;" parent="1" vertex="1">
+          <mxGeometry x="32" y="300" width="220" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="20" value="Compartir ↗" style="text;html=0;align=right;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#1976D2;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="252" y="300" width="148" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="21" value="Editar" style="rounded=1;arcSize=50;strokeColor=#333333;fillColor=#ffffff;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="32" y="344" width="80" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="22" value="🍳 Cocinar" style="rounded=1;arcSize=50;strokeColor=#333333;fillColor=#333333;fontColor=#ffffff;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="290" y="344" width="108" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="23" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="20" y="384" width="390" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="24" value="" style="fillColor=#f5f5f5;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="385" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="25" value="▼  Informacion" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="32" y="385" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="26" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="425" width="390" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="27" value="Preparacion" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=10;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="20" y="430" width="97" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="28" value="Coccion" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=10;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="117" y="430" width="97" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="29" value="Total" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=10;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="214" y="430" width="97" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="30" value="Porciones" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=10;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="311" y="430" width="99" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="31" value="30 min" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="20" y="450" width="97" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="32" value="25 min" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="117" y="450" width="97" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="33" value="55 min" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="214" y="450" width="97" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="34" value="4" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="311" y="450" width="99" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="35" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="117" y="425" width="1" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="36" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="214" y="425" width="1" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="37" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="311" y="425" width="1" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="38" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="20" y="481" width="390" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="39" value="" style="fillColor=#f5f5f5;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="482" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="40" value="▼  Ingredientes" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="32" y="482" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="41" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="522" width="390" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="42" value="500g pollo" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="40" y="528" width="330" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="43" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="32" y="556" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="44" value="2 cebollas" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="40" y="557" width="330" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="45" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="32" y="585" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="46" value="+ Anadir ingrediente" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="40" y="586" width="350" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="47" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="20" y="618" width="390" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="48" value="" style="fillColor=#f5f5f5;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="619" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="49" value="▼  Instrucciones" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="32" y="619" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="50" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="659" width="390" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="51" value="1.  Picar la cebolla finamente" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="40" y="665" width="330" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="52" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="32" y="693" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="53" value="2.  Dorar el pollo en la sarten" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="40" y="694" width="330" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="54" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="32" y="722" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="55" value="+ Anadir paso" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="40" y="723" width="350" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="60" value="" style="rounded=1;arcSize=3;strokeColor=#333333;fillColor=#ffffff;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="450" y="20" width="390" height="844" as="geometry" />
+        </mxCell>
+        <mxCell id="61" value="" style="fillColor=#e8e8e8;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="450" y="20" width="390" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="62" value="9:41" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="462" y="20" width="60" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="63" value="●●●" style="text;html=0;align=right;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="750" y="20" width="82" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="64" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="450" y="44" width="390" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="65" value="←" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=18;" parent="1" vertex="1">
+          <mxGeometry x="458" y="44" width="40" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="66" value="⋮" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=18;" parent="1" vertex="1">
+          <mxGeometry x="792" y="44" width="40" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="67" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="450" y="92" width="390" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="68" value="Pollo al Curry" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=17;" parent="1" vertex="1">
+          <mxGeometry x="462" y="100" width="220" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="69" value="Compartir ↗" style="text;html=0;align=right;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#1976D2;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="682" y="100" width="148" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="70" value="Editar" style="rounded=1;arcSize=50;strokeColor=#333333;fillColor=#ffffff;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="462" y="144" width="80" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="71" value="🍳 Cocinar" style="rounded=1;arcSize=50;strokeColor=#333333;fillColor=#333333;fontColor=#ffffff;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="720" y="144" width="108" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="72" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="450" y="184" width="390" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="73" value="" style="fillColor=#f5f5f5;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="450" y="185" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="74" value="▶  Informacion" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="462" y="185" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="75" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="450" y="225" width="390" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="76" value="" style="fillColor=#f5f5f5;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="450" y="226" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="77" value="▼  Ingredientes" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="462" y="226" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="78" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="450" y="266" width="390" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="79" value="500g pollo" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="470" y="272" width="330" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="80" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="462" y="300" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="81" value="2 cebollas" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="470" y="301" width="330" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="82" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="462" y="329" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="83" value="+ Anadir ingrediente" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="470" y="330" width="350" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="84" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="450" y="362" width="390" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85" value="" style="fillColor=#f5f5f5;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="450" y="363" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="86" value="▼  Instrucciones" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="462" y="363" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="87" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="450" y="403" width="390" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="88" value="1.  Picar la cebolla finamente" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="470" y="409" width="330" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="89" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="462" y="437" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="90" value="2.  Dorar el pollo en la sarten" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="470" y="438" width="330" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="91" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="462" y="466" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="92" value="+ Anadir paso" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="470" y="467" width="350" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="100" value="" style="rounded=1;arcSize=3;strokeColor=#333333;fillColor=#ffffff;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="880" y="20" width="390" height="844" as="geometry" />
+        </mxCell>
+        <mxCell id="101" value="" style="fillColor=#e8e8e8;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="880" y="20" width="390" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="102" value="9:41" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="892" y="20" width="60" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="103" value="●●●" style="text;html=0;align=right;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1180" y="20" width="82" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="104" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="880" y="44" width="390" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="105" value="←" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=18;" parent="1" vertex="1">
+          <mxGeometry x="888" y="44" width="40" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="106" value="⋮" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=18;" parent="1" vertex="1">
+          <mxGeometry x="1222" y="44" width="40" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="107" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="880" y="92" width="390" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="108" value="Pollo al Curry" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=5;fontSize=17;" parent="1" vertex="1">
+          <mxGeometry x="892" y="100" width="220" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="109" value="Compartir ↗" style="text;html=0;align=right;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#1976D2;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="1112" y="100" width="148" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="110" value="✓ Listo" style="rounded=1;arcSize=50;strokeColor=#333333;fillColor=#ffffff;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="892" y="144" width="80" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="111" value="🍳 Cocinar" style="rounded=1;arcSize=50;strokeColor=#333333;fillColor=#333333;fontColor=#ffffff;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="1150" y="144" width="108" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="112" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="880" y="184" width="390" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="113" value="" style="fillColor=#f5f5f5;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="880" y="185" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="114" value="▼  Informacion" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="892" y="185" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="115" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="880" y="225" width="390" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="116" value="Preparacion" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=10;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="880" y="230" width="97" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="117" value="Coccion" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=10;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="977" y="230" width="97" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="118" value="Total" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=10;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="1074" y="230" width="97" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="119" value="Porciones" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=10;fontColor=#888888;" parent="1" vertex="1">
+          <mxGeometry x="1171" y="230" width="99" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="120" value="30 min" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=5;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="880" y="250" width="97" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="121" value="25 min" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=5;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="977" y="250" width="97" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="122" value="55 min" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=5;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="1074" y="250" width="97" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="123" value="4" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=5;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="1171" y="250" width="99" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="124" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="977" y="225" width="1" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="125" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1074" y="225" width="1" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="126" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1171" y="225" width="1" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="127" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="880" y="281" width="390" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="128" value="" style="fillColor=#f5f5f5;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="880" y="282" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="129" value="▼  Ingredientes" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="892" y="282" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="130" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="880" y="322" width="390" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="131" value="≡" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=16;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="882" y="328" width="28" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="132" value="500g pollo" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="916" y="328" width="268" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="133" value="×" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=16;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="328" width="28" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="134" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="892" y="356" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="135" value="≡" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=16;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="882" y="357" width="28" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="136" value="2 cebollas" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="916" y="357" width="268" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="137" value="×" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=16;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="357" width="28" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="138" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="892" y="385" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="139" value="+ Anadir ingrediente" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;fontColor=#555555;" parent="1" vertex="1">
+          <mxGeometry x="916" y="386" width="350" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="140" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="880" y="418" width="390" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="141" value="" style="fillColor=#f5f5f5;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="880" y="419" width="390" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="142" value="▼  Instrucciones" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="892" y="419" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="143" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="880" y="459" width="390" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="144" value="≡" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=16;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="882" y="465" width="28" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="145" value="1.  Picar la cebolla finamente" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="916" y="465" width="268" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="146" value="×" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=16;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="465" width="28" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="147" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="892" y="493" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="148" value="≡" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=16;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="882" y="494" width="28" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="149" value="2.  Dorar el pollo en la sarten" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="916" y="494" width="268" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="150" value="×" style="text;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=16;fontColor=#aaaaaa;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="494" width="28" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="151" value="" style="fillColor=#dddddd;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="892" y="522" width="358" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="152" value="+ Anadir paso" style="text;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontSize=13;fontColor=#555555;" parent="1" vertex="1">
+          <mxGeometry x="916" y="523" width="350" height="28" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

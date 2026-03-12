@@ -1,0 +1,537 @@
+<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="0" page="0" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- ===================== SCREEN 1: ALL HOUSEHOLDS COLLAPSED ===================== -->
+
+    <mxCell id="a_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_label" value="1. Admin — Hogares colapsados (vista principal)" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="20" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="a_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="36" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Top bar -->
+    <mxCell id="a_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_topbar_title" value="Administracion" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="36" y="56" width="200" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_logout" value="Cerrar sesion" style="text;fontSize=13;fillColor=none;strokeColor=none;align=right;fontColor=#cc3333;" vertex="1" parent="1">
+      <mxGeometry x="280" y="56" width="120" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Content -->
+    <mxCell id="a_content" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="20" y="104" width="390" height="696" as="geometry"/>
+    </mxCell>
+
+    <!-- Section header -->
+    <mxCell id="a_section" value="Hogares" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="36" y="112" width="200" height="26" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_divider" value="" style="fillColor=#dddddd;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="36" y="140" width="348" height="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Household 1 -->
+    <mxCell id="a_h1_bg" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="148" width="390" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_h1_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="24" y="148" width="28" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_h1_name" value="Familia Garcia" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="54" y="148" width="200" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_h1_count" value="4 miembros" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="54" y="176" width="120" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Household 2 -->
+    <mxCell id="a_h2_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="204" width="390" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_h2_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="24" y="204" width="28" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_h2_name" value="Familia Lopez" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="54" y="204" width="200" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_h2_count" value="2 miembros" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="54" y="232" width="120" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Household 3 -->
+    <mxCell id="a_h3_bg" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="260" width="390" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_h3_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="24" y="260" width="28" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_h3_name" value="Familia Martinez" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="54" y="260" width="200" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_h3_count" value="3 miembros" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="54" y="288" width="120" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Add household button -->
+    <mxCell id="a_add_household" value="+ Anadir hogar" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="36" y="330" width="200" height="36" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="a_ann1" value="Vista principal del admin: hogares como accordion colapsable" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="386" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_ann2" value="Expandir un hogar revela sus miembros con acciones por usuario" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="404" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 2: ONE HOUSEHOLD EXPANDED ===================== -->
+
+    <mxCell id="b_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_label" value="2. Admin — Familia Garcia expandida" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="470" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="b_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="486" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Top bar -->
+    <mxCell id="b_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_topbar_title" value="Administracion" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="486" y="56" width="200" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_logout" value="Cerrar sesion" style="text;fontSize=13;fillColor=none;strokeColor=none;align=right;fontColor=#cc3333;" vertex="1" parent="1">
+      <mxGeometry x="730" y="56" width="120" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Content -->
+    <mxCell id="b_content" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="470" y="104" width="390" height="696" as="geometry"/>
+    </mxCell>
+
+    <!-- Section header -->
+    <mxCell id="b_section" value="Hogares" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="486" y="112" width="200" height="26" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_divider" value="" style="fillColor=#dddddd;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="486" y="140" width="348" height="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Familia Garcia EXPANDED -->
+    <mxCell id="b_h1_header" value="" style="fillColor=#e8e8e8;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="148" width="390" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_h1_arrow" value="&#9660;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="474" y="148" width="28" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_h1_name" value="Familia Garcia" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="504" y="148" width="200" height="40" as="geometry"/>
+    </mxCell>
+
+    <!-- Member list body -->
+    <mxCell id="b_h1_body" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="188" width="390" height="234" as="geometry"/>
+    </mxCell>
+
+    <!-- Member 1: Juan -->
+    <mxCell id="b_m1_name" value="Juan" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="196" width="120" height="32" as="geometry"/>
+    </mxCell>
+    <!-- Info button -->
+    <mxCell id="b_m1_info" value="&#8505;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="724" y="198" width="32" height="28" as="geometry"/>
+    </mxCell>
+    <!-- Key button -->
+    <mxCell id="b_m1_key" value="&#128273;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="762" y="198" width="32" height="28" as="geometry"/>
+    </mxCell>
+    <!-- Reset button -->
+    <mxCell id="b_m1_reset" value="&#128260;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="800" y="198" width="32" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Member 2: Maria -->
+    <mxCell id="b_m2_name" value="Maria" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="240" width="120" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_m2_info" value="&#8505;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="724" y="242" width="32" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_m2_key" value="&#128273;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="762" y="242" width="32" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_m2_reset" value="&#128260;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="800" y="242" width="32" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Member 3: Carlos -->
+    <mxCell id="b_m3_name" value="Carlos" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="284" width="120" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_m3_info" value="&#8505;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="724" y="286" width="32" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_m3_key" value="&#128273;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="762" y="286" width="32" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_m3_reset" value="&#128260;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="800" y="286" width="32" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Member 4: Ana -->
+    <mxCell id="b_m4_name" value="Ana" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="328" width="120" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_m4_info" value="&#8505;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="724" y="330" width="32" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_m4_key" value="&#128273;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="762" y="330" width="32" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_m4_reset" value="&#128260;" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontSize=14;align=center;" vertex="1" parent="1">
+      <mxGeometry x="800" y="330" width="32" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Add member -->
+    <mxCell id="b_add_member" value="+ Anadir miembro" style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="490" y="374" width="200" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Icon legend -->
+    <mxCell id="b_legend_bg" value="" style="fillColor=#f5f5f5;strokeColor=#eeeeee;strokeWidth=1;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="486" y="432" width="348" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_legend" value="&#8505; = Info usuario   &#128273; = Tokens API   &#128260; = Reset contrasena" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#777777;" vertex="1" parent="1">
+      <mxGeometry x="486" y="432" width="348" height="52" as="geometry"/>
+    </mxCell>
+
+    <!-- Familia Lopez collapsed below -->
+    <mxCell id="b_h2_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="496" width="390" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_h2_arrow" value="&#9654;" style="text;fontSize=11;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="474" y="496" width="28" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_h2_name" value="Familia Lopez" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="504" y="496" width="200" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_h2_count" value="2 miembros" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="504" y="524" width="120" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Add household -->
+    <mxCell id="b_add_household" value="+ Anadir hogar" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="486" y="566" width="200" height="36" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="b_ann1" value="Cada miembro tiene 3 botones de accion a la derecha" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="618" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_ann2" value="Cada boton abre un modal de pantalla completa (pantallas 3, 4, 5)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="636" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 3: USER INFO MODAL ===================== -->
+
+    <mxCell id="c_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="920" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_label" value="3. Modal — Info de usuario" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="920" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="c_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="936" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Modal top bar -->
+    <mxCell id="c_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_close" value="× Cerrar" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="930" y="56" width="90" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_modal_title" value="Editar usuario" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="56" width="220" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Content -->
+    <mxCell id="c_content" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="920" y="104" width="390" height="696" as="geometry"/>
+    </mxCell>
+
+    <!-- Name field -->
+    <mxCell id="c_name_label" value="Nombre" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="936" y="120" width="120" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_name_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="936" y="144" width="358" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_name_value" value="Juan" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="948" y="144" width="300" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Email field -->
+    <mxCell id="c_email_label" value="Correo electronico" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="936" y="204" width="200" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_email_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="936" y="228" width="358" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_email_value" value="juan@ejemplo.com" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="948" y="228" width="300" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Date of birth field -->
+    <mxCell id="c_dob_label" value="Fecha de nacimiento" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="936" y="288" width="200" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_dob_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="936" y="312" width="358" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_dob_value" value="15/03/1990" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="948" y="312" width="300" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Gender field -->
+    <mxCell id="c_gender_label" value="Genero" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="936" y="372" width="120" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_gender_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="936" y="396" width="358" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_gender_value" value="Masculino  &#9660;" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="948" y="396" width="300" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Household -->
+    <mxCell id="c_household_label" value="Hogar" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="936" y="456" width="120" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_household_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="936" y="480" width="358" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_household_value" value="Familia Garcia  &#9660;" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="948" y="480" width="300" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Save button -->
+    <mxCell id="c_save" value="Guardar" style="rounded=3;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="936" y="552" width="358" height="48" as="geometry"/>
+    </mxCell>
+
+    <!-- Delete user -->
+    <mxCell id="c_delete" value="Eliminar usuario" style="text;fontSize=14;fillColor=none;strokeColor=none;align=center;fontColor=#cc3333;" vertex="1" parent="1">
+      <mxGeometry x="936" y="614" width="358" height="32" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="c_ann1" value="Modal pantalla completa — misma estructura para crear usuario nuevo" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="920" y="506" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_ann2" value="Hogar: dropdown para mover usuario entre hogares" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="920" y="524" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_ann3" value="Genero: dropdown con opciones Masculino / Femenino / Otro (nullable, puede quedar vacio)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="920" y="542" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="c_ann4" value="Fecha de nacimiento: selector de fecha (nullable)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="920" y="560" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 4: API TOKENS MODAL ===================== -->
+
+    <mxCell id="d_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_label" value="4. Modal — Tokens API (de Juan)" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="d_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Modal top bar -->
+    <mxCell id="d_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_close" value="× Cerrar" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="1380" y="56" width="90" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_modal_title" value="Tokens API — Juan" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1450" y="56" width="220" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Content -->
+    <mxCell id="d_content" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="104" width="390" height="696" as="geometry"/>
+    </mxCell>
+
+    <!-- Existing tokens -->
+    <mxCell id="d_tokens_header" value="Tokens activos" style="text;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="112" width="200" height="26" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_tokens_divider" value="" style="fillColor=#dddddd;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="140" width="348" height="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Token 1 -->
+    <mxCell id="d_t1_bg" value="" style="fillColor=#ffffff;strokeColor=#eeeeee;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="148" width="390" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_t1_name" value="Token de produccion" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="150" width="240" height="24" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_t1_meta" value="Ultimo uso: hace 2 dias" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="174" width="200" height="20" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_t1_del" value="×" style="text;fontSize=18;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="1724" y="148" width="28" height="56" as="geometry"/>
+    </mxCell>
+
+    <!-- Token 2 -->
+    <mxCell id="d_t2_bg" value="" style="fillColor=#f9f9f9;strokeColor=#eeeeee;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="204" width="390" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_t2_name" value="Token de desarrollo" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="206" width="240" height="24" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_t2_meta" value="Ultimo uso: nunca" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="230" width="200" height="20" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_t2_del" value="×" style="text;fontSize=18;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="1724" y="204" width="28" height="56" as="geometry"/>
+    </mxCell>
+
+    <!-- Create token button -->
+    <mxCell id="d_create_btn" value="+ Crear token" style="rounded=3;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="282" width="348" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Divider -->
+    <mxCell id="d_new_divider" value="" style="fillColor=#dddddd;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="348" width="348" height="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Newly created token display -->
+    <mxCell id="d_new_header" value="Nuevo token creado" style="text;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="362" width="250" height="24" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_new_warning" value="Copia este token ahora. No se mostrara de nuevo." style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#cc3333;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="388" width="348" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Token value box -->
+    <mxCell id="d_token_box" value="" style="fillColor=#f0f0f0;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="416" width="348" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_token_value" value="rck_a1b2c3d4e5f6g7h8i9j0..." style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#333333;fontFamily=monospace;" vertex="1" parent="1">
+      <mxGeometry x="1396" y="416" width="270" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_copy_btn" value="Copiar" style="text;fontSize=12;fillColor=none;strokeColor=none;align=right;fontColor=#555555;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1670" y="416" width="58" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="d_ann1" value="Token solo visible al crearlo — despues solo se muestra nombre + ultimo uso" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="480" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_ann2" value="× elimina el token (con dialogo de confirmacion)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="498" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 5: PASSWORD RESET MODAL ===================== -->
+
+    <mxCell id="e_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_label" value="5. Modal — Reset de contrasena (de Juan)" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="e_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Modal top bar -->
+    <mxCell id="e_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_close" value="× Cerrar" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="1830" y="56" width="90" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_modal_title" value="Reset contrasena — Juan" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1900" y="56" width="230" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Content -->
+    <mxCell id="e_content" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="104" width="390" height="696" as="geometry"/>
+    </mxCell>
+
+    <!-- Explanation -->
+    <mxCell id="e_explain" value="Genera un enlace de restablecimiento de contrasena para compartir con el usuario." style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#555555;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="120" width="348" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Generate button -->
+    <mxCell id="e_generate" value="Generar enlace" style="rounded=3;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="180" width="348" height="48" as="geometry"/>
+    </mxCell>
+
+    <!-- Divider -->
+    <mxCell id="e_divider" value="" style="fillColor=#dddddd;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="250" width="348" height="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Generated URL display -->
+    <mxCell id="e_url_header" value="Enlace generado" style="text;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="264" width="250" height="24" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_url_warning" value="Comparte este enlace con el usuario. Expira en 24 horas." style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#cc3333;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="290" width="348" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- URL box -->
+    <mxCell id="e_url_box" value="" style="fillColor=#f0f0f0;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="320" width="348" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_url_value" value="https://app.ejemplo.com/reset/abc123..." style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#333333;fontFamily=monospace;" vertex="1" parent="1">
+      <mxGeometry x="1846" y="320" width="270" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_copy_btn" value="Copiar" style="text;fontSize=12;fillColor=none;strokeColor=none;align=right;fontColor=#555555;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="2120" y="320" width="58" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="e_ann1" value="Enlace de un solo uso — caduca en 24 h" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="386" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="e_ann2" value="Admin comparte el enlace manualmente (copiar + pegar en chat, email, etc)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="404" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

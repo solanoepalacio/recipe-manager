@@ -1,0 +1,809 @@
+<mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="0" page="0" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- ===================== SCREEN 0: NAME PROMPT (BOTTOM SHEET) ===================== -->
+
+    <!-- Phone frame -->
+    <mxCell id="s0_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="-430" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+
+    <!-- Screen label -->
+    <mxCell id="s0_label" value="0. Aviso de nombre (bottom sheet — al tocar FAB)" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="-430" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="s0_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="-414" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Background: dimmed recipe list (simulated) -->
+    <mxCell id="s0_bg_list" value="" style="fillColor=#d8d8d8;strokeColor=none;opacity=60;" vertex="1" parent="1">
+      <mxGeometry x="-430" y="52" width="390" height="780" as="geometry"/>
+    </mxCell>
+
+    <!-- Simulated recipe list items behind dim -->
+    <mxCell id="s0_bg_card1" value="" style="fillColor=#cccccc;strokeColor=#bbbbbb;rounded=1;opacity=40;" vertex="1" parent="1">
+      <mxGeometry x="-414" y="120" width="358" height="72" as="geometry"/>
+    </mxCell>
+    <mxCell id="s0_bg_card2" value="" style="fillColor=#cccccc;strokeColor=#bbbbbb;rounded=1;opacity=40;" vertex="1" parent="1">
+      <mxGeometry x="-414" y="204" width="358" height="72" as="geometry"/>
+    </mxCell>
+    <mxCell id="s0_bg_card3" value="" style="fillColor=#cccccc;strokeColor=#bbbbbb;rounded=1;opacity=40;" vertex="1" parent="1">
+      <mxGeometry x="-414" y="288" width="358" height="72" as="geometry"/>
+    </mxCell>
+
+    <!-- Scrim overlay -->
+    <mxCell id="s0_scrim" value="" style="fillColor=#444444;strokeColor=none;opacity=50;" vertex="1" parent="1">
+      <mxGeometry x="-430" y="52" width="390" height="780" as="geometry"/>
+    </mxCell>
+
+    <!-- Bottom sheet surface -->
+    <mxCell id="s0_sheet" value="" style="fillColor=#ffffff;strokeColor=#cccccc;strokeWidth=1;rounded=0;" vertex="1" parent="1">
+      <mxGeometry x="-430" y="530" width="390" height="270" as="geometry"/>
+    </mxCell>
+
+    <!-- Sheet top rounded corners indicator (drag handle) -->
+    <mxCell id="s0_drag_handle" value="" style="fillColor=#cccccc;strokeColor=none;rounded=3;" vertex="1" parent="1">
+      <mxGeometry x="-310" y="542" width="60" height="5" as="geometry"/>
+    </mxCell>
+
+    <!-- Sheet title -->
+    <mxCell id="s0_sheet_title" value="Como se llama la receta?" style="text;fontSize=18;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="-414" y="558" width="358" height="30" as="geometry"/>
+    </mxCell>
+
+    <!-- Name input field -->
+    <mxCell id="s0_input_bg" value="" style="fillColor=#f5f5f5;strokeColor=#888888;strokeWidth=2;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="-414" y="600" width="358" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s0_input_text" value="Nombre de la receta" style="text;fontSize=16;fillColor=none;strokeColor=none;align=left;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="-404" y="600" width="280" height="52" as="geometry"/>
+    </mxCell>
+    <!-- Cursor blink indicator -->
+    <mxCell id="s0_cursor" value="|" style="text;fontSize=18;fillColor=none;strokeColor=none;align=left;fontColor=#555555;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="-408" y="602" width="20" height="48" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotation: auto-focus -->
+    <mxCell id="s0_ann_focus" value="Campo auto-enfocado al abrir (teclado visible)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="-414" y="658" width="280" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Buttons row -->
+    <!-- Cancelar -->
+    <mxCell id="s0_btn_cancel" value="Cancelar" style="rounded=3;fillColor=#e8e8e8;strokeColor=#cccccc;fontColor=#555555;fontSize=15;" vertex="1" parent="1">
+      <mxGeometry x="-414" y="682" width="160" height="48" as="geometry"/>
+    </mxCell>
+    <!-- Crear (disabled state — no text entered) -->
+    <mxCell id="s0_btn_crear" value="Crear" style="rounded=3;fillColor=#aaaaaa;strokeColor=none;fontColor=#ffffff;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="-246" y="682" width="160" height="48" as="geometry"/>
+    </mxCell>
+    <!-- Disabled label -->
+    <mxCell id="s0_ann_disabled" value="Deshabilitado hasta que se escribe al menos un caracter" style="text;fontSize=10;fillColor=none;strokeColor=none;align=right;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="-414" y="736" width="374" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 1: INGREDIENTES TAB ===================== -->
+
+    <!-- Phone frame -->
+    <mxCell id="s1_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+
+    <!-- Screen label -->
+    <mxCell id="s1_label" value="1. Creacion — Ingredientes (tab por defecto)" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="20" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="s1_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="36" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Top bar -->
+    <mxCell id="s1_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_back" value="←" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="28" y="56" width="36" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_title" value="Nueva receta" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="100" y="56" width="220" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Tab bar -->
+    <mxCell id="s1_tabbar" value="" style="fillColor=#ffffff;strokeColor=#cccccc;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="104" width="390" height="44" as="geometry"/>
+    </mxCell>
+    <!-- Tab: Ingredientes (selected) -->
+    <mxCell id="s1_tab1" value="Ingredientes" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="20" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_tab1_underline" value="" style="fillColor=#333333;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="20" y="140" width="100" height="3" as="geometry"/>
+    </mxCell>
+    <!-- Tab: Instrucciones -->
+    <mxCell id="s1_tab2" value="Instrucciones" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="120" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+    <!-- Tab: Basico -->
+    <mxCell id="s1_tab3" value="Basico" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="220" y="108" width="80" height="32" as="geometry"/>
+    </mxCell>
+    <!-- Tab: Fotos -->
+    <mxCell id="s1_tab4" value="Fotos" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="300" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+
+    <!-- Scroll area background -->
+    <mxCell id="s1_scroll" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="20" y="147" width="390" height="573" as="geometry"/>
+    </mxCell>
+
+    <!-- Section divider label -->
+    <mxCell id="s1_section" value="Para la masa" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="36" y="155" width="200" height="24" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_section_edit" value="× Seccion" style="text;fontSize=11;fillColor=none;strokeColor=none;align=right;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="310" y="155" width="90" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- Ingredient rows -->
+    <!-- Row 1 -->
+    <mxCell id="s1_ing1_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="182" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing1_handle" value="≡" style="text;fontSize=18;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="24" y="182" width="32" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing1_text" value="Harina de trigo" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="60" y="182" width="180" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing1_qty" value="250 g" style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="60" y="208" width="100" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing1_del" value="×" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="370" y="182" width="36" height="52" as="geometry"/>
+    </mxCell>
+
+    <!-- Row 2 -->
+    <mxCell id="s1_ing2_bg" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="234" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing2_handle" value="≡" style="text;fontSize=18;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="24" y="234" width="32" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing2_text" value="Mantequilla" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="60" y="234" width="180" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing2_qty" value="100 g" style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="60" y="260" width="100" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing2_del" value="×" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="370" y="234" width="36" height="52" as="geometry"/>
+    </mxCell>
+
+    <!-- Row 3 -->
+    <mxCell id="s1_ing3_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="286" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing3_handle" value="≡" style="text;fontSize=18;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="24" y="286" width="32" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing3_text" value="Azucar" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="60" y="286" width="180" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing3_qty" value="80 g" style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="60" y="312" width="100" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_ing3_del" value="×" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="370" y="286" width="36" height="52" as="geometry"/>
+    </mxCell>
+
+    <!-- Add ingredient button row -->
+    <mxCell id="s1_add_ing_bg" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;dashed=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="346" width="390" height="48" as="geometry"/>
+    </mxCell>
+    <mxCell id="s1_add_ing" value="+ Anadir ingrediente" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="60" y="346" width="250" height="48" as="geometry"/>
+    </mxCell>
+
+    <!-- Add section button -->
+    <mxCell id="s1_add_section" value="+ Anadir seccion" style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="36" y="402" width="200" height="36" as="geometry"/>
+    </mxCell>
+
+    <!-- FAB Guardar -->
+    <mxCell id="s1_fab" value="Guardar" style="rounded=3;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="282" y="694" width="110" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotation: tap opens modal -->
+    <mxCell id="s1_ann1" value="Toca → abre selector de alimento (modal pantalla completa)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="20" y="742" width="360" height="30" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 2: INGREDIENT PICKER MODAL ===================== -->
+
+    <!-- Phone frame -->
+    <mxCell id="s2_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+
+    <!-- Screen label -->
+    <mxCell id="s2_label" value="2. Selector de alimento (modal pantalla completa)" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+
+      <mxGeometry x="470" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="s2_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="486" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Modal top bar -->
+    <mxCell id="s2_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_cancel" value="Cancelar" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="480" y="56" width="90" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_modal_title" value="Seleccionar alimento" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="555" y="56" width="190" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Search bar -->
+    <mxCell id="s2_search_bg" value="" style="fillColor=#e8e8e8;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="486" y="114" width="358" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_search_icon" value="&#128269;" style="text;fontSize=16;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="494" y="114" width="36" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_search_text" value="Buscar alimento..." style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#999999;" vertex="1" parent="1">
+      <mxGeometry x="528" y="114" width="200" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Result list bg -->
+    <mxCell id="s2_list_bg" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="470" y="168" width="390" height="540" as="geometry"/>
+    </mxCell>
+
+    <!-- Create new food row (appears when search has no exact match) -->
+    <mxCell id="s2_create_row_bg" value="" style="fillColor=#f0f0f0;strokeColor=#cccccc;strokeWidth=1;dashed=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="168" width="390" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_create_row_label" value="+ Crear &quot;Harina de trigo&quot;" style="text;fontSize=14;fontStyle=1;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="490" y="168" width="300" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- List header -->
+    <mxCell id="s2_list_header" value="Resultados" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontColor=#999999;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="486" y="216" width="120" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- Food result rows -->
+    <!-- Row A: selected state -->
+    <mxCell id="s2_row1_bg" value="" style="fillColor=#e8e8e8;strokeColor=#cccccc;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="198" width="390" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_row1_name" value="Harina de trigo" style="text;fontSize=15;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="198" width="240" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_row1_check" value="&#10003;" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;fontColor=#333333;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="810" y="198" width="40" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_row1_cat" value="Cereales" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="490" y="226" width="120" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Row B -->
+    <mxCell id="s2_row2_bg" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="254" width="390" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_row2_name" value="Harina de almendra" style="text;fontSize=15;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="254" width="240" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_row2_cat" value="Frutos secos" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="490" y="282" width="120" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Row C -->
+    <mxCell id="s2_row3_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="310" width="390" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_row3_name" value="Harina de centeno" style="text;fontSize=15;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="310" width="240" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_row3_cat" value="Cereales" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="490" y="338" width="120" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Row D -->
+    <mxCell id="s2_row4_bg" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="366" width="390" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_row4_name" value="Harina de maiz" style="text;fontSize=15;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="366" width="240" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_row4_cat" value="Cereales" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="490" y="394" width="120" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Row E -->
+    <mxCell id="s2_row5_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="470" y="422" width="390" height="56" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_row5_name" value="Harina integral" style="text;fontSize=15;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="490" y="422" width="240" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_row5_cat" value="Cereales" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="490" y="450" width="120" height="22" as="geometry"/>
+    </mxCell>
+
+    <!-- Quantity + unit inputs (shown after food selected) -->
+    <mxCell id="s2_qty_header" value="Cantidad y unidad" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontColor=#999999;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="486" y="490" width="200" height="24" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_qty_bg" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="486" y="516" width="100" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_qty_label" value="250" style="text;fontSize=16;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="486" y="516" width="100" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_unit_bg" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="598" y="516" width="120" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_unit_label" value="g  &#9660;" style="text;fontSize=16;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="598" y="516" width="120" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Note input -->
+    <mxCell id="s2_note_bg" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="486" y="572" width="358" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_note_label" value="Nota opcional (ej: tamizada)" style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="496" y="572" width="260" height="40" as="geometry"/>
+    </mxCell>
+
+    <!-- Confirm button -->
+    <mxCell id="s2_confirm" value="Anadir ingrediente" style="rounded=3;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="486" y="626" width="358" height="50" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="s2_ann1" value="Fila resaltada = alimento seleccionado | &#10003; indica seleccion" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="686" width="380" height="20" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_ann2" value="Cantidad + unidad aparecen al seleccionar alimento" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="704" width="380" height="20" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_ann3" value="Unidad: dropdown con lista de unidades del sistema" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="722" width="380" height="20" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_ann4" value="+ Crear: aparece si el texto buscado no coincide exactamente con un alimento existente" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="740" width="380" height="20" as="geometry"/>
+    </mxCell>
+    <mxCell id="s2_ann5" value="Al tocar Crear, se crea el alimento y se selecciona automaticamente" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="470" y="758" width="380" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 3: INSTRUCCIONES TAB ===================== -->
+
+    <!-- Phone frame -->
+    <mxCell id="s3_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="920" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+
+    <!-- Screen label -->
+    <mxCell id="s3_label" value="3. Creacion — Instrucciones" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="920" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="s3_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="936" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Top bar -->
+    <mxCell id="s3_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_back" value="←" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="928" y="56" width="36" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_title" value="Nueva receta" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="56" width="220" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Tab bar -->
+    <mxCell id="s3_tabbar" value="" style="fillColor=#ffffff;strokeColor=#cccccc;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="104" width="390" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_tab1" value="Ingredientes" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="920" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_tab2" value="Instrucciones" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1020" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_tab2_underline" value="" style="fillColor=#333333;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1020" y="140" width="100" height="3" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_tab3" value="Basico" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1120" y="108" width="80" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_tab4" value="Fotos" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1200" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+
+    <!-- Scroll area -->
+    <mxCell id="s3_scroll" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="920" y="147" width="390" height="573" as="geometry"/>
+    </mxCell>
+
+    <!-- Step 1 -->
+    <mxCell id="s3_step1_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="155" width="390" height="100" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step1_handle" value="≡" style="text;fontSize=18;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="924" y="155" width="32" height="100" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step1_num" value="1" style="ellipse;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=13;fontStyle=1;align=center;" vertex="1" parent="1">
+      <mxGeometry x="960" y="165" width="28" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step1_title" value="Titulo del paso (opcional)" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="996" y="163" width="220" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step1_text" value="Mezclar la harina con la mantequilla fria cortada en cubos hasta obtener una textura arenosa." style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="960" y="196" width="310" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step1_del" value="×" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="1266" y="155" width="36" height="40" as="geometry"/>
+    </mxCell>
+
+    <!-- Step 2 -->
+    <mxCell id="s3_step2_bg" value="" style="fillColor=#ffffff;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="258" width="390" height="100" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step2_handle" value="≡" style="text;fontSize=18;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="924" y="258" width="32" height="100" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step2_num" value="2" style="ellipse;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=13;fontStyle=1;align=center;" vertex="1" parent="1">
+      <mxGeometry x="960" y="268" width="28" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step2_title" value="Titulo del paso (opcional)" style="text;fontSize=12;fillColor=none;strokeColor=none;align=left;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="996" y="266" width="220" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step2_text" value="Anadir el azucar y el huevo. Amasar brevemente hasta integrar." style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="960" y="299" width="310" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step2_del" value="×" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="1266" y="258" width="36" height="40" as="geometry"/>
+    </mxCell>
+
+    <!-- Step 3 (partially filled, showing placeholder) -->
+    <mxCell id="s3_step3_bg" value="" style="fillColor=#f9f9f9;strokeColor=#dddddd;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="920" y="361" width="390" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step3_handle" value="≡" style="text;fontSize=18;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="924" y="361" width="32" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step3_num" value="3" style="ellipse;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=13;fontStyle=1;align=center;" vertex="1" parent="1">
+      <mxGeometry x="960" y="371" width="28" height="28" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step3_text" value="Escribe la instruccion..." style="text;fontSize=13;fillColor=none;strokeColor=none;align=left;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="960" y="399" width="290" height="34" as="geometry"/>
+    </mxCell>
+    <mxCell id="s3_step3_del" value="×" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="1266" y="361" width="36" height="40" as="geometry"/>
+    </mxCell>
+
+    <!-- Add step button -->
+    <mxCell id="s3_add_step" value="+ Anadir paso" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="960" y="450" width="200" height="40" as="geometry"/>
+    </mxCell>
+
+    <!-- FAB Guardar -->
+    <mxCell id="s3_fab" value="Guardar" style="rounded=3;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1182" y="694" width="110" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 4: BASICO TAB ===================== -->
+
+    <!-- Phone frame -->
+    <mxCell id="s4_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+
+    <!-- Screen label -->
+    <mxCell id="s4_label" value="4. Creacion — Basico" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="s4_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Top bar -->
+    <mxCell id="s4_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_back" value="←" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1378" y="56" width="36" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_title" value="Nueva receta" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1450" y="56" width="220" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Tab bar -->
+    <mxCell id="s4_tabbar" value="" style="fillColor=#ffffff;strokeColor=#cccccc;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="104" width="390" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_tab1" value="Ingredientes" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_tab2" value="Instrucciones" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1470" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_tab3" value="Basico" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1570" y="108" width="80" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_tab3_underline" value="" style="fillColor=#333333;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1570" y="140" width="80" height="3" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_tab4" value="Fotos" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1650" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+
+    <!-- Form fields -->
+    <mxCell id="s4_scroll" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="147" width="390" height="573" as="geometry"/>
+    </mxCell>
+
+    <!-- Nombre -->
+    <mxCell id="s4_name_label" value="Nombre *" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="158" width="120" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_name_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="182" width="358" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_name_placeholder" value="Galletas de avena" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="1396" y="182" width="300" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_name_prefilled_ann" value="Pre-rellenado desde el modal inicial" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="228" width="280" height="16" as="geometry"/>
+    </mxCell>
+
+    <!-- Descripcion -->
+    <mxCell id="s4_desc_label" value="Descripcion" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="238" width="120" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_desc_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="262" width="358" height="72" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_desc_placeholder" value="Describe tu receta..." style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#aaaaaa;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="1396" y="268" width="300" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- Porciones -->
+    <mxCell id="s4_serv_label" value="Porciones" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="346" width="120" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_serv_qty" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="370" width="80" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_serv_qty_text" value="12" style="text;fontSize=15;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="370" width="80" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_serv_unit" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="1476" y="370" width="150" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_serv_unit_text" value="galletas  &#9660;" style="text;fontSize=14;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1476" y="370" width="150" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Tiempos -->
+    <mxCell id="s4_time_label" value="Tiempos" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="426" width="120" height="22" as="geometry"/>
+    </mxCell>
+    <!-- Prep -->
+    <mxCell id="s4_prep_label" value="Prep." style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="450" width="50" height="20" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_prep_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="470" width="100" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_prep_text" value="30 min" style="text;fontSize=14;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1386" y="470" width="100" height="44" as="geometry"/>
+    </mxCell>
+    <!-- Coccion -->
+    <mxCell id="s4_cook_label" value="Coccion" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1500" y="450" width="60" height="20" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_cook_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="1500" y="470" width="100" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s4_cook_text" value="25 min" style="text;fontSize=14;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1500" y="470" width="100" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- FAB Guardar -->
+    <mxCell id="s4_fab" value="Guardar" style="rounded=3;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1632" y="694" width="110" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotation -->
+    <mxCell id="s4_ann1" value="* Nombre llega pre-rellenado desde el modal inicial. Editable aqui." style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="1370" y="748" width="380" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 5: FOTOS TAB ===================== -->
+
+    <!-- Phone frame -->
+    <mxCell id="s5_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+
+    <!-- Screen label -->
+    <mxCell id="s5_label" value="5. Creacion — Fotos" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="s5_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Top bar -->
+    <mxCell id="s5_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_back" value="←" style="text;fontSize=20;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1828" y="56" width="36" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_title" value="Nueva receta" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1900" y="56" width="220" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Tab bar -->
+    <mxCell id="s5_tabbar" value="" style="fillColor=#ffffff;strokeColor=#cccccc;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="104" width="390" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_tab1" value="Ingredientes" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_tab2" value="Instrucciones" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1920" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_tab3" value="Basico" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="2020" y="108" width="80" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_tab4" value="Fotos" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="2100" y="108" width="100" height="32" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_tab4_underline" value="" style="fillColor=#333333;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="2100" y="140" width="100" height="3" as="geometry"/>
+    </mxCell>
+
+    <!-- Content area -->
+    <mxCell id="s5_scroll" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="147" width="390" height="573" as="geometry"/>
+    </mxCell>
+
+    <!-- STATE A: empty upload target -->
+    <mxCell id="s5_state_a_label" value="Estado A: sin foto" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontColor=#999999;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="156" width="200" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_upload_zone" value="" style="fillColor=#f0f0f0;strokeColor=#bbbbbb;strokeWidth=2;dashed=1;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="182" width="358" height="200" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_upload_icon" value="&#128247;" style="text;fontSize=40;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1920" y="212" width="80" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_upload_text" value="Toca para subir una foto" style="text;fontSize=15;fillColor=none;strokeColor=none;align=center;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="282" width="358" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_upload_sub" value="Camara o galeria" style="text;fontSize=12;fillColor=none;strokeColor=none;align=center;fontColor=#aaaaaa;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="310" width="358" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- Divider between state A and B -->
+    <mxCell id="s5_divider" value="" style="fillColor=#dddddd;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="394" width="390" height="2" as="geometry"/>
+    </mxCell>
+
+    <!-- STATE B: photo uploaded -->
+    <mxCell id="s5_state_b_label" value="Estado B: foto cargada" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontColor=#999999;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="406" width="200" height="22" as="geometry"/>
+    </mxCell>
+    <!-- Image preview -->
+    <mxCell id="s5_preview" value="" style="fillColor=#cccccc;strokeColor=#aaaaaa;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="432" width="358" height="200" as="geometry"/>
+    </mxCell>
+    <mxCell id="s5_preview_label" value="[Vista previa de la imagen]" style="text;fontSize=13;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="512" width="358" height="40" as="geometry"/>
+    </mxCell>
+    <!-- Delete button -->
+    <mxCell id="s5_delete_photo" value="Eliminar foto" style="text;fontSize=14;fillColor=none;strokeColor=none;align=center;fontColor=#888888;" vertex="1" parent="1">
+      <mxGeometry x="1836" y="638" width="358" height="36" as="geometry"/>
+    </mxCell>
+
+    <!-- FAB Guardar -->
+    <mxCell id="s5_fab" value="Guardar" style="rounded=3;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="2082" y="694" width="110" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotation -->
+    <mxCell id="s5_ann1" value="Toca la zona para abrir selector: camara o galeria (sheet nativo del SO)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="1820" y="748" width="380" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- ===================== SCREEN 6: CREAR ALIMENTO MODAL ===================== -->
+
+    <!-- Phone frame -->
+    <mxCell id="s6_frame" value="" style="rounded=2;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#aaaaaa;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="2270" y="20" width="390" height="780" as="geometry"/>
+    </mxCell>
+
+    <!-- Screen label -->
+    <mxCell id="s6_label" value="6. Crear alimento (modal — desde selector de ingrediente)" style="text;fontStyle=1;fontSize=12;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="2270" y="0" width="390" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- Status bar -->
+    <mxCell id="s6_status" value="9:41" style="text;fontSize=11;fillColor=none;strokeColor=none;align=left;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="2286" y="28" width="60" height="20" as="geometry"/>
+    </mxCell>
+
+    <!-- Modal top bar -->
+    <mxCell id="s6_topbar" value="" style="fillColor=#e0e0e0;strokeColor=#aaaaaa;strokeWidth=1;" vertex="1" parent="1">
+      <mxGeometry x="2270" y="52" width="390" height="52" as="geometry"/>
+    </mxCell>
+    <mxCell id="s6_cancel" value="Cancelar" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#555555;" vertex="1" parent="1">
+      <mxGeometry x="2280" y="56" width="90" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="s6_modal_title" value="Crear alimento" style="text;fontSize=16;fontStyle=1;fillColor=none;strokeColor=none;align=center;" vertex="1" parent="1">
+      <mxGeometry x="2360" y="56" width="190" height="44" as="geometry"/>
+    </mxCell>
+
+    <!-- Content -->
+    <mxCell id="s6_content" value="" style="fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+      <mxGeometry x="2270" y="104" width="390" height="696" as="geometry"/>
+    </mxCell>
+
+    <!-- Name field -->
+    <mxCell id="s6_name_label" value="Nombre del alimento" style="text;fontSize=12;fontStyle=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+      <mxGeometry x="2286" y="130" width="200" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="s6_name_input" value="" style="fillColor=#f5f5f5;strokeColor=#cccccc;rounded=2;" vertex="1" parent="1">
+      <mxGeometry x="2286" y="154" width="358" height="48" as="geometry"/>
+    </mxCell>
+    <mxCell id="s6_name_value" value="Harina de trigo" style="text;fontSize=14;fillColor=none;strokeColor=none;align=left;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="2298" y="154" width="300" height="48" as="geometry"/>
+    </mxCell>
+
+    <!-- Create button -->
+    <mxCell id="s6_create_btn" value="Crear" style="rounded=3;fillColor=#333333;strokeColor=none;fontColor=#ffffff;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="2286" y="226" width="358" height="48" as="geometry"/>
+    </mxCell>
+
+    <!-- Annotations -->
+    <mxCell id="s6_ann1" value="Se abre al tocar '+ Crear [texto]' en el selector de ingrediente (pantalla 2)" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="2270" y="300" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="s6_ann2" value="Nombre pre-llenado con el texto de busqueda — editable" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="2270" y="318" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="s6_ann3" value="Al crear: POST /api/foods, luego vuelve al selector con el alimento auto-seleccionado" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="2270" y="336" width="380" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="s6_ann4" value="Cancelar: vuelve al selector sin crear nada" style="text;fontSize=10;fillColor=none;strokeColor=none;align=left;fontColor=#777777;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="2270" y="354" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>
