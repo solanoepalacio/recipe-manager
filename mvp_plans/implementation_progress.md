@@ -163,19 +163,19 @@ Tailwind, API client, auth, query setup, and design system components.
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 9.1 | Tailwind config: design tokens (colors, fonts, border-radius) from hi-fi wireframes; `globals.css` with Tailwind directives + Outfit font | Build succeeds; tokens available in utility classes | Not Started |
-| 9.2 | API client: typed `fetch` wrapper with `credentials: 'include'`; generic `get<T>`, `post<T>`, `patch<T>`, `delete<T>` methods; error handling | Unit test: correct URL construction, headers, error parsing; types propagate from `@recipe-manager/shared` | Not Started |
-| 9.3 | Auth context + provider: `AuthProvider` wrapping app; `useAuth()` hook returning user/loading/login/logout; redirect to `/login` when unauthenticated | Unit test: provider exposes auth state; hook returns correct values | Not Started |
-| 9.4 | TanStack Query setup: `QueryClientProvider` in root layout; `query-keys.ts` factory for all domains | Unit test: query key factory produces correct keys | Not Started |
-| 9.5 | UI primitive — Button: filled, outline, destructive variants; sizes; loading state | Unit test: renders each variant; click handler fires; loading disables | Not Started |
-| 9.6 | UI primitive — Input: text, password, textarea, number variants; underline and bordered styles; labels; error state | Unit test: renders variants; value changes propagate; error message shown | Not Started |
-| 9.7 | UI primitive — Modal: full-screen modal with top bar (close/back + title); animated entry/exit | Unit test: opens/closes; renders title and children; close callback fires | Not Started |
-| 9.8 | UI primitive — BottomSheet: scrim overlay, drag handle, sheet content; animated slide-up | Unit test: opens/closes; scrim click dismisses; children rendered | Not Started |
-| 9.9 | UI primitive — Accordion: collapsible sections with chevron toggle; multiple open; expanded bg | Unit test: toggle open/close; renders children when open; chevron rotates | Not Started |
-| 9.10 | UI primitive — TabBar: equal-width tabs; active tab with green underline; callback on tab change | Unit test: renders tabs; active styling applied; change callback fires | Not Started |
-| 9.11 | Layout — TopBar: standard variant (hamburger + title) and detail variant (back arrow + title + overflow) | Unit test: renders both variants; hamburger/back click fires callback | Not Started |
-| 9.12 | Layout — Drawer: slide-from-left; header with greeting + household link; nav items; active state with green underline | Unit test: opens/closes; nav items render; active item styled; click callbacks fire | Not Started |
-| 9.13 | Layout — AppShell: combines TopBar + Drawer; manages drawer open/close state; wraps page content | Unit test: renders children; drawer toggles; title updates | Not Started |
+| 9.1 | Tailwind config: design tokens (colors, fonts, border-radius) from hi-fi wireframes; `globals.css` with Tailwind directives + Outfit font | Build succeeds; tokens available in utility classes | Complete |
+| 9.2 | API client: typed `fetch` wrapper with `credentials: 'include'`; generic `get<T>`, `post<T>`, `patch<T>`, `delete<T>` methods; error handling | Unit test: correct URL construction, headers, error parsing; types propagate from `@recipe-manager/shared` | Complete |
+| 9.3 | Auth context + provider: `AuthProvider` wrapping app; `useAuth()` hook returning user/loading/login/logout; redirect to `/login` when unauthenticated | Unit test: provider exposes auth state; hook returns correct values | Complete |
+| 9.4 | TanStack Query setup: `QueryClientProvider` in root layout; `query-keys.ts` factory for all domains | Unit test: query key factory produces correct keys | Complete |
+| 9.5 | UI primitive — Button: filled, outline, destructive variants; sizes; loading state | Unit test: renders each variant; click handler fires; loading disables | Complete |
+| 9.6 | UI primitive — Input: text, password, textarea, number variants; underline and bordered styles; labels; error state | Unit test: renders variants; value changes propagate; error message shown | Complete |
+| 9.7 | UI primitive — Modal: full-screen modal with top bar (close/back + title); animated entry/exit | Unit test: opens/closes; renders title and children; close callback fires | Complete |
+| 9.8 | UI primitive — BottomSheet: scrim overlay, drag handle, sheet content; animated slide-up | Unit test: opens/closes; scrim click dismisses; children rendered | Complete |
+| 9.9 | UI primitive — Accordion: collapsible sections with chevron toggle; multiple open; expanded bg | Unit test: toggle open/close; renders children when open; chevron rotates | Complete |
+| 9.10 | UI primitive — TabBar: equal-width tabs; active tab with green underline; callback on tab change | Unit test: renders tabs; active styling applied; change callback fires | Complete |
+| 9.11 | Layout — TopBar: standard variant (hamburger + title) and detail variant (back arrow + title + overflow) | Unit test: renders both variants; hamburger/back click fires callback | Complete |
+| 9.12 | Layout — Drawer: slide-from-left; header with greeting + household link; nav items; active state with green underline | Unit test: opens/closes; nav items render; active item styled; click callbacks fire | Complete |
+| 9.13 | Layout — AppShell: combines TopBar + Drawer; manages drawer open/close state; wraps page content | Unit test: renders children; drawer toggles; title updates | Complete |
 
 ---
 
