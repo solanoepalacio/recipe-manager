@@ -251,13 +251,13 @@ End-to-end flows, responsive design, loading/error/empty states.
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 13.1 | Loading states: skeleton/spinner for all data-fetching views | Visual review: every page shows loading indicator before data arrives | Not Started |
-| 13.2 | Error states: inline error messages for form validation; toast/notification for API errors | Unit test: validation errors shown inline; API errors trigger notification | Not Started |
-| 13.3 | Empty states: all views per `05_ui_views.md` empty states section | Unit test: correct empty message for each view when data is absent | Not Started |
-| 13.4 | Responsive — tablet breakpoint (768px): semi-persistent drawer; 2-column recipe grid; 2-column recipe detail | Visual review at 768px viewport | Not Started |
-| 13.5 | Responsive — desktop breakpoint (1024px+): persistent sidebar; 3-column recipe grid; max-width constraints | Visual review at 1280px viewport | Not Started |
-| 13.6 | E2E smoke test — user flow: login → create recipe (name → ingredients → steps → photo) → view detail → cook mode → share → meal plan | Integration test: full flow with real API | Not Started |
-| 13.7 | E2E smoke test — admin flow: setup wizard → admin login → create household → create user → generate token → password reset | Integration test: full flow with real API | Not Started |
+| 13.1 | Loading states: skeleton/spinner for all data-fetching views | Visual review: every page shows loading indicator before data arrives | Complete |
+| 13.2 | Error states: inline error messages for form validation; toast/notification for API errors | Unit test: validation errors shown inline; API errors trigger notification | Complete |
+| 13.3 | Empty states: all views per `05_ui_views.md` empty states section | Unit test: correct empty message for each view when data is absent | Complete |
+| 13.4 | Responsive — tablet breakpoint (768px): semi-persistent drawer; 2-column recipe grid; 2-column recipe detail | Visual review at 768px viewport | Complete |
+| 13.5 | Responsive — desktop breakpoint (1024px+): persistent sidebar; 3-column recipe grid; max-width constraints | Visual review at 1280px viewport | Complete |
+| 13.6 | E2E smoke test — user flow: login → create recipe (name → ingredients → steps → photo) → view detail → cook mode → share → meal plan | Integration test: full flow with real API | Complete |
+| 13.7 | E2E smoke test — admin flow: setup wizard → admin login → create household → create user → generate token → password reset | Integration test: full flow with real API | Complete |
 
 ---
 
