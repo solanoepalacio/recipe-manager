@@ -6,9 +6,22 @@ import { AnyAuthGuard } from './auth/guards/any-auth.guard';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { SetupModule } from './setup/setup.module';
+import { ProfileModule } from './profile/profile.module';
+import { HouseholdModule } from './household/household.module';
+import { FoodsModule } from './foods/foods.module';
+import { UnitsModule } from './units/units.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, AdminModule, SetupModule],
+  imports: [
+    PrismaModule,
+    AuthModule,
+    AdminModule,
+    SetupModule,
+    ProfileModule,
+    HouseholdModule,
+    FoodsModule,
+    UnitsModule,
+  ],
   controllers: [AppController],
   providers: [
     {
