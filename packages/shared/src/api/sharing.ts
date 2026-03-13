@@ -1,3 +1,7 @@
+import type { IngredientSectionResponse } from './ingredients';
+import type { InstructionStepResponse } from './steps';
+import type { RecipeImageResponse } from './images';
+
 export interface ShareRecipeResponse {
   shareUrl: string;
   shareToken: string;
@@ -13,7 +17,7 @@ export interface SharedRecipeResponse {
   totalTime: number | null;
   servingsQty: number | null;
   servingsUnit: string | null;
-  sections: import('./ingredients').IngredientSectionResponse[];
-  steps: import('./steps').InstructionStepResponse[];
-  images: import('./images').RecipeImageResponse[];
+  sections: IngredientSectionResponse[];
+  steps: InstructionStepResponse[];
+  images: RecipeImageResponse[];
 }

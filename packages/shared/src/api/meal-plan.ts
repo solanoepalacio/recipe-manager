@@ -1,10 +1,12 @@
+import type { MealType } from '../enums';
+
 export interface MealPlanEntryResponse {
   id: string;
   recipeId: string;
   recipeName: string;
   recipeThumbnailUrl: string | null;
   date: string; // ISO date string (YYYY-MM-DD)
-  mealType: string; // MealType enum value
+  mealType: MealType;
 }
 
 export interface MealPlanResponse {
@@ -14,10 +16,10 @@ export interface MealPlanResponse {
 export interface CreateMealPlanEntryRequest {
   recipeId: string;
   date: string;
-  mealType: string;
+  mealType: MealType;
 }
 
 export interface UpdateMealPlanEntryRequest {
   date?: string;
-  mealType?: string;
+  mealType?: MealType;
 }

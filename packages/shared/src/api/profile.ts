@@ -1,9 +1,11 @@
+import type { Gender } from '../enums';
+
 export interface ProfileResponse {
   id: string;
   name: string;
   email: string | null;
   username: string | null;
-  gender: string | null;
+  gender: Gender | null;
   dateOfBirth: string | null; // ISO date string
   householdId: string;
 }
@@ -13,6 +15,6 @@ export interface UpdateProfileRequest {
   email?: string;
   username?: string;
   password?: string;
-  gender?: string;
+  gender?: Gender;
   dateOfBirth?: string;
 }
