@@ -232,14 +232,14 @@ Admin panel views.
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 12.1 | Admin layout: top bar with "Administration" + logout button; no drawer | Unit test: renders title; logout calls admin auth API | Not Started |
-| 12.2 | Admin panel — household list: accordion of households with member count; expand shows members with action icons | Unit test: renders households; expand shows members; collapse works | Not Started |
-| 12.3 | Admin panel — create household: form in modal; submit creates household | Unit test: modal opens; form validates; submit calls API | Not Started |
-| 12.4 | Admin panel — edit user modal: full-screen; name, email, DOB, gender, household fields; save + delete actions | Unit test: modal opens with user data; save calls PATCH; delete calls DELETE with confirmation | Not Started |
-| 12.5 | Admin panel — API tokens modal: full-screen; token list with delete; create button; one-time token display + copy | Unit test: lists tokens; create shows raw token; copy works; delete calls API | Not Started |
-| 12.6 | Admin panel — password reset modal: full-screen; generate link button; URL display + copy | Unit test: generate calls API; URL displayed; copy works | Not Started |
-| 12.7 | Admin panel — foods management: list with search; create/edit/delete inline or modal | Unit test: CRUD lifecycle via UI; search filters | Not Started |
-| 12.8 | Admin panel — units management: list with search; create/edit/delete inline or modal | Unit test: CRUD lifecycle via UI; search filters | Not Started |
+| 12.1 | Admin layout: top bar with "Administration" + logout button; no drawer | Unit test: renders title; logout calls admin auth API | Complete |
+| 12.2 | Admin panel — household list: accordion of households with member count; expand shows members with action icons | Unit test: renders households; expand shows members; collapse works | Complete |
+| 12.3 | Admin panel — create household: form in modal; submit creates household | Unit test: modal opens; form validates; submit calls API | Complete |
+| 12.4 | Admin panel — edit user modal: full-screen; name, email, DOB, gender, household fields; save + delete actions | Unit test: modal opens with user data; save calls PATCH; delete calls DELETE with confirmation | Complete |
+| 12.5 | Admin panel — API tokens modal: full-screen; token list with delete; create button; one-time token display + copy | Unit test: lists tokens; create shows raw token; copy works; delete calls API | Complete |
+| 12.6 | Admin panel — password reset modal: full-screen; generate link button; URL display + copy | Unit test: generate calls API; URL displayed; copy works | Complete |
+| 12.7 | Admin panel — foods management: list with search; create/edit/delete inline or modal | Unit test: CRUD lifecycle via UI; search filters | Complete |
+| 12.8 | Admin panel — units management: list with search; create/edit/delete inline or modal | Unit test: CRUD lifecycle via UI; search filters | Complete |
 
 ---
 
