@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: recipe-manager-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: recipe
+      POSTGRES_PASSWORD: recipe
+      POSTGRES_DB: recipe_manager
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U recipe -d recipe_manager"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db-data:
