@@ -14,11 +14,11 @@ Bootstrap the Yarn v4 workspace with all three packages compiling and cross-refe
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 0.1 | Initialize Yarn v4 workspace root: `package.json`, `.yarnrc.yml`, `tsconfig.base.json` | `yarn install` succeeds | In Progress |
-| 0.2 | Scaffold `packages/shared`: `package.json` (`@recipe-manager/shared`), `tsconfig.json`, `src/index.ts` barrel | Package compiles with `tsc --noEmit` | Not Started |
-| 0.3 | Scaffold `apps/api`: NestJS app with `package.json` (`@recipe-manager/api`), `tsconfig.json`, `nest-cli.json`, minimal `main.ts` + `app.module.ts` | `yarn workspace @recipe-manager/api build` succeeds; app starts and responds on health endpoint | Not Started |
-| 0.4 | Scaffold `apps/web`: Next.js app with `package.json` (`@recipe-manager/web`), `tsconfig.json`, `next.config.ts`, minimal root layout + page | `yarn workspace @recipe-manager/web build` succeeds | Not Started |
-| 0.5 | Wire cross-workspace imports: `apps/api` and `apps/web` both import from `@recipe-manager/shared` | A dummy type exported from shared is consumed in both apps; both compile | Not Started |
+| 0.1 | Initialize Yarn v4 workspace root: `package.json`, `.yarnrc.yml`, `tsconfig.base.json` | `yarn install` succeeds | Complete |
+| 0.2 | Scaffold `packages/shared`: `package.json` (`@recipe-manager/shared`), `tsconfig.json`, `src/index.ts` barrel | Package compiles with `tsc --noEmit` | Complete |
+| 0.3 | Scaffold `apps/api`: NestJS app with `package.json` (`@recipe-manager/api`), `tsconfig.json`, `nest-cli.json`, minimal `main.ts` + `app.module.ts` | `yarn workspace @recipe-manager/api build` succeeds; app starts and responds on health endpoint | Complete |
+| 0.4 | Scaffold `apps/web`: Next.js app with `package.json` (`@recipe-manager/web`), `tsconfig.json`, `next.config.ts`, minimal root layout + page | `yarn workspace @recipe-manager/web build` succeeds | Complete |
+| 0.5 | Wire cross-workspace imports: `apps/api` and `apps/web` both import from `@recipe-manager/shared` | A dummy type exported from shared is consumed in both apps; both compile | Complete |
 
 ---
 
@@ -28,21 +28,21 @@ Define all API boundary types in `packages/shared`. These are the source of trut
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 1.1 | Common types: `PaginatedResponse<T>`, `ErrorResponse`, `ReorderRequest` | Compiles; exported from barrel | Not Started |
-| 1.2 | Enums: `Gender`, `MealType` | Compiles; exported from barrel | Not Started |
-| 1.3 | Auth types: `LoginRequest`, `LoginResponse`, `MeResponse`, `LogoutResponse` | Compiles; exported from barrel | Not Started |
-| 1.4 | Setup types: `SetupStatusResponse`, `CreateAdminRequest`, `CreateAdminResponse` | Compiles; exported from barrel | Not Started |
-| 1.5 | Profile types: `ProfileResponse`, `UpdateProfileRequest` | Compiles; exported from barrel | Not Started |
-| 1.6 | Household types: `HouseholdResponse`, `MemberResponse`, `CreateMemberRequest`, `UpdateMemberRequest` | Compiles; exported from barrel | Not Started |
-| 1.7 | Food types: `FoodResponse`, `FoodListResponse` | Compiles; exported from barrel | Not Started |
-| 1.8 | Unit types: `UnitResponse`, `UnitListResponse` | Compiles; exported from barrel | Not Started |
-| 1.9 | Recipe types: `RecipeListItemResponse`, `RecipeDetailResponse`, `CreateRecipeRequest`, `UpdateRecipeRequest`, `DuplicateRecipeResponse` | Compiles; exported from barrel | Not Started |
-| 1.10 | Recipe sub-resource types: `IngredientSectionResponse`, `RecipeIngredientResponse`, `CreateIngredientRequest`, `UpdateIngredientRequest`, `CreateSectionRequest`, `UpdateSectionRequest` | Compiles; exported from barrel | Not Started |
-| 1.11 | Instruction step types: `InstructionStepResponse`, `CreateStepRequest`, `UpdateStepRequest` | Compiles; exported from barrel | Not Started |
-| 1.12 | Recipe image types: `RecipeImageResponse`, `UploadImageResponse` | Compiles; exported from barrel | Not Started |
-| 1.13 | Recipe sharing types: `ShareRecipeResponse`, `SharedRecipeResponse` | Compiles; exported from barrel | Not Started |
-| 1.14 | Meal plan types: `MealPlanResponse`, `MealPlanEntryResponse`, `CreateMealPlanEntryRequest`, `UpdateMealPlanEntryRequest` | Compiles; exported from barrel | Not Started |
-| 1.15 | Admin types: `AdminLoginRequest`, `AdminUserResponse`, `AdminCreateUserRequest`, `AdminUpdateUserRequest`, `AdminHouseholdResponse`, `AdminCreateHouseholdRequest`, `AdminUpdateHouseholdRequest`, `AdminFoodRequest`, `AdminUnitRequest`, `AdminTokenResponse`, `AdminCreateTokenRequest`, `AdminCreateTokenResponse`, `PasswordResetUrlResponse` | Compiles; exported from barrel | Not Started |
+| 1.1 | Common types: `PaginatedResponse<T>`, `ErrorResponse`, `ReorderRequest` | Compiles; exported from barrel | Complete |
+| 1.2 | Enums: `Gender`, `MealType` | Compiles; exported from barrel | Complete |
+| 1.3 | Auth types: `LoginRequest`, `LoginResponse`, `MeResponse`, `LogoutResponse` | Compiles; exported from barrel | Complete |
+| 1.4 | Setup types: `SetupStatusResponse`, `CreateAdminRequest`, `CreateAdminResponse` | Compiles; exported from barrel | Complete |
+| 1.5 | Profile types: `ProfileResponse`, `UpdateProfileRequest` | Compiles; exported from barrel | Complete |
+| 1.6 | Household types: `HouseholdResponse`, `MemberResponse`, `CreateMemberRequest`, `UpdateMemberRequest` | Compiles; exported from barrel | Complete |
+| 1.7 | Food types: `FoodResponse`, `FoodListResponse` | Compiles; exported from barrel | Complete |
+| 1.8 | Unit types: `UnitResponse`, `UnitListResponse` | Compiles; exported from barrel | Complete |
+| 1.9 | Recipe types: `RecipeListItemResponse`, `RecipeDetailResponse`, `CreateRecipeRequest`, `UpdateRecipeRequest`, `DuplicateRecipeResponse` | Compiles; exported from barrel | Complete |
+| 1.10 | Recipe sub-resource types: `IngredientSectionResponse`, `RecipeIngredientResponse`, `CreateIngredientRequest`, `UpdateIngredientRequest`, `CreateSectionRequest`, `UpdateSectionRequest` | Compiles; exported from barrel | Complete |
+| 1.11 | Instruction step types: `InstructionStepResponse`, `CreateStepRequest`, `UpdateStepRequest` | Compiles; exported from barrel | Complete |
+| 1.12 | Recipe image types: `RecipeImageResponse`, `UploadImageResponse` | Compiles; exported from barrel | Complete |
+| 1.13 | Recipe sharing types: `ShareRecipeResponse`, `SharedRecipeResponse` | Compiles; exported from barrel | Complete |
+| 1.14 | Meal plan types: `MealPlanResponse`, `MealPlanEntryResponse`, `CreateMealPlanEntryRequest`, `UpdateMealPlanEntryRequest` | Compiles; exported from barrel | Complete |
+| 1.15 | Admin types: `AdminLoginRequest`, `AdminUserResponse`, `AdminCreateUserRequest`, `AdminUpdateUserRequest`, `AdminHouseholdResponse`, `AdminCreateHouseholdRequest`, `AdminUpdateHouseholdRequest`, `AdminFoodRequest`, `AdminUnitRequest`, `AdminTokenResponse`, `AdminCreateTokenRequest`, `AdminCreateTokenResponse`, `PasswordResetUrlResponse` | Compiles; exported from barrel | Complete |
 
 ---
 
@@ -52,9 +52,9 @@ Prisma schema, initial migration, and seed data.
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 2.1 | Prisma schema: all models from `01_tech_stack_and_data_model.md` + password reset fields from `02_auth_design.md` + session table for `connect-pg-simple` | `npx prisma validate` passes | Not Started |
-| 2.2 | Initial migration: generate and apply migration against a local PostgreSQL | `npx prisma migrate dev` succeeds; all tables created | Not Started |
-| 2.3 | Seed script: populate foods (common ingredients), units (cup, tbsp, tsp, g, kg, ml, L, oz, lb, unit), and a dev admin account | `npx prisma db seed` succeeds; data queryable | Not Started |
+| 2.1 | Prisma schema: all models from `01_tech_stack_and_data_model.md` + password reset fields from `02_auth_design.md` + session table for `connect-pg-simple` | `npx prisma validate` passes | Complete |
+| 2.2 | Initial migration: generate and apply migration against a local PostgreSQL | `npx prisma migrate dev` succeeds; all tables created | Complete |
+| 2.3 | Seed script: populate foods (common ingredients), units (cup, tbsp, tsp, g, kg, ml, L, oz, lb, unit), and a dev admin account | `npx prisma db seed` succeeds; data queryable | Complete |
 
 ---
 
@@ -64,11 +64,11 @@ Global middleware, pipes, filters, decorators, and Swagger setup. Everything tha
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 3.1 | Prisma module + service: injectable `PrismaService` extending `PrismaClient` with `onModuleInit`/`onModuleDestroy` | Unit test: service connects and disconnects | Not Started |
-| 3.2 | Global validation pipe: `ValidationPipe` with `whitelist: true`, `forbidNonWhitelisted: true`, `transform: true` | Unit test: invalid DTO rejected with 400; extra fields stripped | Not Started |
-| 3.3 | Global exception filter: catch Prisma known errors (not found, unique constraint) and map to appropriate HTTP status | Unit test: `P2025` → 404, `P2002` → 409 | Not Started |
-| 3.4 | Common decorators: `@CurrentUser()`, `@CurrentAdmin()`, `@Public()` | Unit test: decorators extract correct request properties | Not Started |
-| 3.5 | OpenAPI/Swagger setup: `SwaggerModule` configured in `main.ts`, served at `/api/docs` | App starts; `GET /api/docs` returns Swagger UI HTML | Not Started |
+| 3.1 | Prisma module + service: injectable `PrismaService` extending `PrismaClient` with `onModuleInit`/`onModuleDestroy` | Unit test: service connects and disconnects | Complete |
+| 3.2 | Global validation pipe: `ValidationPipe` with `whitelist: true`, `forbidNonWhitelisted: true`, `transform: true` | Unit test: invalid DTO rejected with 400; extra fields stripped | Complete |
+| 3.3 | Global exception filter: catch Prisma known errors (not found, unique constraint) and map to appropriate HTTP status | Unit test: `P2025` → 404, `P2002` → 409 | Complete |
+| 3.4 | Common decorators: `@CurrentUser()`, `@CurrentAdmin()`, `@Public()` | Unit test: decorators extract correct request properties | Complete |
+| 3.5 | OpenAPI/Swagger setup: `SwaggerModule` configured in `main.ts`, served at `/api/docs` | App starts; `GET /api/docs` returns Swagger UI HTML | Complete |
 
 ---
 
@@ -80,13 +80,13 @@ Session store, all guards, and auth endpoints.
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 4.1 | Session store: `express-session` with `connect-pg-simple`, cookie config (HttpOnly, SameSite) | Integration test: session created in DB after login simulation | Not Started |
-| 4.2 | `SessionAuthGuard`: validate session cookie, attach `req.user` | Unit test: valid session passes, missing/invalid session returns 401 | Not Started |
-| 4.3 | `ApiKeyAuthGuard`: validate `Authorization: Bearer <token>`, hash + lookup, attach `req.user`, update `lastUsedAt` | Unit test: valid token passes, invalid token returns 401, `lastUsedAt` updated | Not Started |
-| 4.4 | `AnyAuthGuard`: composite guard — either session or API key passes | Unit test: passes with session only, passes with API key only, 401 with neither | Not Started |
-| 4.5 | `AdminAuthGuard`: validate admin session cookie, attach `req.admin` | Unit test: valid admin session passes, user session rejected, no session returns 401 | Not Started |
-| 4.6 | Auth controller + service: `POST /api/auth/login` (email or username + password), `POST /api/auth/logout`, `GET /api/auth/me` | Integration test: login sets cookie, `/me` returns user, logout clears session | Not Started |
-| 4.7 | Admin auth controller + service: `POST /api/admin/auth/login`, `POST /api/admin/auth/logout` | Integration test: admin login sets cookie, logout clears session | Not Started |
+| 4.1 | Session store: `express-session` with `connect-pg-simple`, cookie config (HttpOnly, SameSite) | Integration test: session created in DB after login simulation | Complete |
+| 4.2 | `SessionAuthGuard`: validate session cookie, attach `req.user` | Unit test: valid session passes, missing/invalid session returns 401 | Complete |
+| 4.3 | `ApiKeyAuthGuard`: validate `Authorization: Bearer <token>`, hash + lookup, attach `req.user`, update `lastUsedAt` | Unit test: valid token passes, invalid token returns 401, `lastUsedAt` updated | Complete |
+| 4.4 | `AnyAuthGuard`: composite guard — either session or API key passes | Unit test: passes with session only, passes with API key only, 401 with neither | Complete |
+| 4.5 | `AdminAuthGuard`: validate admin session cookie, attach `req.admin` | Unit test: valid admin session passes, user session rejected, no session returns 401 | Complete |
+| 4.6 | Auth controller + service: `POST /api/auth/login` (email or username + password), `POST /api/auth/logout`, `GET /api/auth/me` | Integration test: login sets cookie, `/me` returns user, logout clears session | Complete |
+| 4.7 | Admin auth controller + service: `POST /api/admin/auth/login`, `POST /api/admin/auth/logout` | Integration test: admin login sets cookie, logout clears session | Complete |
 
 ---
 
@@ -98,8 +98,8 @@ First-time setup flow.
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 5.1 | `SetupGuard`: allows access only when no `Admin` record exists | Unit test: passes when no admin, blocks when admin exists | Not Started |
-| 5.2 | Setup controller + service: `GET /api/setup` (returns `{ required: bool }`), `POST /api/setup` (creates admin) | Integration test: GET returns `required: true` on fresh DB; POST creates admin; subsequent GET returns `required: false`; second POST returns 404 | Not Started |
+| 5.1 | `SetupGuard`: allows access only when no `Admin` record exists | Unit test: passes when no admin, blocks when admin exists | Complete |
+| 5.2 | Setup controller + service: `GET /api/setup` (returns `{ required: bool }`), `POST /api/setup` (creates admin) | Integration test: GET returns `required: true` on fresh DB; POST creates admin; subsequent GET returns `required: false`; second POST returns 404 | Complete |
 
 ---
 
@@ -111,18 +111,18 @@ All non-admin API modules. Each task includes controller, service, and DTOs.
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 6.1 | Profile module: `GET /api/profile`, `PATCH /api/profile` | Integration test: get returns user profile; patch updates name/email/username/password | Not Started |
-| 6.2 | Household module: `GET /api/household` (with members) | Integration test: returns household name + member list for authenticated user | Not Started |
-| 6.3 | Household members: `GET /api/household/members`, `POST`, `GET /:id`, `PATCH /:id`, `DELETE /:id` | Integration test: CRUD lifecycle for a no-login member; scoped to user's household | Not Started |
-| 6.4 | Foods module (read-only): `GET /api/foods` with optional `?q=` search | Integration test: returns food list; search filters correctly | Not Started |
-| 6.5 | Units module (read-only): `GET /api/units` | Integration test: returns unit list | Not Started |
-| 6.6 | Recipes module — core CRUD: `GET /api/recipes` (list with search, filter, sort, pagination), `POST` (create), `GET /:id` (detail), `PATCH /:id` (update), `DELETE /:id`, `POST /:id/duplicate` | Integration test: full CRUD lifecycle; list with search/filter/sort/pagination; duplicate creates independent copy; household-scoped | Not Started |
-| 6.7 | Recipe sections: `POST /api/recipes/:id/sections`, `PATCH /:sectionId`, `DELETE /:sectionId`, `PUT /reorder` | Integration test: CRUD + reorder lifecycle for ingredient sections | Not Started |
-| 6.8 | Recipe ingredients: `POST .../sections/:sectionId/ingredients`, `PATCH /:ingredientId`, `DELETE /:ingredientId`, `PUT /reorder` | Integration test: CRUD + reorder lifecycle for ingredients within a section | Not Started |
-| 6.9 | Recipe steps: `POST /api/recipes/:id/steps`, `PATCH /:stepId`, `DELETE /:stepId`, `PUT /reorder` | Integration test: CRUD + reorder lifecycle for instruction steps | Not Started |
-| 6.10 | Recipe images: `POST /api/recipes/:id/images` (multipart upload), `DELETE /:imageId` | Integration test: upload creates image record; delete removes it; file stored on disk | Not Started |
-| 6.11 | Recipe sharing: `POST /api/recipes/:id/share`, `DELETE /api/recipes/:id/share`, `GET /api/recipes/shared/:token` (public, no auth) | Integration test: share generates token + URL; public GET returns recipe; revoke invalidates token | Not Started |
-| 6.12 | Meal plan module: `GET /api/meal-plan` (with date range), `POST /api/meal-plan/entries`, `PATCH /:id`, `DELETE /:id` | Integration test: get returns entries grouped by date; add/move/remove entry lifecycle; household-scoped | Not Started |
+| 6.1 | Profile module: `GET /api/profile`, `PATCH /api/profile` | Integration test: get returns user profile; patch updates name/email/username/password | Complete |
+| 6.2 | Household module: `GET /api/household` (with members) | Integration test: returns household name + member list for authenticated user | Complete |
+| 6.3 | Household members: `GET /api/household/members`, `POST`, `GET /:id`, `PATCH /:id`, `DELETE /:id` | Integration test: CRUD lifecycle for a no-login member; scoped to user's household | Complete |
+| 6.4 | Foods module (read-only): `GET /api/foods` with optional `?q=` search | Integration test: returns food list; search filters correctly | Complete |
+| 6.5 | Units module (read-only): `GET /api/units` | Integration test: returns unit list | Complete |
+| 6.6 | Recipes module — core CRUD: `GET /api/recipes` (list with search, filter, sort, pagination), `POST` (create), `GET /:id` (detail), `PATCH /:id` (update), `DELETE /:id`, `POST /:id/duplicate` | Integration test: full CRUD lifecycle; list with search/filter/sort/pagination; duplicate creates independent copy; household-scoped | Complete |
+| 6.7 | Recipe sections: `POST /api/recipes/:id/sections`, `PATCH /:sectionId`, `DELETE /:sectionId`, `PUT /reorder` | Integration test: CRUD + reorder lifecycle for ingredient sections | Complete |
+| 6.8 | Recipe ingredients: `POST .../sections/:sectionId/ingredients`, `PATCH /:ingredientId`, `DELETE /:ingredientId`, `PUT /reorder` | Integration test: CRUD + reorder lifecycle for ingredients within a section | Complete |
+| 6.9 | Recipe steps: `POST /api/recipes/:id/steps`, `PATCH /:stepId`, `DELETE /:stepId`, `PUT /reorder` | Integration test: CRUD + reorder lifecycle for instruction steps | Complete |
+| 6.10 | Recipe images: `POST /api/recipes/:id/images` (multipart upload), `DELETE /:imageId` | Integration test: upload creates image record; delete removes it; file stored on disk | Complete |
+| 6.11 | Recipe sharing: `POST /api/recipes/:id/share`, `DELETE /api/recipes/:id/share`, `GET /api/recipes/shared/:token` (public, no auth) | Integration test: share generates token + URL; public GET returns recipe; revoke invalidates token | Complete |
+| 6.12 | Meal plan module: `GET /api/meal-plan` (with date range), `POST /api/meal-plan/entries`, `PATCH /:id`, `DELETE /:id` | Integration test: get returns entries grouped by date; add/move/remove entry lifecycle; household-scoped | Complete |
 
 ---
 
@@ -134,12 +134,12 @@ All admin-only endpoints. Protected by `AdminAuthGuard`.
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 7.1 | Admin users: `GET /api/admin/users`, `POST`, `GET /:id`, `PATCH /:id`, `DELETE /:id` | Integration test: CRUD lifecycle; paginated list | Not Started |
-| 7.2 | Admin password reset: `POST /api/admin/users/:id/password-reset-url` | Integration test: generates hashed token + expiry on user; returns URL; token is one-time use | Not Started |
-| 7.3 | Admin households: `GET /api/admin/households`, `POST`, `GET /:id`, `PATCH /:id`, `DELETE /:id` | Integration test: CRUD lifecycle; GET /:id includes members; delete cascades | Not Started |
-| 7.4 | Admin foods: `GET /api/admin/foods`, `POST`, `PATCH /:id`, `DELETE /:id` | Integration test: CRUD lifecycle; paginated list | Not Started |
-| 7.5 | Admin units: `GET /api/admin/units`, `POST`, `PATCH /:id`, `DELETE /:id` | Integration test: CRUD lifecycle; paginated list | Not Started |
-| 7.6 | Admin tokens: `GET /api/admin/tokens`, `POST` (returns raw token once), `DELETE /:id` | Integration test: create returns raw token; list shows metadata only; delete revokes | Not Started |
+| 7.1 | Admin users: `GET /api/admin/users`, `POST`, `GET /:id`, `PATCH /:id`, `DELETE /:id` | Integration test: CRUD lifecycle; paginated list | Complete |
+| 7.2 | Admin password reset: `POST /api/admin/users/:id/password-reset-url` | Integration test: generates hashed token + expiry on user; returns URL; token is one-time use | Complete |
+| 7.3 | Admin households: `GET /api/admin/households`, `POST`, `GET /:id`, `PATCH /:id`, `DELETE /:id` | Integration test: CRUD lifecycle; GET /:id includes members; delete cascades | Complete |
+| 7.4 | Admin foods: `GET /api/admin/foods`, `POST`, `PATCH /:id`, `DELETE /:id` | Integration test: CRUD lifecycle; paginated list | Complete |
+| 7.5 | Admin units: `GET /api/admin/units`, `POST`, `PATCH /:id`, `DELETE /:id` | Integration test: CRUD lifecycle; paginated list | Complete |
+| 7.6 | Admin tokens: `GET /api/admin/tokens`, `POST` (returns raw token once), `DELETE /:id` | Integration test: create returns raw token; list shows metadata only; delete revokes | Complete |
 
 ---
 
@@ -151,7 +151,7 @@ The user-facing side of admin-generated password resets.
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 8.1 | Password reset endpoint: `POST /api/auth/reset-password` — accepts token + new password, validates expiry, updates password, clears token | Integration test: valid token resets password; expired token returns 400; reused token returns 400 | Not Started |
+| 8.1 | Password reset endpoint: `POST /api/auth/reset-password` — accepts token + new password, validates expiry, updates password, clears token | Integration test: valid token resets password; expired token returns 400; reused token returns 400 | Complete |
 
 ---
 
