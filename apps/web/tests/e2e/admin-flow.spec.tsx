@@ -207,7 +207,7 @@ describe('Admin flow — setup wizard → admin login → create household → g
   it('renders admin panel with household list title', async () => {
     renderWithQuery(<AdminPage />);
 
-    expect(screen.getByText(/hogares/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/hogares/i).length).toBeGreaterThan(0);
   });
 
   it('renders create household button', async () => {

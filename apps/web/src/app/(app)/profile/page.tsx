@@ -7,13 +7,14 @@ import { useAuth } from '@/contexts/auth-context';
 import { api } from '@/lib/api-client';
 import { queryKeys } from '@/lib/query-keys';
 import { Button } from '@/components/ui/Button';
+import { Skeleton } from '@/components/ui/Skeleton';
 import type { ProfileResponse } from '@recipe-manager/shared';
 
 export default function ProfilePage() {
   const router = useRouter();
   const { logout } = useAuth();
 
-  const { data: profile } = useQuery({
+  const { data: profile, isLoading } = useQuery({
     queryKey: queryKeys.profile.detail(),
     queryFn: () => api.get<ProfileResponse>('/api/profile'),
   });
@@ -21,6 +22,15 @@ export default function ProfilePage() {
   async function handleLogout() {
     await logout();
     router.replace('/login');
+  }
+
+  if (isLoading) {
+    return (
+      <div className="px-5 py-6 flex flex-col gap-3">
+        <Skeleton className="h-8 w-48" />
+        <Skeleton className="h-4 w-64" />
+      </div>
+    );
   }
 
   return (

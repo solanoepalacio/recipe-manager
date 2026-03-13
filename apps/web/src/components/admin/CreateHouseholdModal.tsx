@@ -36,7 +36,7 @@ export function CreateHouseholdModal({ isOpen, onClose }: CreateHouseholdModalPr
 
   return (
     <Modal isOpen={isOpen} title="Nueva casa" onClose={onClose}>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5 px-5 py-6">
+      <form data-testid="create-household-modal" onSubmit={handleSubmit} className="flex flex-col gap-5 px-5 py-6">
         <Input
           id="household-name"
           label="Nombre"

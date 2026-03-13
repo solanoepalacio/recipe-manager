@@ -5,6 +5,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@/contexts/auth-context';
 import { api } from '@/lib/api-client';
 import { queryKeys } from '@/lib/query-keys';
+import { Skeleton } from '@/components/ui/Skeleton';
+import { EmptyState } from '@/components/ui/EmptyState';
 import type { MealPlanResponse, MealPlanEntryResponse } from '@recipe-manager/shared';
 
 function getTodayDate(): string {
@@ -23,7 +25,7 @@ export default function TodayPage() {
   const { user } = useAuth();
   const today = getTodayDate();
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: queryKeys.mealPlan.range(today, today),
     queryFn: () => api.get<MealPlanResponse>(`/api/meal-plan?from=${today}&to=${today}`),
   });
@@ -60,8 +62,14 @@ export default function TodayPage() {
         Recetas de hoy
       </h3>
 
-      {entries.length === 0 ? (
-        <p className="text-sm text-secondary">No hay recetas para hoy</p>
+      {isLoading ? (
+        <div className="flex flex-col gap-2">
+          <Skeleton className="h-14 w-full" />
+          <Skeleton className="h-14 w-full" />
+          <Skeleton className="h-14 w-full" />
+        </div>
+      ) : entries.length === 0 ? (
+        <EmptyState message="No hay recetas para hoy" />
       ) : (
         <div className="flex flex-col gap-2">
           {entries.map((entry) => (

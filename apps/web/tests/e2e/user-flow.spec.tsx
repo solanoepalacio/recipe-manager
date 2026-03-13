@@ -228,10 +228,9 @@ describe('User flow — login → create recipe → view detail → cook mode �
 
     renderWithQuery(<RecipesPage />);
 
-    // Should show loading indicator
-    const loadingEl = screen.queryByRole('status');
-    // Either a spinner or skeleton should be visible
-    expect(loadingEl ?? screen.queryByText(/cargando/i)).toBeTruthy();
+    // Should show skeleton loading indicators
+    const skeletons = screen.queryAllByRole('status');
+    expect(skeletons.length).toBeGreaterThan(0);
 
     // Resolve and clean up
     act(() => resolveGet!(mockRecipeList));
@@ -292,9 +291,9 @@ describe('User flow — login → create recipe → view detail → cook mode �
 
     renderWithQuery(<RecipeDetailPage />);
 
-    // Loading state should be visible
-    const loadingEl = screen.queryByRole('status');
-    expect(loadingEl ?? document.querySelector('.animate-spin, .animate-pulse')).toBeTruthy();
+    // Loading state should be visible via skeleton elements
+    const skeletons = screen.queryAllByRole('status');
+    expect(skeletons.length).toBeGreaterThan(0);
 
     act(() => resolveGet!(mockRecipeDetail));
   });
