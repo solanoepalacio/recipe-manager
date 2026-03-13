@@ -289,13 +289,13 @@ describe('IngredientsService', () => {
 
       expect(mockPrisma.recipeIngredient.update).toHaveBeenCalledWith(
         expect.objectContaining({
-          where: { id: 'ing-b' },
+          where: expect.objectContaining({ id: 'ing-b' }),
           data: { order: 0 },
         }),
       );
       expect(mockPrisma.recipeIngredient.update).toHaveBeenCalledWith(
         expect.objectContaining({
-          where: { id: 'ing-a' },
+          where: expect.objectContaining({ id: 'ing-a' }),
           data: { order: 1 },
         }),
       );
@@ -316,6 +316,21 @@ describe('IngredientsService', () => {
       await expect(
         service.reorderIngredients('household-1', 'recipe-1', 'no-sec', []),
       ).rejects.toThrow(NotFoundException);
+    });
+
+    it('scopes transaction updates to the correct sectionId', async () => {
+      mockPrisma.recipe.findFirst.mockResolvedValue(makeRecipe());
+      mockPrisma.ingredientSection.findFirst.mockResolvedValue(makeSection());
+      mockPrisma.$transaction.mockImplementation(
+        async (promises: Promise<unknown>[]) => Promise.all(promises),
+      );
+      mockPrisma.recipeIngredient.update.mockResolvedValue({});
+
+      await service.reorderIngredients('household-1', 'recipe-1', 'sec-1', ['i1', 'i2']);
+
+      const calls = mockPrisma.recipeIngredient.update.mock.calls;
+      expect(calls[0][0].where).toMatchObject({ id: 'i1', sectionId: 'sec-1' });
+      expect(calls[1][0].where).toMatchObject({ id: 'i2', sectionId: 'sec-1' });
     });
   });
 });

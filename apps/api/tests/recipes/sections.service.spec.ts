@@ -237,13 +237,13 @@ describe('SectionsService', () => {
 
       expect(mockPrisma.ingredientSection.update).toHaveBeenCalledWith(
         expect.objectContaining({
-          where: { id: 'sec-b' },
+          where: expect.objectContaining({ id: 'sec-b' }),
           data: { order: 0 },
         }),
       );
       expect(mockPrisma.ingredientSection.update).toHaveBeenCalledWith(
         expect.objectContaining({
-          where: { id: 'sec-a' },
+          where: expect.objectContaining({ id: 'sec-a' }),
           data: { order: 1 },
         }),
       );
@@ -255,6 +255,20 @@ describe('SectionsService', () => {
       await expect(
         service.reorderSections('household-1', 'nonexistent', ['sec-1']),
       ).rejects.toThrow(NotFoundException);
+    });
+
+    it('scopes transaction updates to the correct recipeId', async () => {
+      mockPrisma.recipe.findFirst.mockResolvedValue({ id: 'r1', householdId: 'hh1' });
+      mockPrisma.$transaction.mockImplementation(
+        async (promises: Promise<unknown>[]) => Promise.all(promises),
+      );
+      mockPrisma.ingredientSection.update.mockResolvedValue({});
+
+      await service.reorderSections('hh1', 'r1', ['s1', 's2']);
+
+      const calls = mockPrisma.ingredientSection.update.mock.calls;
+      expect(calls[0][0].where).toMatchObject({ id: 's1', recipeId: 'r1' });
+      expect(calls[1][0].where).toMatchObject({ id: 's2', recipeId: 'r1' });
     });
   });
 });

@@ -230,13 +230,13 @@ describe('StepsService', () => {
 
       expect(mockPrisma.instructionStep.update).toHaveBeenCalledWith(
         expect.objectContaining({
-          where: { id: 'step-b' },
+          where: expect.objectContaining({ id: 'step-b' }),
           data: { order: 0 },
         }),
       );
       expect(mockPrisma.instructionStep.update).toHaveBeenCalledWith(
         expect.objectContaining({
-          where: { id: 'step-a' },
+          where: expect.objectContaining({ id: 'step-a' }),
           data: { order: 1 },
         }),
       );
@@ -248,6 +248,20 @@ describe('StepsService', () => {
       await expect(
         service.reorderSteps('household-1', 'nonexistent', ['step-1']),
       ).rejects.toThrow(NotFoundException);
+    });
+
+    it('scopes transaction updates to the correct recipeId', async () => {
+      mockPrisma.recipe.findFirst.mockResolvedValue({ id: 'r1', householdId: 'hh1' });
+      mockPrisma.$transaction.mockImplementation(
+        async (promises: Promise<unknown>[]) => Promise.all(promises),
+      );
+      mockPrisma.instructionStep.update.mockResolvedValue({});
+
+      await service.reorderSteps('hh1', 'r1', ['st1', 'st2']);
+
+      const calls = mockPrisma.instructionStep.update.mock.calls;
+      expect(calls[0][0].where).toMatchObject({ id: 'st1', recipeId: 'r1' });
+      expect(calls[1][0].where).toMatchObject({ id: 'st2', recipeId: 'r1' });
     });
   });
 });

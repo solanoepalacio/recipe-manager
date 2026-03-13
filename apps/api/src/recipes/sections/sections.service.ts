@@ -127,7 +127,7 @@ export class SectionsService {
     await this.prisma.$transaction(
       ids.map((id, index) =>
         this.prisma.ingredientSection.update({
-          where: { id },
+          where: { id, recipeId },
           data: { order: index },
         }),
       ),

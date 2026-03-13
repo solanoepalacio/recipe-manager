@@ -101,7 +101,7 @@ export class StepsService {
     await this.prisma.$transaction(
       ids.map((id, index) =>
         this.prisma.instructionStep.update({
-          where: { id },
+          where: { id, recipeId },
           data: { order: index },
         }),
       ),
