@@ -220,10 +220,9 @@ describe('StepsService', () => {
   describe('reorderSteps', () => {
     it('updates each step order to its index in ids array', async () => {
       mockPrisma.recipe.findFirst.mockResolvedValue(makeRecipe());
+      // $transaction receives an array of Prisma promises (not functions)
       mockPrisma.$transaction.mockImplementation(
-        async (fns: (() => Promise<unknown>)[]) => {
-          for (const fn of fns) await fn();
-        },
+        async (promises: Promise<unknown>[]) => Promise.all(promises),
       );
       mockPrisma.instructionStep.update.mockResolvedValue({});
 

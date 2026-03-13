@@ -276,10 +276,9 @@ describe('IngredientsService', () => {
     it('updates each ingredient order to its index in ids array', async () => {
       mockPrisma.recipe.findFirst.mockResolvedValue(makeRecipe());
       mockPrisma.ingredientSection.findFirst.mockResolvedValue(makeSection());
+      // $transaction receives an array of Prisma promises (not functions)
       mockPrisma.$transaction.mockImplementation(
-        async (fns: (() => Promise<unknown>)[]) => {
-          for (const fn of fns) await fn();
-        },
+        async (promises: Promise<unknown>[]) => Promise.all(promises),
       );
       mockPrisma.recipeIngredient.update.mockResolvedValue({});
 

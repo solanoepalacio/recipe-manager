@@ -224,10 +224,9 @@ describe('SectionsService', () => {
     it('updates each section order to its index in ids array', async () => {
       mockPrisma.recipe.findFirst.mockResolvedValue(makeRecipe());
       const updates: jest.Mock[] = [];
+      // $transaction receives an array of Prisma promises (not functions)
       mockPrisma.$transaction.mockImplementation(
-        async (fns: (() => Promise<unknown>)[]) => {
-          for (const fn of fns) await fn();
-        },
+        async (promises: Promise<unknown>[]) => Promise.all(promises),
       );
       mockPrisma.ingredientSection.update.mockResolvedValue({});
 
