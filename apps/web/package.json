@@ -12,18 +12,31 @@
   },
   "dependencies": {
     "@recipe-manager/shared": "workspace:*",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@tanstack/react-query": "^5.90.21",
     "next": "^15.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^10.0.1",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.5.0",
     "@types/node": "^20.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "eslint": "^10.0.3",
+    "eslint-config-next": "^16.1.6",
     "jest": "^29.5.0",
+    "jest-environment-jsdom": "^30.3.0",
     "ts-jest": "^29.1.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.57.0"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -36,12 +49,25 @@
     "testMatch": [
       "**/tests/**/*.spec.ts",
       "**/tests/**/*.spec.tsx",
-      "**/integration_tests/**/*.spec.ts"
+      "**/integration_tests/**/*.spec.ts",
+      "**/integration_tests/**/*.spec.tsx"
     ],
     "transform": {
-      "^.+\\.(t|j)sx?$": "ts-jest"
+      "^.+\\.(t|j)sx?$": [
+        "ts-jest",
+        {
+          "tsconfig": {
+            "jsx": "react-jsx",
+            "moduleResolution": "node",
+            "esModuleInterop": true
+          }
+        }
+      ]
     },
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.ts"
+    ],
     "moduleNameMapper": {
       "@recipe-manager/shared": "<rootDir>/../../packages/shared/src/index.ts",
       "@/(.*)": "<rootDir>/src/$1"
