@@ -24,6 +24,7 @@
     "class-validator": "^0.15.1",
     "connect-pg-simple": "^10.0.0",
     "express-session": "^1.19.0",
+    "multer": "^2.1.1",
     "prisma": "^6.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
@@ -37,6 +38,7 @@
     "@types/express": "^5.0.6",
     "@types/express-session": "^1.18.2",
     "@types/jest": "^29.5.0",
+    "@types/multer": "^2.1.0",
     "@types/node": "^20.0.0",
     "@types/supertest": "^6.0.0",
     "jest": "^29.5.0",
