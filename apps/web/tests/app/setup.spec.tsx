@@ -11,21 +11,22 @@ jest.mock('next/navigation', () => ({
   redirect: jest.fn(),
 }));
 
-const mockApiPost = jest.fn();
-const mockApiGet = jest.fn();
+const mockGet = jest.fn();
+const mockPost = jest.fn();
 
 jest.mock('@/lib/api-client', () => ({
   api: {
-    get: (...args: unknown[]) => mockApiGet(...args),
-    post: (...args: unknown[]) => mockApiPost(...args),
+    get: (...args: unknown[]) => mockGet(...args),
+    post: (...args: unknown[]) => mockPost(...args),
   },
   ApiError: class ApiError extends Error {
-    constructor(
-      public status: number,
-      public body: unknown,
-    ) {
+    public status: number;
+    public body: unknown;
+    constructor(status: number, body: unknown) {
       super(`API Error ${status}`);
       this.name = 'ApiError';
+      this.status = status;
+      this.body = body;
     }
   },
 }));
@@ -38,7 +39,7 @@ describe('SetupPage (/setup)', () => {
   });
 
   it('redirects to /login if setup is not required', async () => {
-    mockApiGet.mockResolvedValueOnce({ required: false });
+    mockGet.mockResolvedValueOnce({ required: false });
 
     render(<SetupPage />);
 
@@ -48,60 +49,60 @@ describe('SetupPage (/setup)', () => {
   });
 
   it('renders the setup form when setup is required', async () => {
-    mockApiGet.mockResolvedValueOnce({ required: true });
+    mockGet.mockResolvedValueOnce({ required: true });
 
     render(<SetupPage />);
 
     await waitFor(() => {
-      expect(screen.getByLabelText(/nombre/i)).toBeInTheDocument();
+      expect(screen.getByLabelText('Nombre')).toBeInTheDocument();
     });
 
-    expect(screen.getByLabelText(/^email$/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/^contraseña$/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/confirmar contraseña/i)).toBeInTheDocument();
+    expect(screen.getByLabelText('Email')).toBeInTheDocument();
+    expect(screen.getByLabelText('Contraseña')).toBeInTheDocument();
+    expect(screen.getByLabelText('Confirmar contraseña')).toBeInTheDocument();
   });
 
   it('shows error when passwords do not match', async () => {
-    mockApiGet.mockResolvedValueOnce({ required: true });
+    mockGet.mockResolvedValueOnce({ required: true });
     const user = userEvent.setup();
 
     render(<SetupPage />);
 
     await waitFor(() => {
-      expect(screen.getByLabelText(/nombre/i)).toBeInTheDocument();
+      expect(screen.getByLabelText('Nombre')).toBeInTheDocument();
     });
 
-    await user.type(screen.getByLabelText(/nombre/i), 'Admin');
-    await user.type(screen.getByLabelText(/^email$/i), 'admin@example.com');
-    await user.type(screen.getByLabelText(/^contraseña$/i), 'password123');
-    await user.type(screen.getByLabelText(/confirmar contraseña/i), 'different');
+    await user.type(screen.getByLabelText('Nombre'), 'Admin');
+    await user.type(screen.getByLabelText('Email'), 'admin@example.com');
+    await user.type(screen.getByLabelText('Contraseña'), 'password123');
+    await user.type(screen.getByLabelText('Confirmar contraseña'), 'different');
     await user.click(screen.getByRole('button', { name: /crear administrador/i }));
 
     await waitFor(() => {
       expect(screen.getByText(/las contraseñas no coinciden/i)).toBeInTheDocument();
     });
-    expect(mockApiPost).not.toHaveBeenCalled();
+    expect(mockPost).not.toHaveBeenCalled();
   });
 
   it('calls the setup API with correct data on submit', async () => {
-    mockApiGet.mockResolvedValueOnce({ required: true });
-    mockApiPost.mockResolvedValueOnce({ id: 'admin-1', name: 'Admin', email: 'admin@example.com' });
+    mockGet.mockResolvedValueOnce({ required: true });
+    mockPost.mockResolvedValueOnce({ id: 'admin-1', name: 'Admin', email: 'admin@example.com' });
     const user = userEvent.setup();
 
     render(<SetupPage />);
 
     await waitFor(() => {
-      expect(screen.getByLabelText(/nombre/i)).toBeInTheDocument();
+      expect(screen.getByLabelText('Nombre')).toBeInTheDocument();
     });
 
-    await user.type(screen.getByLabelText(/nombre/i), 'Admin');
-    await user.type(screen.getByLabelText(/^email$/i), 'admin@example.com');
-    await user.type(screen.getByLabelText(/^contraseña$/i), 'password123');
-    await user.type(screen.getByLabelText(/confirmar contraseña/i), 'password123');
+    await user.type(screen.getByLabelText('Nombre'), 'Admin');
+    await user.type(screen.getByLabelText('Email'), 'admin@example.com');
+    await user.type(screen.getByLabelText('Contraseña'), 'password123');
+    await user.type(screen.getByLabelText('Confirmar contraseña'), 'password123');
     await user.click(screen.getByRole('button', { name: /crear administrador/i }));
 
     await waitFor(() => {
-      expect(mockApiPost).toHaveBeenCalledWith('/api/setup', {
+      expect(mockPost).toHaveBeenCalledWith('/api/setup', {
         name: 'Admin',
         email: 'admin@example.com',
         password: 'password123',
@@ -110,20 +111,20 @@ describe('SetupPage (/setup)', () => {
   });
 
   it('redirects to /admin/login after successful setup', async () => {
-    mockApiGet.mockResolvedValueOnce({ required: true });
-    mockApiPost.mockResolvedValueOnce({ id: 'admin-1', name: 'Admin', email: 'admin@example.com' });
+    mockGet.mockResolvedValueOnce({ required: true });
+    mockPost.mockResolvedValueOnce({ id: 'admin-1', name: 'Admin', email: 'admin@example.com' });
     const user = userEvent.setup();
 
     render(<SetupPage />);
 
     await waitFor(() => {
-      expect(screen.getByLabelText(/nombre/i)).toBeInTheDocument();
+      expect(screen.getByLabelText('Nombre')).toBeInTheDocument();
     });
 
-    await user.type(screen.getByLabelText(/nombre/i), 'Admin');
-    await user.type(screen.getByLabelText(/^email$/i), 'admin@example.com');
-    await user.type(screen.getByLabelText(/^contraseña$/i), 'password123');
-    await user.type(screen.getByLabelText(/confirmar contraseña/i), 'password123');
+    await user.type(screen.getByLabelText('Nombre'), 'Admin');
+    await user.type(screen.getByLabelText('Email'), 'admin@example.com');
+    await user.type(screen.getByLabelText('Contraseña'), 'password123');
+    await user.type(screen.getByLabelText('Confirmar contraseña'), 'password123');
     await user.click(screen.getByRole('button', { name: /crear administrador/i }));
 
     await waitFor(() => {
@@ -132,21 +133,20 @@ describe('SetupPage (/setup)', () => {
   });
 
   it('shows inline error on API failure', async () => {
-    mockApiGet.mockResolvedValueOnce({ required: true });
-    const { ApiError } = require('@/lib/api-client');
-    mockApiPost.mockRejectedValueOnce(new ApiError(400, { message: 'Bad request' }));
+    mockGet.mockResolvedValueOnce({ required: true });
+    mockPost.mockRejectedValueOnce(new Error('Bad request'));
     const user = userEvent.setup();
 
     render(<SetupPage />);
 
     await waitFor(() => {
-      expect(screen.getByLabelText(/nombre/i)).toBeInTheDocument();
+      expect(screen.getByLabelText('Nombre')).toBeInTheDocument();
     });
 
-    await user.type(screen.getByLabelText(/nombre/i), 'Admin');
-    await user.type(screen.getByLabelText(/^email$/i), 'admin@example.com');
-    await user.type(screen.getByLabelText(/^contraseña$/i), 'password123');
-    await user.type(screen.getByLabelText(/confirmar contraseña/i), 'password123');
+    await user.type(screen.getByLabelText('Nombre'), 'Admin');
+    await user.type(screen.getByLabelText('Email'), 'admin@example.com');
+    await user.type(screen.getByLabelText('Contraseña'), 'password123');
+    await user.type(screen.getByLabelText('Confirmar contraseña'), 'password123');
     await user.click(screen.getByRole('button', { name: /crear administrador/i }));
 
     await waitFor(() => {

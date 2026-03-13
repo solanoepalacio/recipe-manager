@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { api } from '@/lib/api-client';
 
 const mockPush = jest.fn();
 const mockReplace = jest.fn();
@@ -12,23 +13,7 @@ jest.mock('next/navigation', () => ({
   redirect: jest.fn(),
 }));
 
-const mockApiPost = jest.fn();
-
-jest.mock('@/lib/api-client', () => ({
-  api: {
-    get: jest.fn(),
-    post: (...args: unknown[]) => mockApiPost(...args),
-  },
-  ApiError: class ApiError extends Error {
-    constructor(
-      public status: number,
-      public body: unknown,
-    ) {
-      super(`API Error ${status}`);
-      this.name = 'ApiError';
-    }
-  },
-}));
+jest.mock('@/lib/api-client');
 
 import ResetPasswordPage from '@/app/(auth)/reset-password/page';
 
@@ -51,8 +36,8 @@ describe('ResetPasswordPage (/reset-password)', () => {
 
     render(<ResetPasswordPage />);
 
-    expect(screen.getByLabelText(/nueva contraseña/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/confirmar contraseña/i)).toBeInTheDocument();
+    expect(screen.getByLabelText('Nueva contraseña')).toBeInTheDocument();
+    expect(screen.getByLabelText('Confirmar contraseña')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /cambiar contraseña/i })).toBeInTheDocument();
   });
 
@@ -62,29 +47,29 @@ describe('ResetPasswordPage (/reset-password)', () => {
 
     render(<ResetPasswordPage />);
 
-    await user.type(screen.getByLabelText(/nueva contraseña/i), 'password123');
-    await user.type(screen.getByLabelText(/confirmar contraseña/i), 'different');
+    await user.type(screen.getByLabelText('Nueva contraseña'), 'password123');
+    await user.type(screen.getByLabelText('Confirmar contraseña'), 'different');
     await user.click(screen.getByRole('button', { name: /cambiar contraseña/i }));
 
     await waitFor(() => {
       expect(screen.getByText(/las contraseñas no coinciden/i)).toBeInTheDocument();
     });
-    expect(mockApiPost).not.toHaveBeenCalled();
+    expect(api.post).not.toHaveBeenCalled();
   });
 
   it('calls the reset API with token and new password', async () => {
     mockSearchParams = new URLSearchParams('token=abc123');
-    mockApiPost.mockResolvedValueOnce({});
+    (api.post as jest.Mock).mockResolvedValueOnce({});
     const user = userEvent.setup();
 
     render(<ResetPasswordPage />);
 
-    await user.type(screen.getByLabelText(/nueva contraseña/i), 'newpassword123');
-    await user.type(screen.getByLabelText(/confirmar contraseña/i), 'newpassword123');
+    await user.type(screen.getByLabelText('Nueva contraseña'), 'newpassword123');
+    await user.type(screen.getByLabelText('Confirmar contraseña'), 'newpassword123');
     await user.click(screen.getByRole('button', { name: /cambiar contraseña/i }));
 
     await waitFor(() => {
-      expect(mockApiPost).toHaveBeenCalledWith('/api/auth/reset-password', {
+      expect(api.post).toHaveBeenCalledWith('/api/auth/reset-password', {
         token: 'abc123',
         password: 'newpassword123',
       });
@@ -92,35 +77,40 @@ describe('ResetPasswordPage (/reset-password)', () => {
   });
 
   it('shows success message and redirects to /login after successful reset', async () => {
+    jest.useFakeTimers();
     mockSearchParams = new URLSearchParams('token=abc123');
-    mockApiPost.mockResolvedValueOnce({});
-    const user = userEvent.setup();
+    (api.post as jest.Mock).mockResolvedValueOnce({});
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 
     render(<ResetPasswordPage />);
 
-    await user.type(screen.getByLabelText(/nueva contraseña/i), 'newpassword123');
-    await user.type(screen.getByLabelText(/confirmar contraseña/i), 'newpassword123');
+    await user.type(screen.getByLabelText('Nueva contraseña'), 'newpassword123');
+    await user.type(screen.getByLabelText('Confirmar contraseña'), 'newpassword123');
     await user.click(screen.getByRole('button', { name: /cambiar contraseña/i }));
 
     await waitFor(() => {
       expect(screen.getByText(/contraseña cambiada/i)).toBeInTheDocument();
     });
 
+    jest.advanceTimersByTime(3000);
+
     await waitFor(() => {
       expect(mockPush).toHaveBeenCalledWith('/login');
-    }, { timeout: 4000 });
+    });
+
+    jest.useRealTimers();
   });
 
   it('shows inline error on API failure', async () => {
     mockSearchParams = new URLSearchParams('token=abc123');
     const { ApiError } = require('@/lib/api-client');
-    mockApiPost.mockRejectedValueOnce(new ApiError(400, { message: 'Invalid token' }));
+    (api.post as jest.Mock).mockRejectedValueOnce(new ApiError(400, { message: 'Invalid token' }));
     const user = userEvent.setup();
 
     render(<ResetPasswordPage />);
 
-    await user.type(screen.getByLabelText(/nueva contraseña/i), 'newpassword123');
-    await user.type(screen.getByLabelText(/confirmar contraseña/i), 'newpassword123');
+    await user.type(screen.getByLabelText('Nueva contraseña'), 'newpassword123');
+    await user.type(screen.getByLabelText('Confirmar contraseña'), 'newpassword123');
     await user.click(screen.getByRole('button', { name: /cambiar contraseña/i }));
 
     await waitFor(() => {

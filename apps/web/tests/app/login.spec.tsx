@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { api } from '@/lib/api-client';
 
 // Mock next/navigation
 const mockPush = jest.fn();
@@ -12,25 +13,8 @@ jest.mock('next/navigation', () => ({
   redirect: jest.fn(),
 }));
 
-// Mock api-client
-const mockApiPost = jest.fn();
-const mockApiGet = jest.fn();
-
-jest.mock('@/lib/api-client', () => ({
-  api: {
-    get: (...args: unknown[]) => mockApiGet(...args),
-    post: (...args: unknown[]) => mockApiPost(...args),
-  },
-  ApiError: class ApiError extends Error {
-    constructor(
-      public status: number,
-      public body: unknown,
-    ) {
-      super(`API Error ${status}`);
-      this.name = 'ApiError';
-    }
-  },
-}));
+// Mock api-client module
+jest.mock('@/lib/api-client');
 
 // Mock auth-context
 const mockLogin = jest.fn();
@@ -58,8 +42,8 @@ describe('LoginPage (/login)', () => {
 
   it('renders the login form with all fields', () => {
     render(<LoginPage />);
-    expect(screen.getByLabelText(/email o usuario/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/contraseña/i)).toBeInTheDocument();
+    expect(screen.getByLabelText('Email o usuario')).toBeInTheDocument();
+    expect(screen.getByLabelText('Contraseña')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /iniciar sesión/i })).toBeInTheDocument();
   });
 
@@ -79,8 +63,8 @@ describe('LoginPage (/login)', () => {
 
     render(<LoginPage />);
 
-    await user.type(screen.getByLabelText(/email o usuario/i), 'test@example.com');
-    await user.type(screen.getByLabelText(/contraseña/i), 'password123');
+    await user.type(screen.getByLabelText('Email o usuario'), 'test@example.com');
+    await user.type(screen.getByLabelText('Contraseña'), 'password123');
     await user.click(screen.getByRole('button', { name: /iniciar sesión/i }));
 
     await waitFor(() => {
@@ -97,8 +81,8 @@ describe('LoginPage (/login)', () => {
 
     render(<LoginPage />);
 
-    await user.type(screen.getByLabelText(/email o usuario/i), 'test@example.com');
-    await user.type(screen.getByLabelText(/contraseña/i), 'password123');
+    await user.type(screen.getByLabelText('Email o usuario'), 'test@example.com');
+    await user.type(screen.getByLabelText('Contraseña'), 'password123');
     await user.click(screen.getByRole('button', { name: /iniciar sesión/i }));
 
     await waitFor(() => {
@@ -113,8 +97,8 @@ describe('LoginPage (/login)', () => {
 
     render(<LoginPage />);
 
-    await user.type(screen.getByLabelText(/email o usuario/i), 'test@example.com');
-    await user.type(screen.getByLabelText(/contraseña/i), 'wrongpass');
+    await user.type(screen.getByLabelText('Email o usuario'), 'test@example.com');
+    await user.type(screen.getByLabelText('Contraseña'), 'wrongpass');
     await user.click(screen.getByRole('button', { name: /iniciar sesión/i }));
 
     await waitFor(() => {
