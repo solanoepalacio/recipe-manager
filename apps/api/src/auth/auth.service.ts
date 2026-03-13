@@ -1,0 +1,61 @@
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
+import * as bcrypt from 'bcrypt';
+import type { LoginResponse, MeResponse } from '@recipe-manager/shared';
+
+@Injectable()
+export class AuthService {
+  constructor(private prisma: PrismaService) {}
+
+  async validateUser(login: string, password: string) {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        passwordHash: { not: null },
+        OR: [{ email: login }, { username: login }],
+      },
+    });
+
+    if (!user || !user.passwordHash) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const valid = await bcrypt.compare(password, user.passwordHash);
+    if (!valid) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    return user;
+  }
+
+  toLoginResponse(user: {
+    id: string;
+    name: string;
+    email: string | null;
+    username: string | null;
+    householdId: string;
+  }): LoginResponse {
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      username: user.username,
+      householdId: user.householdId,
+    };
+  }
+
+  toMeResponse(user: {
+    id: string;
+    name: string;
+    email: string | null;
+    username: string | null;
+    householdId: string;
+  }): MeResponse {
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      username: user.username,
+      householdId: user.householdId,
+    };
+  }
+}

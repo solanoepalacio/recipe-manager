@@ -8,6 +8,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
+    "test:integration": "jest --config jest.integration.config.js",
     "lint": "eslint \"{src,tests,integration_tests}/**/*.ts\" --fix",
     "typecheck": "tsc --noEmit"
   },
@@ -21,6 +22,8 @@
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
+    "connect-pg-simple": "^10.0.0",
+    "express-session": "^1.19.0",
     "prisma": "^6.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
@@ -30,7 +33,9 @@
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
     "@types/bcrypt": "^6.0.0",
+    "@types/connect-pg-simple": "^7.0.3",
     "@types/express": "^5.0.6",
+    "@types/express-session": "^1.18.2",
     "@types/jest": "^29.5.0",
     "@types/node": "^20.0.0",
     "@types/supertest": "^6.0.0",
@@ -51,8 +56,7 @@
     ],
     "rootDir": ".",
     "testMatch": [
-      "**/tests/**/*.spec.ts",
-      "**/integration_tests/**/*.spec.ts"
+      "**/tests/**/*.spec.ts"
     ],
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
