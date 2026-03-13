@@ -1,15 +1,16 @@
 # CLAUDE.md — Recipe Manager
 
-This project is in the **pre-implementation design phase**. No code has been written yet. The goal is to produce a set of design artifacts that fully specify the application before any implementation begins.
+The **pre-implementation design phase is complete**. All design artifacts are finalized in `mvp_plans/`. The project is now in the **implementation phase**.
 
 ---
 
 ## Session Start Protocol
 
 At the start of every session:
-1. Read `mvp_plans/progress.md` to identify the current step and its status.
-2. Read the artifact for the current step (if one exists) and the immediately preceding step.
-3. Resume from where the previous session left off — do not re-summarize completed steps.
+1. Read `mvp_plans/implementation_progress.md` to identify the current milestone and task.
+2. Read `mvp_plans/implementation_workflow.md` for the orchestration process.
+3. Read relevant design artifacts for the current task.
+4. Resume from where the previous session left off — do not re-summarize completed work.
 
 ---
 
@@ -27,19 +28,34 @@ Key constraints:
 
 ## How We Work
 
-The full workflow is documented in `mvp_plans/workflow.md`. The short version:
+The implementation follows the orchestration workflow in `mvp_plans/implementation_workflow.md`. The short version:
 
-1. **Discuss** the topic for the current step.
-2. **Decide** — the user makes final calls; capture the *why* alongside the *what*.
-3. **Document** — write or update the artifact in `mvp_plans/`, then update `mvp_plans/progress.md`.
+1. **Pick** the next task from `implementation_progress.md`
+2. **Spawn a task agent** in an isolated worktree to implement it (TDD: tests first, then implementation)
+3. **Spawn an architect agent** to review the branch
+4. **Merge** to `main` only when tests pass and review is approved
+5. **Update** `implementation_progress.md`
 
-No step is complete until its artifact is written and `progress.md` is updated.
+### Key Rules
+
+- All code, files, directories, and URLs are in **English**. Only UI-facing strings are in Spanish.
+- `packages/shared` is the **source of truth** for the API boundary. Backend services return shared types. Frontend consumes shared types. The compiler enforces this.
+- Every DTO has `class-validator` decorators AND `@ApiProperty()` for OpenAPI docs.
+- Household-scoped data is filtered by `householdId` at the **service layer**.
+- No branch is merged without passing tests.
 
 ---
 
-## Specialist Agents
+## Agents
 
-Some steps use a specialist sub-agent to drive the discussion. Agent definitions live in `.claude/agents/`. The agent to use for each step (if any) is noted in the `Agent` column of `progress.md`. See `mvp_plans/workflow.md` for the full convention.
+Agent definitions live in `.claude/agents/`.
+
+### Design phase (complete)
+- `architecture-specialist.md` — used for steps 1–3
+- `ui-specialist.md` — used for steps 5–6
+
+### Implementation phase
+- See `implementation_workflow.md` for task agent and architect agent prompt templates
 
 ## Design Artifacts
 
@@ -57,3 +73,5 @@ All planning documents live in `mvp_plans/`. Filenames follow the pattern `{step
 | `05_ui_views.md` | UI views and low-fi wireframes (draw.io) |
 | `06_hifi_wireframes.md` | High-fidelity wireframes |
 | `07_project_structure.md` | Folder structure and conventions |
+| `implementation_progress.md` | Implementation milestones, tasks, and status |
+| `implementation_workflow.md` | Orchestration process for each task (TDD + review) |
