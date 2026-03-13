@@ -14,6 +14,7 @@ import type {
   RecipeIngredientResponse,
   InstructionStepResponse,
   CreateStepRequest,
+  RecipeImageResponse,
 } from '@recipe-manager/shared';
 
 export interface RecipeEditTabsProps {
@@ -326,18 +327,16 @@ function PhotosTab({
   onUpdate: (r: RecipeDetailResponse) => void;
 }) {
   const queryClient = useQueryClient();
+  const [uploadedImages, setUploadedImages] = useState<RecipeImageResponse[]>([]);
 
   const uploadMutation = useMutation({
     mutationFn: (file: File) => {
       const formData = new FormData();
       formData.append('file', file);
-      return fetch(`${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3000'}/api/recipes/${recipe.id}/images`, {
-        method: 'POST',
-        credentials: 'include',
-        body: formData,
-      }).then((r) => r.json());
+      return api.postForm<RecipeImageResponse>(`/api/recipes/${recipe.id}/images`, formData);
     },
-    onSuccess: () => {
+    onSuccess: (uploaded) => {
+      setUploadedImages((prev) => [...prev, uploaded]);
       queryClient.invalidateQueries({ queryKey: queryKeys.recipes.detail(recipe.id) });
     },
   });
@@ -370,9 +369,9 @@ function PhotosTab({
       </label>
 
       {/* Image previews */}
-      {recipe.images.length > 0 && (
+      {(recipe.images.length > 0 || uploadedImages.length > 0) && (
         <div className="grid grid-cols-2 gap-3 mt-4">
-          {recipe.images.map((img) => (
+          {[...recipe.images, ...uploadedImages].map((img) => (
             <div key={img.id} className="relative aspect-video rounded-xl overflow-hidden bg-subtle">
               <img
                 src={img.url}

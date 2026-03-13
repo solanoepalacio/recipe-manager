@@ -180,6 +180,26 @@ describe('Recipe detail page (/recipes/:slug)', () => {
     });
   });
 
+  it('copy button writes share URL to clipboard', async () => {
+    const user = userEvent.setup();
+    Object.defineProperty(navigator, 'clipboard', {
+      value: { writeText: jest.fn().mockResolvedValue(undefined) },
+      configurable: true,
+    });
+    renderWithQuery(<RecipeDetailPage />);
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /compartir/i })).toBeInTheDocument();
+    });
+    await user.click(screen.getByRole('button', { name: /compartir/i }));
+    await waitFor(() => {
+      expect(screen.getByText(/https:\/\/example\.com\/shared\/token123/)).toBeInTheDocument();
+    });
+    await user.click(screen.getByRole('button', { name: /copiar enlace/i }));
+    await waitFor(() => {
+      expect(navigator.clipboard.writeText).toHaveBeenCalledWith('https://example.com/shared/token123');
+    });
+  });
+
   it('revoke button calls DELETE share API', async () => {
     const user = userEvent.setup();
     const { api } = require('@/lib/api-client');

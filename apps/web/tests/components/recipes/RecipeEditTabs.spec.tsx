@@ -228,4 +228,40 @@ describe('RecipeEditTabs', () => {
       expect(api.delete).toHaveBeenCalledWith('/api/recipes/r1/images/img1');
     });
   });
+
+  it('uploads image file via FormData', async () => {
+    const { api } = require('@/lib/api-client');
+    api.postForm = jest.fn().mockResolvedValue({ id: 'img2', url: '/uploads/img.jpg', order: 2 });
+    const user = userEvent.setup();
+    renderWithQuery(<RecipeEditTabs recipe={mockRecipe} onUpdate={jest.fn()} />);
+    await user.click(screen.getByRole('tab', { name: /fotos/i }));
+    await waitFor(() => {
+      expect(screen.getByTestId('photo-upload-zone')).toBeInTheDocument();
+    });
+    const file = new File(['image content'], 'img.jpg', { type: 'image/jpeg' });
+    const input = screen.getByTestId('photo-upload-zone').querySelector('input[type="file"]')!;
+    fireEvent.change(input, { target: { files: [file] } });
+    await waitFor(() => {
+      expect(api.postForm).toHaveBeenCalledWith('/api/recipes/r1/images', expect.any(FormData));
+    });
+  });
+
+  it('shows image preview after upload', async () => {
+    const { api } = require('@/lib/api-client');
+    api.postForm = jest.fn().mockResolvedValue({ id: 'img-new', url: '/uploads/img.jpg', order: 1 });
+    const recipeWithNoImages = { ...mockRecipe, images: [] };
+    const user = userEvent.setup();
+    renderWithQuery(<RecipeEditTabs recipe={recipeWithNoImages} onUpdate={jest.fn()} />);
+    await user.click(screen.getByRole('tab', { name: /fotos/i }));
+    await waitFor(() => {
+      expect(screen.getByTestId('photo-upload-zone')).toBeInTheDocument();
+    });
+    const file = new File(['image content'], 'img.jpg', { type: 'image/jpeg' });
+    const input = screen.getByTestId('photo-upload-zone').querySelector('input[type="file"]')!;
+    fireEvent.change(input, { target: { files: [file] } });
+    await waitFor(() => {
+      const img = screen.getByRole('img', { name: /foto/i });
+      expect(img).toHaveAttribute('src', '/uploads/img.jpg');
+    });
+  });
 });

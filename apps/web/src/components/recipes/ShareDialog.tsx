@@ -22,7 +22,11 @@ export function ShareDialog({
   onClose,
 }: ShareDialogProps) {
   const queryClient = useQueryClient();
-  const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [shareUrl, setShareUrl] = useState<string | null>(
+    existingShareToken
+      ? window.location.origin + '/shared/' + existingShareToken
+      : null,
+  );
   const [copied, setCopied] = useState(false);
 
   const shareMutation = useMutation({
