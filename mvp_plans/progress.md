@@ -14,7 +14,7 @@ Tracks the status of each pre-implementation step. See `workflow.md` for how to 
 | 4 | User Flows | `04_user_flows.md` | — | Complete |
 | 5 | UI Views & Wireframes (low-fi) | `05_ui_views.md` | `ui-specialist` | Complete |
 | 6 | High-Fidelity Wireframes | `06_hifi_wireframes.md` | `ui-specialist` | Complete |
-| 7 | Project Structure & Conventions | `07_project_structure.md` | — | Not Started |
+| 7 | Project Structure & Conventions | `07_project_structure.md` | — | Complete |
 
 ---
 
