@@ -8,6 +8,7 @@ import { api } from '@/lib/api-client';
 import { queryKeys } from '@/lib/query-keys';
 import { Button } from '@/components/ui/Button';
 import { Accordion } from '@/components/ui/Accordion';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { RecipeEditTabs } from '@/components/recipes/RecipeEditTabs';
 import { ShareDialog } from '@/components/recipes/ShareDialog';
 import type { RecipeDetailResponse } from '@recipe-manager/shared';
@@ -62,8 +63,15 @@ export default function RecipeDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center py-20">
-        <div className="w-6 h-6 border-2 border-foreground border-t-transparent rounded-full animate-spin" />
+      <div className="pb-20">
+        <Skeleton className="w-full aspect-video" />
+        <div className="px-5 py-4 flex flex-col gap-3">
+          <Skeleton className="h-6 w-3/4" />
+          <Skeleton className="h-4 w-1/2" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-2/3" />
+        </div>
       </div>
     );
   }
@@ -181,90 +189,92 @@ export default function RecipeDetailPage() {
         />
       ) : (
         <>
-          {/* Ingredient sections */}
-          {recipe.sections.length > 0 && (
-            <div className="mt-4">
-              <h2 className="px-5 text-sm font-semibold text-secondary uppercase tracking-wide mb-2">
-                Ingredientes
-              </h2>
-              <Accordion
-                items={recipe.sections.map((section) => ({
-                  title: section.title ?? 'Ingredientes',
-                  children: (
-                    <ul className="px-5 py-2">
-                      {section.ingredients.map((ing) => (
-                        <li
-                          key={ing.id}
-                          className="flex items-center justify-between py-2 border-b border-border last:border-0"
-                        >
-                          <span className="text-sm text-foreground">
-                            {ing.quantity != null ? `${ing.quantity} ` : ''}
-                            {ing.unitAbbreviation ?? ing.unitName ?? ''}
-                            {ing.quantity != null || ing.unitName ? ' ' : ''}
-                            {ing.foodName}
-                            {ing.note ? ` — ${ing.note}` : ''}
-                          </span>
-                          {editMode && (
-                            <button
-                              type="button"
-                              aria-label="Eliminar"
-                              data-testid={`delete-ingredient-${ing.id}`}
-                              onClick={() =>
-                                deleteIngredientMutation.mutate({
-                                  sectionId: section.id,
-                                  ingredientId: ing.id,
-                                })
-                              }
-                              className="text-destructive text-sm ml-2"
-                            >
-                              ✕
-                            </button>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  ),
-                }))}
-              />
-            </div>
-          )}
+          <div className="md:grid md:grid-cols-2 md:gap-6">
+            {/* Ingredient sections */}
+            {recipe.sections.length > 0 && (
+              <div className="mt-4">
+                <h2 className="px-5 text-sm font-semibold text-secondary uppercase tracking-wide mb-2">
+                  Ingredientes
+                </h2>
+                <Accordion
+                  items={recipe.sections.map((section) => ({
+                    title: section.title ?? 'Ingredientes',
+                    children: (
+                      <ul className="px-5 py-2">
+                        {section.ingredients.map((ing) => (
+                          <li
+                            key={ing.id}
+                            className="flex items-center justify-between py-2 border-b border-border last:border-0"
+                          >
+                            <span className="text-sm text-foreground">
+                              {ing.quantity != null ? `${ing.quantity} ` : ''}
+                              {ing.unitAbbreviation ?? ing.unitName ?? ''}
+                              {ing.quantity != null || ing.unitName ? ' ' : ''}
+                              {ing.foodName}
+                              {ing.note ? ` — ${ing.note}` : ''}
+                            </span>
+                            {editMode && (
+                              <button
+                                type="button"
+                                aria-label="Eliminar"
+                                data-testid={`delete-ingredient-${ing.id}`}
+                                onClick={() =>
+                                  deleteIngredientMutation.mutate({
+                                    sectionId: section.id,
+                                    ingredientId: ing.id,
+                                  })
+                                }
+                                className="text-destructive text-sm ml-2"
+                              >
+                                ✕
+                              </button>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    ),
+                  }))}
+                />
+              </div>
+            )}
 
-          {/* Instruction steps */}
-          {recipe.steps.length > 0 && (
-            <div className="mt-4 px-5">
-              <h2 className="text-sm font-semibold text-secondary uppercase tracking-wide mb-3">
-                Instrucciones
-              </h2>
-              <ol className="flex flex-col gap-4">
-                {recipe.steps.map((step) => (
-                  <li key={step.id} className="flex gap-3">
-                    <span className="w-6 h-6 rounded-full bg-foreground text-background text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
-                      {step.order}
-                    </span>
-                    <div className="flex-1">
-                      {step.title && (
-                        <p className="text-sm font-semibold text-foreground mb-1">
-                          {step.title}
-                        </p>
+            {/* Instruction steps */}
+            {recipe.steps.length > 0 && (
+              <div className="mt-4 px-5">
+                <h2 className="text-sm font-semibold text-secondary uppercase tracking-wide mb-3">
+                  Instrucciones
+                </h2>
+                <ol className="flex flex-col gap-4">
+                  {recipe.steps.map((step) => (
+                    <li key={step.id} className="flex gap-3">
+                      <span className="w-6 h-6 rounded-full bg-foreground text-background text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+                        {step.order}
+                      </span>
+                      <div className="flex-1">
+                        {step.title && (
+                          <p className="text-sm font-semibold text-foreground mb-1">
+                            {step.title}
+                          </p>
+                        )}
+                        <p className="text-sm text-foreground">{step.body}</p>
+                      </div>
+                      {editMode && (
+                        <button
+                          type="button"
+                          aria-label="Eliminar"
+                          data-testid={`delete-step-${step.id}`}
+                          onClick={() => deleteStepMutation.mutate(step.id)}
+                          className="text-destructive text-sm"
+                        >
+                          ✕
+                        </button>
                       )}
-                      <p className="text-sm text-foreground">{step.body}</p>
-                    </div>
-                    {editMode && (
-                      <button
-                        type="button"
-                        aria-label="Eliminar"
-                        data-testid={`delete-step-${step.id}`}
-                        onClick={() => deleteStepMutation.mutate(step.id)}
-                        className="text-destructive text-sm"
-                      >
-                        ✕
-                      </button>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            </div>
-          )}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+          </div>
 
           {/* Cook mode button */}
           <div className="px-5 mt-8">

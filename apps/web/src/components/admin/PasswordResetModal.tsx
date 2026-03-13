@@ -35,7 +35,7 @@ export function PasswordResetModal({ userId, onClose }: PasswordResetModalProps)
 
   return (
     <Modal isOpen={true} title="Restablecer contraseña" onClose={onClose}>
-      <div className="flex flex-col gap-5 px-5 py-6">
+      <div data-testid="password-reset-modal" className="flex flex-col gap-5 px-5 py-6">
         <Button
           onClick={handleGenerate}
           loading={isLoading}

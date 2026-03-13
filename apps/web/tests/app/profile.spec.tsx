@@ -66,13 +66,18 @@ describe('Profile page (/profile)', () => {
 
   it('renders logout button', async () => {
     renderWithQuery(<ProfilePage />);
-    expect(screen.getByRole('button', { name: /cerrar sesión/i })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /cerrar sesión/i })).toBeInTheDocument();
+    });
   });
 
   it('calls logout and redirects to /login on logout click', async () => {
     const user = userEvent.setup();
     mockLogout.mockResolvedValueOnce(undefined);
     renderWithQuery(<ProfilePage />);
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /cerrar sesión/i })).toBeInTheDocument();
+    });
     await user.click(screen.getByRole('button', { name: /cerrar sesión/i }));
     await waitFor(() => {
       expect(mockLogout).toHaveBeenCalled();

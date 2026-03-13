@@ -7,6 +7,8 @@ import { api } from '@/lib/api-client';
 import { queryKeys } from '@/lib/query-keys';
 import { RecipeCard } from '@/components/recipes/RecipeCard';
 import { NewRecipeSheet } from '@/components/recipes/NewRecipeSheet';
+import { Skeleton } from '@/components/ui/Skeleton';
+import { EmptyState } from '@/components/ui/EmptyState';
 import type { PaginatedResponse, RecipeListItemResponse, RecipeDetailResponse } from '@recipe-manager/shared';
 
 const SORT_OPTIONS = [
@@ -78,13 +80,15 @@ export default function RecipesPage() {
       {/* Recipe grid */}
       <div className="px-5 py-3">
         {isLoading ? (
-          <div className="flex justify-center py-12">
-            <div className="w-6 h-6 border-2 border-foreground border-t-transparent rounded-full animate-spin" />
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <Skeleton key={i} className="h-40 w-full" />
+            ))}
           </div>
         ) : recipes.length === 0 ? (
-          <p className="text-sm text-secondary text-center py-12">No hay recetas</p>
+          <EmptyState message="No hay recetas" />
         ) : (
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {recipes.map((recipe) => (
               <RecipeCard
                 key={recipe.id}
