@@ -21,16 +21,20 @@ const mockHouseholds: AdminHouseholdResponse[] = [
       {
         id: 'u1',
         name: 'Ana García',
+        email: null,
         username: null,
-        isOwner: false,
-        joinedAt: '2024-01-01T00:00:00Z',
+        gender: null,
+        dateOfBirth: null,
+        canLogin: false,
       },
       {
         id: 'u2',
         name: 'Luis García',
+        email: null,
         username: null,
-        isOwner: true,
-        joinedAt: '2024-01-01T00:00:00Z',
+        gender: null,
+        dateOfBirth: null,
+        canLogin: true,
       },
     ],
     createdAt: '2024-01-01T00:00:00Z',
@@ -44,9 +48,11 @@ const mockHouseholds: AdminHouseholdResponse[] = [
       {
         id: 'u3',
         name: 'María López',
+        email: null,
         username: null,
-        isOwner: true,
-        joinedAt: '2024-01-01T00:00:00Z',
+        gender: null,
+        dateOfBirth: null,
+        canLogin: true,
       },
     ],
     createdAt: '2024-01-01T00:00:00Z',
@@ -211,7 +217,9 @@ describe('HouseholdList', () => {
     const editButtons = screen.getAllByRole('button', { name: /editar/i });
     fireEvent.click(editButtons[0]);
 
-    expect(onEditUser).toHaveBeenCalledWith(mockHouseholds[0].members[0]);
+    expect(onEditUser).toHaveBeenCalledWith(
+      expect.objectContaining({ id: 'u1', name: 'Ana García' })
+    );
   });
 
   it('calls onPasswordReset when password reset icon clicked', async () => {
