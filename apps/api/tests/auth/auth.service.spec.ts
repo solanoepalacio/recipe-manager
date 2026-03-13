@@ -1,4 +1,4 @@
-import { UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../../src/auth/auth.service';
 import * as bcrypt from 'bcrypt';
 
@@ -7,7 +7,7 @@ jest.mock('bcrypt');
 describe('AuthService', () => {
   let service: AuthService;
   let mockPrisma: {
-    user: { findFirst: jest.Mock };
+    user: { findFirst: jest.Mock; update: jest.Mock };
   };
 
   const mockUser = {
@@ -21,7 +21,7 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     mockPrisma = {
-      user: { findFirst: jest.fn() },
+      user: { findFirst: jest.fn(), update: jest.fn() },
     };
 
     service = new AuthService(mockPrisma as any);
@@ -125,6 +125,55 @@ describe('AuthService', () => {
 
       expect(result.email).toBeNull();
       expect(result.username).toBeNull();
+    });
+  });
+
+  describe('resetPassword', () => {
+    it('resets password with valid non-expired token', async () => {
+      const future = new Date(Date.now() + 3600000);
+      mockPrisma.user.findFirst.mockResolvedValue({
+        id: 'user-1',
+        passwordResetExpiresAt: future,
+      });
+      mockPrisma.user.update.mockResolvedValue({});
+      (bcrypt.hash as jest.Mock).mockResolvedValue('new-hashed-password');
+
+      const result = await service.resetPassword('raw-token', 'newpassword123');
+      expect(result.message).toBe('Password reset successful');
+      expect(mockPrisma.user.update).toHaveBeenCalledWith({
+        where: { id: 'user-1' },
+        data: expect.objectContaining({
+          passwordHash: expect.any(String),
+          passwordResetToken: null,
+          passwordResetExpiresAt: null,
+        }),
+      });
+    });
+
+    it('throws BadRequestException for invalid token', async () => {
+      mockPrisma.user.findFirst.mockResolvedValue(null);
+      await expect(service.resetPassword('bad-token', 'newpassword123'))
+        .rejects.toThrow(BadRequestException);
+    });
+
+    it('throws BadRequestException for expired token', async () => {
+      // Simulate: findFirst returns null because the gt: new Date() filter excludes expired tokens
+      mockPrisma.user.findFirst.mockResolvedValue(null);
+      await expect(service.resetPassword('expired-token', 'newpassword123'))
+        .rejects.toThrow(BadRequestException);
+    });
+
+    it('clears token after use (one-time use)', async () => {
+      const future = new Date(Date.now() + 3600000);
+      mockPrisma.user.findFirst.mockResolvedValue({ id: 'user-1', passwordResetExpiresAt: future });
+      mockPrisma.user.update.mockResolvedValue({});
+      (bcrypt.hash as jest.Mock).mockResolvedValue('new-hashed-password');
+
+      await service.resetPassword('raw-token', 'newpassword123');
+
+      const updateCall = mockPrisma.user.update.mock.calls[0][0];
+      expect(updateCall.data.passwordResetToken).toBeNull();
+      expect(updateCall.data.passwordResetExpiresAt).toBeNull();
     });
   });
 });
