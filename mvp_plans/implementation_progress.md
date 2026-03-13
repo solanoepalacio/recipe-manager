@@ -14,7 +14,7 @@ Bootstrap the Yarn v4 workspace with all three packages compiling and cross-refe
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 0.1 | Initialize Yarn v4 workspace root: `package.json`, `.yarnrc.yml`, `tsconfig.base.json` | `yarn install` succeeds | Not Started |
+| 0.1 | Initialize Yarn v4 workspace root: `package.json`, `.yarnrc.yml`, `tsconfig.base.json` | `yarn install` succeeds | In Progress |
 | 0.2 | Scaffold `packages/shared`: `package.json` (`@recipe-manager/shared`), `tsconfig.json`, `src/index.ts` barrel | Package compiles with `tsc --noEmit` | Not Started |
 | 0.3 | Scaffold `apps/api`: NestJS app with `package.json` (`@recipe-manager/api`), `tsconfig.json`, `nest-cli.json`, minimal `main.ts` + `app.module.ts` | `yarn workspace @recipe-manager/api build` succeeds; app starts and responds on health endpoint | Not Started |
 | 0.4 | Scaffold `apps/web`: Next.js app with `package.json` (`@recipe-manager/web`), `tsconfig.json`, `next.config.ts`, minimal root layout + page | `yarn workspace @recipe-manager/web build` succeeds | Not Started |

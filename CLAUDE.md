@@ -38,6 +38,7 @@ The implementation follows the orchestration workflow in `mvp_plans/implementati
 
 ### Key Rules
 
+- **STRICT: All file operations (read, write, edit, create, delete) MUST stay within `/home/solanoe/code/recipe-manager`. Never access, reference, or modify any file outside this directory. This applies to the orchestrator and all spawned agents.**
 - All code, files, directories, and URLs are in **English**. Only UI-facing strings are in Spanish.
 - `packages/shared` is the **source of truth** for the API boundary. Backend services return shared types. Frontend consumes shared types. The compiler enforces this.
 - Every DTO has `class-validator` decorators AND `@ApiProperty()` for OpenAPI docs.
