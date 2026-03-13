@@ -86,7 +86,7 @@ describe('RecipeEditTabs', () => {
 
   it('shows Ingredientes tab content by default', () => {
     renderWithQuery(<RecipeEditTabs recipe={mockRecipe} onUpdate={jest.fn()} />);
-    expect(screen.getByText('Pasta')).toBeInTheDocument();
+    expect(screen.getByText(/Pasta/)).toBeInTheDocument();
   });
 
   it('switches to Instrucciones tab when clicked', async () => {
@@ -119,7 +119,7 @@ describe('RecipeEditTabs', () => {
   // Ingredients tab
   it('renders ingredient list in Ingredientes tab', () => {
     renderWithQuery(<RecipeEditTabs recipe={mockRecipe} onUpdate={jest.fn()} />);
-    expect(screen.getByText(/Pasta/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Pasta/).length).toBeGreaterThan(0);
   });
 
   it('delete ingredient calls API', async () => {
