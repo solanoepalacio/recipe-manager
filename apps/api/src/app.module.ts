@@ -5,9 +5,10 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AnyAuthGuard } from './auth/guards/any-auth.guard';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
+import { SetupModule } from './setup/setup.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, AdminModule],
+  imports: [PrismaModule, AuthModule, AdminModule, SetupModule],
   controllers: [AppController],
   providers: [
     {
