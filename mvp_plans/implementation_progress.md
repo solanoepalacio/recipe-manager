@@ -187,10 +187,10 @@ Login, admin login, setup wizard.
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 10.1 | Login page (`/login`): centered form, email/username + password, submit, inline error | Unit test: form renders; submit calls API client; error displayed on failure | Not Started |
-| 10.2 | Setup wizard page (`/setup`): checks `GET /api/setup`; form with email + password + confirm; creates admin; redirects to admin login | Unit test: redirects if setup not required; form validates confirm match; submit calls API | Not Started |
-| 10.3 | Admin login page (`/admin/login`): standalone form; sets admin session; redirects to panel | Unit test: form renders; submit calls admin auth API | Not Started |
-| 10.4 | Password reset page (`/reset-password`): accepts token from URL; new password + confirm; submit | Unit test: form renders; submit calls reset API; success redirects to login | Not Started |
+| 10.1 | Login page (`/login`): centered form, email/username + password, submit, inline error | Unit test: form renders; submit calls API client; error displayed on failure | Complete |
+| 10.2 | Setup wizard page (`/setup`): checks `GET /api/setup`; form with email + password + confirm; creates admin; redirects to admin login | Unit test: redirects if setup not required; form validates confirm match; submit calls API | Complete |
+| 10.3 | Admin login page (`/admin/login`): standalone form; sets admin session; redirects to panel | Unit test: form renders; submit calls admin auth API | Complete |
+| 10.4 | Password reset page (`/reset-password`): accepts token from URL; new password + confirm; submit | Unit test: form renders; submit calls reset API; success redirects to login | Complete |
 
 ---
 
