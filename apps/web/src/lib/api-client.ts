@@ -38,6 +38,19 @@ async function request<T>(
 export const api = {
   get: <T>(path: string) => request<T>('GET', path),
   post: <T>(path: string, body?: unknown) => request<T>('POST', path, body),
+  put: <T>(path: string, body?: unknown) => request<T>('PUT', path, body),
   patch: <T>(path: string, body?: unknown) => request<T>('PATCH', path, body),
   delete: <T>(path: string) => request<T>('DELETE', path),
+  postForm: <T>(path: string, body: FormData): Promise<T> =>
+    fetch(`${BASE_URL}${path}`, {
+      method: 'POST',
+      credentials: 'include',
+      body,
+    }).then(async (res) => {
+      if (!res.ok) {
+        const errorBody = await res.json().catch(() => ({}));
+        throw new ApiError(res.status, errorBody);
+      }
+      return res.json() as Promise<T>;
+    }),
 };
