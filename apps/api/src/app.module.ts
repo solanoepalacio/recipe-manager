@@ -10,6 +10,7 @@ import { ProfileModule } from './profile/profile.module';
 import { HouseholdModule } from './household/household.module';
 import { FoodsModule } from './foods/foods.module';
 import { UnitsModule } from './units/units.module';
+import { RecipesModule } from './recipes/recipes.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { UnitsModule } from './units/units.module';
     HouseholdModule,
     FoodsModule,
     UnitsModule,
+    RecipesModule,
   ],
   controllers: [AppController],
   providers: [
