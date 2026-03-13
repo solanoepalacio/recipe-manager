@@ -11,6 +11,7 @@ import { HouseholdModule } from './household/household.module';
 import { FoodsModule } from './foods/foods.module';
 import { UnitsModule } from './units/units.module';
 import { RecipesModule } from './recipes/recipes.module';
+import { MealPlanModule } from './meal-plan/meal-plan.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { RecipesModule } from './recipes/recipes.module';
     FoodsModule,
     UnitsModule,
     RecipesModule,
+    MealPlanModule,
   ],
   controllers: [AppController],
   providers: [

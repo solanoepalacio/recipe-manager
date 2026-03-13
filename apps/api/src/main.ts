@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { join } from 'path';
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
 import { AppModule } from './app.module';
@@ -10,7 +12,7 @@ import './auth/types/session.types';
 const PgSession = connectPgSimple(session);
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.setGlobalPrefix('api');
 
   // Session middleware
@@ -55,6 +57,9 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
+
+  // Serve uploaded recipe images as static files
+  app.useStaticAssets(join(process.cwd(), 'uploads'), { prefix: '/uploads' });
 
   await app.listen(process.env.PORT ?? 3000);
 }

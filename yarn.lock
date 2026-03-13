@@ -1451,6 +1451,7 @@ __metadata:
     "@types/express": "npm:^5.0.6"
     "@types/express-session": "npm:^1.18.2"
     "@types/jest": "npm:^29.5.0"
+    "@types/multer": "npm:^2.1.0"
     "@types/node": "npm:^20.0.0"
     "@types/supertest": "npm:^6.0.0"
     bcrypt: "npm:^6.0.0"
@@ -1459,6 +1460,7 @@ __metadata:
     connect-pg-simple: "npm:^10.0.0"
     express-session: "npm:^1.19.0"
     jest: "npm:^29.5.0"
+    multer: "npm:^2.1.1"
     prisma: "npm:^6.0.0"
     reflect-metadata: "npm:^0.1.13"
     rxjs: "npm:^7.8.1"
@@ -1790,6 +1792,15 @@ __metadata:
   version: 1.1.4
   resolution: "@types/methods@npm:1.1.4"
   checksum: 10c0/a78534d79c300718298bfff92facd07bf38429c66191f640c1db4c9cff1e36f819304298a96f7536b6512bfc398e5c3e6b831405e138cd774b88ad7be78d682a
+  languageName: node
+  linkType: hard
+
+"@types/multer@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@types/multer@npm:2.1.0"
+  dependencies:
+    "@types/express": "npm:*"
+  checksum: 10c0/f1f512918f79c5dac007d8d30de74372ad24932b34b43d09f250178dcce6da426297e0ea9c939322545519f133cd525dca0552781967d05f43d782ff0b169333
   languageName: node
   linkType: hard
 
@@ -5424,6 +5435,18 @@ __metadata:
     type-is: "npm:^1.6.18"
     xtend: "npm:^4.0.2"
   checksum: 10c0/d3b99dd0512169bbabf15440e1bbb3ecdc000b761e5a3e4aaca40b5e5e213c6cdcc9b7dffebaa601b7691a84f6876aa87e0173ffcc47139253793cf5657819eb
+  languageName: node
+  linkType: hard
+
+"multer@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "multer@npm:2.1.1"
+  dependencies:
+    append-field: "npm:^1.0.0"
+    busboy: "npm:^1.6.0"
+    concat-stream: "npm:^2.0.0"
+    type-is: "npm:^1.6.18"
+  checksum: 10c0/2ec4e02833b20f403cfb879d4b64d2a9070d902b9deae7aef18a6faadb707d7665385456cf540aa8a6dadfe3d4c5fc8e0e7b0675b94e1077048b1125426deee6
   languageName: node
   linkType: hard
 
