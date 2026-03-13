@@ -17,6 +17,18 @@ function makeExecutionContext(options: {
   } as unknown as ExecutionContext;
 }
 
+function makeContext(options: { session: Record<string, unknown> }): ExecutionContext {
+  const req: Record<string, unknown> = { session: options.session };
+
+  return {
+    getHandler: () => () => {},
+    getClass: () => class {},
+    switchToHttp: () => ({
+      getRequest: () => req,
+    }),
+  } as unknown as ExecutionContext;
+}
+
 describe('AdminAuthGuard', () => {
   let guard: AdminAuthGuard;
   let mockPrisma: {
@@ -56,6 +68,11 @@ describe('AdminAuthGuard', () => {
 
     const ctx = makeExecutionContext({ sessionAdminId: 'nonexistent-admin' });
 
+    await expect(guard.canActivate(ctx)).rejects.toThrow(UnauthorizedException);
+  });
+
+  it('rejects when session has userId but no adminId (user session)', async () => {
+    const ctx = makeContext({ session: { userId: 'some-user-id' } });
     await expect(guard.canActivate(ctx)).rejects.toThrow(UnauthorizedException);
   });
 });

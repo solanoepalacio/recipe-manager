@@ -5,6 +5,12 @@ export interface AdminLoginRequest {
   password: string;
 }
 
+export interface AdminLoginResponse {
+  id: string;
+  name: string;
+  email: string;
+}
+
 export interface AdminUserResponse {
   id: string;
   name: string;

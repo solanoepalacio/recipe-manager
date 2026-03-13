@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Req, Res, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Request, Response } from 'express';
+import type { AdminLoginResponse } from '@recipe-manager/shared';
 import { AdminAuthService } from './admin-auth.service';
 import { AdminLoginDto } from './dto/admin-login.dto';
 import { Public } from '../../common/decorators/public.decorator';
@@ -21,7 +22,7 @@ export class AdminAuthController {
   async login(
     @Body() dto: AdminLoginDto,
     @Req() req: Request,
-  ): Promise<{ id: string; name: string; email: string }> {
+  ): Promise<AdminLoginResponse> {
     const admin = await this.adminAuthService.validateAdmin(dto.email, dto.password);
     req.session.adminId = admin.id;
     return { id: admin.id, name: admin.name, email: admin.email };
