@@ -202,25 +202,25 @@ All authenticated user-facing pages.
 
 | # | Task | Verification | Status |
 |---|------|-------------|--------|
-| 11.1 | Recipe card component: image thumbnail + title + total time | Unit test: renders data; click callback fires | Not Started |
-| 11.2 | Today page (`/today`): greeting, today's recipes list (from meal plan), stat boxes placeholder | Unit test: renders greeting with user name; renders recipe links; renders empty state | Not Started |
-| 11.3 | Recipe list page (`/recipes`): search bar, sort/filter chips, recipe cards grid, FAB | Unit test: renders cards from query; search filters; sort changes; FAB click callback | Not Started |
-| 11.4 | Recipe list — new recipe flow: FAB opens BottomSheet with name input; submit creates recipe via API; navigates to detail | Unit test: bottom sheet opens; submit calls create API; navigates on success | Not Started |
-| 11.5 | Recipe detail page (`/recipes/:slug`) — view mode: hero image, sticky header, times, ingredient sections (accordion), instruction steps | Unit test: renders recipe data; sections collapsible; scroll behavior | Not Started |
-| 11.6 | Recipe detail — edit mode: toggle via "Edit"/"Done" button; drag handles + delete buttons appear; inline name editing; add ingredient/step buttons | Unit test: edit toggle shows/hides affordances; delete calls API; name editable | Not Started |
-| 11.7 | Recipe detail — share dialog: share button generates/shows link; copy to clipboard; revoke | Unit test: share calls API; link displayed; copy works; revoke calls delete | Not Started |
-| 11.8 | Recipe creation — tab navigation: Ingredients, Instructions, Basic, Photos tabs; tab bar switches content; save button | Unit test: tabs render; switching shows correct panel; save calls API | Not Started |
-| 11.9 | Recipe creation — ingredients tab: list of ingredients with drag/delete; "Add ingredient" opens picker | Unit test: renders ingredient list; reorder calls API; delete calls API | Not Started |
-| 11.10 | Recipe creation — ingredient picker modal: full-screen; search bar; food list with selection; "+ Create [term]" row; quantity/unit/note fields after selection; confirm | Unit test: search filters foods; selection highlights; create inline calls food API; confirm adds ingredient | Not Started |
-| 11.11 | Recipe creation — instructions tab: numbered steps with optional title + textarea; drag reorder; delete; add step | Unit test: renders steps; add creates new; reorder calls API; delete calls API | Not Started |
-| 11.12 | Recipe creation — basic info tab: name, description, servings (qty + unit), prep time, cook time fields | Unit test: fields render with values; changes tracked; save persists via API | Not Started |
-| 11.13 | Recipe creation — photos tab: upload zone; image preview; delete button | Unit test: upload calls API with FormData; preview shows image; delete calls API | Not Started |
-| 11.14 | Cook mode page (`/recipes/:slug/cook`): full-screen step list; tap to check/collapse step; "you are here" hint; exit button | Unit test: renders steps; tap checks + collapses; exit navigates back | Not Started |
-| 11.15 | Meal planner page (`/planner`): week nav (prev/next); 7 day accordion rows; summary text when collapsed; expanded shows recipe entries + add/delete | Unit test: week navigation changes date range; days expand/collapse; add opens picker; delete removes entry | Not Started |
-| 11.16 | Meal planner — recipe picker: BottomSheet with search; recipe list with time; tap assigns recipe to day | Unit test: search filters recipes; tap calls add entry API; sheet closes | Not Started |
-| 11.17 | Profile page (`/profile`): user name heading, email, logout button | Unit test: renders user data; logout calls API and redirects | Not Started |
-| 11.18 | Household page (`/household`): household name heading, member list with "(you)" and admin badge | Unit test: renders household name; marks current user; shows all members | Not Started |
-| 11.19 | Shared recipe page (`/shared/:token`): public layout with branding banner/footer; recipe detail read-only; cook mode button; no edit | Unit test: renders recipe from public API; no edit button; branding visible; cook mode accessible | Not Started |
+| 11.1 | Recipe card component: image thumbnail + title + total time | Unit test: renders data; click callback fires | Complete |
+| 11.2 | Today page (`/today`): greeting, today's recipes list (from meal plan), stat boxes placeholder | Unit test: renders greeting with user name; renders recipe links; renders empty state | Complete |
+| 11.3 | Recipe list page (`/recipes`): search bar, sort/filter chips, recipe cards grid, FAB | Unit test: renders cards from query; search filters; sort changes; FAB click callback | Complete |
+| 11.4 | Recipe list — new recipe flow: FAB opens BottomSheet with name input; submit creates recipe via API; navigates to detail | Unit test: bottom sheet opens; submit calls create API; navigates on success | Complete |
+| 11.5 | Recipe detail page (`/recipes/:slug`) — view mode: hero image, sticky header, times, ingredient sections (accordion), instruction steps | Unit test: renders recipe data; sections collapsible; scroll behavior | Complete |
+| 11.6 | Recipe detail — edit mode: toggle via "Edit"/"Done" button; drag handles + delete buttons appear; inline name editing; add ingredient/step buttons | Unit test: edit toggle shows/hides affordances; delete calls API; name editable | Complete |
+| 11.7 | Recipe detail — share dialog: share button generates/shows link; copy to clipboard; revoke | Unit test: share calls API; link displayed; copy works; revoke calls delete | Complete |
+| 11.8 | Recipe creation — tab navigation: Ingredients, Instructions, Basic, Photos tabs; tab bar switches content; save button | Unit test: tabs render; switching shows correct panel; save calls API | Complete |
+| 11.9 | Recipe creation — ingredients tab: list of ingredients with drag/delete; "Add ingredient" opens picker | Unit test: renders ingredient list; reorder calls API; delete calls API | Complete |
+| 11.10 | Recipe creation — ingredient picker modal: full-screen; search bar; food list with selection; "+ Create [term]" row; quantity/unit/note fields after selection; confirm | Unit test: search filters foods; selection highlights; create inline calls food API; confirm adds ingredient | Complete |
+| 11.11 | Recipe creation — instructions tab: numbered steps with optional title + textarea; drag reorder; delete; add step | Unit test: renders steps; add creates new; reorder calls API; delete calls API | Complete |
+| 11.12 | Recipe creation — basic info tab: name, description, servings (qty + unit), prep time, cook time fields | Unit test: fields render with values; changes tracked; save persists via API | Complete |
+| 11.13 | Recipe creation — photos tab: upload zone; image preview; delete button | Unit test: upload calls API with FormData; preview shows image; delete calls API | Complete |
+| 11.14 | Cook mode page (`/recipes/:slug/cook`): full-screen step list; tap to check/collapse step; "you are here" hint; exit button | Unit test: renders steps; tap checks + collapses; exit navigates back | Complete |
+| 11.15 | Meal planner page (`/planner`): week nav (prev/next); 7 day accordion rows; summary text when collapsed; expanded shows recipe entries + add/delete | Unit test: week navigation changes date range; days expand/collapse; add opens picker; delete removes entry | Complete |
+| 11.16 | Meal planner — recipe picker: BottomSheet with search; recipe list with time; tap assigns recipe to day | Unit test: search filters recipes; tap calls add entry API; sheet closes | Complete |
+| 11.17 | Profile page (`/profile`): user name heading, email, logout button | Unit test: renders user data; logout calls API and redirects | Complete |
+| 11.18 | Household page (`/household`): household name heading, member list with "(you)" and admin badge | Unit test: renders household name; marks current user; shows all members | Complete |
+| 11.19 | Shared recipe page (`/shared/:token`): public layout with branding banner/footer; recipe detail read-only; cook mode button; no edit | Unit test: renders recipe from public API; no edit button; branding visible; cook mode accessible | Complete |
 
 ---
 
