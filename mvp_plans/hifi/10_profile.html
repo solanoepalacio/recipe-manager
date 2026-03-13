@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robotina Cooks — Perfil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #22201C;
+      padding: 48px;
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .frame-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .frame-label {
+      font-size: 13px;
+      color: #8A8680;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .phone {
+      width: 375px;
+      height: 812px;
+      background: #FAFAF7;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      color: #2C2C2A;
+    }
+
+    .top-bar {
+      background: #E8E1D5;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .top-bar-back {
+      display: flex;
+      align-items: center;
+      color: #2C2C2A;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .top-bar-back svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .top-bar-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #2C2C2A;
+      flex: 2;
+      text-align: center;
+    }
+
+    .top-bar-spacer {
+      flex: 1;
+    }
+
+    .content {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .user-name {
+      font-size: 22px;
+      font-weight: 600;
+      color: #2C2C2A;
+      padding: 24px 20px 4px;
+    }
+
+    .user-email {
+      font-size: 15px;
+      color: #8A8680;
+      padding: 0 20px;
+    }
+
+    .logout-section {
+      margin-top: 40px;
+      padding: 0 20px;
+    }
+
+    .logout-btn {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      border: 1.5px solid #E0DCD5;
+      border-radius: 12px;
+      color: #D94F4F;
+      font-size: 15px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="frame-wrapper">
+    <div class="phone">
+      <div class="top-bar">
+        <div class="top-bar-back">
+          <i data-lucide="arrow-left"></i>
+        </div>
+        <div class="top-bar-title">Perfil</div>
+        <div class="top-bar-spacer"></div>
+      </div>
+
+      <div class="content">
+        <div class="user-name">Lucia</div>
+        <div class="user-email">lucia@ejemplo.com</div>
+
+        <div class="logout-section">
+          <button class="logout-btn">Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+    <div class="frame-label">Perfil</div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

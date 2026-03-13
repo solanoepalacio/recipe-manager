@@ -13,7 +13,7 @@ Tracks the status of each pre-implementation step. See `workflow.md` for how to 
 | 3 | API Design (REST Contract) | `03_api_design.md` | `architecture-specialist` | Complete |
 | 4 | User Flows | `04_user_flows.md` | — | Complete |
 | 5 | UI Views & Wireframes (low-fi) | `05_ui_views.md` | `ui-specialist` | Complete |
-| 6 | High-Fidelity Wireframes | `06_hifi_wireframes.md` | `ui-specialist` | Not Started |
+| 6 | High-Fidelity Wireframes | `06_hifi_wireframes.md` | `ui-specialist` | Complete |
 | 7 | Project Structure & Conventions | `07_project_structure.md` | — | Not Started |
 
 ---
@@ -44,6 +44,23 @@ Tracks the status of each pre-implementation step. See `workflow.md` for how to 
 1. ~~Wireframe **admin views**~~ --- Done (11_admin_login.drawio + 12_admin_crud.drawio)
 2. ~~**Regression on `04_recipe_creation.drawio`**~~ --- Done (added "+ Crear [search term]" row to ingredient picker)
 3. No units CRUD --- managed in code
+
+### 2026-03-12 — Step 6: High-Fidelity Wireframes plan
+
+**Tooling:** Static HTML files in `mvp_plans/hifi/`, previewed in browser. Figma abandoned (free tier tool call limits).
+
+**Approach:** Two rounds. Designs must follow the **structure** defined in the low-fi wireframes.
+
+**Round 1 — Detailed design iteration (4 views):**
+These views define the core patterns reused across the app. Each gets careful iteration.
+
+1. ~~**02 App shell** — sets visual identity. Top bar, drawer, and card patterns reused everywhere.~~ — Done (`app_shell.html`)
+2. ~~**03 Recipe detail** — most complex view. Defines content layout, button styles, edit mode pattern.~~ — Done (`recipe_detail.html`)
+3. **04 Recipe creation** — defines all form inputs, tab bar, both modal patterns (bottom sheet + full-screen). Reused heavily in admin.
+4. **07 Meal planner** — defines accordion pattern (reused in admin CRUD). Most novel interaction.
+
+**Round 2 — Batch pass:**
+Apply patterns established in Round 1 to create all remaining views in one go.
 
 ---
 

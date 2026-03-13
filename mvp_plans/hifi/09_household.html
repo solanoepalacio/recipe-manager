@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robotina Cooks — Household</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #22201C;
+      padding: 48px;
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .frame-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .frame-label {
+      font-size: 13px;
+      color: #8A8680;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .phone {
+      width: 375px;
+      height: 812px;
+      background: #FAFAF7;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      color: #2C2C2A;
+    }
+
+    /* Top bar */
+    .top-bar {
+      background: #E8E1D5;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .top-bar-back {
+      display: flex;
+      align-items: center;
+      color: #2C2C2A;
+      width: 32px;
+    }
+
+    .top-bar-title {
+      flex: 1;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: #2C2C2A;
+    }
+
+    .top-bar-spacer {
+      width: 32px;
+    }
+
+    /* Page content */
+    .page-content {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .household-heading {
+      font-size: 22px;
+      font-weight: 600;
+      color: #2C2C2A;
+      padding: 24px 20px 8px;
+    }
+
+    /* Section header */
+    .section-header {
+      padding: 20px 20px 0;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2C2C2A;
+      margin-bottom: 12px;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: #E0DCD5;
+    }
+
+    /* Member list */
+    .member-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .member-row {
+      display: flex;
+      align-items: center;
+      padding: 14px 20px;
+      border-bottom: 1px solid #F4F2ED;
+    }
+
+    .member-name {
+      font-size: 15px;
+      font-weight: 400;
+      color: #2C2C2A;
+    }
+
+    .member-you {
+      font-size: 15px;
+      font-weight: 400;
+      color: #8A8680;
+      margin-left: 4px;
+    }
+
+    .member-row-spacer {
+      flex: 1;
+    }
+
+    .badge-admin {
+      background: #F4F2ED;
+      color: #8A8680;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 10px;
+      padding: 3px 10px;
+      font-family: 'Outfit', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hogar frame -->
+  <div class="frame-wrapper">
+    <div class="phone">
+
+      <!-- Top bar -->
+      <div class="top-bar">
+        <div class="top-bar-back">
+          <i data-lucide="arrow-left" width="20" height="20"></i>
+        </div>
+        <div class="top-bar-title">Hogar</div>
+        <div class="top-bar-spacer"></div>
+      </div>
+
+      <!-- Page content -->
+      <div class="page-content">
+
+        <div class="household-heading">Familia Garcia</div>
+
+        <div class="section-header">
+          <div class="section-title">Miembros</div>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="member-list">
+
+          <!-- Juan (tu) — Admin -->
+          <div class="member-row">
+            <span class="member-name">Juan</span>
+            <span class="member-you">(tu)</span>
+            <div class="member-row-spacer"></div>
+            <span class="badge-admin">Admin</span>
+          </div>
+
+          <!-- Maria -->
+          <div class="member-row">
+            <span class="member-name">Maria</span>
+          </div>
+
+          <!-- Carlos -->
+          <div class="member-row">
+            <span class="member-name">Carlos</span>
+          </div>
+
+          <!-- Ana -->
+          <div class="member-row">
+            <span class="member-name">Ana</span>
+          </div>
+
+        </div>
+
+      </div><!-- /page-content -->
+
+    </div><!-- /phone -->
+    <div class="frame-label">Hogar</div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

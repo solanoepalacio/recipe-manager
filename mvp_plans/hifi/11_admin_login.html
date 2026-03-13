@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11 — Admin Login + Setup Wizard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #22201C;
+      padding: 48px;
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    /* Frame wrapper + label */
+    .frame-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .frame-label {
+      font-size: 13px;
+      color: #8A8680;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    /* Phone frame */
+    .phone-frame {
+      width: 375px;
+      height: 812px;
+      background: #FAFAF7;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Centered content area */
+    .frame-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+      padding: 40px 28px;
+    }
+
+    /* Headings block */
+    .heading-block {
+      margin-bottom: 32px;
+    }
+
+    .heading-block h1 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #2C2C2A;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .heading-block p {
+      font-size: 14px;
+      color: #8A8680;
+      font-weight: 400;
+    }
+
+    /* Form */
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Input wrapper with icon */
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+      color: #8A8680;
+    }
+
+    .input-icon [data-lucide] {
+      width: 18px;
+      height: 18px;
+      stroke: #8A8680;
+      stroke-width: 1.75;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 16px 14px 46px;
+      border: 1.5px solid #E0DCD5;
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      color: #2C2C2A;
+      background: #FAFAF7;
+      outline: none;
+      appearance: none;
+    }
+
+    .form-input::placeholder {
+      color: #C8C4BD;
+    }
+
+    /* Submit button */
+    .btn-filled {
+      width: 100%;
+      padding: 14px;
+      background: #2C2C2A;
+      color: #FAFAF7;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Frame 1: Admin Login -->
+  <div class="frame-wrapper">
+    <div class="phone-frame">
+      <div class="frame-content">
+        <div class="heading-block">
+          <h1>Panel de administracion</h1>
+          <p>Robotina Cooks</p>
+        </div>
+
+        <div class="form">
+          <div class="field-group">
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <i data-lucide="mail"></i>
+              </span>
+              <input
+                class="form-input"
+                type="email"
+                placeholder="Correo electronico"
+                readonly
+              />
+            </div>
+
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <i data-lucide="lock"></i>
+              </span>
+              <input
+                class="form-input"
+                type="password"
+                placeholder="Contrasena"
+                readonly
+              />
+            </div>
+          </div>
+
+          <button class="btn-filled">Iniciar sesion</button>
+        </div>
+      </div>
+    </div>
+    <span class="frame-label">Inicio de sesion (admin)</span>
+  </div>
+
+  <!-- Frame 2: First-time Setup Wizard -->
+  <div class="frame-wrapper">
+    <div class="phone-frame">
+      <div class="frame-content">
+        <div class="heading-block">
+          <h1>Configuracion inicial</h1>
+          <p>Crea la cuenta de administrador</p>
+        </div>
+
+        <div class="form">
+          <div class="field-group">
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <i data-lucide="mail"></i>
+              </span>
+              <input
+                class="form-input"
+                type="email"
+                placeholder="Correo electronico"
+                readonly
+              />
+            </div>
+
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <i data-lucide="lock"></i>
+              </span>
+              <input
+                class="form-input"
+                type="password"
+                placeholder="Contrasena"
+                readonly
+              />
+            </div>
+
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <i data-lucide="lock"></i>
+              </span>
+              <input
+                class="form-input"
+                type="password"
+                placeholder="Confirmar contrasena"
+                readonly
+              />
+            </div>
+          </div>
+
+          <button class="btn-filled">Crear cuenta</button>
+        </div>
+      </div>
+    </div>
+    <span class="frame-label">Configuracion inicial</span>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

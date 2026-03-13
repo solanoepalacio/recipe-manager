@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recipe Creation — Robotina Cooks</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #22201C;
+    padding: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  /* ===== FRAME LABELS ===== */
+  .frame-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .frame-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #8A8680;
+    letter-spacing: 0.5px;
+  }
+
+  .frame-sublabel {
+    font-size: 11px;
+    color: #5A5854;
+    margin-top: -8px;
+  }
+
+  /* ===== PHONE FRAME ===== */
+  .phone {
+    width: 375px;
+    height: 812px;
+    background: #FAFAF7;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #E8E1D5;
+    flex-shrink: 0;
+  }
+
+  .top-bar-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2C2C2A;
+    cursor: pointer;
+  }
+
+  .top-bar-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2C2C2A;
+    letter-spacing: -0.2px;
+  }
+
+  .top-bar-text-btn {
+    font-size: 14px;
+    font-weight: 500;
+    color: #8A8680;
+    cursor: pointer;
+  }
+
+  /* ===== TAB BAR ===== */
+  .tab-bar {
+    display: flex;
+    background: #FAFAF7;
+    border-bottom: 1px solid #E0DCD5;
+    flex-shrink: 0;
+  }
+
+  .tab {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 12px 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #C8C4BD;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .tab.active {
+    color: #2C2C2A;
+  }
+
+  .tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: #5EBD6A;
+    border-radius: 1px;
+  }
+
+  /* ===== CONTENT AREA ===== */
+  .content {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* ===== FORM ELEMENTS ===== */
+  .form-group {
+    padding: 16px 20px 0;
+  }
+
+  .form-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #8A8680;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    font-family: 'Outfit', sans-serif;
+    color: #2C2C2A;
+    border: none;
+    border-bottom: 1.5px solid #E0DCD5;
+    background: transparent;
+    outline: none;
+  }
+
+  .form-input::placeholder {
+    color: #C8C4BD;
+  }
+
+  .form-input.filled {
+    color: #2C2C2A;
+  }
+
+  .form-textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    font-family: 'Outfit', sans-serif;
+    color: #2C2C2A;
+    border: 1.5px solid #E0DCD5;
+    border-radius: 10px;
+    background: transparent;
+    outline: none;
+    resize: none;
+    min-height: 80px;
+  }
+
+  .form-textarea::placeholder {
+    color: #C8C4BD;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 16px;
+  }
+
+  .form-row .form-group {
+    flex: 1;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .form-row-padded {
+    padding: 0 20px;
+    display: flex;
+    gap: 16px;
+  }
+
+  .form-inline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1.5px solid #E0DCD5;
+  }
+
+  .form-number {
+    width: 60px;
+    padding: 8px 0;
+    font-size: 16px;
+    font-family: 'Outfit', sans-serif;
+    color: #2C2C2A;
+    border: none;
+    border-bottom: 1.5px solid #E0DCD5;
+    background: transparent;
+    text-align: center;
+  }
+
+  .form-unit {
+    font-size: 14px;
+    color: #8A8680;
+  }
+
+  .form-select {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: 'Outfit', sans-serif;
+    color: #2C2C2A;
+    border: 1.5px solid #E0DCD5;
+    border-radius: 8px;
+    background: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%238A8680' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 32px;
+  }
+
+  /* ===== LIST ITEMS (ingredients, steps) ===== */
+  .list-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid #F4F2ED;
+    gap: 10px;
+  }
+
+  .drag-handle {
+    color: #C8C4BD;
+    display: flex;
+    align-items: center;
+    cursor: grab;
+  }
+
+  .list-item-text {
+    flex: 1;
+    font-size: 15px;
+    color: #2C2C2A;
+  }
+
+  .list-item-sub {
+    font-size: 13px;
+    color: #8A8680;
+  }
+
+  .delete-btn {
+    color: #C8C4BD;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .add-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #8A8680;
+    cursor: pointer;
+    border-bottom: 1px solid #F4F2ED;
+  }
+
+  .step-number {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #2C2C2A;
+    color: #FAFAF7;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ===== STEP EDIT BLOCK ===== */
+  .step-block {
+    padding: 14px 20px;
+    border-bottom: 1px solid #F4F2ED;
+    display: flex;
+    gap: 10px;
+  }
+
+  .step-block-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .step-title-input {
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Outfit', sans-serif;
+    color: #2C2C2A;
+    border: none;
+    border-bottom: 1px solid #E0DCD5;
+    padding: 4px 0;
+    background: transparent;
+    outline: none;
+  }
+
+  .step-title-input::placeholder {
+    color: #C8C4BD;
+  }
+
+  .step-textarea {
+    width: 100%;
+    font-size: 15px;
+    font-family: 'Outfit', sans-serif;
+    color: #2C2C2A;
+    border: 1.5px solid #E0DCD5;
+    border-radius: 8px;
+    padding: 10px;
+    resize: none;
+    min-height: 96px;
+    background: transparent;
+    outline: none;
+  }
+
+  .step-textarea::placeholder {
+    color: #C8C4BD;
+  }
+
+  .step-delete {
+    color: #C8C4BD;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 4px;
+    cursor: pointer;
+  }
+
+  /* ===== SAVE BUTTON (fixed pill) ===== */
+  .save-btn {
+    position: absolute;
+    bottom: 24px;
+    right: 20px;
+    padding: 12px 28px;
+    background: #2C2C2A;
+    color: #FAFAF7;
+    border-radius: 24px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    border: none;
+  }
+
+  /* ===== BOTTOM SHEET ===== */
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 44, 42, 0.35);
+    border-radius: 20px;
+  }
+
+  .bottom-sheet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #FAFAF7;
+    border-radius: 20px 20px 20px 20px;
+    padding: 12px 24px 32px;
+  }
+
+  .sheet-handle {
+    width: 36px;
+    height: 4px;
+    background: #E0DCD5;
+    border-radius: 2px;
+    margin: 0 auto 20px;
+  }
+
+  .sheet-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2C2C2A;
+    margin-bottom: 20px;
+    letter-spacing: -0.3px;
+  }
+
+  .sheet-input {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 18px;
+    font-family: 'Outfit', sans-serif;
+    color: #2C2C2A;
+    border: none;
+    border-bottom: 2px solid #E0DCD5;
+    background: transparent;
+    outline: none;
+  }
+
+  .sheet-input:focus {
+    border-bottom-color: #5EBD6A;
+  }
+
+  .sheet-input::placeholder {
+    color: #C8C4BD;
+  }
+
+  .sheet-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+  }
+
+  .sheet-cancel {
+    font-size: 15px;
+    font-weight: 500;
+    color: #8A8680;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .sheet-confirm {
+    padding: 10px 24px;
+    background: #2C2C2A;
+    color: #FAFAF7;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    border: none;
+  }
+
+  .sheet-confirm.disabled {
+    background: #E0DCD5;
+    color: #C8C4BD;
+    cursor: default;
+  }
+
+  /* ===== FULL-SCREEN MODAL ===== */
+  .modal-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #FAFAF7;
+    border-bottom: 1px solid #E0DCD5;
+    flex-shrink: 0;
+  }
+
+  .modal-top-bar-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2C2C2A;
+  }
+
+  .modal-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 20px;
+    background: #F4F2ED;
+    border-radius: 10px;
+    padding: 10px 14px;
+    flex-shrink: 0;
+  }
+
+  .modal-search-icon {
+    color: #8A8680;
+    display: flex;
+    align-items: center;
+  }
+
+  .modal-search-text {
+    font-size: 15px;
+    color: #2C2C2A;
+    flex: 1;
+  }
+
+  .modal-search-placeholder {
+    color: #C8C4BD;
+  }
+
+  /* ===== FOOD PICKER LIST ===== */
+  .food-category {
+    padding: 8px 20px 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #8A8680;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .food-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid #F4F2ED;
+    cursor: pointer;
+  }
+
+  .food-item-name {
+    flex: 1;
+    font-size: 15px;
+    color: #2C2C2A;
+  }
+
+  .food-item.selected {
+    background: transparent;
+  }
+
+  .food-item.selected .food-item-name {
+    font-weight: 500;
+    color: #2C2C2A;
+    text-decoration: underline;
+    text-decoration-color: #5EBD6A;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+  }
+
+  .food-check {
+    color: #5EBD6A;
+    display: flex;
+    align-items: center;
+  }
+
+  .create-food-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border-bottom: 1px solid #F4F2ED;
+    border: 1.5px dashed #C8C4BD;
+    margin: 8px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .create-food-text {
+    font-size: 15px;
+    color: #5EBD6A;
+    font-weight: 500;
+  }
+
+  .create-food-icon {
+    color: #5EBD6A;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ===== QUANTITY INPUT AREA (in picker) ===== */
+  .quantity-area {
+    padding: 16px 20px;
+    background: #F4F2ED;
+    border-top: 1px solid #E0DCD5;
+    flex-shrink: 0;
+  }
+
+  .quantity-selected-food {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2C2C2A;
+    margin-bottom: 10px;
+  }
+
+  .quantity-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .qty-input {
+    width: 70px;
+    padding: 10px 8px;
+    font-size: 16px;
+    font-family: 'Outfit', sans-serif;
+    color: #2C2C2A;
+    border: 1.5px solid #E0DCD5;
+    border-radius: 8px;
+    background: #FAFAF7;
+    text-align: center;
+  }
+
+  .qty-select {
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: 'Outfit', sans-serif;
+    color: #2C2C2A;
+    border: 1.5px solid #E0DCD5;
+    border-radius: 8px;
+    background: #FAFAF7;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%238A8680' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 32px;
+  }
+
+  .qty-note {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-family: 'Outfit', sans-serif;
+    color: #2C2C2A;
+    border: 1.5px solid #E0DCD5;
+    border-radius: 8px;
+    background: #FAFAF7;
+  }
+
+  .qty-note::placeholder {
+    color: #C8C4BD;
+  }
+
+  .qty-confirm-btn {
+    width: 100%;
+    padding: 12px;
+    background: #2C2C2A;
+    color: #FAFAF7;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Outfit', sans-serif;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    margin-top: 10px;
+  }
+
+  /* ===== PHOTO UPLOAD ===== */
+  .photo-upload-empty {
+    margin: 20px;
+    border: 2px dashed #E0DCD5;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .photo-upload-icon {
+    color: #C8C4BD;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .photo-upload-text {
+    font-size: 15px;
+    color: #8A8680;
+  }
+
+  .photo-upload-hint {
+    font-size: 12px;
+    color: #C8C4BD;
+    margin-top: 4px;
+  }
+
+  .photo-preview {
+    margin: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo-preview img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-delete {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #D94F4F;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  /* ===== CREAR ALIMENTO MODAL ===== */
+  .crear-alimento-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 24px;
+  }
+
+  .crear-alimento-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #8A8680;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .crear-alimento-input {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 18px;
+    font-family: 'Outfit', sans-serif;
+    color: #2C2C2A;
+    border: none;
+    border-bottom: 2px solid #E0DCD5;
+    background: transparent;
+    outline: none;
+  }
+
+  .crear-alimento-btn {
+    margin-top: 32px;
+    padding: 14px;
+    background: #2C2C2A;
+    color: #FAFAF7;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Outfit', sans-serif;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+  }
+</style>
+</head>
+<body>
+
+  <!-- SCREEN 0: Bottom sheet — Name prompt -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Nombre de receta (bottom sheet)</span>
+    <span class="frame-sublabel">FAB tapped → sheet slides up over recipe list</span>
+    <div class="phone">
+      <!-- Dimmed background — recipe list peek -->
+      <div style="opacity: 0.25; flex: 1; display: flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 20px;">
+          <div style="width: 24px; height: 24px; display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+            <span style="display:block;width:20px;height:1.5px;background:#2C2C2A;border-radius:1px;"></span>
+            <span style="display:block;width:20px;height:1.5px;background:#2C2C2A;border-radius:1px;"></span>
+            <span style="display:block;width:20px;height:1.5px;background:#2C2C2A;border-radius:1px;"></span>
+          </div>
+          <span style="font-size:18px;font-weight:600;color:#2C2C2A;">Recetas</span>
+          <span style="width:24px;"></span>
+        </div>
+        <div style="padding: 0 20px 12px;">
+          <div style="background:#F4F2ED;border-radius:12px;padding:12px 16px;font-size:15px;color:#C8C4BD;">Buscar recetas...</div>
+        </div>
+      </div>
+
+      <div class="scrim"></div>
+
+      <div class="bottom-sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-title">Como se llama la receta?</div>
+        <input type="text" class="sheet-input" value="Galletas de avena" readonly>
+        <div class="sheet-actions">
+          <span class="sheet-cancel">Cancelar</span>
+          <button class="sheet-confirm">Crear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: Ingredientes tab -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Tab: Ingredientes</span>
+    <div class="phone">
+      <div class="top-bar">
+        <div class="top-bar-icon"><i data-lucide="arrow-left" style="width:22px;height:22px;stroke-width:2;"></i></div>
+        <div class="top-bar-title">Nueva receta</div>
+        <span style="width:24px;"></span>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab active">Ingredientes</div>
+        <div class="tab">Instrucciones</div>
+        <div class="tab">Basico</div>
+        <div class="tab">Fotos</div>
+      </div>
+
+      <div class="content">
+        <div class="list-item">
+          <span class="drag-handle"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <div style="flex:1;">
+            <div class="list-item-text">Avena en hojuelas</div>
+            <div class="list-item-sub">200g</div>
+          </div>
+          <span class="delete-btn"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        </div>
+        <div class="list-item">
+          <span class="drag-handle"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <div style="flex:1;">
+            <div class="list-item-text">Mantequilla</div>
+            <div class="list-item-sub">100g — derretida</div>
+          </div>
+          <span class="delete-btn"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        </div>
+        <div class="list-item">
+          <span class="drag-handle"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <div style="flex:1;">
+            <div class="list-item-text">Azucar moreno</div>
+            <div class="list-item-sub">80g</div>
+          </div>
+          <span class="delete-btn"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        </div>
+        <div class="list-item">
+          <span class="drag-handle"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <div style="flex:1;">
+            <div class="list-item-text">Huevo</div>
+            <div class="list-item-sub">1 unidad</div>
+          </div>
+          <span class="delete-btn"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        </div>
+        <div class="add-row">
+          <i data-lucide="plus" style="width:14px;height:14px;stroke-width:2;"></i> Anadir ingrediente
+        </div>
+      </div>
+
+      <div class="save-btn">Guardar</div>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: Ingredient picker (full-screen modal) -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Selector de ingrediente</span>
+    <span class="frame-sublabel">Full-screen modal over creation view</span>
+    <div class="phone">
+      <div class="modal-top-bar">
+        <div class="top-bar-icon"><i data-lucide="arrow-left" style="width:22px;height:22px;stroke-width:2;color:#2C2C2A;"></i></div>
+        <div class="modal-top-bar-title">Anadir ingrediente</div>
+        <span style="width:24px;"></span>
+      </div>
+
+      <div class="modal-search">
+        <span class="modal-search-icon"><i data-lucide="search" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        <span class="modal-search-text">lech</span>
+      </div>
+
+      <div class="content">
+        <div class="create-food-row">
+          <span class="create-food-icon"><i data-lucide="plus" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="create-food-text">Crear "lech"</span>
+        </div>
+
+        <div class="food-category">Lacteos</div>
+        <div class="food-item">
+          <span class="food-item-name">Leche entera</span>
+        </div>
+        <div class="food-item">
+          <span class="food-item-name">Leche de almendras</span>
+        </div>
+        <div class="food-item selected">
+          <span class="food-item-name">Leche de coco</span>
+          <span class="food-check"><i data-lucide="check" style="width:18px;height:18px;stroke-width:2.5;"></i></span>
+        </div>
+        <div class="food-item">
+          <span class="food-item-name">Leche condensada</span>
+        </div>
+
+        <div class="food-category">Otros</div>
+        <div class="food-item">
+          <span class="food-item-name">Lechuga</span>
+        </div>
+      </div>
+
+      <div class="quantity-area">
+        <div class="quantity-selected-food">Leche de coco</div>
+        <div class="quantity-row">
+          <input type="text" class="qty-input" value="200" readonly>
+          <select class="qty-select">
+            <option>ml</option>
+          </select>
+        </div>
+        <input type="text" class="qty-note" placeholder="Nota opcional..." readonly>
+        <button class="qty-confirm-btn">Anadir ingrediente</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: Instrucciones tab -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Tab: Instrucciones</span>
+    <div class="phone">
+      <div class="top-bar">
+        <div class="top-bar-icon"><i data-lucide="arrow-left" style="width:22px;height:22px;stroke-width:2;"></i></div>
+        <div class="top-bar-title">Nueva receta</div>
+        <span style="width:24px;"></span>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab">Ingredientes</div>
+        <div class="tab active">Instrucciones</div>
+        <div class="tab">Basico</div>
+        <div class="tab">Fotos</div>
+      </div>
+
+      <div class="content">
+        <div class="step-block">
+          <span class="drag-handle" style="padding-top:4px;"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="step-number">1</span>
+          <div class="step-block-content">
+            <input type="text" class="step-title-input" value="Preparar la masa" readonly>
+            <textarea class="step-textarea" readonly>Mezclar la avena, la mantequilla derretida y el azucar moreno en un bol grande hasta obtener una masa homogenea</textarea>
+          </div>
+          <span class="step-delete"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;color:#C8C4BD;"></i></span>
+        </div>
+
+        <div class="step-block">
+          <span class="drag-handle" style="padding-top:4px;"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="step-number">2</span>
+          <div class="step-block-content">
+            <input type="text" class="step-title-input" placeholder="Titulo (opcional)" readonly>
+            <textarea class="step-textarea" readonly>Agregar el huevo y mezclar bien. Formar bolitas con las manos y colocar en una bandeja con papel de hornear</textarea>
+          </div>
+          <span class="step-delete"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;color:#C8C4BD;"></i></span>
+        </div>
+
+        <div class="step-block">
+          <span class="drag-handle" style="padding-top:4px;"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="step-number">3</span>
+          <div class="step-block-content">
+            <input type="text" class="step-title-input" placeholder="Titulo (opcional)" readonly>
+            <textarea class="step-textarea" placeholder="Describe este paso..." readonly></textarea>
+          </div>
+          <span class="step-delete"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;color:#C8C4BD;"></i></span>
+        </div>
+
+        <div class="add-row">
+          <i data-lucide="plus" style="width:14px;height:14px;stroke-width:2;"></i> Anadir paso
+        </div>
+      </div>
+
+      <div class="save-btn">Guardar</div>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: Basico tab -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Tab: Basico</span>
+    <div class="phone">
+      <div class="top-bar">
+        <div class="top-bar-icon"><i data-lucide="arrow-left" style="width:22px;height:22px;stroke-width:2;"></i></div>
+        <div class="top-bar-title">Nueva receta</div>
+        <span style="width:24px;"></span>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab">Ingredientes</div>
+        <div class="tab">Instrucciones</div>
+        <div class="tab active">Basico</div>
+        <div class="tab">Fotos</div>
+      </div>
+
+      <div class="content">
+        <div class="form-group">
+          <div class="form-label">Nombre</div>
+          <input type="text" class="form-input filled" value="Galletas de avena" readonly>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">Descripcion</div>
+          <textarea class="form-textarea" placeholder="Describe tu receta..." readonly></textarea>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label">Porciones</div>
+          <div class="form-inline">
+            <input type="text" class="form-number" value="12" readonly>
+            <span class="form-unit">porciones</span>
+          </div>
+        </div>
+
+        <div class="form-row-padded" style="padding-top: 16px;">
+          <div style="flex:1;">
+            <div class="form-label">Preparacion</div>
+            <div class="form-inline">
+              <input type="text" class="form-number" value="15" readonly>
+              <span class="form-unit">min</span>
+            </div>
+          </div>
+          <div style="flex:1;">
+            <div class="form-label">Coccion</div>
+            <div class="form-inline">
+              <input type="text" class="form-number" value="30" readonly>
+              <span class="form-unit">min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="save-btn">Guardar</div>
+    </div>
+  </div>
+
+  <!-- SCREEN 5: Fotos tab (both states) -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Tab: Fotos — vacio</span>
+    <div class="phone">
+      <div class="top-bar">
+        <div class="top-bar-icon"><i data-lucide="arrow-left" style="width:22px;height:22px;stroke-width:2;"></i></div>
+        <div class="top-bar-title">Nueva receta</div>
+        <span style="width:24px;"></span>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab">Ingredientes</div>
+        <div class="tab">Instrucciones</div>
+        <div class="tab">Basico</div>
+        <div class="tab active">Fotos</div>
+      </div>
+
+      <div class="content">
+        <div class="photo-upload-empty">
+          <div class="photo-upload-icon"><i data-lucide="image-plus" style="width:36px;height:36px;stroke-width:1.5;"></i></div>
+          <div class="photo-upload-text">Subir foto</div>
+          <div class="photo-upload-hint">JPG o PNG</div>
+        </div>
+      </div>
+
+      <div class="save-btn">Guardar</div>
+    </div>
+  </div>
+
+  <div class="frame-wrapper">
+    <span class="frame-label">Tab: Fotos — con imagen</span>
+    <div class="phone">
+      <div class="top-bar">
+        <div class="top-bar-icon"><i data-lucide="arrow-left" style="width:22px;height:22px;stroke-width:2;"></i></div>
+        <div class="top-bar-title">Nueva receta</div>
+        <span style="width:24px;"></span>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab">Ingredientes</div>
+        <div class="tab">Instrucciones</div>
+        <div class="tab">Basico</div>
+        <div class="tab active">Fotos</div>
+      </div>
+
+      <div class="content">
+        <div class="photo-preview">
+          <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&h=400&fit=crop&crop=center" alt="Galletas de avena">
+        </div>
+        <div class="photo-delete">Eliminar foto</div>
+      </div>
+
+      <div class="save-btn">Guardar</div>
+    </div>
+  </div>
+
+  <!-- SCREEN 6: Crear alimento modal -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Crear alimento</span>
+    <span class="frame-sublabel">Full-screen modal from ingredient picker</span>
+    <div class="phone">
+      <div class="modal-top-bar">
+        <span class="top-bar-text-btn" style="color:#8A8680;">Cancelar</span>
+        <div class="modal-top-bar-title">Crear alimento</div>
+        <span style="width:54px;"></span>
+      </div>
+
+      <div class="crear-alimento-content">
+        <div class="crear-alimento-label">Nombre del alimento</div>
+        <input type="text" class="crear-alimento-input" value="Leche de avena" readonly>
+        <button class="crear-alimento-btn">Crear</button>
+      </div>
+    </div>
+  </div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

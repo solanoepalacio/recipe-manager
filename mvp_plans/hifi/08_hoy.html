@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hoy — Robotina Cooks Hi-Fi Wireframe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #22201C;
+      padding: 48px;
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Frame wrapper & label */
+    .frame-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .frame-label {
+      font-size: 13px;
+      color: #8A8680;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    /* Phone frame */
+    .phone {
+      width: 375px;
+      height: 812px;
+      background: #FAFAF7;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: #FAFAF7;
+      border-bottom: 1px solid #E0DCD5;
+      flex-shrink: 0;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: #2C2C2A;
+    }
+
+    .top-bar-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2C2C2A;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .top-bar-spacer {
+      width: 20px;
+    }
+
+    /* Scrollable content area */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 32px;
+    }
+
+    /* Greeting */
+    .greeting {
+      font-size: 22px;
+      font-weight: 600;
+      color: #2C2C2A;
+      padding: 24px 20px 8px;
+      line-height: 1.2;
+    }
+
+    /* Section header */
+    .section-header {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2C2C2A;
+      padding: 20px 20px 0;
+      margin-bottom: 8px;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: #E0DCD5;
+      margin: 8px 20px 0;
+    }
+
+    /* Recipe list rows */
+    .recipe-list {
+      margin-top: 4px;
+    }
+
+    .recipe-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 20px;
+      border-bottom: 1px solid #F4F2ED;
+      cursor: pointer;
+    }
+
+    .recipe-row:last-child {
+      border-bottom: none;
+    }
+
+    .recipe-name {
+      font-size: 15px;
+      color: #2C2C2A;
+      font-weight: 400;
+    }
+
+    .recipe-chevron {
+      color: #C8C4BD;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Empty state text */
+    .empty-state-text {
+      font-size: 14px;
+      color: #C8C4BD;
+      font-style: italic;
+      padding: 14px 20px;
+    }
+
+    /* Stats section */
+    .stats-grid {
+      display: flex;
+      gap: 10px;
+      padding: 0 20px;
+      margin-top: 4px;
+    }
+
+    .stat-box {
+      flex: 1;
+      background: #F4F2ED;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: 700;
+      color: #2C2C2A;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: #8A8680;
+      line-height: 1.3;
+    }
+
+    /* Streak box */
+    .streak-box {
+      margin: 10px 20px 0;
+      background: #F4F2ED;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .streak-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .streak-number {
+      font-size: 24px;
+      font-weight: 700;
+      color: #2C2C2A;
+      line-height: 1;
+    }
+
+    .streak-label {
+      font-size: 13px;
+      color: #8A8680;
+      line-height: 1.3;
+    }
+
+    .streak-icon {
+      color: #C8C4BD;
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    /* Proximamente */
+    .proximamente {
+      font-size: 11px;
+      color: #C8C4BD;
+      font-style: italic;
+      padding: 10px 20px 0;
+      text-align: left;
+    }
+
+    /* Fix top-bar relative positioning */
+    .top-bar {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Frame 1: Con recetas planificadas -->
+  <div class="frame-wrapper">
+    <div class="phone">
+
+      <!-- Top bar -->
+      <div class="top-bar">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span class="top-bar-title">Hoy</span>
+        <div class="top-bar-spacer"></div>
+      </div>
+
+      <!-- Scrollable content -->
+      <div class="content">
+
+        <!-- Greeting -->
+        <div class="greeting">Hola, Lucia</div>
+
+        <!-- Recetas de hoy -->
+        <div class="section-header">Recetas de hoy</div>
+        <div class="section-divider"></div>
+
+        <div class="recipe-list">
+          <div class="recipe-row">
+            <span class="recipe-name">Pollo al curry</span>
+            <span class="recipe-chevron">
+              <i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.8;"></i>
+            </span>
+          </div>
+          <div class="recipe-row">
+            <span class="recipe-name">Ensalada mediterranea</span>
+            <span class="recipe-chevron">
+              <i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.8;"></i>
+            </span>
+          </div>
+          <div class="recipe-row">
+            <span class="recipe-name">Galletas de avena</span>
+            <span class="recipe-chevron">
+              <i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.8;"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Tu actividad -->
+        <div class="section-header" style="margin-top:8px;">Tu actividad</div>
+        <div class="section-divider"></div>
+
+        <!-- Two stat boxes -->
+        <div class="stats-grid" style="margin-top:12px;">
+          <div class="stat-box">
+            <div class="stat-number">12</div>
+            <div class="stat-label">recetas cocinadas este mes</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">47</div>
+            <div class="stat-label">recetas guardadas</div>
+          </div>
+        </div>
+
+        <!-- Streak box -->
+        <div class="streak-box">
+          <div class="streak-content">
+            <div class="streak-number">5</div>
+            <div class="streak-label">dias planificando</div>
+          </div>
+          <div class="streak-icon">
+            <i data-lucide="flame" style="width:20px;height:20px;stroke-width:1.5;"></i>
+          </div>
+        </div>
+
+        <!-- Proximamente -->
+        <div class="proximamente">Proximamente: mas estadisticas</div>
+
+      </div>
+    </div>
+    <div class="frame-label">Con recetas planificadas</div>
+  </div>
+
+  <!-- Frame 2: Sin recetas (empty state) -->
+  <div class="frame-wrapper">
+    <div class="phone">
+
+      <!-- Top bar -->
+      <div class="top-bar">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span class="top-bar-title">Hoy</span>
+        <div class="top-bar-spacer"></div>
+      </div>
+
+      <!-- Scrollable content -->
+      <div class="content">
+
+        <!-- Greeting -->
+        <div class="greeting">Hola, Lucia</div>
+
+        <!-- Recetas de hoy -->
+        <div class="section-header">Recetas de hoy</div>
+        <div class="section-divider"></div>
+
+        <div class="empty-state-text">No hay recetas para hoy</div>
+
+        <!-- Tu actividad -->
+        <div class="section-header" style="margin-top:8px;">Tu actividad</div>
+        <div class="section-divider"></div>
+
+        <!-- Two stat boxes -->
+        <div class="stats-grid" style="margin-top:12px;">
+          <div class="stat-box">
+            <div class="stat-number">3</div>
+            <div class="stat-label">recetas cocinadas este mes</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">47</div>
+            <div class="stat-label">recetas guardadas</div>
+          </div>
+        </div>
+
+        <!-- Streak box -->
+        <div class="streak-box">
+          <div class="streak-content">
+            <div class="streak-number">0</div>
+            <div class="streak-label">dias planificando</div>
+          </div>
+          <div class="streak-icon">
+            <i data-lucide="flame" style="width:20px;height:20px;stroke-width:1.5;"></i>
+          </div>
+        </div>
+
+        <!-- Proximamente -->
+        <div class="proximamente">Proximamente: mas estadisticas</div>
+
+      </div>
+    </div>
+    <div class="frame-label">Sin recetas (empty state)</div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robotina Cooks — Color Palette</title>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #FAFAF7;
+    color: #2C2C2A;
+    padding: 48px;
+    max-width: 800px;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #8A8680;
+    margin-bottom: 48px;
+  }
+
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8A8680;
+    margin-bottom: 16px;
+  }
+
+  .row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+  }
+
+  .swatch-color {
+    width: 160px;
+    height: 96px;
+    border-radius: 12px;
+    border: 1px solid #E0DCD5;
+    margin-bottom: 10px;
+  }
+
+  .swatch-name {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .swatch-hex {
+    font-size: 13px;
+    color: #8A8680;
+  }
+
+  .swatch-small .swatch-color {
+    width: 120px;
+    height: 72px;
+  }
+
+  .swatch-small {
+    width: 120px;
+  }
+</style>
+</head>
+<body>
+  <h1>Robotina Cooks</h1>
+  <p class="subtitle">Color Palette — Minimalistic & Warm</p>
+
+  <div class="section">
+    <div class="section-title">Backgrounds</div>
+    <div class="row">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #FAFAF7;"></div>
+        <div class="swatch-name">Base</div>
+        <div class="swatch-hex">#FAFAF7</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #F4F2ED;"></div>
+        <div class="swatch-name">Surface</div>
+        <div class="swatch-hex">#F4F2ED</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #E8E1D5;"></div>
+        <div class="swatch-name">Sand</div>
+        <div class="swatch-hex">#E8E1D5</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Green Accent</div>
+    <div class="row">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #5EBD6A;"></div>
+        <div class="swatch-name">Primary</div>
+        <div class="swatch-hex">#5EBD6A</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #E9F5EB;"></div>
+        <div class="swatch-name">Primary Subtle</div>
+        <div class="swatch-hex">#E9F5EB</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Text & UI</div>
+    <div class="row">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #2C2C2A;"></div>
+        <div class="swatch-name">Text Primary</div>
+        <div class="swatch-hex">#2C2C2A</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #8A8680;"></div>
+        <div class="swatch-name">Text Secondary</div>
+        <div class="swatch-hex">#8A8680</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #E0DCD5;"></div>
+        <div class="swatch-name">Border</div>
+        <div class="swatch-hex">#E0DCD5</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Functional</div>
+    <div class="row">
+      <div class="swatch swatch-small">
+        <div class="swatch-color" style="background: #D94F4F;"></div>
+        <div class="swatch-name">Destructive</div>
+        <div class="swatch-hex">#D94F4F</div>
+      </div>
+      <div class="swatch swatch-small">
+        <div class="swatch-color" style="background: #C8C4BD;"></div>
+        <div class="swatch-name">Disabled</div>
+        <div class="swatch-hex">#C8C4BD</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12 — Admin CRUD — Robotina Cooks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #22201C;
+      padding: 48px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    /* ===== FRAME LABELS ===== */
+    .frame-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .frame-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: #8A8680;
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .frame-sublabel {
+      font-size: 11px;
+      color: #5A5854;
+      margin-top: -8px;
+    }
+
+    /* ===== PHONE FRAME ===== */
+    .phone {
+      width: 375px;
+      height: 812px;
+      background: #FAFAF7;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* ===== ADMIN TOP BAR ===== */
+    .admin-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: #FAFAF7;
+      border-bottom: 1px solid #E0DCD5;
+      flex-shrink: 0;
+    }
+
+    .admin-top-bar-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2C2C2A;
+    }
+
+    .admin-top-bar-action {
+      font-size: 14px;
+      font-weight: 500;
+      color: #D94F4F;
+    }
+
+    /* ===== MODAL TOP BAR ===== */
+    .modal-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: #FAFAF7;
+      border-bottom: 1px solid #E0DCD5;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .modal-top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #8A8680;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .modal-top-bar-left [data-lucide] {
+      width: 16px;
+      height: 16px;
+      stroke: #8A8680;
+      stroke-width: 2;
+    }
+
+    .modal-top-bar-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: #2C2C2A;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .modal-top-bar-right {
+      width: 60px;
+    }
+
+    /* ===== CONTENT ===== */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    /* ===== ACCORDION ROWS ===== */
+    .accordion-row {
+      border-bottom: 1px solid #F4F2ED;
+    }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      padding: 14px 20px;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .accordion-arrow {
+      color: #C8C4BD;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .accordion-arrow [data-lucide] {
+      width: 16px;
+      height: 16px;
+      stroke: #C8C4BD;
+      stroke-width: 2;
+    }
+
+    .accordion-name {
+      flex: 1;
+      font-size: 15px;
+      font-weight: 500;
+      color: #2C2C2A;
+    }
+
+    .accordion-meta {
+      font-size: 13px;
+      color: #8A8680;
+    }
+
+    /* Expanded state */
+    .accordion-row.expanded .accordion-header {
+      background: #F4F2ED;
+    }
+
+    .accordion-row.expanded .accordion-name {
+      font-weight: 600;
+    }
+
+    /* ===== MEMBER ROWS ===== */
+    .member-row {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px 12px 48px;
+      border-bottom: 1px solid #F4F2ED;
+    }
+
+    .member-name {
+      flex: 1;
+      font-size: 15px;
+      color: #2C2C2A;
+    }
+
+    .member-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .member-action-btn {
+      display: flex;
+      align-items: center;
+      color: #8A8680;
+      cursor: pointer;
+    }
+
+    .member-action-btn [data-lucide] {
+      width: 16px;
+      height: 16px;
+      stroke: #8A8680;
+      stroke-width: 2;
+    }
+
+    /* ===== FORM ===== */
+    .form-group {
+      padding: 14px 20px 0;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #8A8680;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 0;
+      border: none;
+      border-bottom: 1.5px solid #E0DCD5;
+      font-size: 15px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      color: #2C2C2A;
+      background: transparent;
+      outline: none;
+      appearance: none;
+    }
+
+    .form-input::placeholder {
+      color: #C8C4BD;
+    }
+
+    .form-select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #E0DCD5;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      color: #2C2C2A;
+      background: #FAFAF7;
+      outline: none;
+      appearance: none;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-filled {
+      display: block;
+      width: calc(100% - 40px);
+      padding: 12px 24px;
+      background: #2C2C2A;
+      color: #FAFAF7;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      margin: 24px 20px;
+      text-align: center;
+    }
+
+    .btn-outline {
+      display: block;
+      width: calc(100% - 40px);
+      padding: 12px 24px;
+      background: transparent;
+      color: #2C2C2A;
+      border: 1.5px solid #E0DCD5;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      margin: 16px 20px;
+      text-align: center;
+    }
+
+    .btn-destructive-link {
+      display: block;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 400;
+      color: #D94F4F;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      margin: 0 20px 24px;
+    }
+
+    /* ===== TOKEN LIST ===== */
+    .token-row {
+      display: flex;
+      align-items: center;
+      padding: 14px 20px;
+      border-bottom: 1px solid #F4F2ED;
+      gap: 10px;
+    }
+
+    .token-info {
+      flex: 1;
+    }
+
+    .token-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: #2C2C2A;
+    }
+
+    .token-date {
+      font-size: 13px;
+      color: #8A8680;
+      margin-top: 2px;
+    }
+
+    .token-delete {
+      display: flex;
+      align-items: center;
+      color: #C8C4BD;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .token-delete [data-lucide] {
+      width: 16px;
+      height: 16px;
+      stroke: #C8C4BD;
+      stroke-width: 2;
+    }
+
+    /* ===== DISPLAY BOX ===== */
+    .display-box {
+      background: #F4F2ED;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 16px 20px;
+    }
+
+    .display-box-label {
+      font-size: 12px;
+      color: #8A8680;
+      margin-bottom: 8px;
+    }
+
+    .display-box-value {
+      font-family: monospace;
+      font-size: 13px;
+      color: #2C2C2A;
+      word-break: break-all;
+      line-height: 1.5;
+    }
+
+    .display-box-copy {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+      color: #5EBD6A;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .display-box-copy [data-lucide] {
+      width: 13px;
+      height: 13px;
+      stroke: #5EBD6A;
+      stroke-width: 2;
+    }
+
+    .display-box-annotation {
+      font-size: 12px;
+      color: #8A8680;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* ===== RESET PASSWORD CENTER BLOCK ===== */
+    .reset-user-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2C2C2A;
+      margin: 32px 20px 8px;
+    }
+
+    .reset-user-email {
+      font-size: 14px;
+      color: #8A8680;
+      margin: 0 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== FRAME 1: Hogares (todos colapsados) ===== -->
+  <div class="frame-wrapper">
+    <div class="phone">
+      <div class="admin-top-bar">
+        <span class="admin-top-bar-title">Administracion</span>
+        <span class="admin-top-bar-action">Cerrar sesion</span>
+      </div>
+
+      <div class="content">
+        <div class="accordion-row">
+          <div class="accordion-header">
+            <span class="accordion-arrow"><i data-lucide="chevron-right"></i></span>
+            <span class="accordion-name">Familia Garcia</span>
+            <span class="accordion-meta">4 miembros</span>
+          </div>
+        </div>
+
+        <div class="accordion-row">
+          <div class="accordion-header">
+            <span class="accordion-arrow"><i data-lucide="chevron-right"></i></span>
+            <span class="accordion-name">Familia Lopez</span>
+            <span class="accordion-meta">3 miembros</span>
+          </div>
+        </div>
+
+        <div class="accordion-row">
+          <div class="accordion-header">
+            <span class="accordion-arrow"><i data-lucide="chevron-right"></i></span>
+            <span class="accordion-name">Familia Martinez</span>
+            <span class="accordion-meta">2 miembros</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="frame-label">Hogares (todos colapsados)</span>
+  </div>
+
+  <!-- ===== FRAME 2: Familia Garcia expandida ===== -->
+  <div class="frame-wrapper">
+    <div class="phone">
+      <div class="admin-top-bar">
+        <span class="admin-top-bar-title">Administracion</span>
+        <span class="admin-top-bar-action">Cerrar sesion</span>
+      </div>
+
+      <div class="content">
+        <!-- Familia Garcia: expanded -->
+        <div class="accordion-row expanded">
+          <div class="accordion-header">
+            <span class="accordion-arrow"><i data-lucide="chevron-down"></i></span>
+            <span class="accordion-name">Familia Garcia</span>
+            <span class="accordion-meta">4 miembros</span>
+          </div>
+
+          <div class="member-row">
+            <span class="member-name">Juan</span>
+            <div class="member-actions">
+              <span class="member-action-btn"><i data-lucide="info"></i></span>
+              <span class="member-action-btn"><i data-lucide="key-round"></i></span>
+              <span class="member-action-btn"><i data-lucide="refresh-cw"></i></span>
+            </div>
+          </div>
+
+          <div class="member-row">
+            <span class="member-name">Maria</span>
+            <div class="member-actions">
+              <span class="member-action-btn"><i data-lucide="info"></i></span>
+              <span class="member-action-btn"><i data-lucide="key-round"></i></span>
+              <span class="member-action-btn"><i data-lucide="refresh-cw"></i></span>
+            </div>
+          </div>
+
+          <div class="member-row">
+            <span class="member-name">Carlos</span>
+            <div class="member-actions">
+              <span class="member-action-btn"><i data-lucide="info"></i></span>
+              <span class="member-action-btn"><i data-lucide="key-round"></i></span>
+              <span class="member-action-btn"><i data-lucide="refresh-cw"></i></span>
+            </div>
+          </div>
+
+          <div class="member-row">
+            <span class="member-name">Ana</span>
+            <div class="member-actions">
+              <span class="member-action-btn"><i data-lucide="info"></i></span>
+              <span class="member-action-btn"><i data-lucide="key-round"></i></span>
+              <span class="member-action-btn"><i data-lucide="refresh-cw"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Familia Lopez: collapsed -->
+        <div class="accordion-row">
+          <div class="accordion-header">
+            <span class="accordion-arrow"><i data-lucide="chevron-right"></i></span>
+            <span class="accordion-name">Familia Lopez</span>
+            <span class="accordion-meta">3 miembros</span>
+          </div>
+        </div>
+
+        <!-- Familia Martinez: collapsed -->
+        <div class="accordion-row">
+          <div class="accordion-header">
+            <span class="accordion-arrow"><i data-lucide="chevron-right"></i></span>
+            <span class="accordion-name">Familia Martinez</span>
+            <span class="accordion-meta">2 miembros</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="frame-label">Familia Garcia expandida</span>
+  </div>
+
+  <!-- ===== FRAME 3: Editar usuario (modal) ===== -->
+  <div class="frame-wrapper">
+    <div class="phone">
+      <div class="modal-top-bar">
+        <div class="modal-top-bar-left">
+          <i data-lucide="x"></i>
+          <span>Cerrar</span>
+        </div>
+        <span class="modal-top-bar-title">Editar usuario</span>
+        <div class="modal-top-bar-right"></div>
+      </div>
+
+      <div class="content">
+        <div class="form-group">
+          <label class="form-label">Nombre</label>
+          <input class="form-input" type="text" value="Juan" readonly />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Correo electronico</label>
+          <input class="form-input" type="email" value="juan@ejemplo.com" readonly />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Fecha de nacimiento</label>
+          <input class="form-input" type="text" value="1990-05-15" readonly />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Genero</label>
+          <select class="form-select">
+            <option selected>Masculino</option>
+            <option>Femenino</option>
+            <option>Prefiero no decir</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Hogar</label>
+          <select class="form-select">
+            <option selected>Familia Garcia</option>
+            <option>Familia Lopez</option>
+            <option>Familia Martinez</option>
+          </select>
+        </div>
+
+        <button class="btn-filled">Guardar</button>
+
+        <span class="btn-destructive-link">Eliminar usuario</span>
+      </div>
+    </div>
+    <span class="frame-label">Editar usuario (modal)</span>
+  </div>
+
+  <!-- ===== FRAME 4: Tokens API (modal) ===== -->
+  <div class="frame-wrapper">
+    <div class="phone">
+      <div class="modal-top-bar">
+        <div class="modal-top-bar-left">
+          <i data-lucide="arrow-left"></i>
+          <span>Volver</span>
+        </div>
+        <span class="modal-top-bar-title">Tokens API</span>
+        <div class="modal-top-bar-right"></div>
+      </div>
+
+      <div class="content">
+        <div class="token-row">
+          <div class="token-info">
+            <div class="token-name">Token produccion</div>
+            <div class="token-date">Creado 2026-01-15</div>
+          </div>
+          <span class="token-delete"><i data-lucide="x"></i></span>
+        </div>
+
+        <div class="token-row">
+          <div class="token-info">
+            <div class="token-name">Token desarrollo</div>
+            <div class="token-date">Creado 2026-02-28</div>
+          </div>
+          <span class="token-delete"><i data-lucide="x"></i></span>
+        </div>
+
+        <button class="btn-outline">Crear token</button>
+
+        <div class="display-box">
+          <div class="display-box-label">Token generado (se muestra solo una vez)</div>
+          <div class="display-box-value">rc_prod_a7f3d2e1b94c0825f6ae3d7b1c2e4f8a9d0b3c6e</div>
+          <div class="display-box-copy">
+            <i data-lucide="copy"></i>
+            <span>Copiar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="frame-label">Tokens API (modal)</span>
+  </div>
+
+  <!-- ===== FRAME 5: Restablecer contrasena (modal) ===== -->
+  <div class="frame-wrapper">
+    <div class="phone">
+      <div class="modal-top-bar">
+        <div class="modal-top-bar-left">
+          <i data-lucide="arrow-left"></i>
+          <span>Volver</span>
+        </div>
+        <span class="modal-top-bar-title">Restablecer contrasena</span>
+        <div class="modal-top-bar-right"></div>
+      </div>
+
+      <div class="content">
+        <div class="reset-user-name">Juan</div>
+        <div class="reset-user-email">juan@ejemplo.com</div>
+
+        <button class="btn-filled" style="margin-top: 32px;">Generar enlace</button>
+
+        <div class="display-box">
+          <div class="display-box-label">Enlace de restablecimiento</div>
+          <div class="display-box-value">https://robotina.app/reset/abc123xf9d2e7b4c1a85f0e3d6b8c2a4</div>
+          <div class="display-box-copy">
+            <i data-lucide="copy"></i>
+            <span>Copiar</span>
+          </div>
+          <div class="display-box-annotation">Enlace de un solo uso. Expira en 24 horas.</div>
+        </div>
+      </div>
+    </div>
+    <span class="frame-label">Restablecer contrasena (modal)</span>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

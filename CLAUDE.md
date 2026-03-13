@@ -54,5 +54,6 @@ All planning documents live in `mvp_plans/`. Filenames follow the pattern `{step
 | `02_auth_design.md` | Auth & authorization design |
 | `03_api_design.md` | REST contract |
 | `04_user_flows.md` | Key user flows |
-| `05_ui_views.md` | UI views and wireframes |
-| `06_project_structure.md` | Folder structure and conventions |
+| `05_ui_views.md` | UI views and low-fi wireframes (draw.io) |
+| `06_hifi_wireframes.md` | High-fidelity wireframes |
+| `07_project_structure.md` | Folder structure and conventions |

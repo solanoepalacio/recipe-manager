@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meal Planner — Robotina Cooks</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #22201C;
+    padding: 48px;
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  /* ===== FRAME LABELS ===== */
+  .frame-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .frame-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #8A8680;
+    letter-spacing: 0.5px;
+  }
+
+  .frame-sublabel {
+    font-size: 11px;
+    color: #5A5854;
+    margin-top: -8px;
+  }
+
+  /* ===== PHONE FRAME ===== */
+  .phone {
+    width: 375px;
+    height: 812px;
+    background: #FAFAF7;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #FAFAF7;
+    flex-shrink: 0;
+  }
+
+  .top-bar-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2C2C2A;
+    letter-spacing: -0.3px;
+  }
+
+  .hamburger {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: #2C2C2A;
+    border-radius: 1px;
+  }
+
+  .top-bar-right {
+    width: 24px;
+  }
+
+  /* ===== WEEK NAVIGATION ===== */
+  .week-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px 14px;
+    flex-shrink: 0;
+  }
+
+  .week-nav-arrow {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8A8680;
+    cursor: pointer;
+  }
+
+  .week-nav-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #2C2C2A;
+  }
+
+  /* ===== CONTENT ===== */
+  .content {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* ===== DAY ROWS ===== */
+  .day-row {
+    border-bottom: 1px solid #F4F2ED;
+  }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    cursor: pointer;
+    gap: 10px;
+  }
+
+  .day-arrow {
+    color: #C8C4BD;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    transition: transform 0.15s;
+  }
+
+  .day-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #2C2C2A;
+    flex-shrink: 0;
+  }
+
+  .day-date {
+    font-size: 13px;
+    color: #8A8680;
+    margin-left: 2px;
+  }
+
+  .day-summary {
+    flex: 1;
+    font-size: 13px;
+    color: #8A8680;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 8px;
+  }
+
+  .day-summary.empty {
+    font-style: italic;
+    color: #C8C4BD;
+  }
+
+  /* Expanded day */
+  .day-row.expanded .day-header {
+    background: #F4F2ED;
+  }
+
+  .day-row.expanded .day-name {
+    font-weight: 600;
+  }
+
+  .day-body {
+    padding: 0;
+  }
+
+  .day-recipe {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px 12px 48px;
+    border-bottom: 1px solid #F4F2ED;
+  }
+
+  .day-recipe-name {
+    flex: 1;
+    font-size: 15px;
+    color: #2C2C2A;
+  }
+
+  .day-recipe-delete {
+    color: #C8C4BD;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .day-add {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 20px 12px 48px;
+    font-size: 14px;
+    color: #8A8680;
+    cursor: pointer;
+  }
+
+  .day-empty-text {
+    padding: 12px 20px 4px 48px;
+    font-size: 14px;
+    color: #C8C4BD;
+    font-style: italic;
+  }
+
+  /* ===== BOTTOM SHEET (recipe picker) ===== */
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 44, 42, 0.35);
+    border-radius: 20px;
+  }
+
+  .bottom-sheet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #FAFAF7;
+    border-radius: 20px 20px 20px 20px;
+    padding: 12px 0 0;
+    max-height: 70%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sheet-handle {
+    width: 36px;
+    height: 4px;
+    background: #E0DCD5;
+    border-radius: 2px;
+    margin: 0 auto 16px;
+  }
+
+  .sheet-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2C2C2A;
+    padding: 0 24px 12px;
+    letter-spacing: -0.2px;
+  }
+
+  .sheet-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 20px 8px;
+    background: #F4F2ED;
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+
+  .sheet-search-icon {
+    color: #8A8680;
+    display: flex;
+    align-items: center;
+  }
+
+  .sheet-search-text {
+    font-size: 15px;
+    color: #C8C4BD;
+  }
+
+  .sheet-list {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .sheet-recipe {
+    display: flex;
+    align-items: center;
+    padding: 14px 24px;
+    cursor: pointer;
+    border-bottom: 1px solid #F4F2ED;
+  }
+
+  .sheet-recipe:nth-child(even) {
+    background: #FAFAF7;
+  }
+
+  .sheet-recipe:nth-child(odd) {
+    background: #FCFCF9;
+  }
+
+  .sheet-recipe-name {
+    flex: 1;
+    font-size: 15px;
+    color: #2C2C2A;
+  }
+
+  .sheet-recipe-time {
+    font-size: 13px;
+    color: #8A8680;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- SCREEN 1: All days collapsed -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Todos los dias colapsados</span>
+    <div class="phone">
+      <div class="top-bar">
+        <div class="hamburger"><span></span><span></span><span></span></div>
+        <div class="top-bar-title">Planificador</div>
+        <div class="top-bar-right"></div>
+      </div>
+
+      <div class="week-nav">
+        <div class="week-nav-arrow"><i data-lucide="chevron-left" style="width:20px;height:20px;stroke-width:2;"></i></div>
+        <div class="week-nav-label">Semana del 10 – 16 mar</div>
+        <div class="week-nav-arrow"><i data-lucide="chevron-right" style="width:20px;height:20px;stroke-width:2;"></i></div>
+      </div>
+
+      <div class="content">
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Lunes</span>
+            <span class="day-date">10</span>
+            <span class="day-summary">Pollo al curry, Ensalada</span>
+          </div>
+        </div>
+
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Martes</span>
+            <span class="day-date">11</span>
+            <span class="day-summary">Sopa de lentejas</span>
+          </div>
+        </div>
+
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Miercoles</span>
+            <span class="day-date">12</span>
+            <span class="day-summary empty">Sin recetas planificadas</span>
+          </div>
+        </div>
+
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Jueves</span>
+            <span class="day-date">13</span>
+            <span class="day-summary">Arroz con verduras</span>
+          </div>
+        </div>
+
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Viernes</span>
+            <span class="day-date">14</span>
+            <span class="day-summary empty">Sin recetas planificadas</span>
+          </div>
+        </div>
+
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Sabado</span>
+            <span class="day-date">15</span>
+            <span class="day-summary">Pancakes integrales</span>
+          </div>
+        </div>
+
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Domingo</span>
+            <span class="day-date">16</span>
+            <span class="day-summary">Pollo al horno, Tostadas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: Lunes and Miercoles expanded -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Lunes y Miercoles expandidos</span>
+    <div class="phone">
+      <div class="top-bar">
+        <div class="hamburger"><span></span><span></span><span></span></div>
+        <div class="top-bar-title">Planificador</div>
+        <div class="top-bar-right"></div>
+      </div>
+
+      <div class="week-nav">
+        <div class="week-nav-arrow"><i data-lucide="chevron-left" style="width:20px;height:20px;stroke-width:2;"></i></div>
+        <div class="week-nav-label">Semana del 10 – 16 mar</div>
+        <div class="week-nav-arrow"><i data-lucide="chevron-right" style="width:20px;height:20px;stroke-width:2;"></i></div>
+      </div>
+
+      <div class="content">
+        <!-- Lunes: expanded with recipes -->
+        <div class="day-row expanded">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Lunes</span>
+            <span class="day-date">10</span>
+          </div>
+          <div class="day-body">
+            <div class="day-recipe">
+              <span class="day-recipe-name">Pollo al curry</span>
+              <span class="day-recipe-delete"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            </div>
+            <div class="day-recipe">
+              <span class="day-recipe-name">Ensalada mediterranea</span>
+              <span class="day-recipe-delete"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            </div>
+            <div class="day-add">
+              <i data-lucide="plus" style="width:14px;height:14px;stroke-width:2;"></i> Anadir receta
+            </div>
+          </div>
+        </div>
+
+        <!-- Martes: collapsed -->
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Martes</span>
+            <span class="day-date">11</span>
+            <span class="day-summary">Sopa de lentejas</span>
+          </div>
+        </div>
+
+        <!-- Miercoles: expanded, empty -->
+        <div class="day-row expanded">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Miercoles</span>
+            <span class="day-date">12</span>
+          </div>
+          <div class="day-body">
+            <div class="day-empty-text">Sin recetas planificadas</div>
+            <div class="day-add">
+              <i data-lucide="plus" style="width:14px;height:14px;stroke-width:2;"></i> Anadir receta
+            </div>
+          </div>
+        </div>
+
+        <!-- Jueves: collapsed -->
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Jueves</span>
+            <span class="day-date">13</span>
+            <span class="day-summary">Arroz con verduras</span>
+          </div>
+        </div>
+
+        <!-- Viernes: collapsed -->
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Viernes</span>
+            <span class="day-date">14</span>
+            <span class="day-summary empty">Sin recetas planificadas</span>
+          </div>
+        </div>
+
+        <!-- Sabado: collapsed -->
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Sabado</span>
+            <span class="day-date">15</span>
+            <span class="day-summary">Pancakes integrales</span>
+          </div>
+        </div>
+
+        <!-- Domingo: collapsed -->
+        <div class="day-row">
+          <div class="day-header">
+            <span class="day-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+            <span class="day-name">Domingo</span>
+            <span class="day-date">16</span>
+            <span class="day-summary">Pollo al horno, Tostadas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: Recipe picker bottom sheet -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Selector de receta (bottom sheet)</span>
+    <span class="frame-sublabel">Tapping "Anadir receta" on Lunes</span>
+    <div class="phone">
+      <div class="top-bar" style="opacity:0.3;">
+        <div class="hamburger"><span></span><span></span><span></span></div>
+        <div class="top-bar-title">Planificador</div>
+        <div class="top-bar-right"></div>
+      </div>
+
+      <div style="opacity:0.3; flex-shrink:0;">
+        <div class="week-nav">
+          <div class="week-nav-arrow"><i data-lucide="chevron-left" style="width:20px;height:20px;stroke-width:2;"></i></div>
+          <div class="week-nav-label">Semana del 10 – 16 mar</div>
+          <div class="week-nav-arrow"><i data-lucide="chevron-right" style="width:20px;height:20px;stroke-width:2;"></i></div>
+        </div>
+      </div>
+
+      <div class="scrim"></div>
+
+      <div class="bottom-sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-title">Anadir receta a Lunes 10</div>
+
+        <div class="sheet-search">
+          <span class="sheet-search-icon"><i data-lucide="search" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="sheet-search-text">Buscar recetas...</span>
+        </div>
+
+        <div class="sheet-list">
+          <div class="sheet-recipe">
+            <span class="sheet-recipe-name">Galletas de avena</span>
+            <span class="sheet-recipe-time"><i data-lucide="clock" style="width:13px;height:13px;stroke-width:2;"></i> 45 min</span>
+          </div>
+          <div class="sheet-recipe">
+            <span class="sheet-recipe-name">Ensalada mediterranea</span>
+            <span class="sheet-recipe-time"><i data-lucide="clock" style="width:13px;height:13px;stroke-width:2;"></i> 15 min</span>
+          </div>
+          <div class="sheet-recipe">
+            <span class="sheet-recipe-name">Pollo al horno con hierbas</span>
+            <span class="sheet-recipe-time"><i data-lucide="clock" style="width:13px;height:13px;stroke-width:2;"></i> 1h 20 min</span>
+          </div>
+          <div class="sheet-recipe">
+            <span class="sheet-recipe-name">Sopa de lentejas</span>
+            <span class="sheet-recipe-time"><i data-lucide="clock" style="width:13px;height:13px;stroke-width:2;"></i> 50 min</span>
+          </div>
+          <div class="sheet-recipe">
+            <span class="sheet-recipe-name">Pancakes integrales</span>
+            <span class="sheet-recipe-time"><i data-lucide="clock" style="width:13px;height:13px;stroke-width:2;"></i> 25 min</span>
+          </div>
+          <div class="sheet-recipe">
+            <span class="sheet-recipe-name">Arroz con verduras</span>
+            <span class="sheet-recipe-time"><i data-lucide="clock" style="width:13px;height:13px;stroke-width:2;"></i> 35 min</span>
+          </div>
+          <div class="sheet-recipe">
+            <span class="sheet-recipe-name">Tostadas de aguacate</span>
+            <span class="sheet-recipe-time"><i data-lucide="clock" style="width:13px;height:13px;stroke-width:2;"></i> 10 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

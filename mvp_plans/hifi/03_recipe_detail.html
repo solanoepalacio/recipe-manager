@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recipe Detail — Robotina Cooks</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #22201C;
+    padding: 48px;
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  /* ===== FRAME LABELS ===== */
+  .frame-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .frame-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #8A8680;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== PHONE FRAME ===== */
+  .phone {
+    width: 375px;
+    height: 812px;
+    background: #FAFAF7;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #E8E1D5;
+    flex-shrink: 0;
+  }
+
+  .top-bar-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2C2C2A;
+    cursor: pointer;
+  }
+
+  .top-bar-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #C8C4BD;
+    letter-spacing: -0.2px;
+  }
+
+  .top-bar-title.visible {
+    color: #2C2C2A;
+  }
+
+  /* ===== HERO IMAGE ===== */
+  .hero {
+    width: 100%;
+    height: 220px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ===== RECIPE HEADER (sticky area) ===== */
+  .recipe-header {
+    padding: 16px 20px 12px;
+    background: #FAFAF7;
+    flex-shrink: 0;
+  }
+
+  .recipe-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2C2C2A;
+    letter-spacing: -0.3px;
+    margin-bottom: 12px;
+  }
+
+  .recipe-title.editable {
+    border-bottom: 1.5px solid #2C2C2A;
+    padding-bottom: 2px;
+  }
+
+  .recipe-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .share-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: #5EBD6A;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid #E0DCD5;
+    color: #2C2C2A;
+  }
+
+  .btn-filled {
+    background: #2C2C2A;
+    border: 1.5px solid #2C2C2A;
+    color: #FAFAF7;
+  }
+
+  /* ===== CONTENT AREA ===== */
+  .content {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* ===== SECTION ACCORDION ===== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #F4F2ED;
+    cursor: pointer;
+  }
+
+  .section-header-icon {
+    color: #8A8680;
+    display: flex;
+    align-items: center;
+  }
+
+  .section-header-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2C2C2A;
+  }
+
+  /* ===== INFO GRID ===== */
+  .info-grid {
+    display: flex;
+    padding: 14px 20px;
+    border-bottom: 1px solid #F4F2ED;
+  }
+
+  .info-cell {
+    flex: 1;
+    text-align: center;
+    position: relative;
+  }
+
+  .info-cell + .info-cell::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 1px;
+    background: #E0DCD5;
+  }
+
+  .info-label {
+    font-size: 11px;
+    color: #8A8680;
+    margin-bottom: 4px;
+  }
+
+  .info-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2C2C2A;
+  }
+
+  /* ===== INGREDIENT / STEP ROWS ===== */
+  .list-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid #F4F2ED;
+    gap: 10px;
+  }
+
+  .drag-handle {
+    color: #C8C4BD;
+    display: flex;
+    align-items: center;
+    cursor: grab;
+  }
+
+  .list-item-text {
+    flex: 1;
+    font-size: 15px;
+    color: #2C2C2A;
+  }
+
+  .step-number {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #2C2C2A;
+    color: #FAFAF7;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .delete-btn {
+    color: #C8C4BD;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .add-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #C8C4BD;
+    cursor: pointer;
+    border-bottom: 1px solid #F4F2ED;
+  }
+
+  .add-row.edit-mode {
+    color: #8A8680;
+  }
+</style>
+</head>
+<body>
+
+  <!-- STATE 1: Vista inicial (hero visible) -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Vista inicial</span>
+    <div class="phone">
+      <div class="top-bar">
+        <div class="top-bar-icon"><i data-lucide="arrow-left" style="width:22px;height:22px;stroke-width:2;"></i></div>
+        <div class="top-bar-title">&nbsp;</div>
+        <div class="top-bar-icon"><i data-lucide="ellipsis-vertical" style="width:20px;height:20px;stroke-width:2;"></i></div>
+      </div>
+
+      <div class="hero">
+        <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&h=400&fit=crop&crop=center" alt="Pollo al curry">
+      </div>
+
+      <div class="recipe-header">
+        <div class="recipe-title">Pollo al curry</div>
+        <div class="recipe-actions">
+          <div class="share-link"><i data-lucide="external-link" style="width:14px;height:14px;stroke-width:2;"></i> Compartir</div>
+          <div class="btn btn-filled"><i data-lucide="cooking-pot" style="width:16px;height:16px;stroke-width:2;"></i> Cocinar</div>
+          <div class="btn btn-outline">Editar</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <!-- Informacion -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Informacion</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-cell">
+            <div class="info-label">Preparacion</div>
+            <div class="info-value">30 min</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Coccion</div>
+            <div class="info-value">25 min</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Total</div>
+            <div class="info-value">55 min</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Porciones</div>
+            <div class="info-value">4</div>
+          </div>
+        </div>
+
+        <!-- Ingredientes -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Ingredientes</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">500g pollo</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">2 cebollas</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">200ml leche de coco</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">2 cdas curry en polvo</span>
+        </div>
+        <div class="add-row">
+          <i data-lucide="plus" style="width:14px;height:14px;stroke-width:2;"></i> Anadir ingrediente
+        </div>
+
+        <!-- Instrucciones -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Instrucciones</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">1</span>
+          <span class="list-item-text">Picar la cebolla finamente y reservar en un bol aparte junto con el ajo picado</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">2</span>
+          <span class="list-item-text">Dorar el pollo cortado en cubos en una sarten grande con un poco de aceite a fuego medio-alto hasta que este dorado por todos los lados</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">3</span>
+          <span class="list-item-text">Agregar el curry en polvo, revolver bien y verter la leche de coco. Dejar cocinar a fuego lento durante 20 minutos removiendo de vez en cuando</span>
+        </div>
+        <div class="add-row">
+          <i data-lucide="plus" style="width:14px;height:14px;stroke-width:2;"></i> Anadir paso
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATE 2: Al hacer scroll (hero collapsed) -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Al hacer scroll</span>
+    <div class="phone">
+      <div class="top-bar">
+        <div class="top-bar-icon"><i data-lucide="arrow-left" style="width:22px;height:22px;stroke-width:2;"></i></div>
+        <div class="top-bar-title visible">Pollo al curry</div>
+        <div class="top-bar-icon"><i data-lucide="ellipsis-vertical" style="width:20px;height:20px;stroke-width:2;"></i></div>
+      </div>
+
+      <div class="recipe-header">
+        <div class="recipe-actions">
+          <div class="share-link"><i data-lucide="external-link" style="width:14px;height:14px;stroke-width:2;"></i> Compartir</div>
+          <div class="btn btn-filled"><i data-lucide="cooking-pot" style="width:16px;height:16px;stroke-width:2;"></i> Cocinar</div>
+          <div class="btn btn-outline">Editar</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <!-- Informacion (collapsed) -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Informacion</span>
+        </div>
+
+        <!-- Ingredientes (expanded) -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Ingredientes</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">500g pollo</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">2 cebollas</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">200ml leche de coco</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">2 cdas curry en polvo</span>
+        </div>
+        <div class="add-row">
+          <i data-lucide="plus" style="width:14px;height:14px;stroke-width:2;"></i> Anadir ingrediente
+        </div>
+
+        <!-- Instrucciones (expanded) -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Instrucciones</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">1</span>
+          <span class="list-item-text">Picar la cebolla finamente y reservar en un bol aparte junto con el ajo picado</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">2</span>
+          <span class="list-item-text">Dorar el pollo cortado en cubos en una sarten grande con un poco de aceite a fuego medio-alto hasta que este dorado por todos los lados</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">3</span>
+          <span class="list-item-text">Agregar el curry en polvo, revolver bien y verter la leche de coco. Dejar cocinar a fuego lento durante 20 minutos removiendo de vez en cuando</span>
+        </div>
+        <div class="add-row">
+          <i data-lucide="plus" style="width:14px;height:14px;stroke-width:2;"></i> Anadir paso
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATE 3: Modo edicion -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Modo edicion</span>
+    <div class="phone">
+      <div class="top-bar">
+        <div class="top-bar-icon"><i data-lucide="arrow-left" style="width:22px;height:22px;stroke-width:2;"></i></div>
+        <div class="top-bar-title visible">Pollo al curry</div>
+        <div class="top-bar-icon"><i data-lucide="ellipsis-vertical" style="width:20px;height:20px;stroke-width:2;"></i></div>
+      </div>
+
+      <div class="recipe-header">
+        <div class="recipe-title editable">Pollo al curry</div>
+        <div class="recipe-actions" style="justify-content: flex-end;">
+          <div class="btn btn-outline"><i data-lucide="check" style="width:15px;height:15px;stroke-width:2.5;"></i> Listo</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <!-- Informacion (expanded in edit) -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Informacion</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-cell">
+            <div class="info-label">Preparacion</div>
+            <div class="info-value">30 min</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Coccion</div>
+            <div class="info-value">25 min</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Total</div>
+            <div class="info-value">55 min</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Porciones</div>
+            <div class="info-value">4</div>
+          </div>
+        </div>
+
+        <!-- Ingredientes (with edit controls) -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Ingredientes</span>
+        </div>
+        <div class="list-item">
+          <span class="drag-handle"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="list-item-text">500g pollo</span>
+          <span class="delete-btn"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        </div>
+        <div class="list-item">
+          <span class="drag-handle"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="list-item-text">2 cebollas</span>
+          <span class="delete-btn"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        </div>
+        <div class="list-item">
+          <span class="drag-handle"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="list-item-text">200ml leche de coco</span>
+          <span class="delete-btn"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        </div>
+        <div class="list-item">
+          <span class="drag-handle"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="list-item-text">2 cdas curry en polvo</span>
+          <span class="delete-btn"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        </div>
+        <div class="add-row edit-mode">
+          <i data-lucide="plus" style="width:14px;height:14px;stroke-width:2;"></i> Anadir ingrediente
+        </div>
+
+        <!-- Instrucciones (with edit controls) -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Instrucciones</span>
+        </div>
+        <div class="list-item">
+          <span class="drag-handle"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="step-number">1</span>
+          <span class="list-item-text">Picar la cebolla finamente y reservar en un bol aparte junto con el ajo picado</span>
+          <span class="delete-btn"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        </div>
+        <div class="list-item">
+          <span class="drag-handle"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="step-number">2</span>
+          <span class="list-item-text">Dorar el pollo cortado en cubos en una sarten grande con un poco de aceite a fuego medio-alto hasta que este dorado por todos los lados</span>
+          <span class="delete-btn"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        </div>
+        <div class="list-item">
+          <span class="drag-handle"><i data-lucide="grip-vertical" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="step-number">3</span>
+          <span class="list-item-text">Agregar el curry en polvo, revolver bien y verter la leche de coco. Dejar cocinar a fuego lento durante 20 minutos removiendo de vez en cuando</span>
+          <span class="delete-btn"><i data-lucide="x" style="width:16px;height:16px;stroke-width:2;"></i></span>
+        </div>
+        <div class="add-row edit-mode">
+          <i data-lucide="plus" style="width:14px;height:14px;stroke-width:2;"></i> Anadir paso
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

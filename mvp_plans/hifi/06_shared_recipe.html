@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shared Recipe — Robotina Cooks</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #22201C;
+    padding: 48px;
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  /* ===== FRAME LABELS ===== */
+  .frame-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .frame-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #8A8680;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== PHONE FRAME ===== */
+  .phone {
+    width: 375px;
+    height: 812px;
+    background: #FAFAF7;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== BRANDING BANNER (top, scrolls away) ===== */
+  .branding-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: #F4F2ED;
+    flex-shrink: 0;
+  }
+
+  .branding-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2C2C2A;
+    letter-spacing: -0.2px;
+  }
+
+  .branding-action {
+    font-size: 14px;
+    font-weight: 500;
+    color: #5EBD6A;
+    cursor: pointer;
+  }
+
+  /* ===== TOP BAR (locked, scrolled state) ===== */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    background: #E8E1D5;
+    flex-shrink: 0;
+  }
+
+  .top-bar-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2C2C2A;
+    letter-spacing: -0.2px;
+  }
+
+  /* ===== HERO IMAGE ===== */
+  .hero {
+    width: 100%;
+    height: 220px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ===== RECIPE HEADER ===== */
+  .recipe-header {
+    padding: 16px 20px 12px;
+    background: #FAFAF7;
+    flex-shrink: 0;
+  }
+
+  .recipe-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2C2C2A;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+
+  .recipe-description {
+    font-size: 14px;
+    color: #8A8680;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .times-row {
+    font-size: 12px;
+    color: #8A8680;
+    margin-bottom: 12px;
+  }
+
+  .recipe-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .share-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: #5EBD6A;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+  }
+
+  .btn-filled {
+    background: #2C2C2A;
+    color: #FAFAF7;
+  }
+
+  /* ===== CONTENT AREA ===== */
+  .content {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #F4F2ED;
+  }
+
+  .section-header-icon {
+    color: #8A8680;
+    display: flex;
+    align-items: center;
+  }
+
+  .section-header-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2C2C2A;
+  }
+
+  /* ===== LIST ITEMS ===== */
+  .list-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 20px;
+    border-bottom: 1px solid #F4F2ED;
+    gap: 10px;
+  }
+
+  .list-item-text {
+    flex: 1;
+    font-size: 15px;
+    color: #2C2C2A;
+    line-height: 1.5;
+  }
+
+  /* ===== STEP NUMBER ===== */
+  .step-number {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #2C2C2A;
+    color: #FAFAF7;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ===== BRANDING FOOTER ===== */
+  .branding-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #F4F2ED;
+    border-top: 1px solid #E0DCD5;
+    flex-shrink: 0;
+  }
+
+  .footer-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2C2C2A;
+    letter-spacing: -0.2px;
+  }
+
+  .footer-action {
+    font-size: 14px;
+    font-weight: 500;
+    color: #5EBD6A;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+  <!-- FRAME 1: Vista inicial (hero + branding banner visible) -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Vista inicial</span>
+    <div class="phone">
+
+      <!-- Slim branding banner (scrolls away) -->
+      <div class="branding-banner">
+        <span class="branding-name">Robotina Cooks</span>
+        <span class="branding-action">Iniciar sesion</span>
+      </div>
+
+      <!-- Hero image -->
+      <div class="hero">
+        <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&h=400&fit=crop&crop=center" alt="Pollo al curry">
+      </div>
+
+      <!-- Recipe header -->
+      <div class="recipe-header">
+        <div class="recipe-title">Pollo al curry</div>
+        <div class="recipe-description">Un clasico curry cremoso con pollo tierno y especias aromaticas</div>
+        <div class="times-row">Prep 30 min &middot; Coccion 25 min &middot; Total 55 min</div>
+        <div class="recipe-actions">
+          <div class="share-link">
+            <i data-lucide="external-link" style="width:14px;height:14px;stroke-width:2;"></i> Compartir
+          </div>
+          <button class="btn btn-filled">
+            <i data-lucide="cooking-pot" style="width:16px;height:16px;stroke-width:2;"></i> Cocinar
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable content -->
+      <div class="content">
+        <!-- Ingredientes -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Ingredientes</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">500g pollo en cubos</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">2 cebollas medianas</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">200ml leche de coco</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">2 cdas curry en polvo</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">3 dientes de ajo</span>
+        </div>
+
+        <!-- Instrucciones -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Instrucciones</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">1</span>
+          <span class="list-item-text">Picar la cebolla finamente y reservar en un bol aparte junto con el ajo picado</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">2</span>
+          <span class="list-item-text">Dorar el pollo en cubos en una sarten grande con aceite a fuego medio-alto hasta que este dorado por todos lados</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">3</span>
+          <span class="list-item-text">Agregar curry en polvo, revolver bien y verter la leche de coco. Cocinar a fuego lento 20 minutos</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FRAME 2: Al hacer scroll (top bar locked, branding footer visible) -->
+  <div class="frame-wrapper">
+    <span class="frame-label">Al hacer scroll</span>
+    <div class="phone">
+
+      <!-- Locked top bar with recipe name only -->
+      <div class="top-bar">
+        <span class="top-bar-title">Pollo al curry</span>
+      </div>
+
+      <!-- Recipe header without title (already in top bar) -->
+      <div class="recipe-header">
+        <div class="recipe-description">Un clasico curry cremoso con pollo tierno y especias aromaticas</div>
+        <div class="times-row">Prep 30 min &middot; Coccion 25 min &middot; Total 55 min</div>
+        <div class="recipe-actions">
+          <button class="btn btn-filled">
+            <i data-lucide="cooking-pot" style="width:16px;height:16px;stroke-width:2;"></i> Cocinar
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable content -->
+      <div class="content">
+        <!-- Ingredientes -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Ingredientes</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">500g pollo en cubos</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">2 cebollas medianas</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">200ml leche de coco</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">2 cdas curry en polvo</span>
+        </div>
+        <div class="list-item">
+          <span class="list-item-text">3 dientes de ajo</span>
+        </div>
+
+        <!-- Instrucciones -->
+        <div class="section-header">
+          <span class="section-header-icon"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2;"></i></span>
+          <span class="section-header-title">Instrucciones</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">1</span>
+          <span class="list-item-text">Picar la cebolla finamente y reservar en un bol aparte junto con el ajo picado</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">2</span>
+          <span class="list-item-text">Dorar el pollo en cubos en una sarten grande con aceite a fuego medio-alto hasta que este dorado por todos lados</span>
+        </div>
+        <div class="list-item">
+          <span class="step-number">3</span>
+          <span class="list-item-text">Agregar curry en polvo, revolver bien y verter la leche de coco. Cocinar a fuego lento 20 minutos</span>
+        </div>
+      </div>
+
+      <!-- Branding footer (not sticky, end of content) -->
+      <div class="branding-footer">
+        <span class="footer-name">Robotina Cooks</span>
+        <span class="footer-action">Mas</span>
+      </div>
+
+    </div>
+  </div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>
