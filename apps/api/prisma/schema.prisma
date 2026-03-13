@@ -1,0 +1,188 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Household {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users    User[]
+  recipes  Recipe[]
+  mealPlan MealPlan?
+}
+
+model User {
+  id           String    @id @default(uuid())
+  householdId  String
+  name         String
+  email        String?   @unique
+  username     String?   @unique
+  passwordHash String?
+  gender       String?
+  dateOfBirth  DateTime? @db.Date
+  passwordResetToken     String?
+  passwordResetExpiresAt DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  household  Household  @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  apiTokens  ApiToken[]
+  recipes    Recipe[]
+}
+
+model Admin {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  createdTokens ApiToken[]
+}
+
+model ApiToken {
+  id          String    @id @default(uuid())
+  name        String
+  tokenHash   String    @unique
+  userId      String
+  createdById String
+  createdAt   DateTime  @default(now())
+  lastUsedAt  DateTime?
+
+  user      User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdBy Admin @relation(fields: [createdById], references: [id], onDelete: Restrict)
+}
+
+model Food {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ingredients RecipeIngredient[]
+}
+
+model Unit {
+  id           String   @id @default(uuid())
+  name         String   @unique
+  abbreviation String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  ingredients RecipeIngredient[]
+}
+
+model Recipe {
+  id            String   @id @default(uuid())
+  householdId   String
+  createdById   String
+  name          String
+  slug          String
+  description   String?
+  servingsQty   Decimal?
+  servingsUnit  String?
+  prepTime      Int?
+  cookTime      Int?
+  totalTime     Int?
+  performTime   Int?
+  sourceUrl     String?
+  isLocked      Boolean  @default(false)
+  landscapeView Boolean  @default(false)
+  shareToken    String?  @unique
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  household       Household           @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  createdBy       User                @relation(fields: [createdById], references: [id], onDelete: Restrict)
+  sections        IngredientSection[]
+  steps           InstructionStep[]
+  images          RecipeImage[]
+  mealPlanEntries MealPlanEntry[]
+
+  @@unique([householdId, slug])
+}
+
+model IngredientSection {
+  id       String  @id @default(uuid())
+  recipeId String
+  title    String?
+  order    Int
+
+  recipe      Recipe             @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  ingredients RecipeIngredient[]
+}
+
+model RecipeIngredient {
+  id        String   @id @default(uuid())
+  sectionId String
+  foodId    String
+  unitId    String?
+  quantity  Decimal?
+  note      String?
+  order     Int
+
+  section IngredientSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  food    Food              @relation(fields: [foodId], references: [id], onDelete: Restrict)
+  unit    Unit?             @relation(fields: [unitId], references: [id], onDelete: SetNull)
+}
+
+model InstructionStep {
+  id       String  @id @default(uuid())
+  recipeId String
+  title    String?
+  body     String
+  order    Int
+
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+}
+
+model RecipeImage {
+  id        String   @id @default(uuid())
+  recipeId  String
+  url       String
+  order     Int
+  createdAt DateTime @default(now())
+
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+}
+
+model MealPlan {
+  id          String   @id @default(uuid())
+  householdId String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  household Household      @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  entries   MealPlanEntry[]
+}
+
+model MealPlanEntry {
+  id         String   @id @default(uuid())
+  mealPlanId String
+  recipeId   String
+  date       DateTime @db.Date
+  mealType   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  mealPlan MealPlan @relation(fields: [mealPlanId], references: [id], onDelete: Cascade)
+  recipe   Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+}
+
+// Session table for connect-pg-simple
+model Session {
+  sid    String   @id @map("sid") @db.VarChar
+  sess   Json     @map("sess") @db.Json
+  expire DateTime @map("expire") @db.Timestamp(6)
+
+  @@map("session")
+  @@index([expire], name: "IDX_session_expire")
+}
