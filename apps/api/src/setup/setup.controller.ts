@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { SetupService } from './setup.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
@@ -21,6 +21,7 @@ export class SetupController {
 
   @Post()
   @UseGuards(SetupGuard)
+  @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create first admin user' })
   @ApiResponse({ status: 201, description: 'Admin created successfully' })
   @ApiResponse({ status: 404, description: 'Setup already complete' })
