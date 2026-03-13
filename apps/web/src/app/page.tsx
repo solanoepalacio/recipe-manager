@@ -1,9 +1,9 @@
 'use client';
 
-import type { Placeholder } from '@recipe-manager/shared';
+import type { ErrorResponse } from '@recipe-manager/shared';
 
-// M0.5 verification: shared types are accessible from @recipe-manager/shared
-type _VerifySharedImport = Placeholder;
+// M1 verification: shared types are accessible from @recipe-manager/shared
+type _VerifySharedImport = ErrorResponse;
 
 export default function HomePage() {
   return (
