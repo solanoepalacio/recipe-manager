@@ -55,9 +55,9 @@ export class ImagesService {
       const filePath = join(process.cwd(), image.url);
       await fs.unlink(filePath);
     } catch (err: unknown) {
-      // Ignore ENOENT (file not found), rethrow anything else
+      // ENOENT = file already gone, that's fine for a delete operation
       if ((err as NodeJS.ErrnoException).code !== 'ENOENT') {
-        // File system errors on delete are non-fatal for the API response
+        throw err;
       }
     }
   }

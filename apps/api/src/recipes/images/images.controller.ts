@@ -7,6 +7,7 @@ import {
   UploadedFile,
   HttpCode,
   HttpStatus,
+  BadRequestException,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -41,7 +42,11 @@ export class ImagesController {
       limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
       fileFilter: (_req, file, cb) => {
         const allowed = /\.(jpg|jpeg|png|webp)$/i;
-        cb(null, allowed.test(file.originalname));
+        if (!allowed.test(file.originalname)) {
+          cb(new BadRequestException('Only jpg, jpeg, png, and webp files are allowed'), false);
+        } else {
+          cb(null, true);
+        }
       },
     }),
   )
