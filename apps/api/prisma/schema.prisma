@@ -10,3 +10,174 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Gender {
+  male
+  female
+  other
+}
+
+enum MealType {
+  breakfast
+  lunch
+  dinner
+  snack
+  dessert
+}
+
+model Household {
+  id        String    @id @default(uuid())
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  users     User[]
+  recipes   Recipe[]
+  mealPlan  MealPlan?
+}
+
+model User {
+  id               String     @id @default(uuid())
+  householdId      String
+  household        Household  @relation(fields: [householdId], references: [id])
+  name             String
+  email            String?    @unique
+  username         String?    @unique
+  passwordHash     String?
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  gender           Gender?
+  dateOfBirth      DateTime?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  recipes          Recipe[]
+  apiTokens        ApiToken[]
+}
+
+model Admin {
+  id           String     @id @default(uuid())
+  name         String
+  email        String     @unique
+  passwordHash String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  apiTokens    ApiToken[]
+}
+
+model ApiToken {
+  id          String    @id @default(uuid())
+  name        String
+  tokenHash   String
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  createdById String
+  createdBy   Admin     @relation(fields: [createdById], references: [id])
+  createdAt   DateTime  @default(now())
+  lastUsedAt  DateTime?
+}
+
+model Food {
+  id          String             @id @default(uuid())
+  name        String             @unique
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  ingredients RecipeIngredient[]
+}
+
+model Unit {
+  id           String             @id @default(uuid())
+  name         String             @unique
+  abbreviation String?
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  ingredients  RecipeIngredient[]
+}
+
+model Recipe {
+  id              String              @id @default(uuid())
+  householdId     String
+  household       Household           @relation(fields: [householdId], references: [id])
+  createdById     String
+  createdBy       User                @relation(fields: [createdById], references: [id])
+  name            String
+  slug            String
+  description     String?
+  servingsQty     Decimal?
+  servingsUnit    String?
+  prepTime        Int?
+  cookTime        Int?
+  totalTime       Int?
+  performTime     Int?
+  sourceUrl       String?
+  isLocked        Boolean             @default(false)
+  landscapeView   Boolean             @default(false)
+  shareToken      String?             @unique
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  sections        IngredientSection[]
+  steps           InstructionStep[]
+  images          RecipeImage[]
+  mealPlanEntries MealPlanEntry[]
+
+  @@unique([householdId, slug])
+}
+
+model IngredientSection {
+  id          String             @id @default(uuid())
+  recipeId    String
+  recipe      Recipe             @relation(fields: [recipeId], references: [id])
+  title       String?
+  order       Int
+  ingredients RecipeIngredient[]
+}
+
+model RecipeIngredient {
+  id        String            @id @default(uuid())
+  sectionId String
+  section   IngredientSection @relation(fields: [sectionId], references: [id])
+  foodId    String
+  food      Food              @relation(fields: [foodId], references: [id])
+  unitId    String?
+  unit      Unit?             @relation(fields: [unitId], references: [id])
+  quantity  Decimal?
+  note      String?
+  order     Int
+}
+
+model InstructionStep {
+  id       String  @id @default(uuid())
+  recipeId String
+  recipe   Recipe  @relation(fields: [recipeId], references: [id])
+  title    String?
+  body     String
+  order    Int
+}
+
+model RecipeImage {
+  id        String   @id @default(uuid())
+  recipeId  String
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
+  url       String
+  order     Int
+  createdAt DateTime @default(now())
+}
+
+model MealPlan {
+  id          String          @id @default(uuid())
+  householdId String          @unique
+  household   Household       @relation(fields: [householdId], references: [id])
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  entries     MealPlanEntry[]
+}
+
+model MealPlanEntry {
+  id         String   @id @default(uuid())
+  mealPlanId String
+  mealPlan   MealPlan @relation(fields: [mealPlanId], references: [id])
+  recipeId   String
+  recipe     Recipe   @relation(fields: [recipeId], references: [id])
+  date       DateTime @db.Date
+  mealType   MealType
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
