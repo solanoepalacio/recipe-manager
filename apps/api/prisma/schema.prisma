@@ -1,0 +1,12 @@
+// This file is managed by Phase 2 (Database Schema + Prisma).
+// A minimal datasource + generator block exists here so Phase 1's
+// `prisma generate` produces a usable (empty) client stub.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
