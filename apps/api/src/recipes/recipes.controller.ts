@@ -47,10 +47,4 @@ export class RecipesController {
     return this.recipesService.remove(id, user.householdId);
   }
 
-  @Patch(':id/landscape')
-  @ApiOperation({ summary: 'Toggle landscape view for a recipe' })
-  @ApiResponse({ status: 200, description: 'Updated recipe' })
-  toggleLandscape(@Param('id') id: string, @CurrentUser() user: any) {
-    return this.recipesService.toggleLandscape(id, user.householdId);
-  }
 }

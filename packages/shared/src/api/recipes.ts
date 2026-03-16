@@ -47,7 +47,6 @@ export interface RecipeDetailResponse {
   totalTime: number | null;
   performTime: number | null;
   sourceUrl: string | null;
-  landscapeView: boolean;
   shareToken: string | null;
   createdAt: string;
   updatedAt: string;
@@ -66,7 +65,6 @@ export interface CreateRecipeRequest {
   totalTime?: number;
   performTime?: number;
   sourceUrl?: string;
-  landscapeView?: boolean;
 }
 
 export interface UpdateRecipeRequest {
@@ -79,7 +77,6 @@ export interface UpdateRecipeRequest {
   totalTime?: number | null;
   performTime?: number | null;
   sourceUrl?: string | null;
-  landscapeView?: boolean;
 }
 
 export interface CreateSectionRequest {

@@ -93,7 +93,6 @@ export function toRecipeDetailResponse(recipe: any): RecipeDetailResponse {
     totalTime: recipe.totalTime ?? null,
     performTime: recipe.performTime ?? null,
     sourceUrl: recipe.sourceUrl ?? null,
-    landscapeView: recipe.landscapeView,
     shareToken: recipe.shareToken ?? null,
     createdAt: recipe.createdAt.toISOString(),
     updatedAt: recipe.updatedAt.toISOString(),
@@ -152,7 +151,6 @@ export class RecipesService {
         totalTime: dto.totalTime,
         performTime: dto.performTime,
         sourceUrl: dto.sourceUrl,
-        landscapeView: dto.landscapeView ?? false,
       },
       include: RECIPE_INCLUDE,
     });
@@ -187,7 +185,6 @@ export class RecipesService {
         ...(dto.totalTime !== undefined && { totalTime: dto.totalTime }),
         ...(dto.performTime !== undefined && { performTime: dto.performTime }),
         ...(dto.sourceUrl !== undefined && { sourceUrl: dto.sourceUrl }),
-        ...(dto.landscapeView !== undefined && { landscapeView: dto.landscapeView }),
       },
       include: RECIPE_INCLUDE,
     });
@@ -200,13 +197,4 @@ export class RecipesService {
     return { id };
   }
 
-  async toggleLandscape(id: string, householdId: string): Promise<RecipeDetailResponse> {
-    const recipe = await this.findAndVerifyOwnership(id, householdId);
-    const updated = await this.prisma.recipe.update({
-      where: { id },
-      data: { landscapeView: !recipe.landscapeView },
-      include: RECIPE_INCLUDE,
-    });
-    return toRecipeDetailResponse(updated);
-  }
 }

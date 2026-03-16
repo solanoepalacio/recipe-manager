@@ -30,7 +30,6 @@ Households can organize, discover, and cook their recipes together — from a se
 - [ ] User can add step-by-step instructions with optional titles; reorder via drag-and-drop
 - [ ] User can upload and delete recipe images
 - [ ] User can lock a recipe to prevent editing
-- [ ] User can toggle landscape view for a recipe
 
 #### Recipe Viewing & Cooking
 - [ ] User can view full recipe detail (ingredients, instructions, images)

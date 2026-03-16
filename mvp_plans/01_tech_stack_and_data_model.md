@@ -103,7 +103,6 @@
 | `performTime` | Int? | Minutes |
 | `sourceUrl` | String? | Original source URL |
 | `isLocked` | Boolean | Default false. Prevents editing when true. |
-| `landscapeView` | Boolean | Default false. |
 | `shareToken` | String? | Unique token for public share link. Null = not shared. |
 | `createdAt` | DateTime | |
 | `updatedAt` | DateTime | |

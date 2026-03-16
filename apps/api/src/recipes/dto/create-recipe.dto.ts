@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsOptional, IsInt, IsBoolean, Min, IsUrl } from 'class-validator';
+import { IsString, IsOptional, IsInt, Min, IsUrl } from 'class-validator';
 import { CreateRecipeRequest } from '@recipe-manager/shared';
 
 export class CreateRecipeDto implements CreateRecipeRequest {
@@ -51,9 +51,4 @@ export class CreateRecipeDto implements CreateRecipeRequest {
   @IsOptional()
   @IsUrl()
   sourceUrl?: string;
-
-  @ApiPropertyOptional({ description: 'Default to landscape view' })
-  @IsOptional()
-  @IsBoolean()
-  landscapeView?: boolean;
 }

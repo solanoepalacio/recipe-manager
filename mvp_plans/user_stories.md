@@ -59,7 +59,6 @@ Every feature is described as a user story. Features are grouped by category.
 ### Settings
 
 - As a user, I can lock a recipe to prevent anyone from editing it.
-- As a user, I can choose to display a recipe in landscape view.
 
 ---
 

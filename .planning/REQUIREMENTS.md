@@ -20,7 +20,6 @@
 - [ ] **RCP-03**: User can set recipe name with auto-generated URL slug
 - [ ] **RCP-04**: User can set recipe description, servings (qty + unit), prep/cook/total/perform times, and source URL
 - [ ] **RCP-05**: User can lock a recipe to prevent editing
-- [ ] **RCP-06**: User can toggle landscape view for a recipe
 - [ ] **RCP-07**: User can view full recipe detail (ingredients, instructions, images)
 - [ ] **RCP-08**: User can enter cook mode (full-screen, large text, step-by-step navigation)
 

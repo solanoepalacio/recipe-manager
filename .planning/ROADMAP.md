@@ -20,7 +20,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 6: Backend Admin Endpoints** - Admin CRUD for users, households, foods, units, tokens
 - [ ] **Phase 7: Frontend Setup + App Shell + Auth Flows** - Project scaffold, responsive shell, login/logout, UX primitives
 - [ ] **Phase 8: Frontend Recipe List + Detail + Cook Mode** - Recipe browsing, search, filter, sort, detail view, cook mode
-- [ ] **Phase 9: Frontend Recipe Creation + Editing** - Create/edit form, ingredients, sections, steps, images, lock, landscape
+- [ ] **Phase 9: Frontend Recipe Creation + Editing** - Create/edit form, ingredients, sections, steps, images, lock
 - [ ] **Phase 10: Frontend Meal Planner** - Weekly/monthly calendar, assign recipes, drag-drop, edit/delete entries
 - [ ] **Phase 11: Frontend Profile + Household + Shared Recipe** - Profile editing, household view, public shared recipe page
 - [ ] **Phase 12: Frontend Admin Panel** - Admin login, setup wizard, user/household/foods/units/tokens management UI
@@ -162,16 +162,16 @@ Plans:
 - [ ] 08-03: Cook mode page — full-screen layout, large text rendering, step navigation (prev/next), exit button
 
 ### Phase 9: Frontend Recipe Creation + Editing
-**Goal**: Users can create recipes from scratch, duplicate existing ones, and edit all recipe content (metadata, ingredients in sections, instruction steps, images) including locking and landscape view toggle.
+**Goal**: Users can create recipes from scratch, duplicate existing ones, and edit all recipe content (metadata, ingredients in sections, instruction steps, images) including locking.
 **Depends on**: Phase 4, Phase 7
-**Requirements**: RCP-01, RCP-02, RCP-03, RCP-04, RCP-05, RCP-06, ING-01, ING-02, ING-03, INS-01, INS-02, IMG-01, IMG-02
+**Requirements**: RCP-01, RCP-02, RCP-03, RCP-04, RCP-05, ING-01, ING-02, ING-03, INS-01, INS-02, IMG-01, IMG-02
 **Success Criteria** (what must be TRUE):
   1. A user can fill out the new recipe form and submit; the recipe appears in the list with a correct auto-generated slug
   2. A user can duplicate a recipe; the copy is independent with a new name and appears in the household list
   3. The ingredient editor allows adding ingredients (food picker, unit picker, quantity, note), organizing them into titled sections, and reordering within sections
   4. The step editor allows adding, editing, and reordering instruction steps via drag-and-drop
   5. A user can upload an image and see it on the recipe; deleting it removes it from the view
-  6. A user can lock a recipe (edit controls disappear) and toggle landscape view; these states persist after page refresh
+  6. A user can lock a recipe (edit controls disappear); this state persists after page refresh
 **Plans**: TBD
 
 Plans:
@@ -179,7 +179,7 @@ Plans:
 - [ ] 09-02: Ingredient editor — IngredientSection component, food/unit pickers (API-backed dropdowns), add/remove/reorder ingredients
 - [ ] 09-03: Step editor — InstructionStep component, add/remove/reorder steps with drag-and-drop
 - [ ] 09-04: Image management — image upload component, image grid, delete confirmation
-- [ ] 09-05: Recipe settings — lock toggle, landscape view toggle, duplicate action
+- [ ] 09-05: Recipe settings — lock toggle, duplicate action
 
 ### Phase 10: Frontend Meal Planner
 **Goal**: Users can view the household meal plan as a weekly or monthly calendar, assign recipes to dates and meal types, drag-drop entries to reorganize, and edit or delete entries.
