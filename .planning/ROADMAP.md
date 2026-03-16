@@ -68,13 +68,13 @@ Plans:
   3. A request with `Authorization: Bearer <valid-api-key>` is authenticated as the associated user with no session cookie required
   4. `POST /setup` creates the Admin record when no Admin exists; the endpoint returns 404 after setup is complete
   5. Admin can call the password reset endpoint and receive a one-time reset URL containing a raw token; using the URL clears the token fields on the User row
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 03-01: Auth module — SessionAuthGuard, ApiKeyAuthGuard, AnyAuthGuard, @Public() decorator, @CurrentUser() decorator
-- [ ] 03-02: User login/logout endpoints, session store (connect-pg-simple), AdminAuthGuard, admin login/logout endpoints
-- [ ] 03-03: Setup module (SetupGuard, setup wizard endpoint, Admin creation)
-- [ ] 03-04: Password reset URL generation endpoint (admin-facing); apply token to User row
+- [ ] 03-01-PLAN.md — Guards + decorators (SessionAuthGuard, ApiKeyAuthGuard, AnyAuthGuard as APP_GUARD, AdminAuthGuard, @Public(), @CurrentUser()) + unit tests
+- [ ] 03-02-PLAN.md — Session middleware (express-session + connect-pg-simple), AuthService, AuthController (login/logout/me), AdminAuthService, AdminAuthController
+- [ ] 03-03-PLAN.md — SetupModule (SetupGuard, SetupService, SetupController GET/POST /setup)
+- [ ] 03-04-PLAN.md — AdminUsersService (password reset URL generation), AdminUsersController (POST /admin/users/:id/password-reset-url)
 
 ### Phase 4: Backend Recipe CRUD
 **Goal**: The full non-admin REST API is complete for recipes, sections, ingredients, steps, and images — all household-scoped, all documented in Swagger.
@@ -243,7 +243,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 |-------|----------------|--------|-----------|
 | 1. Monorepo + Shared Types | 3/3 | Complete   | 2026-03-16 |
 | 2. Database Schema + Prisma | 0/2 | Planned | - |
-| 3. Backend Auth | 0/4 | Not started | - |
+| 3. Backend Auth | 0/4 | Planned | - |
 | 4. Backend Recipe CRUD | 0/4 | Not started | - |
 | 5. Backend Search, Sharing, Meal Plan | 0/3 | Not started | - |
 | 6. Backend Admin Endpoints | 0/5 | Not started | - |
