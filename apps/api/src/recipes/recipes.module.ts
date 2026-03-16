@@ -5,10 +5,26 @@ import { SectionsController } from './sections/sections.controller';
 import { SectionsService } from './sections/sections.service';
 import { IngredientsController } from './ingredients/ingredients.controller';
 import { IngredientsService } from './ingredients/ingredients.service';
+import { StepsController } from './steps/steps.controller';
+import { StepsService } from './steps/steps.service';
+import { ImagesController } from './images/images.controller';
+import { ImagesService } from './images/images.service';
 
 @Module({
-  controllers: [RecipesController, SectionsController, IngredientsController],
-  providers: [RecipesService, SectionsService, IngredientsService],
+  controllers: [
+    RecipesController,
+    SectionsController,
+    IngredientsController,
+    StepsController,
+    ImagesController,
+  ],
+  providers: [
+    RecipesService,
+    SectionsService,
+    IngredientsService,
+    StepsService,
+    ImagesService,
+  ],
   exports: [RecipesService],
 })
 export class RecipesModule {}
