@@ -36,7 +36,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. `@recipe-manager/shared` exports typed interfaces for every API domain (auth, recipes, ingredients, steps, images, meal-plan, admin, etc.)
   3. The NestJS API starts and Swagger UI is accessible at `/api/docs` with at least a placeholder spec
   4. A developer can import a shared type in both `apps/api` and `apps/web` and the compiler enforces the contract
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
 - [ ] 01-01: Monorepo scaffold (Yarn v4 workspaces, root tsconfig, .yarnrc.yml, package.json per workspace)
