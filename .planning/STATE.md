@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 4 context gathered
-last_updated: "2026-03-16T13:17:36.077Z"
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-03-16T16:30:53.482Z"
 last_activity: 2026-03-16 — Plan 03-03 complete; SetupGuard, SetupService, SetupController, SetupModule; POST /setup gated by admin.count(); bcrypt SALT_ROUNDS=12; 21 unit tests passing
 progress:
   total_phases: 12
   completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
+  total_plans: 13
+  completed_plans: 10
   percent: 11
 ---
 
@@ -56,6 +56,7 @@ Progress: [█░░░░░░░░░] 11%
 | Phase 03-backend-auth P02 | 3 | 3 tasks | 14 files |
 | Phase 03-backend-auth P03 | 3 min | 2 tasks | 8 files |
 | Phase 03-backend-auth P04 | 2 | 2 tasks | 6 files |
+| Phase 04-backend-recipe-crud P01 | 3 | 2 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -94,6 +95,9 @@ Recent decisions affecting current work:
 - [03-03] SetupModule exports SetupService for potential reuse by future admin modules
 - [Phase 03-04]: Raw token (randomBytes(32)) embedded in reset URL; SHA-256 hash stored in DB — never stores plaintext token
 - [Phase 03-04]: Admin-only password reset: no self-service; URL shared out-of-band with user
+- [Phase 04-backend-recipe-crud]: isLocked removed from Recipe model before service code written — prevents TypeScript/Prisma errors in Plans 04-02/04
+- [Phase 04-backend-recipe-crud]: NestExpressApplication used for useStaticAssets (no new npm package); uploads/ created at runtime via fs.mkdirSync
+- [Phase 04-backend-recipe-crud]: Wave-0 spec scaffolds written before services — Plans 04-02/03/04 can run tests immediately on service creation
 
 ### Pending Todos
 
@@ -105,6 +109,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T13:17:36.075Z
-Stopped at: Phase 4 context gathered
-Resume file: .planning/phases/04-backend-recipe-crud/04-CONTEXT.md
+Last session: 2026-03-16T16:30:53.480Z
+Stopped at: Completed 04-01-PLAN.md
+Resume file: None

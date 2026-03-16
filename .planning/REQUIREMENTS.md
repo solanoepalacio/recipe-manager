@@ -79,7 +79,7 @@
 
 ### API & Developer Access
 
-- [ ] **API-01**: Full non-admin functionality is accessible via REST API (same endpoints as UI)
+- [x] **API-01**: Full non-admin functionality is accessible via REST API (same endpoints as UI)
 - [x] **API-02**: Agent authenticates via Bearer token (API key tied to a user account)
 - [x] **API-03**: Interactive API documentation is available at `/api/docs` (Swagger UI)
 
@@ -133,7 +133,7 @@
 | AUTH-04 | Phase 3: Backend Auth | Complete |
 | AUTH-05 | Phase 3: Backend Auth | Complete |
 | API-02 | Phase 3: Backend Auth | Complete |
-| API-01 | Phase 4: Backend Recipe CRUD | Pending |
+| API-01 | Phase 4: Backend Recipe CRUD | Complete |
 | UX-01 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |
 | UX-02 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |
 | UX-03 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |
