@@ -16,7 +16,11 @@ describe('AnyAuthGuard', () => {
     guard = new AnyAuthGuard(reflector as any, sessionGuard as any, apiKeyGuard as any);
   });
 
-  const ctx = {} as ExecutionContext;
+  const ctx = {
+    getHandler: () => ({}),
+    getClass: () => ({}),
+    switchToHttp: () => ({ getRequest: () => ({}) }),
+  } as unknown as ExecutionContext;
 
   it('returns true immediately when route is @Public()', async () => {
     reflector.getAllAndOverride.mockReturnValue(true);
