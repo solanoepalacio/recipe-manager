@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in_progress
-stopped_at: Completed 05-01-PLAN.md
-last_updated: "2026-03-16T18:38:55.945Z"
+status: completed
+stopped_at: Completed 05-04-PLAN.md
+last_updated: "2026-03-16T18:42:37.498Z"
 last_activity: 2026-03-16 — Plan 05-01 complete; Paginated GET /recipes with search, foodId filter, sort (name/createdAt/updatedAt/random); RecipeListItem + RecipeQueryParams in shared; RecipeQueryDto; 48 unit tests passing; TypeScript build clean
 progress:
   total_phases: 12
   completed_phases: 4
   total_plans: 17
-  completed_plans: 14
+  completed_plans: 15
   percent: 100
 ---
 
@@ -60,6 +60,7 @@ Progress: [██████████] 100%
 | Phase 04-backend-recipe-crud P02 | 3 | 2 tasks | 7 files |
 | Phase 04-backend-recipe-crud P03 | 4 min | 2 tasks | 11 files |
 | Phase 04-backend-recipe-crud P04 | 4 | 2 tasks | 7 files |
+| Phase 05-backend-search-sharing-meal-plan P04 | 3 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -112,6 +113,7 @@ Recent decisions affecting current work:
 - [Phase 05-backend-search-sharing-meal-plan]: RecipeListItem uses imageCount (_count.images) not full images array — avoids N+1 on list view
 - [Phase 05-backend-search-sharing-meal-plan]: Random sort: fetch all matching IDs via findMany({select:{id:true}}), shuffle in JS, then fetch page items by ID — Prisma has no native random orderBy
 - [Phase 05-backend-search-sharing-meal-plan]: RECIPE_LIST_SELECT lean select for list endpoint alongside RECIPE_INCLUDE for detail — list view avoids loading full sections/steps/images
+- [Phase 05-04]: Direct PrismaService injection in FoodsController/UnitsController — no intermediate service for trivial read-only queries
 
 ### Pending Todos
 
@@ -123,6 +125,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T18:38:55.943Z
-Stopped at: Completed 05-01-PLAN.md
+Last session: 2026-03-16T18:42:37.496Z
+Stopped at: Completed 05-04-PLAN.md
 Resume file: None
