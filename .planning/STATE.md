@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-02-PLAN.md
-last_updated: "2026-03-16T12:42:32.347Z"
-last_activity: 2026-03-16 — Plan 03-01 complete; four auth guards (SessionAuthGuard, ApiKeyAuthGuard, AnyAuthGuard, AdminAuthGuard), @Public()/@CurrentUser() decorators, AuthModule as APP_GUARD, 14 unit tests passing
+stopped_at: Completed 03-03-PLAN.md
+last_updated: "2026-03-16T12:46:10Z"
+last_activity: 2026-03-16 — Plan 03-03 complete; SetupGuard, SetupService, SetupController, SetupModule; POST /setup gated by admin.count(); bcrypt SALT_ROUNDS=12; 21 unit tests passing
 progress:
   total_phases: 12
   completed_phases: 2
   total_plans: 9
-  completed_plans: 7
-  percent: 10
+  completed_plans: 8
+  percent: 11
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 ## Current Position
 
 Phase: 3 of 12 (Backend Auth) — IN PROGRESS
-Plan: 1 of N in current phase — COMPLETE (Plan 02 next)
+Plan: 3 of N in current phase — COMPLETE (Phase 03 complete — all 3 plans done)
 Status: In progress
-Last activity: 2026-03-16 — Plan 03-01 complete; four auth guards (SessionAuthGuard, ApiKeyAuthGuard, AnyAuthGuard, AdminAuthGuard), @Public()/@CurrentUser() decorators, AuthModule as APP_GUARD, 14 unit tests passing
+Last activity: 2026-03-16 — Plan 03-03 complete; SetupGuard, SetupService, SetupController, SetupModule; POST /setup gated by admin.count(); bcrypt SALT_ROUNDS=12; 21 unit tests passing
 
-Progress: [█░░░░░░░░░] 10%
+Progress: [█░░░░░░░░░] 11%
 
 ## Performance Metrics
 
@@ -54,6 +54,7 @@ Progress: [█░░░░░░░░░] 10%
 | Phase 02-database-schema-prisma P02 | 2 min | 2 tasks | 7 files |
 | Phase 03-backend-auth P01 | 3 min | 3 tasks | 13 files |
 | Phase 03-backend-auth P02 | 3 | 3 tasks | 14 files |
+| Phase 03-backend-auth P03 | 3 min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -87,6 +88,9 @@ Recent decisions affecting current work:
 - [Phase 03-backend-auth]: E2e stubs use DB_AVAILABLE conditional so test suite passes in CI without running database — real assertions activate only when DATABASE_URL is present
 - [Phase 03-backend-auth]: toMeResponse exported as standalone function to avoid circular dependencies when other modules need to map User to MeResponse
 - [Phase 03-backend-auth]: Shared PgStore options reused across both session middlewares — single pg.Pool for connect.sid and admin.sid sessions
+- [03-03] SetupGuard injects PrismaService directly (no DI token abstraction) — consistent with SessionAuthGuard and other guards
+- [03-03] @Public() + @UseGuards(SetupGuard) on POST /setup: @Public() bypasses AnyAuthGuard global guard, SetupGuard enforces one-time setup constraint
+- [03-03] SetupModule exports SetupService for potential reuse by future admin modules
 
 ### Pending Todos
 
@@ -98,6 +102,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T12:42:32.346Z
-Stopped at: Completed 03-02-PLAN.md
+Last session: 2026-03-16T12:46:10Z
+Stopped at: Completed 03-03-PLAN.md
 Resume file: None
