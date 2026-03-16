@@ -81,7 +81,7 @@
 
 - [ ] **API-01**: Full non-admin functionality is accessible via REST API (same endpoints as UI)
 - [ ] **API-02**: Agent authenticates via Bearer token (API key tied to a user account)
-- [ ] **API-03**: Interactive API documentation is available at `/api/docs` (Swagger UI)
+- [x] **API-03**: Interactive API documentation is available at `/api/docs` (Swagger UI)
 
 ### Mobile & UX
 
@@ -125,7 +125,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| API-03 | Phase 1: Monorepo + Shared Types | Pending |
+| API-03 | Phase 1: Monorepo + Shared Types | Complete |
 | HH-01 | Phase 2: Database Schema + Prisma | Pending |
 | AUTH-01 | Phase 3: Backend Auth | Pending |
 | AUTH-02 | Phase 3: Backend Auth | Pending |
