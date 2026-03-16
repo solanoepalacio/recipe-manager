@@ -114,3 +114,25 @@ export interface UpdateStepRequest {
   title?: string | null;
   body?: string;
 }
+
+export interface RecipeListItem {
+  id: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  servingsQty: number | null;
+  servingsUnit: string | null;
+  shareToken: string | null;
+  createdAt: string;
+  updatedAt: string;
+  imageCount: number;
+}
+
+export interface RecipeQueryParams {
+  search?: string;
+  foodId?: string;
+  sort?: 'name' | 'createdAt' | 'updatedAt' | 'random';
+  order?: 'asc' | 'desc';
+  page?: number;
+  pageSize?: number;
+}
