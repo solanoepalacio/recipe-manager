@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-03-PLAN.md
-last_updated: "2026-03-16T16:43:22.764Z"
-last_activity: 2026-03-16 — Plan 04-02 complete; RecipesService with 6 CRUD methods, findAndVerifyOwnership, slug generation; RecipesController with 6 Swagger-documented endpoints; RecipesModule wired into AppModule; 7 unit tests passing
+stopped_at: Completed 04-04-PLAN.md
+last_updated: "2026-03-16T16:49:27.217Z"
+last_activity: 2026-03-16 — Plan 04-03 complete; SectionsService + IngredientsService with CRUD and reorder; deeply nested controllers; RecipesModule has 3 controllers + 3 providers; 4 unit tests passing; build passing
 progress:
   total_phases: 12
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 13
-  completed_plans: 12
-  percent: 85
+  completed_plans: 13
+  percent: 92
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 
 ## Current Position
 
-Phase: 4 of 12 (Backend Recipe CRUD) — IN PROGRESS
-Plan: 3 of 4 in current phase — COMPLETE (04-03 done — SectionsService, SectionsController, IngredientsService, IngredientsController, RecipesModule updated)
-Status: In progress
-Last activity: 2026-03-16 — Plan 04-03 complete; SectionsService + IngredientsService with CRUD and reorder; deeply nested controllers; RecipesModule has 3 controllers + 3 providers; 4 unit tests passing; build passing
+Phase: 4 of 12 (Backend Recipe CRUD) — COMPLETE
+Plan: 4 of 4 in current phase — COMPLETE (04-04 done — StepsService, StepsController, ImagesService, ImagesController, RecipesModule final state with 5 controllers + 5 providers)
+Status: Phase 4 complete
+Last activity: 2026-03-16 — Plan 04-04 complete; StepsService + ImagesService with CRUD; Multer disk storage for image upload; RecipesModule finalized with all 5 sub-modules; 41 unit tests passing; TypeScript build clean
 
-Progress: [█████████░] 92%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -59,6 +59,7 @@ Progress: [█████████░] 92%
 | Phase 04-backend-recipe-crud P01 | 3 | 2 tasks | 11 files |
 | Phase 04-backend-recipe-crud P02 | 3 | 2 tasks | 7 files |
 | Phase 04-backend-recipe-crud P03 | 4 min | 2 tasks | 11 files |
+| Phase 04-backend-recipe-crud P04 | 4 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -105,6 +106,9 @@ Recent decisions affecting current work:
 - [Phase 04-backend-recipe-crud]: ReorderDto lives in recipes/dto/ shared by all sub-modules — identical interface reduces duplication
 - [Phase 04-backend-recipe-crud]: SectionsService and IngredientsService implement ownership verification directly via prisma.recipe.findUnique — Wave-0 specs only mock PrismaService, not RecipesService
 - [Phase 04-backend-recipe-crud]: tsconfig.build.json added to exclude spec files from nest build; removed rootDir and added strictPropertyInitialization: false to tsconfig.json
+- [Phase 04-backend-recipe-crud]: StepsService and ImagesService verify ownership via direct prisma.recipe.findUnique — Wave-0 specs only mock PrismaService
+- [Phase 04-backend-recipe-crud]: process.cwd() used for Multer destination to avoid dist/ path issues after TypeScript build
+- [Phase 04-backend-recipe-crud]: @types/multer added as dev dependency — required for Express.Multer.File type
 
 ### Pending Todos
 
@@ -116,6 +120,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T16:43:22.762Z
-Stopped at: Completed 04-03-PLAN.md
+Last session: 2026-03-16T16:49:27.216Z
+Stopped at: Completed 04-04-PLAN.md
 Resume file: None
