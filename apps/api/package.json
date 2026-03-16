@@ -10,10 +10,6 @@
     "test:e2e": "jest --config test/jest-e2e.json",
     "test:integration": "jest --config jest-integration.config.ts"
   },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts",
-    "schema": "prisma/schema.prisma"
-  },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
     "@nestjs/config": "^4.0.0",
