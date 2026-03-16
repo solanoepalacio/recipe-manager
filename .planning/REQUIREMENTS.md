@@ -121,61 +121,65 @@
 
 ## Traceability
 
-*Populated during roadmap creation.*
+*Updated: 2026-03-16 — roadmap created (12 phases)*
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | — | Pending |
-| AUTH-02 | — | Pending |
-| AUTH-03 | — | Pending |
-| AUTH-04 | — | Pending |
-| AUTH-05 | — | Pending |
-| RCP-01 | — | Pending |
-| RCP-02 | — | Pending |
-| RCP-03 | — | Pending |
-| RCP-04 | — | Pending |
-| RCP-05 | — | Pending |
-| RCP-06 | — | Pending |
-| RCP-07 | — | Pending |
-| RCP-08 | — | Pending |
-| ING-01 | — | Pending |
-| ING-02 | — | Pending |
-| ING-03 | — | Pending |
-| INS-01 | — | Pending |
-| INS-02 | — | Pending |
-| IMG-01 | — | Pending |
-| IMG-02 | — | Pending |
-| SRCH-01 | — | Pending |
-| SRCH-02 | — | Pending |
-| SRCH-03 | — | Pending |
-| SRCH-04 | — | Pending |
-| SHR-01 | — | Pending |
-| SHR-02 | — | Pending |
-| PLAN-01 | — | Pending |
-| PLAN-02 | — | Pending |
-| PLAN-03 | — | Pending |
-| PLAN-04 | — | Pending |
-| PROF-01 | — | Pending |
-| HH-01 | — | Pending |
-| HH-02 | — | Pending |
-| ADM-01 | — | Pending |
-| ADM-02 | — | Pending |
-| ADM-03 | — | Pending |
-| ADM-04 | — | Pending |
-| ADM-05 | — | Pending |
-| ADM-06 | — | Pending |
-| API-01 | — | Pending |
-| API-02 | — | Pending |
-| API-03 | — | Pending |
-| UX-01 | — | Pending |
-| UX-02 | — | Pending |
-| UX-03 | — | Pending |
+| API-03 | Phase 1: Monorepo + Shared Types | Pending |
+| HH-01 | Phase 2: Database Schema + Prisma | Pending |
+| AUTH-01 | Phase 3: Backend Auth | Pending |
+| AUTH-02 | Phase 3: Backend Auth | Pending |
+| AUTH-03 | Phase 3: Backend Auth | Pending |
+| AUTH-04 | Phase 3: Backend Auth | Pending |
+| AUTH-05 | Phase 3: Backend Auth | Pending |
+| API-02 | Phase 3: Backend Auth | Pending |
+| API-01 | Phase 4: Backend Recipe CRUD | Pending |
+| UX-01 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |
+| UX-02 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |
+| UX-03 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |
+| RCP-07 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
+| RCP-08 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
+| SRCH-01 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
+| SRCH-02 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
+| SRCH-03 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
+| SRCH-04 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
+| RCP-01 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| RCP-02 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| RCP-03 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| RCP-04 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| RCP-05 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| RCP-06 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| ING-01 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| ING-02 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| ING-03 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| INS-01 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| INS-02 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| IMG-01 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| IMG-02 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| PLAN-01 | Phase 10: Frontend Meal Planner | Pending |
+| PLAN-02 | Phase 10: Frontend Meal Planner | Pending |
+| PLAN-03 | Phase 10: Frontend Meal Planner | Pending |
+| PLAN-04 | Phase 10: Frontend Meal Planner | Pending |
+| HH-02 | Phase 10: Frontend Meal Planner | Pending |
+| PROF-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Pending |
+| SHR-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Pending |
+| SHR-02 | Phase 11: Frontend Profile + Household + Shared Recipe | Pending |
+| ADM-01 | Phase 12: Frontend Admin Panel | Pending |
+| ADM-02 | Phase 12: Frontend Admin Panel | Pending |
+| ADM-03 | Phase 12: Frontend Admin Panel | Pending |
+| ADM-04 | Phase 12: Frontend Admin Panel | Pending |
+| ADM-05 | Phase 12: Frontend Admin Panel | Pending |
+| ADM-06 | Phase 12: Frontend Admin Panel | Pending |
 
 **Coverage:**
 - v1 requirements: 46 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 46 ⚠️
+- Mapped to phases: 46 ✓
+- Unmapped: 0 ✓
+
+**Notes on phase assignments:**
+- Requirements are assigned to the phase where they first become fully verifiable by a user or developer. Backend phases (1-6) verify against the live API/Swagger. Frontend phases (7-12) verify through the browser.
+- Phases 5 and 6 are backend infrastructure phases with no direct requirement assignments; they deliver the API capabilities consumed by frontend phases 8, 10, 11, and 12.
 
 ---
 *Requirements defined: 2026-03-16*
-*Last updated: 2026-03-16 after initial definition*
+*Last updated: 2026-03-16 after roadmap creation*
