@@ -7,7 +7,12 @@
     "start": "node dist/main",
     "start:dev": "nest start --watch",
     "test": "jest",
-    "test:e2e": "jest --config test/jest-e2e.json"
+    "test:e2e": "jest --config test/jest-e2e.json",
+    "test:integration": "jest --config jest-integration.config.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts",
+    "schema": "prisma/schema.prisma"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
@@ -34,6 +39,7 @@
     "prisma": "^6.0.0",
     "supertest": "^7.0.0",
     "ts-jest": "^29.0.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.0.0"
   }
 }
