@@ -9,6 +9,8 @@ import { StepsController } from './steps/steps.controller';
 import { StepsService } from './steps/steps.service';
 import { ImagesController } from './images/images.controller';
 import { ImagesService } from './images/images.service';
+import { SharingController, SharedController } from './sharing/sharing.controller';
+import { SharingService } from './sharing/sharing.service';
 
 @Module({
   controllers: [
@@ -17,6 +19,8 @@ import { ImagesService } from './images/images.service';
     IngredientsController,
     StepsController,
     ImagesController,
+    SharingController,
+    SharedController,
   ],
   providers: [
     RecipesService,
@@ -24,6 +28,7 @@ import { ImagesService } from './images/images.service';
     IngredientsService,
     StepsService,
     ImagesService,
+    SharingService,
   ],
   exports: [RecipesService],
 })
