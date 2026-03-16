@@ -52,11 +52,11 @@ Plans:
   2. `prisma db seed` populates the foods and units tables with production-ready seed data
   3. Every household-scoped table (Recipe, MealPlan, MealPlanEntry) has a non-nullable `householdId` foreign key enforced at the database level
   4. All entities from the data model (User, Admin, ApiToken, Food, Unit, Recipe, IngredientSection, RecipeIngredient, InstructionStep, RecipeImage, MealPlan, MealPlanEntry) exist as Prisma models with correct relations
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: Prisma schema — all models, enums (Gender, MealType), relations, unique constraints
-- [ ] 02-02: Migrations and seed script (foods, units pre-population)
+- [ ] 02-01-PLAN.md — Wave 0 infrastructure + full Prisma schema (13 models, 2 enums, compound unique constraints)
+- [ ] 02-02-PLAN.md — Initial migration (prisma migrate dev --name init) + seed script (50 foods, 13 units, idempotent upsert)
 
 ### Phase 3: Backend Auth
 **Goal**: Users can authenticate via session cookie or API key; admins can authenticate via a separate session; the setup wizard creates the single Admin record; password reset URLs can be generated.
@@ -242,7 +242,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Monorepo + Shared Types | 3/3 | Complete   | 2026-03-16 |
-| 2. Database Schema + Prisma | 0/2 | Not started | - |
+| 2. Database Schema + Prisma | 0/2 | Planned | - |
 | 3. Backend Auth | 0/4 | Not started | - |
 | 4. Backend Recipe CRUD | 0/4 | Not started | - |
 | 5. Backend Search, Sharing, Meal Plan | 0/3 | Not started | - |
