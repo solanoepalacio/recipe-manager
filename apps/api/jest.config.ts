@@ -11,7 +11,7 @@ const config: Config = {
   coverageDirectory: '../coverage',
   testEnvironment: 'node',
   moduleNameMapper: {
-    '^@recipe-manager/shared(.*)$': '<rootDir>/../../packages/shared/src/index.ts',
+    '^@recipe-manager/shared(.*)$': '<rootDir>/../../../packages/shared/src/index.ts',
   },
 };
 
