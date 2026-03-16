@@ -11,7 +11,7 @@
 - [x] **AUTH-02**: User session persists across browser refresh (persistent by default)
 - [x] **AUTH-03**: User can sign out
 - [x] **AUTH-04**: Admin can complete first-time setup wizard (creates single Admin record; wizard inaccessible after)
-- [ ] **AUTH-05**: Admin can generate a one-time password reset URL for any user (no email — shared out-of-band)
+- [x] **AUTH-05**: Admin can generate a one-time password reset URL for any user (no email — shared out-of-band)
 
 ### Recipes
 
@@ -131,7 +131,7 @@
 | AUTH-02 | Phase 3: Backend Auth | Complete |
 | AUTH-03 | Phase 3: Backend Auth | Complete |
 | AUTH-04 | Phase 3: Backend Auth | Complete |
-| AUTH-05 | Phase 3: Backend Auth | Pending |
+| AUTH-05 | Phase 3: Backend Auth | Complete |
 | API-02 | Phase 3: Backend Auth | Complete |
 | API-01 | Phase 4: Backend Recipe CRUD | Pending |
 | UX-01 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-03-PLAN.md
-last_updated: "2026-03-16T12:46:10Z"
+stopped_at: Completed 03-04-PLAN.md
+last_updated: "2026-03-16T12:51:38.391Z"
 last_activity: 2026-03-16 — Plan 03-03 complete; SetupGuard, SetupService, SetupController, SetupModule; POST /setup gated by admin.count(); bcrypt SALT_ROUNDS=12; 21 unit tests passing
 progress:
   total_phases: 12
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 9
-  completed_plans: 8
+  completed_plans: 9
   percent: 11
 ---
 
@@ -55,6 +55,7 @@ Progress: [█░░░░░░░░░] 11%
 | Phase 03-backend-auth P01 | 3 min | 3 tasks | 13 files |
 | Phase 03-backend-auth P02 | 3 | 3 tasks | 14 files |
 | Phase 03-backend-auth P03 | 3 min | 2 tasks | 8 files |
+| Phase 03-backend-auth P04 | 2 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -91,6 +92,8 @@ Recent decisions affecting current work:
 - [03-03] SetupGuard injects PrismaService directly (no DI token abstraction) — consistent with SessionAuthGuard and other guards
 - [03-03] @Public() + @UseGuards(SetupGuard) on POST /setup: @Public() bypasses AnyAuthGuard global guard, SetupGuard enforces one-time setup constraint
 - [03-03] SetupModule exports SetupService for potential reuse by future admin modules
+- [Phase 03-04]: Raw token (randomBytes(32)) embedded in reset URL; SHA-256 hash stored in DB — never stores plaintext token
+- [Phase 03-04]: Admin-only password reset: no self-service; URL shared out-of-band with user
 
 ### Pending Todos
 
@@ -102,6 +105,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T12:46:10Z
-Stopped at: Completed 03-03-PLAN.md
+Last session: 2026-03-16T12:51:38.389Z
+Stopped at: Completed 03-04-PLAN.md
 Resume file: None
