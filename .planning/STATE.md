@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-03-16T16:30:53.482Z"
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-03-16T16:37:06.143Z"
 last_activity: 2026-03-16 — Plan 03-03 complete; SetupGuard, SetupService, SetupController, SetupModule; POST /setup gated by admin.count(); bcrypt SALT_ROUNDS=12; 21 unit tests passing
 progress:
   total_phases: 12
   completed_phases: 3
   total_plans: 13
-  completed_plans: 10
+  completed_plans: 11
   percent: 11
 ---
 
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 
 ## Current Position
 
-Phase: 3 of 12 (Backend Auth) — IN PROGRESS
-Plan: 3 of N in current phase — COMPLETE (Phase 03 complete — all 3 plans done)
+Phase: 4 of 12 (Backend Recipe CRUD) — IN PROGRESS
+Plan: 2 of 4 in current phase — COMPLETE (04-02 done — RecipesService, RecipesController, RecipesModule)
 Status: In progress
-Last activity: 2026-03-16 — Plan 03-03 complete; SetupGuard, SetupService, SetupController, SetupModule; POST /setup gated by admin.count(); bcrypt SALT_ROUNDS=12; 21 unit tests passing
+Last activity: 2026-03-16 — Plan 04-02 complete; RecipesService with 6 CRUD methods, findAndVerifyOwnership, slug generation; RecipesController with 6 Swagger-documented endpoints; RecipesModule wired into AppModule; 7 unit tests passing
 
-Progress: [█░░░░░░░░░] 11%
+Progress: [█████████░] 85%
 
 ## Performance Metrics
 
@@ -57,6 +57,7 @@ Progress: [█░░░░░░░░░] 11%
 | Phase 03-backend-auth P03 | 3 min | 2 tasks | 8 files |
 | Phase 03-backend-auth P04 | 2 | 2 tasks | 6 files |
 | Phase 04-backend-recipe-crud P01 | 3 | 2 tasks | 11 files |
+| Phase 04-backend-recipe-crud P02 | 3 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -98,6 +99,9 @@ Recent decisions affecting current work:
 - [Phase 04-backend-recipe-crud]: isLocked removed from Recipe model before service code written — prevents TypeScript/Prisma errors in Plans 04-02/04
 - [Phase 04-backend-recipe-crud]: NestExpressApplication used for useStaticAssets (no new npm package); uploads/ created at runtime via fs.mkdirSync
 - [Phase 04-backend-recipe-crud]: Wave-0 spec scaffolds written before services — Plans 04-02/03/04 can run tests immediately on service creation
+- [Phase 04-backend-recipe-crud]: findAndVerifyOwnership is public so sub-module services in 04-03/04-04 can call it to verify recipe ownership before operating on child resources
+- [Phase 04-backend-recipe-crud]: toRecipeDetailResponse exported as standalone function so sub-modules returning RecipeDetailResponse after mutations can reuse the mapper
+- [Phase 04-backend-recipe-crud]: ReorderDto lives in recipes/dto/ shared by all sub-modules — identical interface reduces duplication
 
 ### Pending Todos
 
@@ -109,6 +113,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T16:30:53.480Z
-Stopped at: Completed 04-01-PLAN.md
+Last session: 2026-03-16T16:36:58.924Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None
