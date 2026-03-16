@@ -7,8 +7,8 @@
 
 ### Authentication
 
-- [ ] **AUTH-01**: User can sign in with email or username + password
-- [ ] **AUTH-02**: User session persists across browser refresh (persistent by default)
+- [x] **AUTH-01**: User can sign in with email or username + password
+- [x] **AUTH-02**: User session persists across browser refresh (persistent by default)
 - [ ] **AUTH-03**: User can sign out
 - [ ] **AUTH-04**: Admin can complete first-time setup wizard (creates single Admin record; wizard inaccessible after)
 - [ ] **AUTH-05**: Admin can generate a one-time password reset URL for any user (no email — shared out-of-band)
@@ -80,7 +80,7 @@
 ### API & Developer Access
 
 - [ ] **API-01**: Full non-admin functionality is accessible via REST API (same endpoints as UI)
-- [ ] **API-02**: Agent authenticates via Bearer token (API key tied to a user account)
+- [x] **API-02**: Agent authenticates via Bearer token (API key tied to a user account)
 - [x] **API-03**: Interactive API documentation is available at `/api/docs` (Swagger UI)
 
 ### Mobile & UX
@@ -127,12 +127,12 @@
 |-------------|-------|--------|
 | API-03 | Phase 1: Monorepo + Shared Types | Complete |
 | HH-01 | Phase 2: Database Schema + Prisma | Complete |
-| AUTH-01 | Phase 3: Backend Auth | Pending |
-| AUTH-02 | Phase 3: Backend Auth | Pending |
+| AUTH-01 | Phase 3: Backend Auth | Complete |
+| AUTH-02 | Phase 3: Backend Auth | Complete |
 | AUTH-03 | Phase 3: Backend Auth | Pending |
 | AUTH-04 | Phase 3: Backend Auth | Pending |
 | AUTH-05 | Phase 3: Backend Auth | Pending |
-| API-02 | Phase 3: Backend Auth | Pending |
+| API-02 | Phase 3: Backend Auth | Complete |
 | API-01 | Phase 4: Backend Recipe CRUD | Pending |
 | UX-01 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |
 | UX-02 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |

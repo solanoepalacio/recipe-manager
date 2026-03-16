@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-03-16T12:10:01.553Z"
-last_activity: 2026-03-16 — Plan 01-03 complete; NestJS bootstrap with Swagger UI at /api/docs, global ValidationPipe, PrismaModule, e2e smoke tests passing, API-03 satisfied
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-16T12:34:52Z"
+last_activity: 2026-03-16 — Plan 03-01 complete; four auth guards (SessionAuthGuard, ApiKeyAuthGuard, AnyAuthGuard, AdminAuthGuard), @Public()/@CurrentUser() decorators, AuthModule as APP_GUARD, 14 unit tests passing
 progress:
   total_phases: 12
   completed_phases: 2
-  total_plans: 5
-  completed_plans: 5
-  percent: 8
+  total_plans: 6
+  completed_plans: 6
+  percent: 10
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 
 ## Current Position
 
-Phase: 1 of 12 (Monorepo + Shared Types) — COMPLETE
-Plan: 3 of 3 in current phase — COMPLETE
-Status: In progress (Phase 2 next)
-Last activity: 2026-03-16 — Plan 01-03 complete; NestJS bootstrap with Swagger UI at /api/docs, global ValidationPipe, PrismaModule, e2e smoke tests passing, API-03 satisfied
+Phase: 3 of 12 (Backend Auth) — IN PROGRESS
+Plan: 1 of N in current phase — COMPLETE (Plan 02 next)
+Status: In progress
+Last activity: 2026-03-16 — Plan 03-01 complete; four auth guards (SessionAuthGuard, ApiKeyAuthGuard, AnyAuthGuard, AdminAuthGuard), @Public()/@CurrentUser() decorators, AuthModule as APP_GUARD, 14 unit tests passing
 
-Progress: [█░░░░░░░░░] 8%
+Progress: [█░░░░░░░░░] 10%
 
 ## Performance Metrics
 
@@ -52,6 +52,7 @@ Progress: [█░░░░░░░░░] 8%
 *Updated after each plan completion*
 | Phase 02-database-schema-prisma P01 | 2 min | 2 tasks | 4 files |
 | Phase 02-database-schema-prisma P02 | 2 min | 2 tasks | 7 files |
+| Phase 03-backend-auth P01 | 3 min | 3 tasks | 13 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,10 @@ Recent decisions affecting current work:
 - [Phase 02-database-schema-prisma]: Prisma enum values are lowercase strings matching TypeScript enum values exactly (e.g., Gender.Male = 'male' → Prisma enum { male })
 - [Phase 02-database-schema-prisma]: Integration tests live in apps/api/integration_tests/ with separate jest config (rootDir: integration_tests) — isolated from unit test suite
 - [Phase 02-database-schema-prisma]: seed.ts uses upsert not createMany for idempotent seeding — safe to run in any environment
+- [03-01] AnyAuthGuard registered as APP_GUARD globally — all routes protected by default; @Public() decorator used to opt out (login, setup, shared recipe routes)
+- [03-01] Short-circuit ordering: session auth checked first, API key only attempted on session miss — avoids redundant DB lookups
+- [03-01] ApiToken lastUsedAt updated fire-and-forget (void) — non-blocking, acceptable if update occasionally lost
+- [03-01] session.d.ts uses ts-ignore on express-session import — express-session installed in Plan 02
 
 ### Pending Todos
 
@@ -89,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T11:25:51.337Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-03-16T12:34:52Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None
