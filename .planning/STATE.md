@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 04-04-PLAN.md
-last_updated: "2026-03-16T16:54:09.360Z"
-last_activity: 2026-03-16 — Plan 04-04 complete; StepsService + ImagesService with CRUD; Multer disk storage for image upload; RecipesModule finalized with all 5 sub-modules; 41 unit tests passing; TypeScript build clean
+status: in_progress
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-03-16T18:38:55.945Z"
+last_activity: 2026-03-16 — Plan 05-01 complete; Paginated GET /recipes with search, foodId filter, sort (name/createdAt/updatedAt/random); RecipeListItem + RecipeQueryParams in shared; RecipeQueryDto; 48 unit tests passing; TypeScript build clean
 progress:
   total_phases: 12
   completed_phases: 4
-  total_plans: 13
-  completed_plans: 13
+  total_plans: 17
+  completed_plans: 14
   percent: 100
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-16)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 1 — Monorepo + Shared Types
+**Current focus:** Phase 5 — Backend Search, Sharing, Meal Plan
 
 ## Current Position
 
-Phase: 4 of 12 (Backend Recipe CRUD) — COMPLETE
-Plan: 4 of 4 in current phase — COMPLETE (04-04 done — StepsService, StepsController, ImagesService, ImagesController, RecipesModule final state with 5 controllers + 5 providers)
-Status: Phase 4 complete
-Last activity: 2026-03-16 — Plan 04-04 complete; StepsService + ImagesService with CRUD; Multer disk storage for image upload; RecipesModule finalized with all 5 sub-modules; 41 unit tests passing; TypeScript build clean
+Phase: 5 of 12 (Backend Search, Sharing, Meal Plan) — IN PROGRESS
+Plan: 1 of 4 in current phase — COMPLETE (05-01 done — Paginated GET /recipes with search/filter/sort, RecipeListItem + RecipeQueryParams in shared, RecipeQueryDto, 7 new findAll tests)
+Status: Phase 5 plan 1 complete
+Last activity: 2026-03-16 — Plan 05-01 complete; Paginated GET /recipes with search, foodId filter, sort (name/createdAt/updatedAt/random); RecipeListItem + RecipeQueryParams in shared; RecipeQueryDto; 48 unit tests passing; TypeScript build clean
 
 Progress: [██████████] 100%
 
@@ -109,6 +109,9 @@ Recent decisions affecting current work:
 - [Phase 04-backend-recipe-crud]: StepsService and ImagesService verify ownership via direct prisma.recipe.findUnique — Wave-0 specs only mock PrismaService
 - [Phase 04-backend-recipe-crud]: process.cwd() used for Multer destination to avoid dist/ path issues after TypeScript build
 - [Phase 04-backend-recipe-crud]: @types/multer added as dev dependency — required for Express.Multer.File type
+- [Phase 05-backend-search-sharing-meal-plan]: RecipeListItem uses imageCount (_count.images) not full images array — avoids N+1 on list view
+- [Phase 05-backend-search-sharing-meal-plan]: Random sort: fetch all matching IDs via findMany({select:{id:true}}), shuffle in JS, then fetch page items by ID — Prisma has no native random orderBy
+- [Phase 05-backend-search-sharing-meal-plan]: RECIPE_LIST_SELECT lean select for list endpoint alongside RECIPE_INCLUDE for detail — list view avoids loading full sections/steps/images
 
 ### Pending Todos
 
@@ -120,6 +123,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T16:49:27.216Z
-Stopped at: Completed 04-04-PLAN.md
+Last session: 2026-03-16T18:38:55.943Z
+Stopped at: Completed 05-01-PLAN.md
 Resume file: None
