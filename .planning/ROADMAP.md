@@ -102,12 +102,13 @@ Plans:
   2. `GET /recipes?food=<foodId>&sort=name&order=asc&page=1&pageSize=10` returns a correctly filtered, sorted, paginated response matching `PaginatedResponse<RecipeListItem>`
   3. `POST /recipes/:id/share` generates a unique share token; `GET /shared/:token` returns the full recipe detail with no auth required
   4. `POST /meal-plan/entries` creates a meal plan entry for the household; `PATCH` and `DELETE` on existing entries work correctly
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 05-01: Recipe search — full-text/fuzzy search, food filter, sort, pagination (integrated into RecipesService/Controller)
-- [ ] 05-02: Sharing sub-module — share token generation, public endpoint (@Public())
-- [ ] 05-03: Meal plan module — MealPlanController, MealPlanService (CRUD for entries, household-scoped)
+- [ ] 05-01-PLAN.md — Recipe search (RecipeListItem shared type, RecipeQueryDto, updated findAll with filter/sort/paginate/random)
+- [ ] 05-02-PLAN.md — Sharing sub-module (SharingService, SharingController, SharedController @Public(), RecipesModule update)
+- [ ] 05-03-PLAN.md — Meal plan module (MealPlanModule, MealPlanService CRUD, MealPlanController, shared meal-plan types, AppModule update)
+- [ ] 05-04-PLAN.md — SharedModule (FoodsController GET /foods, UnitsController GET /units, AppModule update)
 
 ### Phase 6: Backend Admin Endpoints
 **Goal**: All admin CRUD endpoints for users, households, foods, units, and API tokens are functional behind AdminAuthGuard and documented in Swagger.
@@ -244,7 +245,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 2. Database Schema + Prisma | 0/2 | Planned | - |
 | 3. Backend Auth | 4/4 | Complete   | 2026-03-16 |
 | 4. Backend Recipe CRUD | 4/4 | Complete   | 2026-03-16 |
-| 5. Backend Search, Sharing, Meal Plan | 0/3 | Not started | - |
+| 5. Backend Search, Sharing, Meal Plan | 0/4 | Planned | - |
 | 6. Backend Admin Endpoints | 0/5 | Not started | - |
 | 7. Frontend Setup + App Shell + Auth Flows | 0/4 | Not started | - |
 | 8. Frontend Recipe List + Detail + Cook Mode | 0/3 | Not started | - |
