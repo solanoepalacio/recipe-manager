@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-03-16T12:34:52Z"
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-03-16T12:42:32.347Z"
 last_activity: 2026-03-16 — Plan 03-01 complete; four auth guards (SessionAuthGuard, ApiKeyAuthGuard, AnyAuthGuard, AdminAuthGuard), @Public()/@CurrentUser() decorators, AuthModule as APP_GUARD, 14 unit tests passing
 progress:
   total_phases: 12
   completed_phases: 2
-  total_plans: 6
-  completed_plans: 6
+  total_plans: 9
+  completed_plans: 7
   percent: 10
 ---
 
@@ -53,6 +53,7 @@ Progress: [█░░░░░░░░░] 10%
 | Phase 02-database-schema-prisma P01 | 2 min | 2 tasks | 4 files |
 | Phase 02-database-schema-prisma P02 | 2 min | 2 tasks | 7 files |
 | Phase 03-backend-auth P01 | 3 min | 3 tasks | 13 files |
+| Phase 03-backend-auth P02 | 3 | 3 tasks | 14 files |
 
 ## Accumulated Context
 
@@ -83,6 +84,9 @@ Recent decisions affecting current work:
 - [03-01] Short-circuit ordering: session auth checked first, API key only attempted on session miss — avoids redundant DB lookups
 - [03-01] ApiToken lastUsedAt updated fire-and-forget (void) — non-blocking, acceptable if update occasionally lost
 - [03-01] session.d.ts uses ts-ignore on express-session import — express-session installed in Plan 02
+- [Phase 03-backend-auth]: E2e stubs use DB_AVAILABLE conditional so test suite passes in CI without running database — real assertions activate only when DATABASE_URL is present
+- [Phase 03-backend-auth]: toMeResponse exported as standalone function to avoid circular dependencies when other modules need to map User to MeResponse
+- [Phase 03-backend-auth]: Shared PgStore options reused across both session middlewares — single pg.Pool for connect.sid and admin.sid sessions
 
 ### Pending Todos
 
@@ -94,6 +98,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T12:34:52Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-03-16T12:42:32.346Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
