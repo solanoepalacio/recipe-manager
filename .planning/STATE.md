@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-03-PLAN.md
-last_updated: "2026-03-16T10:53:25.464Z"
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-16T11:21:30.237Z"
 last_activity: 2026-03-16 — Plan 01-03 complete; NestJS bootstrap with Swagger UI at /api/docs, global ValidationPipe, PrismaModule, e2e smoke tests passing, API-03 satisfied
 progress:
   total_phases: 12
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
+  total_plans: 5
+  completed_plans: 4
   percent: 8
 ---
 
@@ -50,6 +50,7 @@ Progress: [█░░░░░░░░░] 8%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 02-database-schema-prisma P01 | 2 min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -72,6 +73,9 @@ Recent decisions affecting current work:
 - [01-03] PrismaModule is @Global() — feature modules inject PrismaService without re-importing PrismaModule
 - [01-03] E2e smoke tests mock PrismaService.$connect to avoid requiring a live database in automated test runs
 - [01-03] Global prefix 'api' replicated in both main.ts and e2e test setup to ensure route consistency
+- [Phase 02-database-schema-prisma]: MealPlan is one-to-one with Household (householdId @unique) — each household has exactly one meal plan
+- [Phase 02-database-schema-prisma]: Prisma enum values are lowercase strings matching TypeScript enum values exactly (e.g., Gender.Male = 'male' → Prisma enum { male })
+- [Phase 02-database-schema-prisma]: Integration tests live in apps/api/integration_tests/ with separate jest config (rootDir: integration_tests) — isolated from unit test suite
 
 ### Pending Todos
 
@@ -83,6 +87,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T04:00:00Z
-Stopped at: Completed 01-03-PLAN.md
-Resume file: .planning/phases/02-database-schema/02-01-PLAN.md
+Last session: 2026-03-16T11:21:30.235Z
+Stopped at: Completed 02-01-PLAN.md
+Resume file: None

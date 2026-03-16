@@ -65,7 +65,7 @@
 
 ### Households
 
-- [ ] **HH-01**: Users belong to a household; all recipes and meal plans are household-scoped and private to members
+- [x] **HH-01**: Users belong to a household; all recipes and meal plans are household-scoped and private to members
 - [ ] **HH-02**: All household members share the same meal plan
 
 ### Administration
@@ -126,7 +126,7 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | API-03 | Phase 1: Monorepo + Shared Types | Complete |
-| HH-01 | Phase 2: Database Schema + Prisma | Pending |
+| HH-01 | Phase 2: Database Schema + Prisma | Complete |
 | AUTH-01 | Phase 3: Backend Auth | Pending |
 | AUTH-02 | Phase 3: Backend Auth | Pending |
 | AUTH-03 | Phase 3: Backend Auth | Pending |
