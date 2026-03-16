@@ -83,16 +83,15 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. An authenticated request to `POST /recipes` creates a recipe with an auto-generated slug scoped to the household; the response matches the shared `RecipeDetailResponse` type
   2. All nested sub-resources (sections, ingredients, steps, images) have working CRUD endpoints accessible at their nested routes
-  3. A recipe with `isLocked: true` rejects edit/delete requests with a 403
-  4. Image upload stores the file and returns a URL; image delete removes the record
-  5. All recipe endpoints appear in Swagger with correct request/response schemas derived from shared types
-**Plans**: TBD
+  3. Image upload stores the file at `apps/api/uploads/` with a UUID filename; the relative URL is stored in DB; image delete removes the record and the file from disk
+  4. All recipe endpoints appear in Swagger with correct request/response schemas derived from shared types
+**Plans**: 4 plans
 
 Plans:
-- [ ] 04-01: Recipes module — RecipesController, RecipesService (CRUD, slug generation, duplicate, lock, landscape toggle)
-- [ ] 04-02: Sections + Ingredients sub-modules (CRUD, ordering, food/unit relations)
-- [ ] 04-03: Steps sub-module (CRUD, ordering)
-- [ ] 04-04: Images sub-module (upload, delete, file storage)
+- [ ] 04-01-PLAN.md — Schema cleanup (remove isLocked) + shared recipe types + static serving + Wave-0 test scaffolds
+- [ ] 04-02-PLAN.md — RecipesService (CRUD, slug, household scoping) + RecipesController + RecipesModule
+- [ ] 04-03-PLAN.md — Sections sub-module (CRUD, reorder) + Ingredients sub-module (CRUD, reorder)
+- [ ] 04-04-PLAN.md — Steps sub-module (CRUD, reorder) + Images sub-module (Multer upload, delete) + final RecipesModule
 
 ### Phase 5: Backend Search, Sharing, Meal Plan
 **Goal**: Recipe search (fuzzy, filter, sort, paginate), public share tokens, and meal plan CRUD endpoints are all functional and Swagger-documented.
