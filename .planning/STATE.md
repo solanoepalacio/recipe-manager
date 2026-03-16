@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-02-PLAN.md
-last_updated: "2026-03-16T16:37:06.143Z"
-last_activity: 2026-03-16 — Plan 03-03 complete; SetupGuard, SetupService, SetupController, SetupModule; POST /setup gated by admin.count(); bcrypt SALT_ROUNDS=12; 21 unit tests passing
+stopped_at: Completed 04-03-PLAN.md
+last_updated: "2026-03-16T16:43:22.764Z"
+last_activity: 2026-03-16 — Plan 04-02 complete; RecipesService with 6 CRUD methods, findAndVerifyOwnership, slug generation; RecipesController with 6 Swagger-documented endpoints; RecipesModule wired into AppModule; 7 unit tests passing
 progress:
   total_phases: 12
   completed_phases: 3
   total_plans: 13
-  completed_plans: 11
-  percent: 11
+  completed_plans: 12
+  percent: 85
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 ## Current Position
 
 Phase: 4 of 12 (Backend Recipe CRUD) — IN PROGRESS
-Plan: 2 of 4 in current phase — COMPLETE (04-02 done — RecipesService, RecipesController, RecipesModule)
+Plan: 3 of 4 in current phase — COMPLETE (04-03 done — SectionsService, SectionsController, IngredientsService, IngredientsController, RecipesModule updated)
 Status: In progress
-Last activity: 2026-03-16 — Plan 04-02 complete; RecipesService with 6 CRUD methods, findAndVerifyOwnership, slug generation; RecipesController with 6 Swagger-documented endpoints; RecipesModule wired into AppModule; 7 unit tests passing
+Last activity: 2026-03-16 — Plan 04-03 complete; SectionsService + IngredientsService with CRUD and reorder; deeply nested controllers; RecipesModule has 3 controllers + 3 providers; 4 unit tests passing; build passing
 
-Progress: [█████████░] 85%
+Progress: [█████████░] 92%
 
 ## Performance Metrics
 
@@ -58,6 +58,7 @@ Progress: [█████████░] 85%
 | Phase 03-backend-auth P04 | 2 | 2 tasks | 6 files |
 | Phase 04-backend-recipe-crud P01 | 3 | 2 tasks | 11 files |
 | Phase 04-backend-recipe-crud P02 | 3 | 2 tasks | 7 files |
+| Phase 04-backend-recipe-crud P03 | 4 min | 2 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -102,6 +103,8 @@ Recent decisions affecting current work:
 - [Phase 04-backend-recipe-crud]: findAndVerifyOwnership is public so sub-module services in 04-03/04-04 can call it to verify recipe ownership before operating on child resources
 - [Phase 04-backend-recipe-crud]: toRecipeDetailResponse exported as standalone function so sub-modules returning RecipeDetailResponse after mutations can reuse the mapper
 - [Phase 04-backend-recipe-crud]: ReorderDto lives in recipes/dto/ shared by all sub-modules — identical interface reduces duplication
+- [Phase 04-backend-recipe-crud]: SectionsService and IngredientsService implement ownership verification directly via prisma.recipe.findUnique — Wave-0 specs only mock PrismaService, not RecipesService
+- [Phase 04-backend-recipe-crud]: tsconfig.build.json added to exclude spec files from nest build; removed rootDir and added strictPropertyInitialization: false to tsconfig.json
 
 ### Pending Todos
 
@@ -113,6 +116,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T16:36:58.924Z
-Stopped at: Completed 04-02-PLAN.md
+Last session: 2026-03-16T16:43:22.762Z
+Stopped at: Completed 04-03-PLAN.md
 Resume file: None
