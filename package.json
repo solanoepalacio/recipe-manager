@@ -1,0 +1,11 @@
+{
+  "name": "recipe-manager",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "yarn workspaces foreach --all run build"
+  }
+}
