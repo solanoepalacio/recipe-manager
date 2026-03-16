@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 05-04-PLAN.md
-last_updated: "2026-03-16T18:42:37.498Z"
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-03-16T18:46:06.924Z"
 last_activity: 2026-03-16 — Plan 05-01 complete; Paginated GET /recipes with search, foodId filter, sort (name/createdAt/updatedAt/random); RecipeListItem + RecipeQueryParams in shared; RecipeQueryDto; 48 unit tests passing; TypeScript build clean
 progress:
   total_phases: 12
   completed_phases: 4
   total_plans: 17
-  completed_plans: 15
+  completed_plans: 16
   percent: 100
 ---
 
@@ -61,6 +61,7 @@ Progress: [██████████] 100%
 | Phase 04-backend-recipe-crud P03 | 4 min | 2 tasks | 11 files |
 | Phase 04-backend-recipe-crud P04 | 4 | 2 tasks | 7 files |
 | Phase 05-backend-search-sharing-meal-plan P04 | 3 | 2 tasks | 4 files |
+| Phase 05-backend-search-sharing-meal-plan P02 | 4 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -114,6 +115,8 @@ Recent decisions affecting current work:
 - [Phase 05-backend-search-sharing-meal-plan]: Random sort: fetch all matching IDs via findMany({select:{id:true}}), shuffle in JS, then fetch page items by ID — Prisma has no native random orderBy
 - [Phase 05-backend-search-sharing-meal-plan]: RECIPE_LIST_SELECT lean select for list endpoint alongside RECIPE_INCLUDE for detail — list view avoids loading full sections/steps/images
 - [Phase 05-04]: Direct PrismaService injection in FoodsController/UnitsController — no intermediate service for trivial read-only queries
+- [Phase 05-backend-search-sharing-meal-plan]: SharingService owns SHARING_RECIPE_INCLUDE locally — RECIPE_INCLUDE not exported from recipes.service
+- [Phase 05-backend-search-sharing-meal-plan]: SharedController uses @Controller('shared') — route is GET /api/shared/:token not /api/recipes/shared/:token
 
 ### Pending Todos
 
@@ -125,6 +128,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T18:42:37.496Z
-Stopped at: Completed 05-04-PLAN.md
+Last session: 2026-03-16T18:46:06.922Z
+Stopped at: Completed 05-02-PLAN.md
 Resume file: None
