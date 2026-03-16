@@ -2,13 +2,17 @@ import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/commo
 import { PrismaService } from '../prisma/prisma.service';
 import {
   RecipeDetailResponse,
+  RecipeListItem,
+  PaginatedResponse,
   SectionResponse,
   IngredientResponse,
   StepResponse,
   ImageResponse,
 } from '@recipe-manager/shared';
+import { Prisma } from '@prisma/client';
 import { CreateRecipeDto } from './dto/create-recipe.dto';
 import { UpdateRecipeDto } from './dto/update-recipe.dto';
+import { RecipeQueryDto, SortField, SortOrder } from './dto/recipe-query.dto';
 
 const RECIPE_INCLUDE = {
   sections: {
@@ -23,6 +27,34 @@ const RECIPE_INCLUDE = {
   steps: { orderBy: { order: 'asc' as const } },
   images: { orderBy: { order: 'asc' as const } },
 } as const;
+
+const RECIPE_LIST_SELECT = {
+  id: true,
+  name: true,
+  slug: true,
+  description: true,
+  servingsQty: true,
+  servingsUnit: true,
+  shareToken: true,
+  createdAt: true,
+  updatedAt: true,
+  _count: { select: { images: true } },
+} as const;
+
+function toRecipeListItem(recipe: any): RecipeListItem {
+  return {
+    id: recipe.id,
+    name: recipe.name,
+    slug: recipe.slug,
+    description: recipe.description ?? null,
+    servingsQty: recipe.servingsQty ? Number(recipe.servingsQty) : null,
+    servingsUnit: recipe.servingsUnit ?? null,
+    shareToken: recipe.shareToken ?? null,
+    createdAt: recipe.createdAt.toISOString(),
+    updatedAt: recipe.updatedAt.toISOString(),
+    imageCount: recipe._count.images,
+  };
+}
 
 function toImageResponse(img: {
   id: string;
@@ -157,13 +189,65 @@ export class RecipesService {
     return toRecipeDetailResponse(recipe);
   }
 
-  async findAll(householdId: string): Promise<RecipeDetailResponse[]> {
-    const recipes = await this.prisma.recipe.findMany({
-      where: { householdId },
-      include: RECIPE_INCLUDE,
-      orderBy: { createdAt: 'desc' },
-    });
-    return recipes.map(toRecipeDetailResponse);
+  async findAll(householdId: string, query: RecipeQueryDto = {}): Promise<PaginatedResponse<RecipeListItem>> {
+    const { search, foodId, sort = SortField.CreatedAt, order = SortOrder.Desc, page = 1, pageSize = 20 } = query;
+
+    const where: Prisma.RecipeWhereInput = {
+      householdId,
+      ...(search && {
+        name: { contains: search, mode: 'insensitive' },
+      }),
+      ...(foodId && {
+        sections: {
+          some: {
+            ingredients: {
+              some: { foodId },
+            },
+          },
+        },
+      }),
+    };
+
+    if (sort === SortField.Random) {
+      // Random sort: fetch all matching IDs, shuffle in JS, slice for page, then fetch RecipeListItem data
+      const allIds = await this.prisma.recipe.findMany({
+        where,
+        select: { id: true },
+      });
+      const shuffled = allIds.sort(() => Math.random() - 0.5);
+      const pageIds = shuffled.slice((page - 1) * pageSize, page * pageSize).map((r) => r.id);
+      const recipes = await this.prisma.recipe.findMany({
+        where: { id: { in: pageIds } },
+        select: RECIPE_LIST_SELECT,
+      });
+      // Restore shuffle order
+      const recipeMap = new Map(recipes.map((r) => [r.id, r]));
+      const orderedRecipes = pageIds.map((id) => recipeMap.get(id)).filter(Boolean);
+      return {
+        items: orderedRecipes.map(toRecipeListItem),
+        total: allIds.length,
+        page,
+        perPage: pageSize,
+      };
+    }
+
+    const [recipes, total] = await Promise.all([
+      this.prisma.recipe.findMany({
+        where,
+        orderBy: { [sort]: order },
+        skip: (page - 1) * pageSize,
+        take: pageSize,
+        select: RECIPE_LIST_SELECT,
+      }),
+      this.prisma.recipe.count({ where }),
+    ]);
+
+    return {
+      items: recipes.map(toRecipeListItem),
+      total,
+      page,
+      perPage: pageSize,
+    };
   }
 
   async findOne(id: string, householdId: string): Promise<RecipeDetailResponse> {

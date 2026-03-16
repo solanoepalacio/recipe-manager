@@ -9,6 +9,7 @@ const mockPrisma = {
     findFirst: jest.fn(),
     findUnique: jest.fn(),
     findMany: jest.fn(),
+    count: jest.fn(),
     create: jest.fn(),
     update: jest.fn(),
     delete: jest.fn(),
@@ -129,6 +130,88 @@ describe('RecipesService', () => {
         createdAt: new Date(), updatedAt: new Date(),
       });
       await expect(service.remove('r1', 'hh1')).rejects.toThrow(ForbiddenException);
+    });
+  });
+
+  describe('findAll', () => {
+    const baseRecipe = {
+      id: 'r1', name: 'Pasta Carbonara', slug: 'pasta-carbonara',
+      description: null, servingsQty: null, servingsUnit: null, shareToken: null,
+      createdAt: new Date('2026-01-01'), updatedAt: new Date('2026-01-01'),
+      _count: { images: 2 },
+    };
+
+    it('returns PaginatedResponse shape with defaults (page=1, pageSize=20, sort=createdAt, order=desc)', async () => {
+      mockPrisma.recipe.findMany.mockResolvedValueOnce([baseRecipe]);
+      mockPrisma.recipe.count.mockResolvedValueOnce(1);
+      const result = await service.findAll('hh1', {});
+      expect(result).toMatchObject({ items: expect.any(Array), total: 1, page: 1, perPage: 20 });
+      expect(mockPrisma.recipe.findMany).toHaveBeenCalledWith(expect.objectContaining({
+        orderBy: { createdAt: 'desc' },
+        skip: 0,
+        take: 20,
+      }));
+    });
+
+    it('filters by name when search param provided', async () => {
+      mockPrisma.recipe.findMany.mockResolvedValueOnce([baseRecipe]);
+      mockPrisma.recipe.count.mockResolvedValueOnce(1);
+      await service.findAll('hh1', { search: 'pasta' });
+      expect(mockPrisma.recipe.findMany).toHaveBeenCalledWith(expect.objectContaining({
+        where: expect.objectContaining({ name: { contains: 'pasta', mode: 'insensitive' } }),
+      }));
+    });
+
+    it('filters by foodId when foodId param provided', async () => {
+      mockPrisma.recipe.findMany.mockResolvedValueOnce([baseRecipe]);
+      mockPrisma.recipe.count.mockResolvedValueOnce(1);
+      await service.findAll('hh1', { foodId: 'food-uuid' });
+      expect(mockPrisma.recipe.findMany).toHaveBeenCalledWith(expect.objectContaining({
+        where: expect.objectContaining({
+          sections: { some: { ingredients: { some: { foodId: 'food-uuid' } } } },
+        }),
+      }));
+    });
+
+    it('applies sort=name, order=asc to orderBy', async () => {
+      mockPrisma.recipe.findMany.mockResolvedValueOnce([baseRecipe]);
+      mockPrisma.recipe.count.mockResolvedValueOnce(1);
+      await service.findAll('hh1', { sort: 'name' as any, order: 'asc' as any });
+      expect(mockPrisma.recipe.findMany).toHaveBeenCalledWith(expect.objectContaining({
+        orderBy: { name: 'asc' },
+      }));
+    });
+
+    it('applies pagination: page=2, pageSize=5 → skip=5, take=5', async () => {
+      mockPrisma.recipe.findMany.mockResolvedValueOnce([baseRecipe]);
+      mockPrisma.recipe.count.mockResolvedValueOnce(10);
+      const result = await service.findAll('hh1', { page: 2, pageSize: 5 });
+      expect(mockPrisma.recipe.findMany).toHaveBeenCalledWith(expect.objectContaining({
+        skip: 5,
+        take: 5,
+      }));
+      expect(result.perPage).toBe(5);
+      expect(result.page).toBe(2);
+    });
+
+    it('handles sort=random by fetching all IDs and returning shuffled slice', async () => {
+      // First findMany call (fetch IDs), second findMany call (fetch data for page IDs)
+      mockPrisma.recipe.findMany
+        .mockResolvedValueOnce([{ id: 'r1' }, { id: 'r2' }, { id: 'r3' }])
+        .mockResolvedValueOnce([baseRecipe]);
+      const result = await service.findAll('hh1', { sort: 'random' as any });
+      expect(result.total).toBe(3);
+      expect(result.items).toHaveLength(1);
+    });
+
+    it('maps recipe to RecipeListItem shape including imageCount', async () => {
+      mockPrisma.recipe.findMany.mockResolvedValueOnce([baseRecipe]);
+      mockPrisma.recipe.count.mockResolvedValueOnce(1);
+      const result = await service.findAll('hh1', {});
+      expect(result.items[0]).toMatchObject({
+        id: 'r1', name: 'Pasta Carbonara', imageCount: 2,
+        createdAt: '2026-01-01T00:00:00.000Z',
+      });
     });
   });
 });

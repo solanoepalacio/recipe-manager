@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Patch, Delete, Body, Param } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Controller, Get, Post, Patch, Delete, Body, Param, Query } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
 import { RecipesService } from './recipes.service';
 import { CreateRecipeDto } from './dto/create-recipe.dto';
 import { UpdateRecipeDto } from './dto/update-recipe.dto';
+import { RecipeQueryDto } from './dto/recipe-query.dto';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 
 @ApiTags('recipes')
@@ -18,10 +19,16 @@ export class RecipesController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'List all recipes in the household' })
-  @ApiResponse({ status: 200, description: 'Recipe list' })
-  findAll(@CurrentUser() user: any) {
-    return this.recipesService.findAll(user.householdId);
+  @ApiOperation({ summary: 'List, search, filter, sort, and paginate recipes in the household' })
+  @ApiResponse({ status: 200, description: 'Paginated recipe list' })
+  @ApiQuery({ name: 'search', required: false, description: 'Case-insensitive name substring search' })
+  @ApiQuery({ name: 'foodId', required: false, description: 'Filter by food ID' })
+  @ApiQuery({ name: 'sort', required: false, enum: ['name', 'createdAt', 'updatedAt', 'random'] })
+  @ApiQuery({ name: 'order', required: false, enum: ['asc', 'desc'] })
+  @ApiQuery({ name: 'page', required: false, type: Number })
+  @ApiQuery({ name: 'pageSize', required: false, type: Number })
+  findAll(@CurrentUser() user: any, @Query() query: RecipeQueryDto) {
+    return this.recipesService.findAll(user.householdId, query);
   }
 
   @Get(':id')
