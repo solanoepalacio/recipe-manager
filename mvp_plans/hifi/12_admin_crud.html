@@ -178,6 +178,92 @@
       font-weight: 600;
     }
 
+    /* ===== SECTION HEADER (above accordion) ===== */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 20px 12px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #2C2C2A;
+    }
+
+    .btn-nueva-casa {
+      background: #2C2C2A;
+      color: #FAFAF7;
+      border: none;
+      border-radius: 12px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+    }
+
+    /* ===== EMPTY STATE (no households) ===== */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 32px;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .empty-state [data-lucide] {
+      width: 48px;
+      height: 48px;
+      stroke: #C8C4BD;
+      stroke-width: 1.5;
+    }
+
+    .empty-state-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: #2C2C2A;
+      margin-top: 8px;
+    }
+
+    .empty-state-sub {
+      font-size: 14px;
+      color: #8A8680;
+      line-height: 1.5;
+    }
+
+    /* ===== EMPTY MEMBERS note ===== */
+    .empty-members {
+      padding: 12px 20px 12px 48px;
+      font-size: 13px;
+      color: #8A8680;
+      border-bottom: 1px solid #F4F2ED;
+      font-style: italic;
+    }
+
+    /* ===== ADD MEMBER ROW (always last in expanded household) ===== */
+    .add-member-row {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px 12px 48px;
+      gap: 8px;
+      cursor: pointer;
+      color: #5EBD6A;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 1px solid #F4F2ED;
+    }
+
+    .add-member-row [data-lucide] {
+      width: 15px;
+      height: 15px;
+      stroke: #5EBD6A;
+      stroke-width: 2.5;
+    }
+
     /* ===== MEMBER ROWS ===== */
     .member-row {
       display: flex;
@@ -409,6 +495,29 @@
 </head>
 <body>
 
+  <!-- ===== FRAME 0: Sin hogares (estado vacío) ===== -->
+  <div class="frame-wrapper">
+    <div class="phone">
+      <div class="admin-top-bar">
+        <span class="admin-top-bar-title">Administracion</span>
+        <span class="admin-top-bar-action">Cerrar sesion</span>
+      </div>
+
+      <div class="content">
+        <div class="section-header">
+          <span class="section-title">Hogares</span>
+          <button class="btn-nueva-casa">+ Nueva casa</button>
+        </div>
+        <div class="empty-state">
+          <i data-lucide="house-heart"></i>
+          <span class="empty-state-title">Aun no hay hogares</span>
+          <span class="empty-state-sub">Crea el primero usando el boton "Nueva casa".</span>
+        </div>
+      </div>
+    </div>
+    <span class="frame-label">Sin hogares (estado vacio)</span>
+  </div>
+
   <!-- ===== FRAME 1: Hogares (todos colapsados) ===== -->
   <div class="frame-wrapper">
     <div class="phone">
@@ -418,6 +527,11 @@
       </div>
 
       <div class="content">
+        <div class="section-header">
+          <span class="section-title">Hogares</span>
+          <button class="btn-nueva-casa">+ Nueva casa</button>
+        </div>
+
         <div class="accordion-row">
           <div class="accordion-header">
             <span class="accordion-arrow"><i data-lucide="chevron-right"></i></span>
@@ -446,7 +560,7 @@
     <span class="frame-label">Hogares (todos colapsados)</span>
   </div>
 
-  <!-- ===== FRAME 2: Familia Garcia expandida ===== -->
+  <!-- ===== FRAME 2a: Hogar expandido — sin miembros ===== -->
   <div class="frame-wrapper">
     <div class="phone">
       <div class="admin-top-bar">
@@ -455,6 +569,58 @@
       </div>
 
       <div class="content">
+        <div class="section-header">
+          <span class="section-title">Hogares</span>
+          <button class="btn-nueva-casa">+ Nueva casa</button>
+        </div>
+
+        <div class="accordion-row expanded">
+          <div class="accordion-header">
+            <span class="accordion-arrow"><i data-lucide="chevron-down"></i></span>
+            <span class="accordion-name">Familia Garcia</span>
+            <span class="accordion-meta">0 miembros</span>
+          </div>
+          <div class="empty-members">Sin miembros en este hogar.</div>
+          <div class="add-member-row">
+            <i data-lucide="plus"></i>
+            Nuevo miembro
+          </div>
+        </div>
+
+        <div class="accordion-row">
+          <div class="accordion-header">
+            <span class="accordion-arrow"><i data-lucide="chevron-right"></i></span>
+            <span class="accordion-name">Familia Lopez</span>
+            <span class="accordion-meta">3 miembros</span>
+          </div>
+        </div>
+
+        <div class="accordion-row">
+          <div class="accordion-header">
+            <span class="accordion-arrow"><i data-lucide="chevron-right"></i></span>
+            <span class="accordion-name">Familia Martinez</span>
+            <span class="accordion-meta">2 miembros</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="frame-label">Hogar expandido — sin miembros</span>
+  </div>
+
+  <!-- ===== FRAME 2b: Familia Garcia expandida (con miembros) ===== -->
+  <div class="frame-wrapper">
+    <div class="phone">
+      <div class="admin-top-bar">
+        <span class="admin-top-bar-title">Administracion</span>
+        <span class="admin-top-bar-action">Cerrar sesion</span>
+      </div>
+
+      <div class="content">
+        <div class="section-header">
+          <span class="section-title">Hogares</span>
+          <button class="btn-nueva-casa">+ Nueva casa</button>
+        </div>
+
         <!-- Familia Garcia: expanded -->
         <div class="accordion-row expanded">
           <div class="accordion-header">
@@ -498,6 +664,12 @@
               <span class="member-action-btn"><i data-lucide="refresh-cw"></i></span>
             </div>
           </div>
+
+          <!-- Always last: add member row -->
+          <div class="add-member-row">
+            <i data-lucide="plus"></i>
+            Nuevo miembro
+          </div>
         </div>
 
         <!-- Familia Lopez: collapsed -->
@@ -519,7 +691,7 @@
         </div>
       </div>
     </div>
-    <span class="frame-label">Familia Garcia expandida</span>
+    <span class="frame-label">Familia Garcia expandida (con miembros)</span>
   </div>
 
   <!-- ===== FRAME 3: Editar usuario (modal) ===== -->
