@@ -2,8 +2,8 @@
 phase: 9
 slug: frontend-recipe-creation-editing
 status: draft
-nyquist_compliant: false
-wave_0_complete: false
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-03-18
 ---
 
@@ -36,20 +36,16 @@ created: 2026-03-18
 
 ## Per-Task Verification Map
 
-| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 9-01-01 | 01 | 1 | RCP-01 | unit | `yarn workspace @recipe-manager/web test --run -- RecipeFormShell` | ❌ W0 | ⬜ pending |
-| 9-01-02 | 01 | 1 | RCP-01 | unit | `yarn workspace @recipe-manager/web test --run -- SlugPreview` | ❌ W0 | ⬜ pending |
-| 9-02-01 | 02 | 2 | ING-01 | unit | `yarn workspace @recipe-manager/web test --run -- IngredientSection` | ❌ W0 | ⬜ pending |
-| 9-02-02 | 02 | 2 | ING-02 | unit | `yarn workspace @recipe-manager/web test --run -- FoodUnitPicker` | ❌ W0 | ⬜ pending |
-| 9-02-03 | 02 | 2 | ING-03 | unit | `yarn workspace @recipe-manager/web test --run -- IngredientReorder` | ❌ W0 | ⬜ pending |
-| 9-03-01 | 03 | 2 | INS-01 | unit | `yarn workspace @recipe-manager/web test --run -- InstructionStep` | ❌ W0 | ⬜ pending |
-| 9-03-02 | 03 | 2 | INS-02 | unit | `yarn workspace @recipe-manager/web test --run -- StepReorder` | ❌ W0 | ⬜ pending |
-| 9-04-01 | 04 | 3 | IMG-01 | unit | `yarn workspace @recipe-manager/web test --run -- ImageUpload` | ❌ W0 | ⬜ pending |
-| 9-04-02 | 04 | 3 | IMG-02 | unit | `yarn workspace @recipe-manager/web test --run -- ImageDelete` | ❌ W0 | ⬜ pending |
-| 9-05-01 | 05 | 3 | RCP-05 | unit | `yarn workspace @recipe-manager/web test --run -- LockToggle` | ❌ W0 | ⬜ pending |
-| 9-05-02 | 05 | 3 | RCP-02 | unit | `yarn workspace @recipe-manager/web test --run -- DuplicateRecipe` | ❌ W0 | ⬜ pending |
-| 9-05-03 | 05 | 3 | RCP-05 | integration | `yarn workspace @recipe-manager/api test --run -- recipe-lock` | ❌ W0 | ⬜ pending |
+| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | Status |
+|---------|------|------|-------------|-----------|-------------------|--------|
+| 9-01-01 | 01 | 1 | RCP-01, RCP-03, RCP-04 | unit | `yarn workspace @recipe-manager/web test --run -- RecipeEditor` | ⬜ pending |
+| 9-01-02 | 01 | 1 | RCP-01 | unit | `yarn workspace @recipe-manager/web test --run -- RecipeEditor` | ⬜ pending |
+| 9-02-01 | 02 | 2 | ING-01, ING-02, ING-03 | unit | `yarn workspace @recipe-manager/web test --run -- IngredientEditor` | ⬜ pending |
+| 9-02-02 | 02 | 2 | ING-01 | unit | `yarn workspace @recipe-manager/web test --run -- IngredientEditor` | ⬜ pending |
+| 9-03-01 | 03 | 2 | INS-01, INS-02 | unit | `yarn workspace @recipe-manager/web test --run -- StepEditor` | ⬜ pending |
+| 9-04-01 | 04 | 2 | IMG-01, IMG-02 | unit | `yarn workspace @recipe-manager/web test --run -- ImageManagement` | ⬜ pending |
+| 9-05-01 | 05 | 2 | RCP-05, RCP-02 | unit | `yarn workspace @recipe-manager/web test --run -- RecipeSettings` | ⬜ pending |
+| 9-05-02 | 05 | 2 | RCP-05 | integration | `yarn workspace @recipe-manager/api test --run -- recipe-lock` | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -57,17 +53,14 @@ created: 2026-03-18
 
 ## Wave 0 Requirements
 
-- [ ] `apps/web/tests/components/RecipeFormShell.test.tsx` — stubs for RCP-01 (create/edit form shell)
-- [ ] `apps/web/tests/components/SlugPreview.test.tsx` — stubs for RCP-01 (slug preview)
-- [ ] `apps/web/tests/components/IngredientSection.test.tsx` — stubs for ING-01 (ingredient section)
-- [ ] `apps/web/tests/components/FoodUnitPicker.test.tsx` — stubs for ING-01, ING-02 (pickers)
-- [ ] `apps/web/tests/components/IngredientReorder.test.tsx` — stubs for ING-03 (drag-and-drop reorder)
-- [ ] `apps/web/tests/components/InstructionStep.test.tsx` — stubs for INS-01, INS-02 (step editor + reorder)
-- [ ] `apps/web/tests/components/ImageUpload.test.tsx` — stubs for IMG-01, IMG-02 (image management)
-- [ ] `apps/web/tests/components/LockToggle.test.tsx` — stubs for RCP-05 (lock toggle)
-- [ ] `apps/web/tests/components/DuplicateRecipe.test.tsx` — stubs for RCP-02 (duplicate action)
-- [ ] `apps/api/integration_tests/recipe-lock.test.ts` — stubs for RCP-05 backend (isLocked field)
-- [ ] Install `@dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities` — required for ING-03, INS-02
+All test files are created as part of their respective plan tasks (not as separate Wave 0 stubs). Each plan's task includes test creation inline with the component code.
+
+- [x] `apps/web/src/components/__tests__/RecipeEditor.test.tsx` — created in Plan 09-01, Task 1 (RCP-01, RCP-03, RCP-04)
+- [x] `apps/web/src/components/__tests__/IngredientEditor.test.tsx` — created in Plan 09-02, Task 1 (ING-01, ING-02, ING-03)
+- [x] `apps/web/src/components/__tests__/StepEditor.test.tsx` — created in Plan 09-03, Task 1 (INS-01, INS-02)
+- [x] `apps/web/src/components/__tests__/ImageManagement.test.tsx` — created in Plan 09-04, Task 1 (IMG-01, IMG-02)
+- [x] `apps/web/src/components/__tests__/RecipeSettings.test.tsx` — created in Plan 09-05, Task 2 (RCP-02, RCP-05)
+- [x] Install `@dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities` — installed in Plan 09-01, Task 1
 
 ---
 
@@ -84,11 +77,11 @@ created: 2026-03-18
 
 ## Validation Sign-Off
 
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
-- [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references
-- [ ] No watch-mode flags
-- [ ] Feedback latency < 30s
-- [ ] `nyquist_compliant: true` set in frontmatter
+- [x] All tasks have `<automated>` verify or Wave 0 dependencies
+- [x] Sampling continuity: no 3 consecutive tasks without automated verify
+- [x] Wave 0 covers all MISSING references
+- [x] No watch-mode flags
+- [x] Feedback latency < 30s
+- [x] `nyquist_compliant: true` set in frontmatter
 
 **Approval:** pending
