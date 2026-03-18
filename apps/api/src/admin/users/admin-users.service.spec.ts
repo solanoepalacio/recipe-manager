@@ -6,17 +6,31 @@ import { AdminUsersService } from './admin-users.service';
 describe('AdminUsersService', () => {
   let service: AdminUsersService;
   let prisma: {
+    household: {
+      findUnique: jest.Mock;
+    };
     user: {
       findUnique: jest.Mock;
+      findMany: jest.Mock;
+      count: jest.Mock;
+      create: jest.Mock;
       update: jest.Mock;
+      delete: jest.Mock;
     };
   };
 
   beforeEach(() => {
     prisma = {
+      household: {
+        findUnique: jest.fn(),
+      },
       user: {
         findUnique: jest.fn(),
+        findMany: jest.fn(),
+        count: jest.fn(),
+        create: jest.fn(),
         update: jest.fn(),
+        delete: jest.fn(),
       },
     };
     service = new AdminUsersService(prisma as any);
@@ -83,5 +97,63 @@ describe('AdminUsersService', () => {
     // SHA-256 of the URL token equals the stored hash
     const expectedHash = createHash('sha256').update(token).digest('hex');
     expect(storedHash).toBe(expectedHash);
+  });
+
+  describe('findAll', () => {
+    it('returns paginated list of users', async () => {
+      prisma.user.findMany = jest.fn().mockResolvedValue([{ id: 'u1', householdId: 'h1', name: 'Alice', email: null, username: null, gender: null, dateOfBirth: null, createdAt: new Date(), updatedAt: new Date() }]);
+      prisma.user.count = jest.fn().mockResolvedValue(1);
+      const result = await (service as any).findAll(1, 20);
+      expect(result.total).toBe(1);
+      expect(result.page).toBe(1);
+      expect(result.perPage).toBe(20);
+      expect(result.items[0].id).toBe('u1');
+    });
+  });
+
+  describe('findOne', () => {
+    it('throws NotFoundException when user not found', async () => {
+      prisma.user.findUnique = jest.fn().mockResolvedValue(null);
+      await expect((service as any).findOne('missing')).rejects.toThrow(NotFoundException);
+    });
+    it('returns user response when found', async () => {
+      prisma.user.findUnique = jest.fn().mockResolvedValue({ id: 'u1', householdId: 'h1', name: 'Alice', email: null, username: null, gender: null, dateOfBirth: null, createdAt: new Date(), updatedAt: new Date() });
+      const result = await (service as any).findOne('u1');
+      expect(result.id).toBe('u1');
+    });
+  });
+
+  describe('create', () => {
+    it('hashes password when provided', async () => {
+      prisma.household = { findUnique: jest.fn().mockResolvedValue({ id: 'h1' }) } as any;
+      prisma.user.create = jest.fn().mockResolvedValue({ id: 'u2', householdId: 'h1', name: 'Bob', email: 'bob@ex.com', username: null, gender: null, dateOfBirth: null, createdAt: new Date(), updatedAt: new Date() });
+      const result = await (service as any).create({ householdId: 'h1', name: 'Bob', email: 'bob@ex.com', password: 'secret123' });
+      expect(prisma.user.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ passwordHash: expect.any(String) }) }));
+      expect(result.id).toBe('u2');
+    });
+    it('creates user with null passwordHash when no password provided', async () => {
+      prisma.household = { findUnique: jest.fn().mockResolvedValue({ id: 'h1' }) } as any;
+      prisma.user.create = jest.fn().mockResolvedValue({ id: 'u3', householdId: 'h1', name: 'Carol', email: null, username: null, gender: null, dateOfBirth: null, createdAt: new Date(), updatedAt: new Date() });
+      await (service as any).create({ householdId: 'h1', name: 'Carol' });
+      expect(prisma.user.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ passwordHash: null }) }));
+    });
+  });
+
+  describe('update', () => {
+    it('returns updated user', async () => {
+      prisma.user.findUnique = jest.fn().mockResolvedValue({ id: 'u1' });
+      prisma.user.update = jest.fn().mockResolvedValue({ id: 'u1', householdId: 'h1', name: 'Updated', email: null, username: null, gender: null, dateOfBirth: null, createdAt: new Date(), updatedAt: new Date() });
+      const result = await (service as any).update('u1', { name: 'Updated' });
+      expect(result.name).toBe('Updated');
+    });
+  });
+
+  describe('remove', () => {
+    it('deletes user by id', async () => {
+      prisma.user.findUnique = jest.fn().mockResolvedValue({ id: 'u1' });
+      prisma.user.delete = jest.fn().mockResolvedValue({ id: 'u1' });
+      await (service as any).remove('u1');
+      expect(prisma.user.delete).toHaveBeenCalledWith({ where: { id: 'u1' } });
+    });
   });
 });
