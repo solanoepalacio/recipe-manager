@@ -41,9 +41,8 @@ export default function LoginPage() {
     login({ email, password });
   };
 
-  // Show nothing while checking existing session
-  if (authLoading) return null;
-  if (user) return null; // redirect in flight
+  // Hide form while redirect is in flight (already authenticated)
+  if (!authLoading && user) return null;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-8 py-12">
