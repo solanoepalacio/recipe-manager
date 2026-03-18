@@ -15,6 +15,18 @@ revised: 2026-03-18
 
 ---
 
+## Hi-Fi Source Files
+
+These hi-fi HTML files are the **authoritative visual source** for this phase.
+When this spec is ambiguous or silent on a detail, open the hi-fi file and match it exactly.
+
+| View | File |
+|------|------|
+| Auth (login, register, forgot password) | `mvp_plans/hifi/01_auth.html` |
+| App shell (TopBar, Drawer, recipe list) | `mvp_plans/hifi/02_app_shell.html` |
+
+---
+
 ## Design System
 
 | Property | Value |
