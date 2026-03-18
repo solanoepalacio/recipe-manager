@@ -97,6 +97,8 @@ Accent (`#5EBD6A`) is reserved for:
 
 ### View 1: Planner Page (`/planner`)
 
+**Focal point:** The 7-day accordion list is the primary canvas. The user's eye should land on today's expanded day row first — today's row auto-expands on load and its header uses `bg-subtle` to distinguish it from collapsed rows. Everything else (top bar, week nav, toggle) is chrome that recedes visually.
+
 **Layout — mobile (default):**
 - TopBar: hamburger left, "Planificador" center. Uses standard `#FAFAF7` background (not sand variant — planner is a list view, not a detail view).
 - Week navigation row below top bar: `<` chevron (left), "Semana del DD - DD MMM" label (center), `>` chevron (right). Full-width row, `py-3 px-4`, `border-b border-border`.
@@ -155,7 +157,7 @@ Entry edit is triggered by tapping a recipe name in an expanded day row (long-pr
 - Title: "Editar entrada".
 - Recipe field: shows current recipe name; tapping opens the recipe picker flow (same bottom sheet).
 - Meal type selector: horizontal scroll chip row (same as picker).
-- "Guardar" filled button: `bg-foreground text-background rounded-[20px] px-6 py-3`, full-width.
+- "Guardar cambios" filled button: `bg-foreground text-background rounded-[20px] px-6 py-3`, full-width.
 - "Eliminar entrada" destructive text link: 15px `text-destructive`, centered, `mt-4`. No inline confirm — tapping shows ConfirmDialog inline (matches Phase 09 pattern from `confirmDeleteId` pattern).
 
 ---
@@ -224,14 +226,14 @@ All UI strings are in Spanish per project convention.
 | Add entry button | "+ Anadir receta" |
 | Recipe picker title | "Anadir receta a {nombre del dia, DD MMM}" (e.g., "Anadir receta a Lunes, 10 mar") |
 | Recipe picker search placeholder | "Buscar receta…" |
-| Recipe picker empty state heading | "Sin resultados" |
+| Recipe picker empty state heading | "Ninguna receta encontrada" |
 | Recipe picker empty state body | "No hay recetas que coincidan con tu busqueda." |
 | Edit sheet title | "Editar entrada" |
-| Edit sheet save button | "Guardar" |
+| Edit sheet save button | "Guardar cambios" |
 | Edit sheet delete link | "Eliminar entrada" |
 | Delete confirm message | "¿Eliminar esta entrada del planificador?" |
-| Delete confirm button | "Eliminar" |
-| Delete cancel button | "Cancelar" |
+| Delete confirm button | "Eliminar entrada" |
+| Delete cancel button | "Mantener entrada" |
 | Error toast (create fail) | "No se pudo agregar la receta. Intentalo de nuevo." |
 | Error toast (delete fail) | "No se pudo eliminar la entrada. Intentalo de nuevo." |
 | Error toast (move/drag fail) | "No se pudo mover la receta. Intentalo de nuevo." |
@@ -256,7 +258,7 @@ Meal type labels (for chips and entry display):
 | Action | Trigger | Confirmation |
 |--------|---------|-------------|
 | Delete entry from day row | Tap `×` button on `MealEntryRow` in expanded day | No confirmation — immediate delete (per wireframe spec: "Delete removes recipe from day without confirmation") |
-| Delete entry from edit sheet | Tap "Eliminar entrada" link in `EditEntrySheet` | Inline `ConfirmDialog` below the link — message "¿Eliminar esta entrada del planificador?" with "Eliminar" (destructive) and "Cancelar" buttons |
+| Delete entry from edit sheet | Tap "Eliminar entrada" link in `EditEntrySheet` | Inline `ConfirmDialog` below the link — message "¿Eliminar esta entrada del planificador?" with "Eliminar entrada" (destructive) and "Mantener entrada" (cancel) buttons |
 
 ---
 
