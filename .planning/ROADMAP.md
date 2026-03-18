@@ -18,7 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 4: Backend Recipe CRUD** - Recipe, section, ingredient, step, image endpoints; full non-admin REST API (completed 2026-03-16)
 - [x] **Phase 5: Backend Search, Sharing, Meal Plan** - Fuzzy search, filtering, sorting, share tokens, meal plan endpoints (completed 2026-03-16)
 - [x] **Phase 6: Backend Admin Endpoints** - Admin CRUD for users, households, foods, units, tokens (completed 2026-03-18)
-- [ ] **Phase 7: Frontend Setup + App Shell + Auth Flows** - Project scaffold, responsive shell, login/logout, UX primitives
+- [x] **Phase 7: Frontend Setup + App Shell + Auth Flows** - Project scaffold, responsive shell, login/logout, UX primitives (completed 2026-03-18)
 - [ ] **Phase 8: Frontend Recipe List + Detail + Cook Mode** - Recipe browsing, search, filter, sort, detail view, cook mode
 - [ ] **Phase 9: Frontend Recipe Creation + Editing** - Create/edit form, ingredients, sections, steps, images, lock
 - [ ] **Phase 10: Frontend Meal Planner** - Weekly/monthly calendar, assign recipes, drag-drop, edit/delete entries
@@ -247,7 +247,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 4. Backend Recipe CRUD | 4/4 | Complete   | 2026-03-16 |
 | 5. Backend Search, Sharing, Meal Plan | 4/4 | Complete   | 2026-03-16 |
 | 6. Backend Admin Endpoints | 5/5 | Complete   | 2026-03-18 |
-| 7. Frontend Setup + App Shell + Auth Flows | 2/4 | In Progress|  |
+| 7. Frontend Setup + App Shell + Auth Flows | 4/4 | Complete   | 2026-03-18 |
 | 8. Frontend Recipe List + Detail + Cook Mode | 0/3 | Not started | - |
 | 9. Frontend Recipe Creation + Editing | 0/5 | Not started | - |
 | 10. Frontend Meal Planner | 0/4 | Not started | - |

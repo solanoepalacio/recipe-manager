@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 07-frontend-setup-app-shell-auth-flows-03-PLAN.md
-last_updated: "2026-03-18T14:02:27.131Z"
+stopped_at: "Checkpoint reached: 07-04 Task 2 human-verify — dev server at http://localhost:3002"
+last_updated: "2026-03-18T14:07:14.325Z"
 last_activity: 2026-03-18 — Plan 06-05 complete; AdminTokensService (SHA-256 hash, raw token once) + AdminTokensController (CurrentAdmin decorator) + AdminModule fully wired with all 6 sub-modules; 92 tests green; build clean
 progress:
   total_phases: 12
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 26
-  completed_plans: 25
+  completed_plans: 26
   percent: 100
 ---
 
@@ -71,6 +71,7 @@ Progress: [██████████] 100%
 | Phase 07-frontend-setup-app-shell-auth-flows P01 | 3 | 2 tasks | 13 files |
 | Phase 07-frontend-setup-app-shell-auth-flows P02 | 8 | 2 tasks | 8 files |
 | Phase 07-frontend-setup-app-shell-auth-flows P03 | 6 | 2 tasks | 6 files |
+| Phase 07-frontend-setup-app-shell-auth-flows P04 | 3 | 1 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -142,6 +143,7 @@ Recent decisions affecting current work:
 - [Phase 07-02]: AppShell renders SearchBar+FilterActionsRow as persistent chrome; (app)/layout.tsx is temporary stub with null user — Plan 07-03 replaces with AuthProvider+ProtectedLayout
 - [Phase 07-03]: auth.tsx uses .tsx extension (not .ts) because AuthProvider renders JSX
 - [Phase 07-03]: (auth)/layout.tsx created with AuthProvider so LoginPage useAuth() detects existing sessions — without it, isLoading stays true forever and form never renders
+- [Phase 07-04]: Sonner v2 renders section[aria-label='Notifications alt+T'] not ol[tabindex] — Toast test selector updated to section[aria-label]
 
 ### Pending Todos
 
@@ -153,6 +155,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T14:02:17.089Z
-Stopped at: Completed 07-frontend-setup-app-shell-auth-flows-03-PLAN.md
+Last session: 2026-03-18T14:07:14.323Z
+Stopped at: Checkpoint reached: 07-04 Task 2 human-verify — dev server at http://localhost:3002
 Resume file: None
