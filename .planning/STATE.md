@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 05-03-PLAN.md
-last_updated: "2026-03-16T18:56:16.241Z"
+stopped_at: Completed 06-01-PLAN.md
+last_updated: "2026-03-18T11:03:17.000Z"
 last_activity: "2026-03-16 — Plan 05-03 complete; MealPlanModule with GET /meal-plan, POST /meal-plan/entries, PATCH/DELETE /meal-plan/entries/:id; lazy MealPlan upsert; shared meal-plan types; 12 unit tests; jest moduleNameMapper fix; 68 tests passing; build clean"
 progress:
   total_phases: 12
   completed_phases: 5
-  total_plans: 17
-  completed_plans: 17
+  total_plans: 22
+  completed_plans: 18
   percent: 100
 ---
 
@@ -63,6 +63,7 @@ Progress: [██████████] 100%
 | Phase 05-backend-search-sharing-meal-plan P04 | 3 | 2 tasks | 4 files |
 | Phase 05-backend-search-sharing-meal-plan P02 | 4 | 2 tasks | 4 files |
 | Phase Phase 05-backend-search-sharing-meal-plan PP03 | 4 | 2 tasks | 10 files |
+| Phase 06-backend-admin-endpoints P01 | 4 | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -119,6 +120,9 @@ Recent decisions affecting current work:
 - [Phase 05-backend-search-sharing-meal-plan]: SharingService owns SHARING_RECIPE_INCLUDE locally — RECIPE_INCLUDE not exported from recipes.service
 - [Phase 05-backend-search-sharing-meal-plan]: SharedController uses @Controller('shared') — route is GET /api/shared/:token not /api/recipes/shared/:token
 - [Phase Phase 05-03]: MealPlanEntry ownership verified via mealPlan.householdId join (no direct householdId column on entry); lazy MealPlan creation via upsert; jest moduleNameMapper fixed from ../../ to ../../../ (rootDir is src)
+- [Phase 06-backend-admin-endpoints]: Wave-0 scaffolds fail by design — implementation plans 06-02 through 06-05 make them pass
+- [Phase 06-backend-admin-endpoints]: AdminTokenCreatedResponse extends AdminTokenResponse — raw token shown exactly once on POST; list endpoint never exposes tokenHash
+- [Phase 06-backend-admin-endpoints]: CurrentAdmin reads req.admin (set by AdminAuthGuard) — parallel to CurrentUser reading req.user
 
 ### Pending Todos
 
@@ -130,6 +134,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-16T18:53:05.176Z
-Stopped at: Completed 05-03-PLAN.md
+Last session: 2026-03-18T11:03:16.997Z
+Stopped at: Completed 06-01-PLAN.md
 Resume file: None
