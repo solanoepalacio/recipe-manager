@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 07-frontend-setup-app-shell-auth-flows-01-PLAN.md
-last_updated: "2026-03-18T13:52:59.898Z"
+stopped_at: Completed 07-frontend-setup-app-shell-auth-flows-02-PLAN.md
+last_updated: "2026-03-18T13:58:38.683Z"
 last_activity: 2026-03-18 — Plan 06-05 complete; AdminTokensService (SHA-256 hash, raw token once) + AdminTokensController (CurrentAdmin decorator) + AdminModule fully wired with all 6 sub-modules; 92 tests green; build clean
 progress:
   total_phases: 12
   completed_phases: 6
   total_plans: 26
-  completed_plans: 23
+  completed_plans: 24
   percent: 100
 ---
 
@@ -69,6 +69,7 @@ Progress: [██████████] 100%
 | Phase 06-backend-admin-endpoints P04 | 2 | 2 tasks | 8 files |
 | Phase 06-backend-admin-endpoints P05 | 5 | 2 tasks | 4 files |
 | Phase 07-frontend-setup-app-shell-auth-flows P01 | 3 | 2 tasks | 13 files |
+| Phase 07-frontend-setup-app-shell-auth-flows P02 | 8 | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -137,6 +138,7 @@ Recent decisions affecting current work:
 - [Phase 06-backend-admin-endpoints]: AdminModule wiring is final — all 6 sub-module controller+service pairs registered; NestJS resolves all dependencies
 - [Phase 07-01]: next/font/google used for Outfit (self-hosted, eliminates CDN dependency, improves LCP)
 - [Phase 07-01]: api-client BASE_URL defaults to /api via Next.js rewrite proxy — eliminates CORS in development
+- [Phase 07-02]: AppShell renders SearchBar+FilterActionsRow as persistent chrome; (app)/layout.tsx is temporary stub with null user — Plan 07-03 replaces with AuthProvider+ProtectedLayout
 
 ### Pending Todos
 
@@ -148,6 +150,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T13:52:59.895Z
-Stopped at: Completed 07-frontend-setup-app-shell-auth-flows-01-PLAN.md
+Last session: 2026-03-18T13:58:38.680Z
+Stopped at: Completed 07-frontend-setup-app-shell-auth-flows-02-PLAN.md
 Resume file: None
