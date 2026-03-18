@@ -117,9 +117,9 @@ Destructive (#D94F4F) reserved for:
 - Heading: 28px/600 `#2C2C2A`, margin-bottom 8px
 - Subtitle: 15px/400 `#8A8680`, margin-bottom 48px
 - Form: full-width, flex-col, gap 12px
-- Field group: label (13px/400 `#2C2C2A`, gap 6px below) + input row
-- Input row: `#F4F2ED` bg, `#E0DCD5` border 1.5px, radius 12px, padding 14px 16px, flex row with icon (16x16 `#8A8680`) + placeholder text (15px `#C8C4BD`)
-- Submit button: full-width, radius 20px, padding 16px 24px, `#2C2C2A` bg, `#FAFAF7` text, 15px/600, margin-top 10px
+- Field group: label (13px/400 `#2C2C2A`, gap 8px below) + input row
+- Input row: `#F4F2ED` bg, `#E0DCD5` border 1.5px, radius 12px, padding 16px 16px, flex row with icon (16x16 `#8A8680`) + placeholder text (15px `#C8C4BD`)
+- Submit button: full-width, radius 20px, padding 16px 24px, `#2C2C2A` bg, `#FAFAF7` text, 15px/600, margin-top 8px
 
 ### TopBar
 - Full-width, padding 16px 24px, `#FAFAF7` bg, flex row space-between + center align
@@ -131,7 +131,7 @@ Destructive (#D94F4F) reserved for:
 - Width: 280px, full-height, `#FAFAF7` bg, positioned absolute left-0 top-0
 - Opens over content with scrim: `rgba(44, 44, 42, 0.3)` covering full screen
 - Header: `#E8E1D5` bg, padding 32px top / 24px horizontal / 24px bottom, radius top-left 20px
-  - Greeting: 15px/400 `#8A8680` ("Hola,"), margin-bottom 2px
+  - Greeting: 15px/400 `#8A8680` ("Hola,"), margin-bottom 4px
   - User name: 18px/600 `#2C2C2A`, letter-spacing -0.3px, margin-bottom 12px
   - Household: 15px/400 `#8A8680` with `chevron-right` 14x14 icon (color `#C8C4BD`)
 - Nav section: padding 16px 12px, flex-col, flex: 1
@@ -143,7 +143,7 @@ Destructive (#D94F4F) reserved for:
 Navigation items (in order): Hoy, Recetas, Planificador (above divider); Cerrar sesión (below divider)
 
 ### SearchBar
-- `#F4F2ED` bg, radius 12px, padding 12px 16px, flex row gap 10px
+- `#F4F2ED` bg, radius 12px, padding 12px 16px, flex row gap 8px
 - Icon: `search` 18x18 stroke-width 2, `#8A8680`
 - Placeholder: 15px `#C8C4BD` ("Buscar recetas...")
 - Focal point: this is the primary interactive anchor of the app shell
@@ -151,11 +151,11 @@ Navigation items (in order): Hoy, Recetas, Planificador (above divider); Cerrar 
 ### FilterActionsRow
 - Padding: 4px 16px 12px, flex row gap 16px
 - Each action: 13px/400 `#8A8680`, flex row gap 4px, icon (14x14 stroke-width 2) + label
-- Actions in Phase 7: "Ordenar" (icon: `arrow-up-down`), "Filtrar por ingredientes" (icon: `sliders-horizontal`)
+- Actions in Phase 7: "Ordenar recetas" (icon: `arrow-up-down`), "Filtrar por ingredientes" (icon: `sliders-horizontal`)
 - Note: these are visual placeholders in Phase 7; interaction wired in Phase 8
 
 ### RecipeCard (list item — Phase 7 shell only)
-- Flex row, gap 14px, padding 10px 0, border-bottom 1px `#F4F2ED`
+- Flex row, gap 14px, padding 8px 0, border-bottom 1px `#F4F2ED`
 - Last child: no border
 - Thumbnail: 72x68px, radius 10px, `#E8E1D5` bg (placeholder), `object-fit: cover`
 - Info column: flex-col gap 4px
@@ -170,7 +170,7 @@ Navigation items (in order): Hoy, Recetas, Planificador (above divider); Cerrar 
 - Note: in Phase 7 this is rendered as a visual element; routing to create recipe is wired in Phase 9
 
 ### Chip (filter chip — Phase 7 scaffold)
-- Padding 6px 14px, radius 20px, 13px/400
+- Padding 8px 16px, radius 20px, 13px/400
 - Default: border 1px `#E0DCD5`, color `#8A8680`, bg transparent
 - Active: bg `#2C2C2A`, color `#FAFAF7`, border `#2C2C2A`
 
@@ -248,7 +248,7 @@ All UI-facing strings are in Spanish (per CLAUDE.md). Code identifiers remain En
 | Hamburger button aria-label | Abrir menú |
 | FAB aria-label | Crear receta |
 | Search placeholder | Buscar recetas... |
-| Filter action: sort | Ordenar |
+| Filter action: sort | Ordenar recetas |
 | Filter action: ingredients | Filtrar por ingredientes |
 | Empty state heading (recipe list) | Sin recetas aún |
 | Empty state body (recipe list) | Crea tu primera receta con el botón + |
@@ -312,6 +312,19 @@ No third-party registries. All components are hand-rolled using Tailwind CSS tok
 | Accessibility: hamburger aria | Added `aria-label="Abrir menú"` to TopBar hamburger button. |
 | Accessibility: FAB aria | Added `aria-label="Crear receta"` to FAB. FAB icon changed from "+" character to `plus` lucide icon (removes weight-300 dependency). |
 | Focal points | Declared for login page and app shell. |
+
+### Revision Notes (2026-03-18 — checker pass 2 fixes)
+
+| Fix | Change |
+|-----|--------|
+| LoginPage input row padding | `14px 16px` → `16px 16px` (14 is not ×4) |
+| LoginPage submit button margin-top | `10px` → `8px` (10 is not ×4) |
+| LoginPage field label gap | `6px` → `8px` (6 is not ×4) |
+| Drawer greeting margin-bottom | `2px` → `4px` (2 is not ×4) |
+| RecipeCard row padding | `10px 0` → `8px 0` (10 is not ×4) |
+| Chip padding | `6px 14px` → `8px 16px` (6 and 14 are not ×4) |
+| SearchBar icon-to-text gap | `10px` → `8px` (10 is not ×4) |
+| Filter sort label | "Ordenar" → "Ordenar recetas" (noun consistency) |
 
 ---
 
