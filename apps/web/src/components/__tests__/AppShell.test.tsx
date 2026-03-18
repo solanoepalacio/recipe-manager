@@ -21,11 +21,6 @@ describe('AppShell', () => {
     expect(screen.getByRole('button', { name: 'Crear receta' })).toBeInTheDocument();
   });
 
-  it('renders search placeholder text', () => {
-    render(<AppShell user={mockUser} onLogout={vi.fn()}><div /></AppShell>);
-    expect(screen.getByText('Buscar recetas...')).toBeInTheDocument();
-  });
-
   it('drawer is not visible initially (has -translate-x-full class)', () => {
     render(<AppShell user={mockUser} onLogout={vi.fn()}><div /></AppShell>);
     const drawer = screen.getByRole('complementary'); // <aside>

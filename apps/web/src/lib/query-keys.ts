@@ -7,6 +7,10 @@ export const queryKeys = {
     list:   (params: Record<string, unknown>) => ['recipes', 'list', params] as const,
     detail: (slug: string) => ['recipes', 'detail', slug] as const,
   },
+  foods: {
+    all:  ['foods'] as const,
+    list: () => ['foods', 'list'] as const,
+  },
   mealPlan: {
     week: (from: string, to: string) => ['meal-plan', from, to] as const,
   },
