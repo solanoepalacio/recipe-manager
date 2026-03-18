@@ -32,14 +32,14 @@ Households can organize, discover, and cook their recipes together — from a se
 - [ ] User can lock a recipe to prevent editing
 
 #### Recipe Viewing & Cooking
-- [ ] User can view full recipe detail (ingredients, instructions, images)
-- [ ] User can enter cook mode (full-screen, large text, step navigation)
+- [x] User can view full recipe detail (ingredients, instructions, images) — Validated in Phase 08: frontend-recipe-list-detail-cook-mode
+- [x] User can enter cook mode (full-screen, large text, step navigation) — Validated in Phase 08: frontend-recipe-list-detail-cook-mode
 
 #### Recipe Search & Discovery
-- [ ] User can search recipes by name (with fuzzy matching)
-- [ ] User can filter recipes by food/ingredient
-- [ ] User can sort by name, date created, date updated, or random (asc/desc)
-- [ ] User can paginate recipe list (configurable page size)
+- [x] User can search recipes by name (with fuzzy matching) — Validated in Phase 08: frontend-recipe-list-detail-cook-mode
+- [x] User can filter recipes by food/ingredient — Validated in Phase 08: frontend-recipe-list-detail-cook-mode
+- [x] User can sort by name, date created, date updated, or random (asc/desc) — Validated in Phase 08: frontend-recipe-list-detail-cook-mode
+- [x] User can paginate recipe list (configurable page size) — Validated in Phase 08: frontend-recipe-list-detail-cook-mode
 
 #### Recipe Sharing
 - [ ] User can generate a shareable public link for a recipe (no login required to view)
@@ -119,4 +119,4 @@ Key architectural decisions already locked:
 | Foods/Units pre-populated by admin | Controlled vocabulary; no user-generated food names | — Pending |
 
 ---
-*Last updated: 2026-03-16 after initialization*
+*Last updated: 2026-03-18 — Phase 08 complete: recipe list, detail, and cook mode pages shipped*
