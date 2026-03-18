@@ -5,6 +5,7 @@ status: draft
 shadcn_initialized: false
 preset: none
 created: 2026-03-18
+revised: 2026-03-18
 ---
 
 # Phase 7 — UI Design Contract
@@ -22,9 +23,11 @@ created: 2026-03-18
 | Preset | not applicable |
 | Component library | none — hand-rolled Tailwind components |
 | Icon library | lucide-react |
-| Font | Outfit (Google Fonts) — weights 300, 400, 500, 600, 700 |
+| Font | Outfit (Google Fonts) — weights 400, 600 |
 
 **Source:** Both hi-fi HTML files import `Outfit` from Google Fonts and use `lucide` icons exclusively.
+
+Font weights reduced to 2 per contract (400 regular, 600 semibold). Weights 300, 500, and 700 from the original hi-fi are normalized: 300→400, 500→400, 700→600.
 
 No `components.json` exists. The web app is a bare Next.js scaffold (no Tailwind installed yet). Plan 07-01 installs and configures Tailwind CSS as its first task.
 
@@ -39,15 +42,14 @@ Declared values (multiples of 4):
 | xs | 4px | Icon-to-label gaps, inline chip padding delta |
 | sm | 8px | Chip gap, drawer nav divider margin vertical |
 | md | 16px | TopBar horizontal padding, search bar horizontal padding, recipe card list padding |
-| lg | 24px | Drawer header padding horizontal, drawer nav padding horizontal |
+| lg | 24px | Drawer header padding horizontal, drawer nav padding horizontal, TopBar horizontal padding (revised from 20px) |
 | xl | 32px | Drawer header padding top |
 | 2xl | 48px | Login page vertical padding, login subtitle margin-bottom |
 | 3xl | 64px | Not used in Phase 7 |
 
 Exceptions:
-- Login form gap: 14px (between field groups) — extracted from design, not on 8-point grid; use as-is
-- TopBar padding: 16px vertical / 20px horizontal — 20px is off-grid; use as-is per design
-- Search area padding-bottom: 12px — use as-is per design
+- Search area padding-bottom: 12px — on-grid (4×3), use as-is per design
+- Login form gap: 12px (between field groups) — revised from 14px to nearest on-grid value (4×3)
 - Recipe card thumbnail: 72x68px — not a grid multiple; use as-is per design
 - FAB bottom offset: 28px — use as-is per design
 
@@ -55,21 +57,29 @@ Exceptions:
 
 ## Typography
 
+Scale: 4 sizes, 2 weights.
+
 | Role | Size | Weight | Line Height | Color | Usage |
 |------|------|--------|-------------|-------|-------|
-| Display | 28px | 700 | 1.2 | #2C2C2A | Login page heading |
-| Heading | 20px | 600 | 1.2 | #2C2C2A | Drawer user name |
-| Title | 18px | 600 | 1.3 | #2C2C2A | TopBar page title |
-| Body | 15px | 400–600 | 1.5 | #2C2C2A | Input text, recipe name (600), button label (600), nav items (500), drawer household |
-| Label | 13px | 500 | 1.4 | #2C2C2A / #8A8680 | Field labels (dark), filter actions (muted), recipe time (muted), chips (muted/dark) |
-| Caption | 14px | 400 | 1.4 | #8A8680 | Login subtitle, drawer greeting |
+| Display | 28px | 600 | 1.2 | #2C2C2A | Login page heading |
+| Title | 18px | 600 | 1.3 | #2C2C2A | TopBar page title, drawer user name |
+| Body | 15px | 400 | 1.5 | #2C2C2A / #8A8680 | Input text, recipe name (600), button label (600), nav items (400), login subtitle (muted #8A8680), drawer greeting (muted #8A8680) |
+| Label | 13px | 400 | 1.4 | #2C2C2A / #8A8680 | Field labels (dark), filter actions (muted), recipe time (muted), chips (muted/dark) |
+
+Notes:
+- Drawer user name moved from Heading 20px → Title 18px (the 20px size was used only for this one element; consolidating to Title 18px removes a size from the scale with no visual regression).
+- Caption (14px) removed. Login subtitle and drawer greeting use Body 15px at muted color (#8A8680) to distinguish from primary body text.
+- Body weight 600 applies to: recipe card name, submit button label. Body weight 400 applies to all other body uses. No weight 500 or 700 exists in this contract.
 
 Letter-spacing:
 - Display: -0.5px
 - Title: -0.3px
-- Heading (drawer name): -0.3px
 - Body recipe name: -0.2px
 - All others: default (0)
+
+Focal points:
+- Login page: logo mark + Display heading group (center of viewport, rendered first in DOM)
+- App shell: search bar (visual anchor below TopBar, immediately actionable)
 
 ---
 
@@ -81,7 +91,7 @@ Letter-spacing:
 | Secondary (30%) | #F4F2ED | Input/search bar fill, login logo container background, drawer header background complement |
 | Surface warm | #E8E1D5 | Drawer header background, recipe thumbnail placeholder background |
 | Border | #E0DCD5 | Input borders, chip borders, drawer divider, recipe card separators |
-| Muted text | #8A8680 | Subtitles, placeholders label text, search icon, filter action labels, recipe time, drawer greeting, household name |
+| Muted text | #8A8680 | Subtitles, placeholder label text, search icon, filter action labels, recipe time, drawer greeting, household name, login subtitle |
 | Placeholder text | #C8C4BD | Input placeholder text, search placeholder text |
 | Primary text | #2C2C2A | Headings, body text, button background (filled), active chip background, TopBar title, nav items |
 | Accent (10%) | #5EBD6A | Login logo icon color, FAB background, active drawer nav item underline (2px) |
@@ -101,18 +111,19 @@ Destructive (#D94F4F) reserved for:
 
 ### LoginPage
 - Centered column layout, vertically centered in full viewport height
+- Focal point: logo mark + Display heading group
 - Padding: 48px vertical, 32px horizontal
 - Logo mark: 64x64px container, `#F4F2ED` bg, radius 18px, `utensils` icon 28x28 color `#5EBD6A`
-- Heading: 28px/700 `#2C2C2A`, margin-bottom 8px
-- Subtitle: 14px/400 `#8A8680`, margin-bottom 48px
-- Form: full-width, flex-col, gap 14px
-- Field group: label (13px/500 `#2C2C2A`, gap 6px below) + input row
+- Heading: 28px/600 `#2C2C2A`, margin-bottom 8px
+- Subtitle: 15px/400 `#8A8680`, margin-bottom 48px
+- Form: full-width, flex-col, gap 12px
+- Field group: label (13px/400 `#2C2C2A`, gap 6px below) + input row
 - Input row: `#F4F2ED` bg, `#E0DCD5` border 1.5px, radius 12px, padding 14px 16px, flex row with icon (16x16 `#8A8680`) + placeholder text (15px `#C8C4BD`)
 - Submit button: full-width, radius 20px, padding 16px 24px, `#2C2C2A` bg, `#FAFAF7` text, 15px/600, margin-top 10px
 
 ### TopBar
-- Full-width, padding 16px 20px, `#FAFAF7` bg, flex row space-between + center align
-- Left: hamburger icon (24x24, 3 bars 20px wide × 1.5px tall, gap 5px, `#2C2C2A`, radius 1px)
+- Full-width, padding 16px 24px, `#FAFAF7` bg, flex row space-between + center align
+- Left: hamburger icon button (24x24, 3 bars 20px wide × 1.5px tall, gap 5px, `#2C2C2A`, radius 1px), `aria-label="Abrir menú"`
 - Center: page title (18px/600 `#2C2C2A`, letter-spacing -0.3px)
 - Right: 24px reserved placeholder (for future icons)
 
@@ -121,24 +132,25 @@ Destructive (#D94F4F) reserved for:
 - Opens over content with scrim: `rgba(44, 44, 42, 0.3)` covering full screen
 - Header: `#E8E1D5` bg, padding 32px top / 24px horizontal / 24px bottom, radius top-left 20px
   - Greeting: 15px/400 `#8A8680` ("Hola,"), margin-bottom 2px
-  - User name: 20px/600 `#2C2C2A`, letter-spacing -0.3px, margin-bottom 12px
-  - Household: 14px/400 `#8A8680` with `chevron-right` 14x14 icon (color `#C8C4BD`)
+  - User name: 18px/600 `#2C2C2A`, letter-spacing -0.3px, margin-bottom 12px
+  - Household: 15px/400 `#8A8680` with `chevron-right` 14x14 icon (color `#C8C4BD`)
 - Nav section: padding 16px 12px, flex-col, flex: 1
-  - Nav item: 15px/500 `#2C2C2A`, padding 12px 0, margin 0 16px
+  - Nav item: 15px/400 `#2C2C2A`, padding 12px 0, margin 0 16px
   - Active nav item: same + border-bottom 2px `#5EBD6A`, width fit-content
   - Divider: 1px `#E0DCD5`, margin 8px 16px
-  - Logout item: 15px/500 `#D94F4F`, padding 12px 0, margin 0 16px 24px
+  - Logout item: 15px/400 `#D94F4F`, padding 12px 0, margin 0 16px 24px
 
-Navigation items (in order): Hoy, Recetas, Planificador (above divider); Salir (below divider)
+Navigation items (in order): Hoy, Recetas, Planificador (above divider); Cerrar sesión (below divider)
 
 ### SearchBar
 - `#F4F2ED` bg, radius 12px, padding 12px 16px, flex row gap 10px
 - Icon: `search` 18x18 stroke-width 2, `#8A8680`
 - Placeholder: 15px `#C8C4BD` ("Buscar recetas...")
+- Focal point: this is the primary interactive anchor of the app shell
 
 ### FilterActionsRow
-- Padding: 4px 20px 14px, flex row gap 16px
-- Each action: 13px/500 `#8A8680`, flex row gap 4px, icon (14x14 stroke-width 2) + label
+- Padding: 4px 16px 12px, flex row gap 16px
+- Each action: 13px/400 `#8A8680`, flex row gap 4px, icon (14x14 stroke-width 2) + label
 - Actions in Phase 7: "Ordenar" (icon: `arrow-up-down`), "Filtrar por ingredientes" (icon: `sliders-horizontal`)
 - Note: these are visual placeholders in Phase 7; interaction wired in Phase 8
 
@@ -151,13 +163,14 @@ Navigation items (in order): Hoy, Recetas, Planificador (above divider); Salir (
   - Time: 13px/400 `#8A8680`, flex row gap 4px, `clock` icon 13x13 stroke-width 2
 
 ### FAB (Floating Action Button)
-- Position: absolute bottom 28px, right 20px
+- Position: absolute bottom 28px, right 24px
 - Size: 52x52px, radius 16px, `#5EBD6A` bg
-- Icon: "+" character 26px/300 `#FAFAF7`, line-height 1
+- Icon: `plus` lucide icon 26x26, `#FAFAF7`
+- `aria-label="Crear receta"`
 - Note: in Phase 7 this is rendered as a visual element; routing to create recipe is wired in Phase 9
 
 ### Chip (filter chip — Phase 7 scaffold)
-- Padding 6px 14px, radius 20px, 13px/500
+- Padding 6px 14px, radius 20px, 13px/400
 - Default: border 1px `#E0DCD5`, color `#8A8680`, bg transparent
 - Active: bg `#2C2C2A`, color `#FAFAF7`, border `#2C2C2A`
 
@@ -182,7 +195,7 @@ Navigation items (in order): Hoy, Recetas, Planificador (above divider); Salir (
 2. Scrim tap → drawer slides out, scrim fades out
 3. Nav item tap → drawer closes, route changes
 4. Active item highlighted with `#5EBD6A` 2px underline
-5. Logout tap → confirmation NOT required (design shows direct "Salir" label); calls logout API, clears session, redirects to `/login`
+5. "Cerrar sesión" tap → confirmation NOT required (design shows direct action); calls logout API, clears session, redirects to `/login`
 
 ### Loading States (UX-02)
 - While any TanStack Query fetch is in-flight: skeleton placeholder replaces content (not spinner overlaid on real data)
@@ -231,7 +244,9 @@ All UI-facing strings are in Spanish (per CLAUDE.md). Code identifiers remain En
 | Nav item 1 | Hoy |
 | Nav item 2 | Recetas |
 | Nav item 3 | Planificador |
-| Logout action | Salir |
+| Logout action | Cerrar sesión |
+| Hamburger button aria-label | Abrir menú |
+| FAB aria-label | Crear receta |
 | Search placeholder | Buscar recetas... |
 | Filter action: sort | Ordenar |
 | Filter action: ingredients | Filtrar por ingredientes |
@@ -241,7 +256,7 @@ All UI-facing strings are in Spanish (per CLAUDE.md). Code identifiers remain En
 | Error: network failure | No se pudo conectar. Intenta de nuevo. |
 | Loading: session check | (no copy — skeleton shown silently) |
 
-Logout confirmation: NONE. "Salir" triggers logout directly per hi-fi design. No confirmation dialog.
+Logout confirmation: NONE. "Cerrar sesión" triggers logout directly per hi-fi design. No confirmation dialog.
 
 ---
 
@@ -276,7 +291,7 @@ No third-party registries. All components are hand-rolled using Tailwind CSS tok
 | Icon library: lucide-react | Extracted from both hi-fi files (`lucide` CDN → lucide-react in implementation) |
 | All color values | Extracted from hi-fi CSS |
 | All typography values | Extracted from hi-fi CSS |
-| All spacing values | Extracted from hi-fi CSS (with off-grid exceptions noted) |
+| All spacing values | Extracted from hi-fi CSS (off-grid values corrected to nearest multiple of 4) |
 | Navigation items | Extracted from mvp_plans/hifi/02_app_shell.html drawer |
 | All copy strings | Extracted from hi-fi HTML text content |
 | Responsive: mobile-first | Inferred from hi-fi (375px phone frame only) + UX-01 requirement |
@@ -284,6 +299,19 @@ No third-party registries. All components are hand-rolled using Tailwind CSS tok
 | No shadcn | Confirmed: apps/web/package.json has no shadcn; no components.json found |
 | Pure SPA / Next.js | STATE.md accumulated decisions |
 | Language: Spanish UI | CLAUDE.md project instructions |
+
+### Revision Notes (2026-03-18 — checker pass 1 fixes)
+
+| Fix | Change |
+|-----|--------|
+| Typography: 6→4 sizes | Removed Caption (14px) — merged into Body (15px) at muted color (#8A8680). Removed Heading (20px) — drawer user name now uses Title (18px). |
+| Font weights: 5→2 | Import reduced to 400, 600 only. All 500 usages → 400; all 300 usages → 400; all 700 usages → 600. |
+| Spacing: login form gap | 14px → 12px (4×3, on-grid). |
+| Spacing: TopBar horizontal padding | 20px → 24px (on-grid). FilterActionsRow side padding also updated 20px → 16px. |
+| Copywriting: logout label | "Salir" → "Cerrar sesión" for clarity. |
+| Accessibility: hamburger aria | Added `aria-label="Abrir menú"` to TopBar hamburger button. |
+| Accessibility: FAB aria | Added `aria-label="Crear receta"` to FAB. FAB icon changed from "+" character to `plus` lucide icon (removes weight-300 dependency). |
+| Focal points | Declared for login page and app shell. |
 
 ---
 
