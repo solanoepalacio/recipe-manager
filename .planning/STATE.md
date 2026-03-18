@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-18T18:51:51.248Z"
+last_updated: "2026-03-18T18:51:58.202Z"
 last_activity: "2026-03-18 - Completed quick task 260318-jf3: fix packages/shared build output to separate dist dir"
 progress:
   total_phases: 12
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 ## Current Position
 
 Phase: 08 (frontend-recipe-list-detail-cook-mode) — EXECUTING
-Plan: 1 of 3
+Plan: 2 of 3
 
 ## Performance Metrics
 
@@ -149,6 +149,8 @@ Recent decisions affecting current work:
 - [Phase 08-01]: RecipeCard omits time row — RecipeListItem lacks totalTime/cookTime fields (only RecipeDetailResponse has them)
 - [Phase 08-01]: randomSeed state forces TanStack Query cache miss on random sort repeat — ensures reshuffle on each Aleatorio click
 - [Phase 08-01]: Backdrop div at z-40 below dropdowns at z-50 for outside-click-to-close pattern without event bubbling issues
+- [Phase 08-frontend-recipe-list-detail-cook-mode]: Detail page reads recipe UUID from ?id= search param (not slug) to call GET /api/recipes/:id — slug is URL-only for display
+- [Phase 08-frontend-recipe-list-detail-cook-mode]: InfoGrid uses border-r on first 3 cells as vertical divider (simpler than CSS pseudo-element from spec)
 
 ### Pending Todos
 

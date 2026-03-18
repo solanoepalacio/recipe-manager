@@ -20,7 +20,7 @@
 - [ ] **RCP-03**: User can set recipe name with auto-generated URL slug
 - [ ] **RCP-04**: User can set recipe description, servings (qty + unit), prep/cook/total/perform times, and source URL
 - [ ] **RCP-05**: User can lock a recipe to prevent editing
-- [ ] **RCP-07**: User can view full recipe detail (ingredients, instructions, images)
+- [x] **RCP-07**: User can view full recipe detail (ingredients, instructions, images)
 - [ ] **RCP-08**: User can enter cook mode (full-screen, large text, step-by-step navigation)
 
 ### Ingredients
@@ -136,7 +136,7 @@
 | UX-01 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
 | UX-02 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
 | UX-03 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
-| RCP-07 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
+| RCP-07 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
 | RCP-08 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
 | SRCH-01 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
 | SRCH-02 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
