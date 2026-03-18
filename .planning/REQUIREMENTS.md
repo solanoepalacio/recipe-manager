@@ -36,8 +36,8 @@
 
 ### Images
 
-- [ ] **IMG-01**: User can upload an image for a recipe
-- [ ] **IMG-02**: User can delete a recipe image
+- [x] **IMG-01**: User can upload an image for a recipe
+- [x] **IMG-02**: User can delete a recipe image
 
 ### Search & Discovery
 
@@ -153,8 +153,8 @@
 | ING-03 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | INS-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | INS-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| IMG-01 | Phase 9: Frontend Recipe Creation + Editing | Pending |
-| IMG-02 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| IMG-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
+| IMG-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | PLAN-01 | Phase 10: Frontend Meal Planner | Pending |
 | PLAN-02 | Phase 10: Frontend Meal Planner | Pending |
 | PLAN-03 | Phase 10: Frontend Meal Planner | Pending |

@@ -3,13 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-18T21:16:40.208Z"
+stopped_at: Completed 09-04-PLAN.md
+last_updated: "2026-03-18T21:22:52.343Z"
 last_activity: 2026-03-18
 progress:
   total_phases: 12
   completed_phases: 8
   total_plans: 34
-  completed_plans: 31
+  completed_plans: 33
 ---
 
 # Project State
@@ -74,6 +75,7 @@ Plan: 3 of 5
 | Phase 09 P01 | 3 | 2 tasks | 9 files |
 | Phase 09 P02 | 2 | 2 tasks | 7 files |
 | Phase 09 P03 | 5 min | 1 task | 4 files |
+| Phase 09 P04 | 2 | 1 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -163,6 +165,9 @@ Recent decisions affecting current work:
 - [Phase 09]: api.put added to api-client for reorder endpoint (PUT /api/recipes/:id/sections/:sid/ingredients/reorder)
 - [Phase 09]: units query key added to query-keys.ts; IngredientSectionEditor uses per-section DndContext to isolate drag operations within a section
 - [09-03]: StepEditor uses single flat DndContext for all steps (steps are not nested into sections); onBlur update mutation fires for title/body fields — no per-step save button needed
+- [Phase 09-04]: FormData upload uses raw fetch (not api-client) so browser can set multipart Content-Type with boundary
+- [Phase 09-04]: confirmDeleteId string|null state pattern for per-image inline ConfirmDialogs without a global modal
+- [Phase 09-04]: ConfirmDialog is inline (not modal overlay) — simpler, no portal, matches mobile-first pattern
 
 ### Pending Todos
 
@@ -181,5 +186,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-18
-Stopped at: Completed 09-03-PLAN.md
+Stopped at: Completed 09-04-PLAN.md
 Resume file: None
