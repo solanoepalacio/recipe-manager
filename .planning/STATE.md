@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-18T20:26:35.263Z"
-last_activity: "2026-03-18 - Completed quick task 260318-jf3: fix packages/shared build output to separate dist dir"
+last_updated: "2026-03-18T21:12:14.567Z"
+last_activity: 2026-03-18
 progress:
   total_phases: 12
   completed_phases: 8
-  total_plans: 29
-  completed_plans: 29
+  total_plans: 34
+  completed_plans: 30
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-16)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 09 — frontend-recipe-creation-+-editing
+**Current focus:** Phase 09 — frontend-recipe-creation-editing
 
 ## Current Position
 
-Phase: 08 (frontend-recipe-list-detail-cook-mode) — COMPLETE
-Next: Phase 09 (frontend-recipe-creation-+-editing)
+Phase: 09 (frontend-recipe-creation-editing) — EXECUTING
+Plan: 1 of 5
 
 ## Performance Metrics
 
@@ -71,6 +71,7 @@ Next: Phase 09 (frontend-recipe-creation-+-editing)
 | Phase 08-frontend-recipe-list-detail-cook-mode P01 | 8 | 2 tasks | 8 files |
 | Phase 08-frontend-recipe-list-detail-cook-mode P02 | 5 | 2 tasks | 8 files |
 | Phase 08-frontend-recipe-list-detail-cook-mode P03 | 2 | 2 tasks | 3 files |
+| Phase 09 P01 | 3 | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -153,6 +154,10 @@ Recent decisions affecting current work:
 - [Phase 08-frontend-recipe-list-detail-cook-mode]: Detail page reads recipe UUID from ?id= search param (not slug) to call GET /api/recipes/:id — slug is URL-only for display
 - [Phase 08-frontend-recipe-list-detail-cook-mode]: InfoGrid uses border-r on first 3 cells as vertical divider (simpler than CSS pseudo-element from spec)
 - [Phase 08-frontend-recipe-list-detail-cook-mode]: CookStep current variant has onKeyDown handler for keyboard accessibility (Enter/Space) — not in spec but required for WCAG compliance
+- [Phase 09-01]: MetadataForm uses forwardRef + useImperativeHandle to expose getValues() — parent reads values imperatively on Guardar press
+- [Phase 09-01]: isEditMode is local React state; ?edit=1 in URL triggers entry on mount only — URL not kept in sync
+- [Phase 09-01]: Guardar pill shown on Basico tab only; sub-resource tabs fire mutations immediately (no batch save)
+- [Phase 09-01]: @dnd-kit core+sortable+utilities pre-installed in plan 01 (wave 1) for use by plans 09-02 and 09-03
 
 ### Pending Todos
 
@@ -170,5 +175,5 @@ None yet.
 
 ## Session Continuity
 
-Last activity: 2026-03-18 - Completed quick task 260318-jf3: fix packages/shared build output to separate dist dir
-Resume file: .planning/phases/09-frontend-recipe-creation-editing/09-UI-SPEC.md
+Last activity: 2026-03-18
+Resume file: None
