@@ -19,6 +19,7 @@ import { Skeleton } from '@/components/ui/Skeleton';
 import { EditorTabs } from '@/components/recipes/editor/EditorTabs';
 import { MetadataForm, MetadataFormRef } from '@/components/recipes/editor/MetadataForm';
 import { IngredientSectionEditor } from '@/components/recipes/editor/IngredientSectionEditor';
+import { StepEditor } from '@/components/recipes/editor/StepEditor';
 
 export default function RecipeDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -167,9 +168,11 @@ export default function RecipeDetailPage() {
             />
           )}
           {activeTab === 'Instrucciones' && (
-            <div className="px-5 py-8 text-center text-[15px] text-secondary">
-              Editor de instrucciones (Plan 09-03)
-            </div>
+            <StepEditor
+              recipeId={recipeId!}
+              steps={recipe.steps}
+              onMutationSuccess={() => queryClient.invalidateQueries({ queryKey: queryKeys.recipes.detail(slug) })}
+            />
           )}
           {activeTab === 'Básico' && (
             <MetadataForm
