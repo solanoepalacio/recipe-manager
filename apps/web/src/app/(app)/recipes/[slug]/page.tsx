@@ -18,6 +18,7 @@ import { InstructionList } from '@/components/recipes/InstructionList';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { EditorTabs } from '@/components/recipes/editor/EditorTabs';
 import { MetadataForm, MetadataFormRef } from '@/components/recipes/editor/MetadataForm';
+import { IngredientSectionEditor } from '@/components/recipes/editor/IngredientSectionEditor';
 
 export default function RecipeDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -159,9 +160,11 @@ export default function RecipeDetailPage() {
 
           {/* Tab content */}
           {activeTab === 'Ingredientes' && (
-            <div className="px-5 py-8 text-center text-[15px] text-secondary">
-              Editor de ingredientes (Plan 09-02)
-            </div>
+            <IngredientSectionEditor
+              recipeId={recipeId!}
+              sections={recipe.sections}
+              onMutationSuccess={() => queryClient.invalidateQueries({ queryKey: queryKeys.recipes.detail(slug) })}
+            />
           )}
           {activeTab === 'Instrucciones' && (
             <div className="px-5 py-8 text-center text-[15px] text-secondary">
