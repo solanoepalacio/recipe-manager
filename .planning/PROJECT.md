@@ -119,4 +119,4 @@ Key architectural decisions already locked:
 | Foods/Units pre-populated by admin | Controlled vocabulary; no user-generated food names | — Pending |
 
 ---
-*Last updated: 2026-03-18 — Phase 08 complete: recipe list, detail, and cook mode pages shipped*
+*Last updated: 2026-03-18 — Phase 09 complete: recipe creation and editing UI (FAB, editor tabs, metadata form, ingredient editor, step editor, image upload, recipe settings with lock/duplicate) shipped*
