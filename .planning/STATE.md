@@ -2,15 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-last_updated: "2026-03-18T17:47:27.190Z"
-last_activity: 2026-03-18 — Plan 07-04 complete; Skeleton component + Toast tests + human verification approved; post-checkpoint fixes applied (Tailwind token, proxy port, route restructure, search/filter scoped to /recipes)
+status: unknown
+last_updated: "2026-03-18T18:51:51.248Z"
+last_activity: "2026-03-18 - Completed quick task 260318-jf3: fix packages/shared build output to separate dist dir"
 progress:
   total_phases: 12
   completed_phases: 7
-  total_plans: 26
-  completed_plans: 26
-  percent: 100
+  total_plans: 29
+  completed_plans: 28
 ---
 
 # Project State
@@ -20,20 +19,17 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-16)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 7 — next phase
+**Current focus:** Phase 08 — frontend-recipe-list-detail-cook-mode
 
 ## Current Position
 
-Phase: 7 of 12 (Frontend Setup + App Shell + Auth Flows) — COMPLETE
-Plan: 4 of 4 in current phase — COMPLETE (07-04 done — Skeleton component + Toast tests + human verification approved)
-Status: Phase 7 complete — all 4 plans done; ready for Phase 8
-Last activity: 2026-03-18 — Plan 07-04 complete; Skeleton component + Toast tests + human verification approved; post-checkpoint fixes applied (Tailwind token, proxy port, route restructure, search/filter scoped to /recipes)
-
-Progress: [██████████] 100%
+Phase: 08 (frontend-recipe-list-detail-cook-mode) — EXECUTING
+Plan: 1 of 3
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 3
 - Average duration: 3.3 min
 - Total execution time: 0.17 hours
@@ -45,6 +41,7 @@ Progress: [██████████] 100%
 | 01-monorepo-shared-types | 3 | 10 min | 3.3 min |
 
 **Recent Trend:**
+
 - Last 5 plans: 3 min, 2 min
 - Trend: —
 
@@ -71,6 +68,8 @@ Progress: [██████████] 100%
 | Phase 07-frontend-setup-app-shell-auth-flows P02 | 8 | 2 tasks | 8 files |
 | Phase 07-frontend-setup-app-shell-auth-flows P03 | 6 | 2 tasks | 6 files |
 | Phase 07-frontend-setup-app-shell-auth-flows P04 | 15 | 2 tasks | 8 files |
+| Phase 08-frontend-recipe-list-detail-cook-mode P01 | 8 | 2 tasks | 8 files |
+| Phase 08-frontend-recipe-list-detail-cook-mode P02 | 5 | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -147,6 +146,9 @@ Recent decisions affecting current work:
 - [Phase 07-04]: Next.js proxy port corrected to 3001 to match API server
 - [Phase 07-04]: Root page.tsx removed — / routes to (app)/page.tsx (Hoy placeholder); /recipes shows recipe list with search/filter
 - [Phase 07-04]: Search/filter bar moved from AppShell into /recipes page only — AppShell is nav-only chrome; Drawer nav: Hoy / Recetas / Planificador
+- [Phase 08-01]: RecipeCard omits time row — RecipeListItem lacks totalTime/cookTime fields (only RecipeDetailResponse has them)
+- [Phase 08-01]: randomSeed state forces TanStack Query cache miss on random sort repeat — ensures reshuffle on each Aleatorio click
+- [Phase 08-01]: Backdrop div at z-40 below dropdowns at z-50 for outside-click-to-close pattern without event bubbling issues
 
 ### Pending Todos
 
@@ -165,4 +167,4 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-18 - Completed quick task 260318-jf3: fix packages/shared build output to separate dist dir
-Resume file: .planning/phases/08-frontend-recipe-list-detail-cook-mode/08-UI-SPEC.md
+Resume file: None

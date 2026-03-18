@@ -41,10 +41,10 @@
 
 ### Search & Discovery
 
-- [ ] **SRCH-01**: User can search recipes by name with fuzzy matching
-- [ ] **SRCH-02**: User can filter recipes by food/ingredient
-- [ ] **SRCH-03**: User can sort recipes by name, date created, date updated, or random (asc/desc)
-- [ ] **SRCH-04**: User can paginate recipe list with configurable page size
+- [x] **SRCH-01**: User can search recipes by name with fuzzy matching
+- [x] **SRCH-02**: User can filter recipes by food/ingredient
+- [x] **SRCH-03**: User can sort recipes by name, date created, date updated, or random (asc/desc)
+- [x] **SRCH-04**: User can paginate recipe list with configurable page size
 
 ### Sharing
 
@@ -138,10 +138,10 @@
 | UX-03 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
 | RCP-07 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
 | RCP-08 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
-| SRCH-01 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
-| SRCH-02 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
-| SRCH-03 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
-| SRCH-04 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
+| SRCH-01 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
+| SRCH-02 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
+| SRCH-03 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
+| SRCH-04 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
 | RCP-01 | Phase 9: Frontend Recipe Creation + Editing | Pending |
 | RCP-02 | Phase 9: Frontend Recipe Creation + Editing | Pending |
 | RCP-03 | Phase 9: Frontend Recipe Creation + Editing | Pending |
