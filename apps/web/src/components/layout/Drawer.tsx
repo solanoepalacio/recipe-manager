@@ -10,8 +10,7 @@ interface DrawerProps {
 }
 
 const NAV_ITEMS = [
-  { label: 'Hoy', href: '/' },
-  { label: 'Recetas', href: '/recipes' },
+  { label: 'Recetas', href: '/' },
   { label: 'Planificador', href: '/planner' },
 ];
 
