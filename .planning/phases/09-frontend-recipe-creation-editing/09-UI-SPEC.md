@@ -37,7 +37,6 @@ Declared values (must be multiples of 4):
 | xs | 4px | Icon gaps, drag handle gutter, inline badge padding |
 | sm | 8px | Gap between label and input, icon-to-text gap in buttons |
 | md | 16px | Default element spacing, form field vertical rhythm |
-| lg | 20px | Horizontal page padding (matches established `px-5`) |
 | xl | 24px | Section vertical padding, tab content top padding |
 | 2xl | 32px | Scroll buffer above FAB, bottom sheet top padding |
 | 3xl | 48px | Bottom safe-area clearance for fixed FAB + Guardar pill |
@@ -48,6 +47,8 @@ Exceptions:
 - Tab bar tab height: 44px (accessibility minimum)
 - FAB: 56px × 56px, `border-radius: 16px`
 - Guardar pill: `px-6 py-3`, `border-radius: 9999px` (pill shape), fixed bottom-right
+- `20px (px-5)`: Inherited from Phase 7–8 codebase — `px-5` is the established horizontal page padding; aligning with existing components to avoid layout shift
+- `12px (py-3)`: 12px vertical padding on the Guardar pill provides correct visual weight for a pill-shaped fixed CTA; also used for drag-handle row touch target top/bottom padding
 
 **Source:** `mvp_plans/06_hifi_wireframes.md` component patterns; `apps/web/src/components/layout/Drawer.tsx` and `TopBar.tsx` for existing `px-5/px-6` patterns.
 
@@ -57,14 +58,14 @@ Exceptions:
 
 | Role | Size | Weight | Line Height | Letter Spacing | Usage |
 |------|------|--------|-------------|----------------|-------|
-| Body | 15px | 400 | 1.5 | normal | Ingredient rows, step body text, form input values, list items |
-| Label | 13px | 600 | 1.4 | normal | Section headers (`text-secondary`), tab bar inactive, form field labels (uppercase 12px/500 — see note) |
+| Body | 15px | 400 | 1.5 | normal | Ingredient rows, step body text, form input values, list items, add-item buttons, image zone label, picker create row |
+| Label | 13px | 600 | 1.4 | normal | Section headers (`text-secondary`), tab bar inactive, form field labels (uppercase, `tracking-[0.5px]`), slug preview, ingredient note, step title input |
 | Heading | 18px | 600 | 1.2 | -0.3px | Top bar title ("Nueva receta", tab modal title) |
 | Display | 22px | 600 | 1.2 | -0.3px | Recipe name on detail page heading (read mode) |
 
 **Additional precision:**
-- Form field labels (12px, weight 500, uppercase, `text-secondary`) — used on Basico tab (Nombre, Descripcion, Porciones, Preparacion, Coccion, URL). Source: `mvp_plans/06_hifi_wireframes.md` "Labels (uppercase): 12px / 500".
-- Button text: 14–15px, weight 500. Primary filled button uses 15px/500. Secondary/ghost uses 14px/500.
+- Form field labels (13px, weight 600, uppercase, `text-secondary`, `tracking-[0.5px]`) — used on Basico tab (Nombre, Descripcion, Porciones, Preparacion, Coccion, URL). Previously specified as 12px/500 in wireframes; promoted to 13px/600 for scale consolidation.
+- Button text: 15px, weight 600. All buttons (primary filled, secondary, ghost, add-item) use 15px/semibold.
 - Tab bar active label: 15px, weight 600, `text-foreground`. Inactive: 15px, weight 400, `text-placeholder`.
 - Step number badge: 13px, weight 600, `text-background` on `bg-foreground` circle (matches InstructionList).
 - Placeholder text: `text-placeholder` (`#C8C4BD`).
@@ -113,7 +114,7 @@ Components to create in Phase 9 (all new):
 `apps/web/src/components/ui/ConfirmDialog.tsx`
 - Inline dialog (not a modal overlay) — appears below the triggering delete button
 - Props: `message`, `onConfirm`, `onCancel`, `confirmLabel` (defaults to "Eliminar"), `variant: 'destructive'`
-- Confirm button: `text-destructive`, `text-[14px]`, weight 500. Cancel: `text-secondary`.
+- Confirm button: `text-destructive`, `text-[15px]`, weight 600. Cancel: `text-secondary`.
 - Used only for: delete image confirmation.
 
 ### RecipeNamePrompt
@@ -121,7 +122,7 @@ Components to create in Phase 9 (all new):
 - Rendered inside `BottomSheet`
 - Title: "¿Cómo se llama la receta?" — 15px, weight 600, `text-foreground`
 - Single text input: underline style (`border-b border-border`), `text-[15px]`, auto-focused on sheet open
-- Footer: "Cancelar" (left, `text-secondary`, 15px/400) + "Crear" (right, `bg-accent text-background`, `rounded-full px-5 py-2`, 15px/500, disabled until input has value)
+- Footer: "Cancelar" (left, `text-secondary`, 15px/400) + "Crear" (right, `bg-accent text-background`, `rounded-full px-5 py-2`, 15px/600, disabled until input has value)
 - On confirm: calls `POST /api/recipes`, then `router.push('/recipes/:slug?id=:id&edit=1')`
 
 ### MetadataForm
@@ -129,7 +130,7 @@ Components to create in Phase 9 (all new):
 - Basico tab content
 - Fields: Nombre (text), Descripcion (textarea), Porciones qty (number) + unit (text), Preparacion (number, minutes), Coccion (number, minutes), URL fuente (text)
 - Input style: underline — `border-b border-border pb-2`, `text-[15px] text-foreground`
-- Label style: `text-[12px] font-medium uppercase text-secondary tracking-[0.5px] mb-1`
+- Label style: `text-[13px] font-semibold uppercase text-secondary tracking-[0.5px] mb-1`
 - Textarea: `border border-border rounded-[8px] px-3 py-2 text-[15px]`, min-height 80px, resize-none
 - All fields are controlled. Save fires on "Guardar" pill press only (no auto-save, no blur-save).
 - Slug preview: shown below Nombre field — `text-[13px] text-secondary italic` — displays server-returned slug from current recipe data, not client-generated.
@@ -141,7 +142,7 @@ Components to create in Phase 9 (all new):
 - Section delete: `×` icon button, `text-destructive`, appears to right of title when section has no ingredients only (guard against accidental deletion)
 - Uses `DndContext` + `SortableContext` from `@dnd-kit/sortable`
 - Drag handle: `GripVertical` (Lucide, size 16, `text-placeholder`), appears at left of each row in edit mode
-- "+ Añadir ingrediente" button: `text-[14px] text-secondary font-medium`, `py-3 px-5`, full-width, `border-t border-subtle`
+- "+ Añadir ingrediente" button: `text-[15px] text-secondary font-semibold`, `py-3 px-5`, full-width, `border-t border-subtle`
 
 ### IngredientRow
 `apps/web/src/components/recipes/editor/IngredientRow.tsx`
@@ -157,18 +158,18 @@ Components to create in Phase 9 (all new):
 - Full-screen overlay: `fixed inset-0 bg-background z-50 flex flex-col`
 - Top bar: "Cancelar" (left, `text-[15px] text-secondary`) + "Seleccionar alimento" (center, `text-[15px] font-semibold`) — `bg-background px-5 py-4`
 - Search: `bg-subtle rounded-xl px-4 py-3`, `Search` icon (size 18), placeholder "Buscar alimentos..."
-- "+ Crear '[term]'" row: `border border-dashed border-border rounded-xl mx-5 my-2 px-4 py-3`, `text-[14px] text-secondary`, shows only when search term does not match any existing food
+- "+ Crear '[term]'" row: `border border-dashed border-border rounded-xl mx-5 my-2 px-4 py-3`, `text-[15px] text-secondary`, shows only when search term does not match any existing food
 - Food list: each row `px-5 py-3 border-b border-subtle` — food name `text-[15px] text-foreground` + optional category `text-[13px] text-secondary`. Selected row: `text-accent` checkmark icon (`Check`, size 16) at right
 - After food selected, secondary panel slides in below or replaces list:
   - Quantity input: `w-20`, number, underline style
   - Unit dropdown: `border border-border rounded-[8px] px-3 py-2 text-[15px]`
   - Note input: underline style, placeholder "Nota opcional"
-- Confirm button: "Añadir ingrediente" — filled, `bg-foreground text-background rounded-[12px] w-full py-4 text-[15px] font-medium`, fixed above keyboard / at bottom
+- Confirm button: "Añadir ingrediente" — filled, `bg-foreground text-background rounded-[12px] w-full py-4 text-[15px] font-semibold`, fixed above keyboard / at bottom
 
 ### StepEditor
 `apps/web/src/components/recipes/editor/StepEditor.tsx`
 - List of `StepRow` components wrapped in `DndContext` + `SortableContext`
-- "+ Añadir paso" button at bottom: `text-[14px] text-secondary font-medium py-3 px-5`, full-width, `border-t border-subtle`
+- "+ Añadir paso" button at bottom: `text-[15px] text-secondary font-semibold py-3 px-5`, full-width, `border-t border-subtle`
 
 ### StepRow
 `apps/web/src/components/recipes/editor/StepRow.tsx`
@@ -183,7 +184,7 @@ Components to create in Phase 9 (all new):
 `apps/web/src/components/recipes/editor/ImageUpload.tsx`
 - Empty state: dashed zone `border-2 border-dashed border-border rounded-[12px] mx-5 py-12 flex flex-col items-center gap-3`
   - `ImageIcon` (Lucide, size 32, `text-placeholder`)
-  - "Añadir foto" label: `text-[14px] text-secondary`
+  - "Añadir foto" label: `text-[15px] text-secondary`
   - Hidden `<input type="file" accept="image/*">`, triggered by tapping the zone
 - Uploaded state: `mx-5` image grid, each image: `aspect-square rounded-[10px] overflow-hidden relative`
   - `<img>` fills container (`object-cover w-full h-full`)
@@ -197,7 +198,7 @@ Components to create in Phase 9 (all new):
 - Lock toggle section: label "Receta bloqueada", description "Cuando está bloqueada no se puede editar"
   - Toggle: custom pill switch — `w-12 h-7 rounded-full`, off: `bg-border`, on: `bg-accent`, knob: `w-5 h-5 rounded-full bg-background shadow`
   - `aria-label="Bloquear receta"`, `role="switch"`, `aria-checked={isLocked}`
-- Duplicate section: "Duplicar receta" button — outline style, full-width, `border border-border rounded-[12px] py-4 text-[15px] font-medium text-foreground`
+- Duplicate section: "Duplicar receta" button — outline style, full-width, `border border-border rounded-[12px] py-4 text-[15px] font-semibold text-foreground`
   - On tap: calls `POST /api/recipes/:id/duplicate`, navigates to new recipe on success
   - Loading state: button disabled, spinner inside button
 
@@ -209,7 +210,7 @@ Components to create in Phase 9 (all new):
 
 ### Guardar pill (fixed save button — visible on all editor tabs)
 - Position: `fixed bottom-8 right-5 z-30`
-- Style: `bg-foreground text-background rounded-full px-6 py-3 text-[15px] font-medium shadow-md`
+- Style: `bg-foreground text-background rounded-full px-6 py-3 text-[15px] font-semibold shadow-md`
 - Label: "Guardar"
 - Loading state: "Guardando..." with spinner, button disabled
 - Only applies to Basico tab metadata. Sub-resource changes (ingredients, steps, images) fire immediately via mutation.
