@@ -60,13 +60,12 @@ All sizes derived from `06_hifi_wireframes.md` design system definition and conf
 | Body | 15px | 400 | 1.5 | Recipe names in picker list, day summary text, entry rows |
 | Label | 13px | 400 | 1.4 | Secondary/meta text, day date, week range label |
 | Heading | 18px | 600 | 1.2 | Top bar title "Planificador", day name in expanded header |
-| Display | 22px | 600 | 1.2 | Not used in this phase |
+| Uppercase label | 12px | 400 | 1.4 | Meal type chips (DESAYUNO, ALMUERZO, CENA, etc.) — visual distinction carried by `uppercase` transform and `tracking-widest` |
 
 Additional type roles used in this phase:
-- Uppercase label: 12px, weight 500, `tracking-widest`, `text-secondary` — used for meal type chips (DESAYUNO, ALMUERZO, CENA, etc.)
 - Week nav label: 15px, weight 600, `text-foreground` — "Semana del 10 - 16 mar"
 
-Font weight set: regular (400) + semibold (600). Weight 500 used only for uppercase labels (established in hi-fi wireframes).
+Font weight set: regular (400) + semibold (600).
 
 ---
 
@@ -126,7 +125,7 @@ Accent (`#5EBD6A`) is reserved for:
   - Each entry: `py-3 px-4 border-b border-subtle`.
   - Recipe name: 15px weight 400 `text-foreground` (left).
   - Delete button: `×` icon (Lucide X, 16px) `text-secondary`, tap target 44×44px (right). No confirmation — matches wireframe spec ("Delete removes recipe from day without confirmation").
-  - Meal type label: 12px weight 500 uppercase `text-secondary`, shown below recipe name inline (e.g., "DESAYUNO").
+  - Meal type label: 12px weight 400 uppercase `tracking-widest` `text-secondary`, shown below recipe name inline (e.g., "DESAYUNO").
 - Empty expanded state: "Sin recetas planificadas" — 13px italic `text-placeholder`, `py-3 px-4`.
 - "+ Anadir receta" row at bottom of expanded panel: 15px `text-accent` (`#5EBD6A`), `+` icon left, `py-3 px-4`. Tapping opens the recipe picker bottom sheet.
 - Multiple days can be open simultaneously (no mutual exclusion).
