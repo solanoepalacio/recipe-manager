@@ -25,9 +25,9 @@
 
 ### Ingredients
 
-- [ ] **ING-01**: User can add ingredients to a recipe with quantity, unit, food name, and optional note
-- [ ] **ING-02**: User can organize ingredients into titled sections
-- [ ] **ING-03**: User can reorder ingredients within a section
+- [x] **ING-01**: User can add ingredients to a recipe with quantity, unit, food name, and optional note
+- [x] **ING-02**: User can organize ingredients into titled sections
+- [x] **ING-03**: User can reorder ingredients within a section
 
 ### Instructions
 
@@ -148,9 +148,9 @@
 | RCP-04 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | RCP-05 | Phase 9: Frontend Recipe Creation + Editing | Pending |
 | RCP-06 | Phase 9: Frontend Recipe Creation + Editing | Pending |
-| ING-01 | Phase 9: Frontend Recipe Creation + Editing | Pending |
-| ING-02 | Phase 9: Frontend Recipe Creation + Editing | Pending |
-| ING-03 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| ING-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
+| ING-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
+| ING-03 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | INS-01 | Phase 9: Frontend Recipe Creation + Editing | Pending |
 | INS-02 | Phase 9: Frontend Recipe Creation + Editing | Pending |
 | IMG-01 | Phase 9: Frontend Recipe Creation + Editing | Pending |

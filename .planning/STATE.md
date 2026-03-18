@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-18T21:12:14.567Z"
+last_updated: "2026-03-18T21:16:40.208Z"
 last_activity: 2026-03-18
 progress:
   total_phases: 12
   completed_phases: 8
   total_plans: 34
-  completed_plans: 30
+  completed_plans: 31
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 ## Current Position
 
 Phase: 09 (frontend-recipe-creation-editing) — EXECUTING
-Plan: 1 of 5
+Plan: 2 of 5
 
 ## Performance Metrics
 
@@ -72,6 +72,7 @@ Plan: 1 of 5
 | Phase 08-frontend-recipe-list-detail-cook-mode P02 | 5 | 2 tasks | 8 files |
 | Phase 08-frontend-recipe-list-detail-cook-mode P03 | 2 | 2 tasks | 3 files |
 | Phase 09 P01 | 3 | 2 tasks | 9 files |
+| Phase 09 P02 | 2 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -158,6 +159,8 @@ Recent decisions affecting current work:
 - [Phase 09-01]: isEditMode is local React state; ?edit=1 in URL triggers entry on mount only — URL not kept in sync
 - [Phase 09-01]: Guardar pill shown on Basico tab only; sub-resource tabs fire mutations immediately (no batch save)
 - [Phase 09-01]: @dnd-kit core+sortable+utilities pre-installed in plan 01 (wave 1) for use by plans 09-02 and 09-03
+- [Phase 09]: api.put added to api-client for reorder endpoint (PUT /api/recipes/:id/sections/:sid/ingredients/reorder)
+- [Phase 09]: units query key added to query-keys.ts; IngredientSectionEditor uses per-section DndContext to isolate drag operations within a section
 
 ### Pending Todos
 

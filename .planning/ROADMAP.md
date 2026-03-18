@@ -249,7 +249,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 6. Backend Admin Endpoints | 5/5 | Complete   | 2026-03-18 |
 | 7. Frontend Setup + App Shell + Auth Flows | 4/4 | Complete   | 2026-03-18 |
 | 8. Frontend Recipe List + Detail + Cook Mode | 2/3 | In Progress|  |
-| 9. Frontend Recipe Creation + Editing | 1/5 | In Progress|  |
+| 9. Frontend Recipe Creation + Editing | 2/5 | In Progress|  |
 | 10. Frontend Meal Planner | 0/4 | Not started | - |
 | 11. Frontend Profile + Household + Shared Recipe | 0/3 | Not started | - |
 | 12. Frontend Admin Panel | 0/7 | Not started | - |
