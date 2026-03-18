@@ -173,14 +173,14 @@ Plans:
   4. The step editor allows adding, editing, and reordering instruction steps via drag-and-drop
   5. A user can upload an image and see it on the recipe; deleting it removes it from the view
   6. A user can lock a recipe (edit controls disappear); this state persists after page refresh
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 09-01: Recipe form shell — create/edit route, form state, metadata fields (name, description, servings, times, source URL), slug preview
-- [ ] 09-02: Ingredient editor — IngredientSection component, food/unit pickers (API-backed dropdowns), add/remove/reorder ingredients
-- [ ] 09-03: Step editor — InstructionStep component, add/remove/reorder steps with drag-and-drop
-- [ ] 09-04: Image management — image upload component, image grid, delete confirmation
-- [ ] 09-05: Recipe settings — lock toggle, duplicate action
+- [ ] 09-01-PLAN.md — FAB + name prompt bottom sheet, edit mode toggle on detail page, EditorTabs, MetadataForm (Basico tab), Guardar pill
+- [ ] 09-02-PLAN.md — Ingredient editor: IngredientSectionEditor, IngredientRow, IngredientPicker with food/unit search, @dnd-kit reorder
+- [ ] 09-03-PLAN.md — Step editor: StepEditor, StepRow with drag-and-drop reorder, add/delete steps
+- [ ] 09-04-PLAN.md — Image management: ImageUpload with FormData, image grid, ConfirmDialog, delete confirmation
+- [ ] 09-05-PLAN.md — Backend isLocked + duplicate endpoint, RecipeSettings (lock toggle + duplicate), lock guard on detail page
 
 ### Phase 10: Frontend Meal Planner
 **Goal**: Users can view the household meal plan as a weekly or monthly calendar, assign recipes to dates and meal types, drag-drop entries to reorganize, and edit or delete entries.
