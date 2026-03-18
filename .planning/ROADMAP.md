@@ -19,7 +19,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 5: Backend Search, Sharing, Meal Plan** - Fuzzy search, filtering, sorting, share tokens, meal plan endpoints (completed 2026-03-16)
 - [x] **Phase 6: Backend Admin Endpoints** - Admin CRUD for users, households, foods, units, tokens (completed 2026-03-18)
 - [x] **Phase 7: Frontend Setup + App Shell + Auth Flows** - Project scaffold, responsive shell, login/logout, UX primitives (completed 2026-03-18)
-- [ ] **Phase 8: Frontend Recipe List + Detail + Cook Mode** - Recipe browsing, search, filter, sort, detail view, cook mode
+- [x] **Phase 8: Frontend Recipe List + Detail + Cook Mode** - Recipe browsing, search, filter, sort, detail view, cook mode (completed 2026-03-18)
 - [ ] **Phase 9: Frontend Recipe Creation + Editing** - Create/edit form, ingredients, sections, steps, images, lock
 - [ ] **Phase 10: Frontend Meal Planner** - Weekly/monthly calendar, assign recipes, drag-drop, edit/delete entries
 - [ ] **Phase 11: Frontend Profile + Household + Shared Recipe** - Profile editing, household view, public shared recipe page
@@ -158,9 +158,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 08-01-PLAN.md — Recipe list page: useDebounce, RecipeCard, RecipeListFilters, PaginationControls, full page with search/filter/sort/pagination
-- [ ] 08-02-PLAN.md — Recipe detail page: DetailTopBar, SectionAccordion, InfoGrid, IngredientList, InstructionList, full detail view
-- [ ] 08-03-PLAN.md — Cook mode page: full-screen overlay, CookStep component, step state machine, check-off navigation, completion state
+- [x] 08-01-PLAN.md — Recipe list page: useDebounce, RecipeCard, RecipeListFilters, PaginationControls, full page with search/filter/sort/pagination
+- [x] 08-02-PLAN.md — Recipe detail page: DetailTopBar, SectionAccordion, InfoGrid, IngredientList, InstructionList, full detail view
+- [x] 08-03-PLAN.md — Cook mode page: full-screen overlay, CookStep component, step state machine, check-off navigation, completion state
 
 ### Phase 9: Frontend Recipe Creation + Editing
 **Goal**: Users can create recipes from scratch, duplicate existing ones, and edit all recipe content (metadata, ingredients in sections, instruction steps, images) including locking.
