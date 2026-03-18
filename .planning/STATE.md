@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 06-01-PLAN.md
-last_updated: "2026-03-18T11:03:17.000Z"
-last_activity: "2026-03-16 — Plan 05-03 complete; MealPlanModule with GET /meal-plan, POST /meal-plan/entries, PATCH/DELETE /meal-plan/entries/:id; lazy MealPlan upsert; shared meal-plan types; 12 unit tests; jest moduleNameMapper fix; 68 tests passing; build clean"
+stopped_at: Completed 06-02-PLAN.md
+last_updated: "2026-03-18T11:05:54.000Z"
+last_activity: "2026-03-18 — Plan 06-02 complete; AdminUsersService full CRUD (findAll/findOne/create/update/remove + generatePasswordResetUrl); AdminUsersController 6 endpoints; 3 DTOs; 10 unit tests passing; build clean"
 progress:
   total_phases: 12
   completed_phases: 5
   total_plans: 22
-  completed_plans: 18
+  completed_plans: 19
   percent: 100
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-16)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 5 — Backend Search, Sharing, Meal Plan
+**Current focus:** Phase 6 — Backend Admin Endpoints
 
 ## Current Position
 
-Phase: 5 of 12 (Backend Search, Sharing, Meal Plan) — COMPLETE
-Plan: 4 of 4 in current phase — COMPLETE (05-03 done — MealPlanModule with full CRUD endpoints, lazy MealPlan creation via upsert, 12 unit tests, TypeScript build clean)
-Status: Phase 5 complete — all 4 plans done
-Last activity: 2026-03-16 — Plan 05-03 complete; MealPlanModule with GET /meal-plan, POST /meal-plan/entries, PATCH/DELETE /meal-plan/entries/:id; lazy MealPlan upsert; shared meal-plan types; 12 unit tests; jest moduleNameMapper fix; 68 tests passing; build clean
+Phase: 6 of 12 (Backend Admin Endpoints) — IN PROGRESS
+Plan: 2 of 5 in current phase — COMPLETE (06-02 done — AdminUsersService full CRUD + AdminUsersController 6 endpoints + 3 DTOs + 10 unit tests passing; build clean)
+Status: Phase 6 in progress — plans 06-01 and 06-02 done; 06-03 through 06-05 remaining
+Last activity: 2026-03-18 — Plan 06-02 complete; AdminUsersService full CRUD (findAll/findOne/create/update/remove + generatePasswordResetUrl); AdminUsersController 6 endpoints; 3 DTOs; 10 unit tests passing; build clean
 
 Progress: [██████████] 100%
 
@@ -64,6 +64,7 @@ Progress: [██████████] 100%
 | Phase 05-backend-search-sharing-meal-plan P02 | 4 | 2 tasks | 4 files |
 | Phase Phase 05-backend-search-sharing-meal-plan PP03 | 4 | 2 tasks | 10 files |
 | Phase 06-backend-admin-endpoints P01 | 4 | 2 tasks | 8 files |
+| Phase 06-backend-admin-endpoints P02 | 2 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -123,6 +124,9 @@ Recent decisions affecting current work:
 - [Phase 06-backend-admin-endpoints]: Wave-0 scaffolds fail by design — implementation plans 06-02 through 06-05 make them pass
 - [Phase 06-backend-admin-endpoints]: AdminTokenCreatedResponse extends AdminTokenResponse — raw token shown exactly once on POST; list endpoint never exposes tokenHash
 - [Phase 06-backend-admin-endpoints]: CurrentAdmin reads req.admin (set by AdminAuthGuard) — parallel to CurrentUser reading req.user
+- [06-02]: USER_SELECT excludes passwordHash/resetToken/resetTokenExpiry — secure by construction; toAdminUserResponse mapper converts Prisma row to AdminUserResponse
+- [06-02]: Gender cast to $Enums.Gender on prisma.user.create — DTO/shared type uses string; Prisma client requires enum; cast safe since values are identical strings
+- [06-02]: AdminPaginationDto reusable across admin sub-modules — import in 06-03/06-04 without new pagination DTOs
 
 ### Pending Todos
 
@@ -134,6 +138,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T11:03:16.997Z
-Stopped at: Completed 06-01-PLAN.md
+Last session: 2026-03-18T11:05:54.000Z
+Stopped at: Completed 06-02-PLAN.md
 Resume file: None
