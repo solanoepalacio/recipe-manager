@@ -20,6 +20,7 @@ import { EditorTabs } from '@/components/recipes/editor/EditorTabs';
 import { MetadataForm, MetadataFormRef } from '@/components/recipes/editor/MetadataForm';
 import { IngredientSectionEditor } from '@/components/recipes/editor/IngredientSectionEditor';
 import { StepEditor } from '@/components/recipes/editor/StepEditor';
+import { ImageUpload } from '@/components/recipes/editor/ImageUpload';
 
 export default function RecipeDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -183,9 +184,11 @@ export default function RecipeDetailPage() {
             />
           )}
           {activeTab === 'Fotos' && (
-            <div className="px-5 py-8 text-center text-[15px] text-secondary">
-              Gestión de fotos (Plan 09-04)
-            </div>
+            <ImageUpload
+              recipeId={recipeId!}
+              images={recipe.images}
+              onMutationSuccess={() => queryClient.invalidateQueries({ queryKey: queryKeys.recipes.detail(slug) })}
+            />
           )}
           {activeTab === 'Ajustes' && (
             <div className="px-5 py-8 text-center text-[15px] text-secondary">
