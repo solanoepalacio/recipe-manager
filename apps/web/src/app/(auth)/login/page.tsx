@@ -45,8 +45,8 @@ export default function LoginPage() {
   if (!authLoading && user) return null;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-8 py-12">
-      <div className="w-full max-w-sm flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col justify-center px-8 py-12">
+      <div className="flex flex-col max-w-sm mx-auto w-full">
         {/* Logo mark */}
         <div className="mx-auto w-16 h-16 bg-subtle rounded-[18px] flex items-center justify-center mb-4">
           <Utensils size={28} className="text-accent" />
