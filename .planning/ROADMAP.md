@@ -13,7 +13,7 @@ This roadmap takes the project from an empty monorepo to a fully functional hous
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Monorepo + Shared Types** - Yarn workspaces, packages/shared type foundations, Swagger configured (completed 2026-03-16)
-- [ ] **Phase 2: Database Schema + Prisma** - Full Prisma schema, migrations, seed data, household scoping enforced
+- [x] **Phase 2: Database Schema + Prisma** - Full Prisma schema, migrations, seed data, household scoping enforced
 - [x] **Phase 3: Backend Auth** - User sessions, API key auth, admin auth, setup wizard, password reset (completed 2026-03-16)
 - [x] **Phase 4: Backend Recipe CRUD** - Recipe, section, ingredient, step, image endpoints; full non-admin REST API (completed 2026-03-16)
 - [x] **Phase 5: Backend Search, Sharing, Meal Plan** - Fuzzy search, filtering, sorting, share tokens, meal plan endpoints (completed 2026-03-16)

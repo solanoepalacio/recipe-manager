@@ -4,16 +4,6 @@ The **pre-implementation design phase is complete**. All design artifacts are fi
 
 ---
 
-## Session Start Protocol
-
-At the start of every session:
-1. Read `mvp_plans/implementation_progress.md` to identify the current milestone and task.
-2. Read `mvp_plans/implementation_workflow.md` for the orchestration process.
-3. Read relevant design artifacts for the current task.
-4. Resume from where the previous session left off — do not re-summarize completed work.
-
----
-
 ## What We're Building
 
 A full-stack recipe manager application. The feature scope is defined in `mvp_plans/user_stories.md`.
@@ -26,15 +16,6 @@ Key constraints:
 
 ---
 
-## How We Work
-
-The implementation follows the orchestration workflow in `mvp_plans/implementation_workflow.md`. The short version:
-
-1. **Pick** the next task from `implementation_progress.md`
-2. **Spawn a task agent** in an isolated worktree to implement it (TDD: tests first, then implementation)
-3. **Spawn an architect agent** to review the branch
-4. **Merge** to `main` only when tests pass and review is approved
-5. **Update** `implementation_progress.md`
 
 ### Key Rules
 
@@ -65,8 +46,6 @@ All planning documents live in `mvp_plans/`. Filenames follow the pattern `{step
 | File | Purpose |
 |------|---------|
 | `user_stories.md` | Source of truth for MVP features |
-| `workflow.md` | How sessions are structured and artifacts are managed |
-| `progress.md` | Current status of every step — always keep this up to date |
 | `01_tech_stack_and_data_model.md` | Stack decisions and ERD |
 | `02_auth_design.md` | Auth & authorization design |
 | `03_api_design.md` | REST contract |
@@ -74,5 +53,3 @@ All planning documents live in `mvp_plans/`. Filenames follow the pattern `{step
 | `05_ui_views.md` | UI views and low-fi wireframes (draw.io) |
 | `06_hifi_wireframes.md` | High-fidelity wireframes |
 | `07_project_structure.md` | Folder structure and conventions |
-| `implementation_progress.md` | Implementation milestones, tasks, and status |
-| `implementation_workflow.md` | Orchestration process for each task (TDD + review) |
