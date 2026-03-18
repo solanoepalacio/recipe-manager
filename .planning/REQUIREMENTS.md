@@ -16,10 +16,10 @@
 ### Recipes
 
 - [x] **RCP-01**: User can create a new recipe from scratch
-- [ ] **RCP-02**: User can duplicate an existing recipe (creates independent copy)
+- [x] **RCP-02**: User can duplicate an existing recipe (creates independent copy)
 - [x] **RCP-03**: User can set recipe name with auto-generated URL slug
 - [x] **RCP-04**: User can set recipe description, servings (qty + unit), prep/cook/total/perform times, and source URL
-- [ ] **RCP-05**: User can lock a recipe to prevent editing
+- [x] **RCP-05**: User can lock a recipe to prevent editing
 - [x] **RCP-07**: User can view full recipe detail (ingredients, instructions, images)
 - [x] **RCP-08**: User can enter cook mode (full-screen, large text, step-by-step navigation)
 
@@ -143,10 +143,10 @@
 | SRCH-03 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
 | SRCH-04 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
 | RCP-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-02 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| RCP-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | RCP-03 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | RCP-04 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-05 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| RCP-05 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | RCP-06 | Phase 9: Frontend Recipe Creation + Editing | Pending |
 | ING-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | ING-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
