@@ -4,7 +4,7 @@ import { useParams, useSearchParams, useRouter } from 'next/navigation';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import { ExternalLink, CookingPot } from 'lucide-react';
+import { ExternalLink, CookingPot, Lock } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { queryKeys } from '@/lib/query-keys';
@@ -21,6 +21,7 @@ import { MetadataForm, MetadataFormRef } from '@/components/recipes/editor/Metad
 import { IngredientSectionEditor } from '@/components/recipes/editor/IngredientSectionEditor';
 import { StepEditor } from '@/components/recipes/editor/StepEditor';
 import { ImageUpload } from '@/components/recipes/editor/ImageUpload';
+import { RecipeSettings } from '@/components/recipes/editor/RecipeSettings';
 
 export default function RecipeDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -145,13 +146,20 @@ export default function RecipeDetailPage() {
             </Link>
           )}
 
-          {/* Edit toggle button */}
-          <button
-            onClick={() => setIsEditMode((v) => !v)}
-            className="border border-border text-foreground rounded-[20px] px-5 py-2 text-[13px] font-semibold"
-          >
-            {isEditMode ? 'Listo' : 'Editar receta'}
-          </button>
+          {/* Edit toggle / lock indicator */}
+          {recipe.isLocked && !isEditMode ? (
+            <span className="flex items-center gap-1 text-[13px] text-secondary">
+              <Lock size={14} />
+              Bloqueada
+            </span>
+          ) : (
+            <button
+              onClick={() => setIsEditMode((v) => !v)}
+              className="border border-border text-foreground rounded-[20px] px-5 py-2 text-[13px] font-semibold"
+            >
+              {isEditMode ? 'Listo' : 'Editar receta'}
+            </button>
+          )}
         </div>
       </div>
 
@@ -191,9 +199,12 @@ export default function RecipeDetailPage() {
             />
           )}
           {activeTab === 'Ajustes' && (
-            <div className="px-5 py-8 text-center text-[15px] text-secondary">
-              Ajustes (Plan 09-05)
-            </div>
+            <RecipeSettings
+              recipeId={recipeId!}
+              slug={slug}
+              isLocked={recipe.isLocked}
+              onMutationSuccess={() => queryClient.invalidateQueries({ queryKey: queryKeys.recipes.detail(slug) })}
+            />
           )}
 
           {/* Guardar pill — visible on Básico tab only */}
