@@ -155,12 +155,12 @@ Plans:
   3. Pagination controls let the user navigate pages and change page size
   4. The `/recipes/:slug` page shows the full recipe (ingredients, instructions, images, metadata)
   5. The `/recipes/:slug/cook` page enters full-screen cook mode with large text and step-by-step navigation controls
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 08-01: Recipe list page — RecipeCard component, search input, food filter, sort controls, pagination
-- [ ] 08-02: Recipe detail page — IngredientList, InstructionList, image carousel, recipe metadata display
-- [ ] 08-03: Cook mode page — full-screen layout, large text rendering, step navigation (prev/next), exit button
+- [ ] 08-01-PLAN.md — Recipe list page: useDebounce, RecipeCard, RecipeListFilters, PaginationControls, full page with search/filter/sort/pagination
+- [ ] 08-02-PLAN.md — Recipe detail page: DetailTopBar, SectionAccordion, InfoGrid, IngredientList, InstructionList, full detail view
+- [ ] 08-03-PLAN.md — Cook mode page: full-screen overlay, CookStep component, step state machine, check-off navigation, completion state
 
 ### Phase 9: Frontend Recipe Creation + Editing
 **Goal**: Users can create recipes from scratch, duplicate existing ones, and edit all recipe content (metadata, ingredients in sections, instruction steps, images) including locking.
