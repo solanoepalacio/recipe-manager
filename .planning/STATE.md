@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 06-02-PLAN.md
-last_updated: "2026-03-18T11:05:54.000Z"
-last_activity: "2026-03-18 — Plan 06-02 complete; AdminUsersService full CRUD (findAll/findOne/create/update/remove + generatePasswordResetUrl); AdminUsersController 6 endpoints; 3 DTOs; 10 unit tests passing; build clean"
+stopped_at: Completed 06-03-PLAN.md
+last_updated: "2026-03-18T11:10:43.000Z"
+last_activity: "2026-03-18 — Plan 06-03 complete; AdminHouseholdsService CRUD (findAll/findOne/create/update/remove with cascade $transaction); AdminHouseholdsController 5 endpoints; 2 DTOs; 5 unit tests passing; build clean"
 progress:
   total_phases: 12
   completed_phases: 5
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 ## Current Position
 
 Phase: 6 of 12 (Backend Admin Endpoints) — IN PROGRESS
-Plan: 2 of 5 in current phase — COMPLETE (06-02 done — AdminUsersService full CRUD + AdminUsersController 6 endpoints + 3 DTOs + 10 unit tests passing; build clean)
-Status: Phase 6 in progress — plans 06-01 and 06-02 done; 06-03 through 06-05 remaining
-Last activity: 2026-03-18 — Plan 06-02 complete; AdminUsersService full CRUD (findAll/findOne/create/update/remove + generatePasswordResetUrl); AdminUsersController 6 endpoints; 3 DTOs; 10 unit tests passing; build clean
+Plan: 3 of 5 in current phase — COMPLETE (06-03 done — AdminHouseholdsService CRUD + AdminHouseholdsController 5 endpoints + 2 DTOs + cascade $transaction delete + 5 unit tests passing; build clean)
+Status: Phase 6 in progress — plans 06-01, 06-02, 06-03 done; 06-04 through 06-05 remaining
+Last activity: 2026-03-18 — Plan 06-03 complete; AdminHouseholdsService CRUD (findAll/findOne/create/update/remove with cascade $transaction); AdminHouseholdsController 5 endpoints; 2 DTOs; 5 unit tests passing; build clean
 
 Progress: [██████████] 100%
 
@@ -65,6 +65,7 @@ Progress: [██████████] 100%
 | Phase Phase 05-backend-search-sharing-meal-plan PP03 | 4 | 2 tasks | 10 files |
 | Phase 06-backend-admin-endpoints P01 | 4 | 2 tasks | 8 files |
 | Phase 06-backend-admin-endpoints P02 | 2 | 2 tasks | 5 files |
+| Phase 06-backend-admin-endpoints P03 | 2 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -127,6 +128,8 @@ Recent decisions affecting current work:
 - [06-02]: USER_SELECT excludes passwordHash/resetToken/resetTokenExpiry — secure by construction; toAdminUserResponse mapper converts Prisma row to AdminUserResponse
 - [06-02]: Gender cast to $Enums.Gender on prisma.user.create — DTO/shared type uses string; Prisma client requires enum; cast safe since values are identical strings
 - [06-02]: AdminPaginationDto reusable across admin sub-modules — import in 06-03/06-04 without new pagination DTOs
+- [06-03]: Cascade delete uses $transaction with deleteMany array in strict dependency order; recipeIds pre-fetched outside transaction (Prisma array transactions cannot reference earlier step results)
+- [06-03]: recipes ?? [] null-guard in remove() for test robustness — Wave-0 spec remove test doesn't mock recipe.findMany, bare jest.fn() returns undefined
 
 ### Pending Todos
 
