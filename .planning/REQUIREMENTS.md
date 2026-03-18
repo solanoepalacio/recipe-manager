@@ -84,9 +84,9 @@
 
 ### Mobile & UX
 
-- [ ] **UX-01**: Application has a responsive layout (phone, tablet, desktop)
-- [ ] **UX-02**: Loading indicators are shown while data is being fetched
-- [ ] **UX-03**: Toast/notification system for success, error, and info states
+- [x] **UX-01**: Application has a responsive layout (phone, tablet, desktop)
+- [x] **UX-02**: Loading indicators are shown while data is being fetched
+- [x] **UX-03**: Toast/notification system for success, error, and info states
 
 ## v2 Requirements
 
@@ -133,9 +133,9 @@
 | AUTH-05 | Phase 3: Backend Auth | Complete |
 | API-02 | Phase 3: Backend Auth | Complete |
 | API-01 | Phase 4: Backend Recipe CRUD | Complete |
-| UX-01 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |
-| UX-02 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |
-| UX-03 | Phase 7: Frontend Setup + App Shell + Auth Flows | Pending |
+| UX-01 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
+| UX-02 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
+| UX-03 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
 | RCP-07 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
 | RCP-08 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
 | SRCH-01 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Pending |
