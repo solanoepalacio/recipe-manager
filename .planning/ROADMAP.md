@@ -162,7 +162,7 @@ Plans:
 - [x] 08-02-PLAN.md — Recipe detail page: DetailTopBar, SectionAccordion, InfoGrid, IngredientList, InstructionList, full detail view
 - [x] 08-03-PLAN.md — Cook mode page: full-screen overlay, CookStep component, step state machine, check-off navigation, completion state
 
-### Phase 9: Frontend Recipe Creation + Editing
+### ✅ Phase 9: Frontend Recipe Creation + Editing
 **Goal**: Users can create recipes from scratch, duplicate existing ones, and edit all recipe content (metadata, ingredients in sections, instruction steps, images) including locking.
 **Depends on**: Phase 4, Phase 7
 **Requirements**: RCP-01, RCP-02, RCP-03, RCP-04, RCP-05, ING-01, ING-02, ING-03, INS-01, INS-02, IMG-01, IMG-02
@@ -176,11 +176,11 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 09-01-PLAN.md — FAB + name prompt bottom sheet, edit mode toggle on detail page, EditorTabs, MetadataForm (Basico tab), Guardar pill
-- [ ] 09-02-PLAN.md — Ingredient editor: IngredientSectionEditor, IngredientRow, IngredientPicker with food/unit search, @dnd-kit reorder
-- [ ] 09-03-PLAN.md — Step editor: StepEditor, StepRow with drag-and-drop reorder, add/delete steps
-- [ ] 09-04-PLAN.md — Image management: ImageUpload with FormData, image grid, ConfirmDialog, delete confirmation
-- [ ] 09-05-PLAN.md — Backend isLocked + duplicate endpoint, RecipeSettings (lock toggle + duplicate), lock guard on detail page
+- [x] 09-01-PLAN.md — FAB + name prompt bottom sheet, edit mode toggle on detail page, EditorTabs, MetadataForm (Basico tab), Guardar pill
+- [x] 09-02-PLAN.md — Ingredient editor: IngredientSectionEditor, IngredientRow, IngredientPicker with food/unit search, @dnd-kit reorder
+- [x] 09-03-PLAN.md — Step editor: StepEditor, StepRow with drag-and-drop reorder, add/delete steps
+- [x] 09-04-PLAN.md — Image management: ImageUpload with FormData, image grid, ConfirmDialog, delete confirmation
+- [x] 09-05-PLAN.md — Backend isLocked + duplicate endpoint, RecipeSettings (lock toggle + duplicate), lock guard on detail page
 
 ### Phase 10: Frontend Meal Planner
 **Goal**: Users can view the household meal plan as a weekly or monthly calendar, assign recipes to dates and meal types, drag-drop entries to reorganize, and edit or delete entries.
