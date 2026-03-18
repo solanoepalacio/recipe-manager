@@ -13,7 +13,7 @@ This roadmap takes the project from an empty monorepo to a fully functional hous
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Monorepo + Shared Types** - Yarn workspaces, packages/shared type foundations, Swagger configured (completed 2026-03-16)
-- [x] **Phase 2: Database Schema + Prisma** - Full Prisma schema, migrations, seed data, household scoping enforced
+- [x] **Phase 2: Database Schema + Prisma** - Full Prisma schema, migrations, seed data, household scoping enforced (completed 2026-03-16)
 - [x] **Phase 3: Backend Auth** - User sessions, API key auth, admin auth, setup wizard, password reset (completed 2026-03-16)
 - [x] **Phase 4: Backend Recipe CRUD** - Recipe, section, ingredient, step, image endpoints; full non-admin REST API (completed 2026-03-16)
 - [x] **Phase 5: Backend Search, Sharing, Meal Plan** - Fuzzy search, filtering, sorting, share tokens, meal plan endpoints (completed 2026-03-16)
@@ -39,9 +39,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: Monorepo scaffold (Yarn v4 workspaces, root tsconfig, .yarnrc.yml, package.json per workspace)
-- [ ] 01-02: packages/shared — all domain type files, enums, PaginatedResponse, ErrorResponse, barrel export
-- [ ] 01-03: NestJS bootstrap — main.ts, AppModule, PrismaModule, global ValidationPipe, Swagger setup at /api/docs
+- [x] 01-01: Monorepo scaffold (Yarn v4 workspaces, root tsconfig, .yarnrc.yml, package.json per workspace)
+- [x] 01-02: packages/shared — all domain type files, enums, PaginatedResponse, ErrorResponse, barrel export
+- [x] 01-03: NestJS bootstrap — main.ts, AppModule, PrismaModule, global ValidationPipe, Swagger setup at /api/docs
 
 ### Phase 2: Database Schema + Prisma
 **Goal**: The full Prisma schema is migrated, the database is seeded with foods and units, and household scoping is structurally enforced.
@@ -55,8 +55,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Wave 0 infrastructure + full Prisma schema (13 models, 2 enums, compound unique constraints)
-- [ ] 02-02-PLAN.md — Initial migration (prisma migrate dev --name init) + seed script (50 foods, 13 units, idempotent upsert)
+- [x] 02-01-PLAN.md — Wave 0 infrastructure + full Prisma schema (13 models, 2 enums, compound unique constraints)
+- [x] 02-02-PLAN.md — Initial migration (prisma migrate dev --name init) + seed script (50 foods, 13 units, idempotent upsert)
 
 ### Phase 3: Backend Auth
 **Goal**: Users can authenticate via session cookie or API key; admins can authenticate via a separate session; the setup wizard creates the single Admin record; password reset URLs can be generated.
@@ -71,10 +71,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Guards + decorators (SessionAuthGuard, ApiKeyAuthGuard, AnyAuthGuard as APP_GUARD, AdminAuthGuard, @Public(), @CurrentUser()) + unit tests
-- [ ] 03-02-PLAN.md — Session middleware (express-session + connect-pg-simple), AuthService, AuthController (login/logout/me), AdminAuthService, AdminAuthController
-- [ ] 03-03-PLAN.md — SetupModule (SetupGuard, SetupService, SetupController GET/POST /setup)
-- [ ] 03-04-PLAN.md — AdminUsersService (password reset URL generation), AdminUsersController (POST /admin/users/:id/password-reset-url)
+- [x] 03-01-PLAN.md — Guards + decorators (SessionAuthGuard, ApiKeyAuthGuard, AnyAuthGuard as APP_GUARD, AdminAuthGuard, @Public(), @CurrentUser()) + unit tests
+- [x] 03-02-PLAN.md — Session middleware (express-session + connect-pg-simple), AuthService, AuthController (login/logout/me), AdminAuthService, AdminAuthController
+- [x] 03-03-PLAN.md — SetupModule (SetupGuard, SetupService, SetupController GET/POST /setup)
+- [x] 03-04-PLAN.md — AdminUsersService (password reset URL generation), AdminUsersController (POST /admin/users/:id/password-reset-url)
 
 ### Phase 4: Backend Recipe CRUD
 **Goal**: The full non-admin REST API is complete for recipes, sections, ingredients, steps, and images — all household-scoped, all documented in Swagger.
@@ -88,10 +88,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Schema cleanup (remove isLocked) + shared recipe types + static serving + Wave-0 test scaffolds
-- [ ] 04-02-PLAN.md — RecipesService (CRUD, slug, household scoping) + RecipesController + RecipesModule
-- [ ] 04-03-PLAN.md — Sections sub-module (CRUD, reorder) + Ingredients sub-module (CRUD, reorder)
-- [ ] 04-04-PLAN.md — Steps sub-module (CRUD, reorder) + Images sub-module (Multer upload, delete) + final RecipesModule
+- [x] 04-01-PLAN.md — Schema cleanup (remove isLocked) + shared recipe types + static serving + Wave-0 test scaffolds
+- [x] 04-02-PLAN.md — RecipesService (CRUD, slug, household scoping) + RecipesController + RecipesModule
+- [x] 04-03-PLAN.md — Sections sub-module (CRUD, reorder) + Ingredients sub-module (CRUD, reorder)
+- [x] 04-04-PLAN.md — Steps sub-module (CRUD, reorder) + Images sub-module (Multer upload, delete) + final RecipesModule
 
 ### Phase 5: Backend Search, Sharing, Meal Plan
 **Goal**: Recipe search (fuzzy, filter, sort, paginate), public share tokens, and meal plan CRUD endpoints are all functional and Swagger-documented.
@@ -105,10 +105,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Recipe search (RecipeListItem shared type, RecipeQueryDto, updated findAll with filter/sort/paginate/random)
-- [ ] 05-02-PLAN.md — Sharing sub-module (SharingService, SharingController, SharedController @Public(), RecipesModule update)
-- [ ] 05-03-PLAN.md — Meal plan module (MealPlanModule, MealPlanService CRUD, MealPlanController, shared meal-plan types, AppModule update)
-- [ ] 05-04-PLAN.md — SharedModule (FoodsController GET /foods, UnitsController GET /units, AppModule update)
+- [x] 05-01-PLAN.md — Recipe search (RecipeListItem shared type, RecipeQueryDto, updated findAll with filter/sort/paginate/random)
+- [x] 05-02-PLAN.md — Sharing sub-module (SharingService, SharingController, SharedController @Public(), RecipesModule update)
+- [x] 05-03-PLAN.md — Meal plan module (MealPlanModule, MealPlanService CRUD, MealPlanController, shared meal-plan types, AppModule update)
+- [x] 05-04-PLAN.md — SharedModule (FoodsController GET /foods, UnitsController GET /units, AppModule update)
 
 ### Phase 6: Backend Admin Endpoints
 **Goal**: All admin CRUD endpoints for users, households, foods, units, and API tokens are functional behind AdminAuthGuard and documented in Swagger.
@@ -122,11 +122,11 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 06-01-PLAN.md — Shared admin types (packages/shared/src/api/admin.ts) + CurrentAdmin decorator + Wave-0 test scaffolds
-- [ ] 06-02-PLAN.md — Admin users CRUD (expand AdminUsersService + AdminUsersController with findAll/findOne/create/update/remove)
-- [ ] 06-03-PLAN.md — Admin households CRUD (AdminHouseholdsService with cascade $transaction delete + AdminHouseholdsController)
-- [ ] 06-04-PLAN.md — Admin foods + units CRUD (AdminFoodsService/Controller + AdminUnitsService/Controller)
-- [ ] 06-05-PLAN.md — Admin tokens (AdminTokensService raw-token-once + AdminTokensController + final AdminModule wiring)
+- [x] 06-01-PLAN.md — Shared admin types (packages/shared/src/api/admin.ts) + CurrentAdmin decorator + Wave-0 test scaffolds
+- [x] 06-02-PLAN.md — Admin users CRUD (expand AdminUsersService + AdminUsersController with findAll/findOne/create/update/remove)
+- [x] 06-03-PLAN.md — Admin households CRUD (AdminHouseholdsService with cascade $transaction delete + AdminHouseholdsController)
+- [x] 06-04-PLAN.md — Admin foods + units CRUD (AdminFoodsService/Controller + AdminUnitsService/Controller)
+- [x] 06-05-PLAN.md — Admin tokens (AdminTokensService raw-token-once + AdminTokensController + final AdminModule wiring)
 
 ### Phase 7: Frontend Setup + App Shell + Auth Flows
 **Goal**: The Next.js SPA scaffolds with a responsive app shell, all routes are in place, users can log in and log out, and the core UX primitives (loading states, toast notifications) are operational.
@@ -140,10 +140,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 07-01-PLAN.md — deps install, Tailwind v4 design tokens, api-client, QueryClient+Toaster, vitest Wave 0
-- [ ] 07-02-PLAN.md — TopBar, Drawer, AppShell components; route groups (app)/(auth); AppShell tests
-- [ ] 07-03-PLAN.md — AuthProvider, useAuth, ProtectedLayout redirect, full LoginPage form + auth tests
-- [ ] 07-04-PLAN.md — Skeleton component, Toast tests, human verification checkpoint
+- [x] 07-01-PLAN.md — deps install, Tailwind v4 design tokens, api-client, QueryClient+Toaster, vitest Wave 0
+- [x] 07-02-PLAN.md — TopBar, Drawer, AppShell components; route groups (app)/(auth); AppShell tests
+- [x] 07-03-PLAN.md — AuthProvider, useAuth, ProtectedLayout redirect, full LoginPage form + auth tests
+- [x] 07-04-PLAN.md — Skeleton component, Toast tests, human verification checkpoint
 
 ### Phase 8: Frontend Recipe List + Detail + Cook Mode
 **Goal**: Users can browse their household recipe library with search, filter, sort, and pagination; they can view a full recipe detail page and enter cook mode.
