@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
+status: completed
 stopped_at: Completed 06-05-PLAN.md
-last_updated: "2026-03-18T11:19:29.500Z"
-last_activity: 2026-03-18 — Plan 06-04 complete; AdminFoodsService + AdminFoodsController (4 endpoints) + AdminUnitsService + AdminUnitsController (4 endpoints) + 4 DTOs; 8 Wave-0 unit tests passing; build clean
+last_updated: "2026-03-18T11:22:58.212Z"
+last_activity: 2026-03-18 — Plan 06-05 complete; AdminTokensService (SHA-256 hash, raw token once) + AdminTokensController (CurrentAdmin decorator) + AdminModule fully wired with all 6 sub-modules; 92 tests green; build clean
 progress:
   total_phases: 12
   completed_phases: 6
