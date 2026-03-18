@@ -137,13 +137,13 @@ Plans:
   2. An unauthenticated user visiting any protected route is redirected to `/login`; successful login redirects to `/recipes`
   3. Loading spinner/skeleton is visible while any TanStack Query fetch is in flight
   4. A toast notification appears and auto-dismisses for success, error, and informational states from anywhere in the app
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 07-01: Next.js scaffold — Tailwind config, global CSS (design tokens), tsconfig, api-client.ts, query-keys.ts
-- [ ] 07-02: App shell — AppShell layout, TopBar, Drawer, route groups ((auth), (app), (admin), shared/)
-- [ ] 07-03: Auth flows — login page, AuthProvider/useAuth, session detection, protected route redirect
-- [ ] 07-04: UX primitives — loading indicators (skeletons/spinners), toast/notification system, responsive layout validation
+- [ ] 07-01-PLAN.md — deps install, Tailwind v4 design tokens, api-client, QueryClient+Toaster, vitest Wave 0
+- [ ] 07-02-PLAN.md — TopBar, Drawer, AppShell components; route groups (app)/(auth); AppShell tests
+- [ ] 07-03-PLAN.md — AuthProvider, useAuth, ProtectedLayout redirect, full LoginPage form + auth tests
+- [ ] 07-04-PLAN.md — Skeleton component, Toast tests, human verification checkpoint
 
 ### Phase 8: Frontend Recipe List + Detail + Cook Mode
 **Goal**: Users can browse their household recipe library with search, filter, sort, and pagination; they can view a full recipe detail page and enter cook mode.
