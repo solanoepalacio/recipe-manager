@@ -3,11 +3,9 @@
   "compilerOptions": {
     "module": "CommonJS",
     "outDir": "dist",
+    "rootDir": "src",
     "declaration": true,
-    "strictPropertyInitialization": false,
-    "paths": {
-      "@recipe-manager/shared": ["../../packages/shared/src/index.ts"]
-    }
+    "strictPropertyInitialization": false
   },
   "include": ["src"]
 }
