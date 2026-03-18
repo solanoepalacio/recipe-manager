@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 ## Current Position
 
 Phase: 09 (frontend-recipe-creation-editing) — EXECUTING
-Plan: 2 of 5
+Plan: 3 of 5
 
 ## Performance Metrics
 
@@ -73,6 +73,7 @@ Plan: 2 of 5
 | Phase 08-frontend-recipe-list-detail-cook-mode P03 | 2 | 2 tasks | 3 files |
 | Phase 09 P01 | 3 | 2 tasks | 9 files |
 | Phase 09 P02 | 2 | 2 tasks | 7 files |
+| Phase 09 P03 | 5 min | 1 task | 4 files |
 
 ## Accumulated Context
 
@@ -161,6 +162,7 @@ Recent decisions affecting current work:
 - [Phase 09-01]: @dnd-kit core+sortable+utilities pre-installed in plan 01 (wave 1) for use by plans 09-02 and 09-03
 - [Phase 09]: api.put added to api-client for reorder endpoint (PUT /api/recipes/:id/sections/:sid/ingredients/reorder)
 - [Phase 09]: units query key added to query-keys.ts; IngredientSectionEditor uses per-section DndContext to isolate drag operations within a section
+- [09-03]: StepEditor uses single flat DndContext for all steps (steps are not nested into sections); onBlur update mutation fires for title/body fields — no per-step save button needed
 
 ### Pending Todos
 
@@ -179,4 +181,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-18
+Stopped at: Completed 09-03-PLAN.md
 Resume file: None

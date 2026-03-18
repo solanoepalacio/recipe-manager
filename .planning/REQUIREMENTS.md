@@ -31,8 +31,8 @@
 
 ### Instructions
 
-- [ ] **INS-01**: User can add step-by-step instructions with optional step title
-- [ ] **INS-02**: User can reorder instruction steps via drag-and-drop
+- [x] **INS-01**: User can add step-by-step instructions with optional step title
+- [x] **INS-02**: User can reorder instruction steps via drag-and-drop
 
 ### Images
 
@@ -151,8 +151,8 @@
 | ING-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | ING-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | ING-03 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| INS-01 | Phase 9: Frontend Recipe Creation + Editing | Pending |
-| INS-02 | Phase 9: Frontend Recipe Creation + Editing | Pending |
+| INS-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
+| INS-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | IMG-01 | Phase 9: Frontend Recipe Creation + Editing | Pending |
 | IMG-02 | Phase 9: Frontend Recipe Creation + Editing | Pending |
 | PLAN-01 | Phase 10: Frontend Meal Planner | Pending |
