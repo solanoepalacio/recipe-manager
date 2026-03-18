@@ -11,6 +11,10 @@ export const queryKeys = {
     all:  ['foods'] as const,
     list: () => ['foods', 'list'] as const,
   },
+  units: {
+    all:  ['units'] as const,
+    list: () => ['units', 'list'] as const,
+  },
   mealPlan: {
     week: (from: string, to: string) => ['meal-plan', from, to] as const,
   },
