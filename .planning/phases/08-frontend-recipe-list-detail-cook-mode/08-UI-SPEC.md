@@ -14,6 +14,19 @@ created: 2026-03-18
 
 ---
 
+## Hi-Fi Source Files
+
+These hi-fi HTML files are the **authoritative visual source** for this phase.
+When this spec is ambiguous or silent on a detail, open the hi-fi file and match it exactly.
+
+| View | File |
+|------|------|
+| Recipe list + app shell (search, filter, sort, pagination) | `mvp_plans/hifi/02_app_shell.html` |
+| Recipe detail (ingredients, instructions, images, metadata) | `mvp_plans/hifi/03_recipe_detail.html` |
+| Cook mode (full-screen, step navigation) | `mvp_plans/hifi/05_cook_mode.html` |
+
+---
+
 ## Design System
 
 | Property | Value | Source |
