@@ -6,3 +6,7 @@ dist/
 .env.*.local.venv
 
 .claude
+
+# Yarn Berry
+.yarn/cache
+.yarn/install-state.gz
