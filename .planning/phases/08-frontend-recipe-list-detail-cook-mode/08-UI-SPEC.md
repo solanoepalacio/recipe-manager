@@ -32,9 +32,9 @@ Declared values (must be multiples of 4):
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| xs | 4px | Icon-to-text gaps (`gap-[4px]`), inline label gaps |
-| sm | 8px | Chip gaps, step-list vertical padding |
-| md | 16px | Search bar horizontal padding, card padding, section content padding |
+| xs | 4px | Icon-to-text gaps (`gap-1`), inline label gaps |
+| sm | 8px | Chip gaps, step-list vertical padding, icon gaps inside buttons |
+| md | 16px | Search bar horizontal padding, card padding, section content padding, recipe card content gap |
 | lg | 20px | Page horizontal padding (all three pages), top-bar horizontal padding |
 | xl | 24px | Drawer header padding-top |
 | 2xl | 32px | Drawer header padding-top top section |
@@ -44,25 +44,29 @@ Exceptions:
 - Recipe card thumbnail: 72px wide × 68px tall (fixed dimensions from wireframe 02)
 - FAB: 52×52px touch target at `bottom-7 right-5` — already implemented in AppShell
 - Cook mode step-list: `padding: 8px 0` top/bottom with 20px horizontal inside each step row
-- Search actions row: `padding: 4px 20px 14px` (top 4px, sides 20px, bottom 14px) — from wireframe 02
+- Search actions row: `padding: 4px 20px 12px` (top 4px, sides 20px, bottom 12px) — nearest valid value to wireframe 02 original 14px bottom
 - Chips row: `padding: 0 20px 16px` — from wireframe 02
 
 ---
 
 ## Typography
 
+Exactly 4 sizes declared. Exactly 2 weights in use: **400 (regular)** and **600 (semibold)**.
+
 | Role | Size | Weight | Line Height | Letter Spacing | Usage |
 |------|------|--------|-------------|----------------|-------|
-| Body | 15px | 400 | 1.5 | -0.1px | Recipe card name, ingredient list items, step list items (detail view) |
-| Label | 13px | 500 | 1.4 | 0 | Search action buttons, chip text, meta time labels, done step text (14px/400 in cook), info-grid label (11px/400) |
-| Heading | 20px | 600 | 1.2 | -0.3px | Recipe title on detail page header |
-| Subheading | 18px | 600 | 1.2 | -0.3px | TopBar title (already implemented) |
+| Body | 15px | 400 | 1.5 | -0.1px | Recipe card name, ingredient list items, step list items (detail view), info-grid values |
+| Label | 13px | 600 | 1.4 | 0 | Search action buttons (`font-semibold`), chip text, meta time labels, section headers (accordion titles), done step text, info-grid labels, pagination controls |
+| Heading | 20px | 600 | 1.2 | -0.3px | Recipe title on detail page header; TopBar title "Recetas" (already implemented at 18px — update to 20px on next touch, or leave as-is if component is shared; note below) |
 | Cook step body | 16px | 400 | 1.55 | -0.1px | Cook mode pending step text — larger for in-kitchen readability |
-| Section header | 14px | 600 | 1.4 | 0 | Accordion section titles (Información, Ingredientes, Instrucciones) |
-| Info value | 15px | 600 | 1.4 | 0 | Info grid values (prep time, cook time, servings) |
-| Info label | 11px | 400 | 1.4 | 0 | Info grid labels |
 
-Font weights in use: **400 (regular)** and **600 (semibold)** only. Weight 500 used exclusively for action labels (search actions, drawer nav items, buttons, chip text) where it distinguishes interactive affordance from content text.
+**Weight assignment for formerly `font-medium` (500) elements:**
+- All search action labels, chip text, button labels, drawer nav items, pagination prev/next labels → `font-semibold` (600). These are interactive affordance elements that require visual distinction from body content.
+- Done step text → `font-normal` (400) with `text-placeholder` color. The color de-emphasizes; weight does not need to add emphasis on top.
+- Cook mode exit label "× Salir" → `font-normal` (400) with `text-secondary` color.
+- Detail top-bar recipe name (center, scroll-aware) → `font-semibold` (600), same as heading role.
+
+**TopBar note:** The existing `TopBar.tsx` component renders its title at 18px weight 600. That component is shared and was implemented in Phase 7. The Phase 8 typography scale declares 20px for headings. The TopBar should be updated to `text-[20px]` on its next touch; until then the discrepancy is documented. Do NOT declare 18px as a fifth size — it collapses into 20px.
 
 ---
 
@@ -96,6 +100,8 @@ The 60% / 30% / 10% split maps to: `#FAFAF7` dominant surfaces, `#F4F2ED` + `#E8
 
 ### 1. Recipe List Page (`/recipes`)
 
+**Focal point:** The recipe card list is the primary focal point of this page. All chrome (search bar, filter row) is subordinate — kept compact and in `text-secondary` to direct eye weight to the card names and thumbnails in `text-foreground`.
+
 #### Page Layout
 - Background: `bg-background`
 - Horizontal page padding: `px-5` (20px) on all sections
@@ -103,20 +109,20 @@ The 60% / 30% / 10% split maps to: `#FAFAF7` dominant surfaces, `#F4F2ED` + `#E8
 
 #### TopBar (existing component — no change)
 - Background: `bg-background`
-- Title text: "Recetas", 18px, weight 600, `text-foreground`, letter-spacing -0.3px
+- Title text: "Recetas", 20px, weight 600, `text-foreground`, letter-spacing -0.3px
 - Padding: `px-5 py-4` (20px horizontal, 16px vertical)
 - Left: hamburger menu icon (Lucide `Menu`, 24px, strokeWidth 2)
 
 #### Search Bar
 - Container padding: `px-5 pb-3` (below top bar)
-- Input wrapper: `bg-subtle rounded-xl px-4 py-3 flex items-center gap-[10px]`
+- Input wrapper: `bg-subtle rounded-xl px-4 py-3 flex items-center gap-2` (8px gap)
 - Search icon: Lucide `Search`, 18px, strokeWidth 2, `text-secondary`
 - Input: 15px, `text-placeholder` when empty, `text-foreground` when filled, `bg-transparent border-none outline-none flex-1`
 - Placeholder text: "Buscar recetas..."
 
 #### Filter Actions Row
-- Container: `flex gap-4 px-5 pb-[14px] pt-1`
-- Each action: 13px, weight 500, `text-secondary`, `flex items-center gap-1`
+- Container: `flex gap-4 px-5 pb-3 pt-1` (12px bottom, nearest multiple of 4 to wireframe)
+- Each action: 13px, weight 600, `text-secondary`, `flex items-center gap-1`
 - Sort icon: Lucide `ArrowUpDown`, 14px, strokeWidth 2
 - Filter icon: Lucide `SlidersHorizontal`, 14px, strokeWidth 2
 - Action labels: "Ordenar" | "Filtrar por ingredientes"
@@ -132,7 +138,7 @@ The 60% / 30% / 10% split maps to: `#FAFAF7` dominant surfaces, `#F4F2ED` + `#E8
 - Selected state: shows food name, applies `foodId` query param
 
 #### Recipe Card
-- Container: `flex items-center gap-[14px] py-[10px] border-b border-subtle`
+- Container: `flex items-center gap-4 py-[10px] border-b border-subtle` — gap-4 = 16px (nearest multiple of 4 to wireframe 14px)
 - Last card: no bottom border
 - Thumbnail: `w-[72px] h-[68px] rounded-[10px] bg-sand flex-shrink-0` (sand placeholder for Phase 8 — no real image URL in `RecipeListItem`)
 - When `imageCount > 0`: show placeholder with a small `text-secondary` image icon centered; when `imageCount === 0`: plain sand placeholder
@@ -143,7 +149,7 @@ The 60% / 30% / 10% split maps to: `#FAFAF7` dominant surfaces, `#F4F2ED` + `#E8
 #### Pagination Controls
 - Position: below recipe list, above FAB clearance
 - Layout: `flex items-center justify-between px-5 py-4`
-- Prev/Next buttons: `flex items-center gap-1 text-[14px] font-medium text-secondary` — disabled state: `text-placeholder cursor-not-allowed`
+- Prev/Next buttons: `flex items-center gap-1 text-[13px] font-semibold text-secondary` — disabled state: `text-placeholder cursor-not-allowed`
 - Page indicator: `text-[13px] text-secondary` — "Página N de M"
 - Page size selector: `text-[13px] text-secondary` — options: 10, 20, 50
 
@@ -161,8 +167,8 @@ The 60% / 30% / 10% split maps to: `#FAFAF7` dominant surfaces, `#F4F2ED` + `#E8
 - Background: `bg-sand` (not `bg-background`)
 - Padding: `px-5 py-3` (20px horizontal, 12px vertical)
 - Left: Lucide `ArrowLeft`, 22px, strokeWidth 2, `text-foreground` — navigates back to list
-- Center: recipe name, 16px, weight 500, `text-placeholder` when hero visible / `text-foreground` when scrolled past hero
-- Right: Lucide `EllipsisVertical`, 20px, strokeWidth 2, `text-foreground` — overflow menu (deferred to Phase 9; render icon as placeholder)
+- Center: recipe name, 15px, weight 600, `text-placeholder` when hero visible / `text-foreground` when scrolled past hero
+- Right: Lucide `EllipsisVertical`, 20px, strokeWidth 2, `text-foreground`, `aria-label="Más opciones"` — overflow menu (deferred to Phase 9; render icon as placeholder button with this aria-label)
 
 #### Hero Image
 - Height: 220px, full width
@@ -174,34 +180,34 @@ The 60% / 30% / 10% split maps to: `#FAFAF7` dominant surfaces, `#F4F2ED` + `#E8
 - Padding: `px-5 pt-4 pb-3`
 - Recipe title: 20px, weight 600, `text-foreground`, letter-spacing -0.3px, `mb-3`
 - Actions row: `flex items-center justify-between`
-  - Share link: Lucide `ExternalLink` 14px + "Compartir", 13px, weight 500, `text-accent` (accent reserved for this)
-  - "Cocinar" button: `bg-foreground text-background rounded-[20px] px-5 py-2 text-[14px] font-medium flex items-center gap-[6px]` + Lucide `CookingPot` 16px — navigates to `/recipes/[slug]/cook`
-  - "Editar" button: `border border-border text-foreground rounded-[20px] px-5 py-2 text-[14px] font-medium` (rendered in Phase 8 but wires to Phase 9 edit route — disable or hide if edit not yet implemented; show as `text-placeholder border-subtle` disabled state)
+  - Share link: Lucide `ExternalLink` 14px + "Compartir", 13px, weight 600, `text-accent` (accent reserved for this)
+  - "Iniciar receta" button: `bg-foreground text-background rounded-[20px] px-5 py-2 text-[13px] font-semibold flex items-center gap-2` + Lucide `CookingPot` 16px — navigates to `/recipes/[slug]/cook`
+  - "Editar" button: `border border-border text-foreground rounded-[20px] px-5 py-2 text-[13px] font-semibold` (rendered in Phase 8 but wires to Phase 9 edit route — disable or hide if edit not yet implemented; show as `text-placeholder border-subtle` disabled state)
 
 #### Section Accordion
 - Header: `flex items-center gap-2 px-5 py-3 bg-subtle cursor-pointer`
 - Chevron icon: Lucide `ChevronDown` (expanded) / `ChevronRight` (collapsed), 16px, strokeWidth 2, `text-secondary`
-- Title: 14px, weight 600, `text-foreground`
+- Title: 13px, weight 600, `text-foreground`
 - Sections: Información | Ingredientes | Instrucciones
 - Default state: all three sections expanded on initial render
 
 #### Info Grid (inside Información section)
-- Container: `flex px-5 py-[14px] border-b border-subtle`
+- Container: `flex px-5 py-3 border-b border-subtle` (12px vertical padding — nearest valid multiple of 4)
 - Each cell: `flex-1 text-center relative`
 - Vertical divider between cells: CSS `::before` pseudo-element, 1px `bg-border`, `top-1 bottom-1`
-- Label: 11px, weight 400, `text-secondary`, `mb-1`
+- Label: 13px, weight 600, `text-secondary`, `mb-1`
 - Value: 15px, weight 600, `text-foreground`
 - Labels (Spanish): Preparación | Cocción | Total | Porciones
 - Null fields: show "—" when time is null
 
 #### Ingredient List Row
-- Container: `flex items-center px-5 py-3 border-b border-subtle gap-[10px]`
+- Container: `flex items-center px-5 py-3 border-b border-subtle gap-2` (8px gap — nearest valid multiple of 4)
 - Text: 15px, weight 400, `text-foreground`
 - Format: "{qty} {unit} {food}" with optional note in `text-secondary`
 
 #### Instruction Step Row (detail view)
-- Container: `flex items-center px-5 py-3 border-b border-subtle gap-[10px]`
-- Step number badge: `w-6 h-6 rounded-full bg-foreground text-background text-[12px] font-semibold flex items-center justify-center flex-shrink-0`
+- Container: `flex items-center px-5 py-3 border-b border-subtle gap-2` (8px gap — nearest valid multiple of 4)
+- Step number badge: `w-6 h-6 rounded-full bg-foreground text-background text-[13px] font-semibold flex items-center justify-center flex-shrink-0`
 - Text: 15px, weight 400, `text-foreground`, `flex-1`
 
 #### Loading State
@@ -219,8 +225,8 @@ The 60% / 30% / 10% split maps to: `#FAFAF7` dominant surfaces, `#F4F2ED` + `#E8
 #### Cook Mode Top Bar
 - Background: `bg-background`
 - Border: `border-b border-border`
-- Padding: `px-5 py-[14px]` (20px horizontal, 14px vertical)
-- Left: exit control — "× Salir", 14px, weight 500, `text-secondary`, letter-spacing -0.1px — navigates back to detail page via `router.back()`
+- Padding: `px-5 py-3` (20px horizontal, 12px vertical — nearest valid multiple of 4)
+- Left: exit control — "× Salir", 13px, weight 400, `text-secondary`, letter-spacing -0.1px — navigates back to detail page via `router.back()`
 - Center: recipe title, 15px, weight 600, `text-foreground`, letter-spacing -0.2px, centered via `flex-1 text-center px-3`
 - Right: spacer `w-[52px]` to keep title visually centered
 
@@ -229,15 +235,15 @@ The 60% / 30% / 10% split maps to: `#FAFAF7` dominant surfaces, `#F4F2ED` + `#E8
 - Bottom fade: `::after` pseudo-element, `h-20` gradient from transparent to `#FAFAF7`, `pointer-events-none`, covers last steps as affordance to scroll
 
 #### Pending Step Row
-- Container: `flex gap-[14px] px-5 py-5 border-b border-subtle items-start`
+- Container: `flex gap-4 px-5 py-5 border-b border-subtle items-start` (16px gap — nearest valid multiple of 4)
 - Current step additional: `border-l-[2.5px] border-border pl-[17.5px]` (17.5px = 20px - 2.5px border compensation)
-- Step number badge: `w-6 h-6 rounded-full bg-foreground text-background text-[12px] font-semibold flex items-center justify-center flex-shrink-0 mt-px`
+- Step number badge: `w-6 h-6 rounded-full bg-foreground text-background text-[13px] font-semibold flex items-center justify-center flex-shrink-0 mt-px`
 - Step text: 16px, weight 400, `text-foreground`, line-height 1.55, letter-spacing -0.1px
 
 #### Done Step Row
-- Container: `flex gap-[14px] px-5 h-[52px] items-center bg-subtle border-b border-border`
+- Container: `flex gap-4 px-5 h-[52px] items-center bg-subtle border-b border-border` (16px gap — nearest valid multiple of 4)
 - Check circle: `w-6 h-6 rounded-full bg-placeholder text-background flex items-center justify-center flex-shrink-0` + Lucide `Check` 13px strokeWidth 2.5
-- Text: 14px, weight 400, `text-placeholder`, truncated (`truncate flex-1 min-w-0`)
+- Text: 13px, weight 400, `text-placeholder`, truncated (`truncate flex-1 min-w-0`)
 
 #### Divider Between Done and Pending Sections
 - `h-px bg-border` — rendered once, between last done step and first pending step
@@ -249,7 +255,7 @@ The 60% / 30% / 10% split maps to: `#FAFAF7` dominant surfaces, `#F4F2ED` + `#E8
 - On last step done: show completion state (see Copywriting Contract)
 
 #### Cook Mode Entry / Exit
-- Entry: "Cocinar" button on recipe detail page navigates to `/recipes/[slug]/cook`
+- Entry: "Iniciar receta" button on recipe detail page navigates to `/recipes/[slug]/cook`
 - Exit: "× Salir" in top bar calls `router.back()` (returns to detail page)
 
 ---
@@ -264,7 +270,7 @@ All UI strings are in Spanish per project convention.
 | Search placeholder | "Buscar recetas..." |
 | Sort action label | "Ordenar" |
 | Filter action label | "Filtrar por ingredientes" |
-| Cook mode entry button | "Cocinar" |
+| Cook mode entry button | "Iniciar receta" |
 | Cook mode exit control | "× Salir" |
 | Share link | "Compartir" |
 | Edit button | "Editar" |
@@ -293,6 +299,8 @@ All UI strings are in Spanish per project convention.
 
 Destructive actions in Phase 8: none. No delete, no destructive confirmation needed.
 
+**Cook mode entry button change note:** Previously declared as "Cocinar" (single verb). Changed to "Iniciar receta" (verb + noun) for clarity — communicates intent and target noun more explicitly. This is consistent with the wireframe design intent (the button leads into a distinct mode for a specific recipe).
+
 ---
 
 ## Registry Safety
@@ -319,7 +327,7 @@ No third-party component registries are used in Phase 8. All components are buil
 | Cook step | pending / current / done | current has left border; done collapses to 52px with check circle |
 | Cook step tap | tap current step | advances `currentStep` index; previous step becomes done |
 | Cook mode exit | tap "× Salir" | `router.back()` |
-| Detail "Cocinar" button | default / tap | navigates to `/recipes/[slug]/cook` |
+| Detail "Iniciar receta" button | default / tap | navigates to `/recipes/[slug]/cook` |
 
 ---
 
