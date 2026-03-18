@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-18T18:51:58.202Z"
+last_updated: "2026-03-18T18:55:55.771Z"
 last_activity: "2026-03-18 - Completed quick task 260318-jf3: fix packages/shared build output to separate dist dir"
 progress:
   total_phases: 12
-  completed_phases: 7
+  completed_phases: 8
   total_plans: 29
-  completed_plans: 28
+  completed_plans: 29
 ---
 
 # Project State
@@ -70,6 +70,7 @@ Plan: 2 of 3
 | Phase 07-frontend-setup-app-shell-auth-flows P04 | 15 | 2 tasks | 8 files |
 | Phase 08-frontend-recipe-list-detail-cook-mode P01 | 8 | 2 tasks | 8 files |
 | Phase 08-frontend-recipe-list-detail-cook-mode P02 | 5 | 2 tasks | 8 files |
+| Phase 08-frontend-recipe-list-detail-cook-mode P03 | 2 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -151,6 +152,7 @@ Recent decisions affecting current work:
 - [Phase 08-01]: Backdrop div at z-40 below dropdowns at z-50 for outside-click-to-close pattern without event bubbling issues
 - [Phase 08-frontend-recipe-list-detail-cook-mode]: Detail page reads recipe UUID from ?id= search param (not slug) to call GET /api/recipes/:id — slug is URL-only for display
 - [Phase 08-frontend-recipe-list-detail-cook-mode]: InfoGrid uses border-r on first 3 cells as vertical divider (simpler than CSS pseudo-element from spec)
+- [Phase 08-frontend-recipe-list-detail-cook-mode]: CookStep current variant has onKeyDown handler for keyboard accessibility (Enter/Space) — not in spec but required for WCAG compliance
 
 ### Pending Todos
 
