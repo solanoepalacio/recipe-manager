@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: "Checkpoint reached: 07-04 Task 2 human-verify — dev server at http://localhost:3002"
-last_updated: "2026-03-18T14:07:14.325Z"
-last_activity: 2026-03-18 — Plan 06-05 complete; AdminTokensService (SHA-256 hash, raw token once) + AdminTokensController (CurrentAdmin decorator) + AdminModule fully wired with all 6 sub-modules; 92 tests green; build clean
+stopped_at: Phase 07 complete — all 4 plans done; human verification approved; ready for Phase 8
+last_updated: "2026-03-18T16:49:11.926Z"
+last_activity: 2026-03-18 — Plan 07-04 complete; Skeleton component + Toast tests + human verification approved; post-checkpoint fixes applied (Tailwind token, proxy port, route restructure, search/filter scoped to /recipes)
 progress:
   total_phases: 12
   completed_phases: 7
@@ -25,10 +25,10 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 
 ## Current Position
 
-Phase: 6 of 12 (Backend Admin Endpoints) — COMPLETE
-Plan: 5 of 5 in current phase — COMPLETE (06-05 done — AdminTokensService + AdminTokensController + final AdminModule wiring; 92 tests passing; build clean)
-Status: Phase 6 complete — all 5 plans done; ready for Phase 7
-Last activity: 2026-03-18 — Plan 06-05 complete; AdminTokensService (SHA-256 hash, raw token once) + AdminTokensController (CurrentAdmin decorator) + AdminModule fully wired with all 6 sub-modules; 92 tests green; build clean
+Phase: 7 of 12 (Frontend Setup + App Shell + Auth Flows) — COMPLETE
+Plan: 4 of 4 in current phase — COMPLETE (07-04 done — Skeleton component + Toast tests + human verification approved)
+Status: Phase 7 complete — all 4 plans done; ready for Phase 8
+Last activity: 2026-03-18 — Plan 07-04 complete; Skeleton component + Toast tests + human verification approved; post-checkpoint fixes applied (Tailwind token, proxy port, route restructure, search/filter scoped to /recipes)
 
 Progress: [██████████] 100%
 
@@ -71,7 +71,7 @@ Progress: [██████████] 100%
 | Phase 07-frontend-setup-app-shell-auth-flows P01 | 3 | 2 tasks | 13 files |
 | Phase 07-frontend-setup-app-shell-auth-flows P02 | 8 | 2 tasks | 8 files |
 | Phase 07-frontend-setup-app-shell-auth-flows P03 | 6 | 2 tasks | 6 files |
-| Phase 07-frontend-setup-app-shell-auth-flows P04 | 3 | 1 tasks | 2 files |
+| Phase 07-frontend-setup-app-shell-auth-flows P04 | 15 | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -144,6 +144,10 @@ Recent decisions affecting current work:
 - [Phase 07-03]: auth.tsx uses .tsx extension (not .ts) because AuthProvider renders JSX
 - [Phase 07-03]: (auth)/layout.tsx created with AuthProvider so LoginPage useAuth() detects existing sessions — without it, isLoading stays true forever and form never renders
 - [Phase 07-04]: Sonner v2 renders section[aria-label='Notifications alt+T'] not ol[tabindex] — Toast test selector updated to section[aria-label]
+- [Phase 07-04]: Tailwind v4 --spacing-sm token conflicts with built-in spacing scale — removed custom token, use max-w-[24rem] literal on login form
+- [Phase 07-04]: Next.js proxy port corrected to 3001 to match API server
+- [Phase 07-04]: Root page.tsx removed — / routes to (app)/page.tsx (Hoy placeholder); /recipes shows recipe list with search/filter
+- [Phase 07-04]: Search/filter bar moved from AppShell into /recipes page only — AppShell is nav-only chrome; Drawer nav: Hoy / Recetas / Planificador
 
 ### Pending Todos
 
@@ -155,6 +159,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T14:07:14.323Z
-Stopped at: Checkpoint reached: 07-04 Task 2 human-verify — dev server at http://localhost:3002
+Last session: 2026-03-18T14:30:00.000Z
+Stopped at: Phase 07 complete — all 4 plans done; human verification approved; ready for Phase 8
 Resume file: None
