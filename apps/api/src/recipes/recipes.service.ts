@@ -39,6 +39,7 @@ const RECIPE_LIST_SELECT = {
   createdAt: true,
   updatedAt: true,
   _count: { select: { images: true } },
+  images: { take: 1, orderBy: { order: 'asc' as const }, select: { url: true } },
 } as const;
 
 function toRecipeListItem(recipe: any): RecipeListItem {
@@ -53,6 +54,7 @@ function toRecipeListItem(recipe: any): RecipeListItem {
     createdAt: recipe.createdAt.toISOString(),
     updatedAt: recipe.updatedAt.toISOString(),
     imageCount: recipe._count.images,
+    coverImageUrl: recipe.images?.[0]?.url ?? null,
   };
 }
 
@@ -122,7 +124,7 @@ export function toRecipeDetailResponse(recipe: any): RecipeDetailResponse {
     servingsUnit: recipe.servingsUnit ?? null,
     prepTime: recipe.prepTime ?? null,
     cookTime: recipe.cookTime ?? null,
-    totalTime: recipe.totalTime ?? null,
+    totalTime: recipe.totalTime ?? (recipe.prepTime != null && recipe.cookTime != null ? recipe.prepTime + recipe.cookTime : null),
     performTime: recipe.performTime ?? null,
     sourceUrl: recipe.sourceUrl ?? null,
     isLocked: recipe.isLocked ?? false,

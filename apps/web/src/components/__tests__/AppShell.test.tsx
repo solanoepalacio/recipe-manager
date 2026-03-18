@@ -16,11 +16,6 @@ describe('AppShell', () => {
     expect(screen.getByRole('button', { name: 'Abrir menú' })).toBeInTheDocument();
   });
 
-  it('renders FAB with aria-label Crear receta', () => {
-    render(<AppShell user={mockUser} onLogout={vi.fn()}><div /></AppShell>);
-    expect(screen.getByRole('button', { name: 'Crear receta' })).toBeInTheDocument();
-  });
-
   it('drawer is not visible initially (has -translate-x-full class)', () => {
     render(<AppShell user={mockUser} onLogout={vi.fn()}><div /></AppShell>);
     const drawer = screen.getByRole('complementary'); // <aside>

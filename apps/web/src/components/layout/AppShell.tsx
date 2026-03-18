@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { Plus } from 'lucide-react';
 import { TopBar } from './TopBar';
 import { Drawer } from './Drawer';
 
@@ -30,13 +29,6 @@ export function AppShell({ children, title = 'Recetas', user, onLogout }: AppShe
         {children}
       </main>
 
-      {/* FAB */}
-      <button
-        className="fixed bottom-7 right-6 w-[52px] h-[52px] bg-accent rounded-[16px] flex items-center justify-center"
-        aria-label="Crear receta"
-      >
-        <Plus size={26} className="text-background" />
-      </button>
     </div>
   );
 }

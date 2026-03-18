@@ -1,6 +1,14 @@
 'use client';
 
-const ALL_TABS = ['Ingredientes', 'Instrucciones', 'Básico', 'Fotos', 'Ajustes'];
+import { Info, ClipboardList, ChefHat, Camera, Settings2, type LucideIcon } from 'lucide-react';
+
+const TAB_CONFIG: { name: string; Icon: LucideIcon }[] = [
+  { name: 'Ingredientes',  Icon: ClipboardList },
+  { name: 'Instrucciones', Icon: ChefHat },
+  { name: 'Básico',        Icon: Info },
+  { name: 'Fotos',         Icon: Camera },
+  { name: 'Ajustes',       Icon: Settings2 },
+];
 
 interface EditorTabsProps {
   activeTab: string;
@@ -9,24 +17,32 @@ interface EditorTabsProps {
 }
 
 export function EditorTabs({ activeTab, onTabChange, isNewRecipe }: EditorTabsProps) {
-  const tabs = isNewRecipe ? ALL_TABS.filter((t) => t !== 'Ajustes') : ALL_TABS;
+  const tabs = isNewRecipe ? TAB_CONFIG.filter((t) => t.name !== 'Ajustes') : TAB_CONFIG;
 
   return (
     <div className="flex border-b border-border">
-      {tabs.map((tab) => (
-        <button
-          key={tab}
-          type="button"
-          onClick={() => onTabChange(tab)}
-          className={`flex-1 py-3 text-[15px] text-center ${
-            activeTab === tab
-              ? 'font-semibold text-foreground border-b-2 border-accent'
-              : 'text-placeholder font-normal'
-          }`}
-        >
-          {tab}
-        </button>
-      ))}
+      {tabs.map(({ name, Icon }) => {
+        const isActive = activeTab === name;
+        return (
+          <button
+            key={name}
+            type="button"
+            onClick={() => onTabChange(name)}
+            className={`flex-1 py-2 flex flex-col items-center gap-1 ${
+              isActive ? 'border-b-2 border-accent' : ''
+            }`}
+          >
+            <Icon
+              size={20}
+              strokeWidth={1.75}
+              className={isActive ? 'text-accent' : 'text-placeholder'}
+            />
+            <span className={`text-[11px] ${isActive ? 'font-semibold text-foreground' : 'font-normal text-placeholder'}`}>
+              {name}
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 }

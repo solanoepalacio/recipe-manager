@@ -128,6 +128,7 @@ export interface RecipeListItem {
   createdAt: string;
   updatedAt: string;
   imageCount: number;
+  coverImageUrl: string | null;
 }
 
 export interface RecipeQueryParams {

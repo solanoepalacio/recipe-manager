@@ -113,8 +113,8 @@ describe('MetadataForm', () => {
     expect(screen.getByText('NOMBRE')).toBeInTheDocument();
     expect(screen.getByText('DESCRIPCION')).toBeInTheDocument();
     expect(screen.getByText('PORCIONES')).toBeInTheDocument();
-    expect(screen.getByText('PREPARACION')).toBeInTheDocument();
-    expect(screen.getByText('COCCION')).toBeInTheDocument();
+    expect(screen.getByText('TIEMPO DE PREPARACION')).toBeInTheDocument();
+    expect(screen.getByText('TIEMPO DE COCCION')).toBeInTheDocument();
     expect(screen.getByText('URL FUENTE')).toBeInTheDocument();
   });
 });

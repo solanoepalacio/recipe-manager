@@ -96,7 +96,7 @@ export const MetadataForm = forwardRef<MetadataFormRef, MetadataFormProps>(
 
         {/* PREPARACION */}
         <div>
-          <label className={labelClass}>PREPARACION</label>
+          <label className={labelClass}>TIEMPO DE PREPARACION</label>
           <input
             type="number"
             value={prepTime}
@@ -108,7 +108,7 @@ export const MetadataForm = forwardRef<MetadataFormRef, MetadataFormProps>(
 
         {/* COCCION */}
         <div>
-          <label className={labelClass}>COCCION</label>
+          <label className={labelClass}>TIEMPO DE COCCION</label>
           <input
             type="number"
             value={cookTime}

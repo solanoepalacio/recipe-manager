@@ -154,7 +154,10 @@ export default function RecipeDetailPage() {
             </span>
           ) : (
             <button
-              onClick={() => setIsEditMode((v) => !v)}
+              onClick={() => {
+                if (isEditMode && activeTab === 'Básico') handleSave();
+                setIsEditMode((v) => !v);
+              }}
               className="border border-border text-foreground rounded-[20px] px-5 py-2 text-[13px] font-semibold"
             >
               {isEditMode ? 'Listo' : 'Editar receta'}
@@ -207,16 +210,7 @@ export default function RecipeDetailPage() {
             />
           )}
 
-          {/* Guardar pill — visible on Básico tab only */}
-          {activeTab === 'Básico' && (
-            <button
-              onClick={handleSave}
-              disabled={updateMutation.isPending}
-              className="fixed bottom-8 right-5 z-30 bg-foreground text-background rounded-full px-6 py-3 text-[15px] font-semibold shadow-md disabled:opacity-50"
-            >
-              {updateMutation.isPending ? 'Guardando...' : 'Guardar'}
-            </button>
-          )}
+
         </>
       )}
 
