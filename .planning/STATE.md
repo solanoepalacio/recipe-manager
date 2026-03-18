@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 06-04-PLAN.md
-last_updated: "2026-03-18T11:15:52.434Z"
+stopped_at: Completed 06-05-PLAN.md
+last_updated: "2026-03-18T11:19:29.500Z"
 last_activity: 2026-03-18 — Plan 06-04 complete; AdminFoodsService + AdminFoodsController (4 endpoints) + AdminUnitsService + AdminUnitsController (4 endpoints) + 4 DTOs; 8 Wave-0 unit tests passing; build clean
 progress:
   total_phases: 12
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 22
-  completed_plans: 21
+  completed_plans: 22
   percent: 100
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-16)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 6 — Backend Admin Endpoints
+**Current focus:** Phase 7 — next phase
 
 ## Current Position
 
-Phase: 6 of 12 (Backend Admin Endpoints) — IN PROGRESS
-Plan: 4 of 5 in current phase — COMPLETE (06-04 done — AdminFoodsService + AdminFoodsController 4 endpoints + AdminUnitsService + AdminUnitsController 4 endpoints + 4 DTOs + 8 unit tests passing; build clean)
-Status: Phase 6 in progress — plans 06-01, 06-02, 06-03, 06-04 done; 06-05 remaining
-Last activity: 2026-03-18 — Plan 06-04 complete; AdminFoodsService + AdminFoodsController (4 endpoints) + AdminUnitsService + AdminUnitsController (4 endpoints) + 4 DTOs; 8 Wave-0 unit tests passing; build clean
+Phase: 6 of 12 (Backend Admin Endpoints) — COMPLETE
+Plan: 5 of 5 in current phase — COMPLETE (06-05 done — AdminTokensService + AdminTokensController + final AdminModule wiring; 92 tests passing; build clean)
+Status: Phase 6 complete — all 5 plans done; ready for Phase 7
+Last activity: 2026-03-18 — Plan 06-05 complete; AdminTokensService (SHA-256 hash, raw token once) + AdminTokensController (CurrentAdmin decorator) + AdminModule fully wired with all 6 sub-modules; 92 tests green; build clean
 
 Progress: [██████████] 100%
 
@@ -67,6 +67,7 @@ Progress: [██████████] 100%
 | Phase 06-backend-admin-endpoints P02 | 2 | 2 tasks | 5 files |
 | Phase 06-backend-admin-endpoints P03 | 2 | 2 tasks | 5 files |
 | Phase 06-backend-admin-endpoints P04 | 2 | 2 tasks | 8 files |
+| Phase 06-backend-admin-endpoints P05 | 5 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -131,6 +132,8 @@ Recent decisions affecting current work:
 - [06-02]: AdminPaginationDto reusable across admin sub-modules — import in 06-03/06-04 without new pagination DTOs
 - [06-03]: Cascade delete uses $transaction with deleteMany array in strict dependency order; recipeIds pre-fetched outside transaction (Prisma array transactions cannot reference earlier step results)
 - [06-03]: recipes ?? [] null-guard in remove() for test robustness — Wave-0 spec remove test doesn't mock recipe.findMany, bare jest.fn() returns undefined
+- [Phase 06-backend-admin-endpoints]: TOKEN_SELECT explicitly excludes tokenHash key — tokenHash never appears in findAll or list mapper output
+- [Phase 06-backend-admin-endpoints]: AdminModule wiring is final — all 6 sub-module controller+service pairs registered; NestJS resolves all dependencies
 
 ### Pending Todos
 
@@ -142,6 +145,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T11:15:52.431Z
-Stopped at: Completed 06-04-PLAN.md
+Last session: 2026-03-18T11:19:29.498Z
+Stopped at: Completed 06-05-PLAN.md
 Resume file: None
