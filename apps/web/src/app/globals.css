@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #FAFAF7;
+  --color-foreground: #2C2C2A;
+  --color-secondary: #8A8680;
+  --color-placeholder: #C8C4BD;
+  --color-border: #E0DCD5;
+  --color-subtle: #F4F2ED;
+  --color-sand: #E8E1D5;
+  --color-accent: #5EBD6A;
+  --color-destructive: #D94F4F;
+
+  --font-family-sans: 'Outfit', sans-serif;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+}
