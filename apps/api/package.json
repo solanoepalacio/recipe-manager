@@ -8,7 +8,8 @@
     "start:dev": "nest start --watch",
     "test": "jest",
     "test:e2e": "jest --config test/jest-e2e.json",
-    "test:integration": "jest --config jest-integration.config.ts"
+    "test:integration": "jest --config jest-integration.config.ts",
+    "seed:dev": "tsx prisma/seed-dev.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
