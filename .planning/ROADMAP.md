@@ -119,14 +119,14 @@ Plans:
   2. Admin can call household CRUD endpoints (`GET/POST/PATCH/DELETE /admin/households`) successfully
   3. Admin can call foods and units CRUD endpoints; created foods and units appear in the seed-queryable lists used by recipe ingredient forms
   4. Admin can call `POST /admin/tokens` to create an API token tied to a user; the raw token is returned once; `GET /admin/tokens` and `DELETE /admin/tokens/:id` work correctly
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 06-01: Admin module — AdminAuthGuard wired, admin-auth controller/service (login/logout)
-- [ ] 06-02: Admin users sub-module (CRUD + password reset URL generation)
-- [ ] 06-03: Admin households sub-module (CRUD)
-- [ ] 06-04: Admin foods + units sub-modules (CRUD)
-- [ ] 06-05: Admin tokens sub-module (create, list, delete; token shown once)
+- [ ] 06-01-PLAN.md — Shared admin types (packages/shared/src/api/admin.ts) + CurrentAdmin decorator + Wave-0 test scaffolds
+- [ ] 06-02-PLAN.md — Admin users CRUD (expand AdminUsersService + AdminUsersController with findAll/findOne/create/update/remove)
+- [ ] 06-03-PLAN.md — Admin households CRUD (AdminHouseholdsService with cascade $transaction delete + AdminHouseholdsController)
+- [ ] 06-04-PLAN.md — Admin foods + units CRUD (AdminFoodsService/Controller + AdminUnitsService/Controller)
+- [ ] 06-05-PLAN.md — Admin tokens (AdminTokensService raw-token-once + AdminTokensController + final AdminModule wiring)
 
 ### Phase 7: Frontend Setup + App Shell + Auth Flows
 **Goal**: The Next.js SPA scaffolds with a responsive app shell, all routes are in place, users can log in and log out, and the core UX primitives (loading states, toast notifications) are operational.
