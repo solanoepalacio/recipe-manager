@@ -54,4 +54,11 @@ export class RecipesController {
     return this.recipesService.remove(id, user.householdId);
   }
 
+  @Post(':id/duplicate')
+  @ApiOperation({ summary: 'Duplicate a recipe' })
+  @ApiResponse({ status: 201, description: 'Recipe duplicated' })
+  duplicate(@Param('id') id: string, @CurrentUser() user: any) {
+    return this.recipesService.duplicate(id, user.householdId, user.id);
+  }
+
 }

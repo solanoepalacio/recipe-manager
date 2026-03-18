@@ -47,6 +47,7 @@ export interface RecipeDetailResponse {
   totalTime: number | null;
   performTime: number | null;
   sourceUrl: string | null;
+  isLocked: boolean;
   shareToken: string | null;
   createdAt: string;
   updatedAt: string;
@@ -77,6 +78,7 @@ export interface UpdateRecipeRequest {
   totalTime?: number | null;
   performTime?: number | null;
   sourceUrl?: string | null;
+  isLocked?: boolean;
 }
 
 export interface CreateSectionRequest {

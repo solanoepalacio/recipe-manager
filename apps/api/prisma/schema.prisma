@@ -108,6 +108,7 @@ model Recipe {
   totalTime       Int?
   performTime     Int?
   sourceUrl       String?
+  isLocked        Boolean             @default(false)
   shareToken      String?             @unique
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt

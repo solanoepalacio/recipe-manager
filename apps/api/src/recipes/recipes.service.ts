@@ -125,6 +125,7 @@ export function toRecipeDetailResponse(recipe: any): RecipeDetailResponse {
     totalTime: recipe.totalTime ?? null,
     performTime: recipe.performTime ?? null,
     sourceUrl: recipe.sourceUrl ?? null,
+    isLocked: recipe.isLocked ?? false,
     shareToken: recipe.shareToken ?? null,
     createdAt: recipe.createdAt.toISOString(),
     updatedAt: recipe.updatedAt.toISOString(),
@@ -269,6 +270,7 @@ export class RecipesService {
         ...(dto.totalTime !== undefined && { totalTime: dto.totalTime }),
         ...(dto.performTime !== undefined && { performTime: dto.performTime }),
         ...(dto.sourceUrl !== undefined && { sourceUrl: dto.sourceUrl }),
+        ...(dto.isLocked !== undefined && { isLocked: dto.isLocked }),
       },
       include: RECIPE_INCLUDE,
     });
@@ -279,6 +281,65 @@ export class RecipesService {
     await this.findAndVerifyOwnership(id, householdId);
     await this.prisma.recipe.delete({ where: { id } });
     return { id };
+  }
+
+  async duplicate(id: string, householdId: string, createdById: string): Promise<RecipeDetailResponse> {
+    const original = await this.prisma.recipe.findUnique({
+      where: { id },
+      include: {
+        sections: {
+          include: { ingredients: { orderBy: { order: 'asc' } } },
+          orderBy: { order: 'asc' },
+        },
+        steps: { orderBy: { order: 'asc' } },
+      },
+    });
+    if (!original) throw new NotFoundException(`Recipe ${id} not found`);
+    if (original.householdId !== householdId) throw new ForbiddenException('Access denied');
+
+    const newName = `${original.name} (copia)`;
+    const uniqueSlug = await this.generateUniqueSlug(newName, householdId);
+
+    const recipe = await this.prisma.recipe.create({
+      data: {
+        householdId,
+        createdById,
+        name: newName,
+        slug: uniqueSlug,
+        description: original.description,
+        servingsQty: original.servingsQty,
+        servingsUnit: original.servingsUnit,
+        prepTime: original.prepTime,
+        cookTime: original.cookTime,
+        totalTime: original.totalTime,
+        performTime: original.performTime,
+        sourceUrl: original.sourceUrl,
+        sections: {
+          create: original.sections.map((s, si) => ({
+            title: s.title,
+            order: si,
+            ingredients: {
+              create: s.ingredients.map((ing, ii) => ({
+                foodId: ing.foodId,
+                unitId: ing.unitId,
+                quantity: ing.quantity,
+                note: ing.note,
+                order: ii,
+              })),
+            },
+          })),
+        },
+        steps: {
+          create: original.steps.map((step, i) => ({
+            title: step.title,
+            body: step.body,
+            order: i,
+          })),
+        },
+      },
+      include: RECIPE_INCLUDE,
+    });
+    return toRecipeDetailResponse(recipe);
   }
 
 }
