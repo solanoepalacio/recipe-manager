@@ -5,6 +5,16 @@ import type { RecipeDetailResponse } from '@recipe-manager/shared';
 const mockBack = vi.fn();
 const mockPush = vi.fn();
 
+// Mock sonner
+vi.mock('sonner', () => ({
+  toast: { error: vi.fn(), success: vi.fn() },
+}));
+
+// Mock api-client
+vi.mock('@/lib/api-client', () => ({
+  api: { get: vi.fn(), post: vi.fn(), patch: vi.fn(), delete: vi.fn() },
+}));
+
 // Mock next/navigation
 vi.mock('next/navigation', () => ({
   useParams: () => ({ slug: 'pollo-al-horno' }),
@@ -78,6 +88,13 @@ vi.mock('@tanstack/react-query', () => ({
     data: mockRecipe,
     isLoading: false,
     isError: false,
+  }),
+  useMutation: () => ({
+    mutate: vi.fn(),
+    isPending: false,
+  }),
+  useQueryClient: () => ({
+    setQueryData: vi.fn(),
   }),
 }));
 

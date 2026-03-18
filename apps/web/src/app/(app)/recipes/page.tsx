@@ -2,14 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { RecipeListItem, RecipeQueryParams, PaginatedResponse } from '@recipe-manager/shared';
+import { RecipeListItem, RecipeQueryParams, PaginatedResponse, RecipeDetailResponse } from '@recipe-manager/shared';
 import { api } from '@/lib/api-client';
 import { queryKeys } from '@/lib/query-keys';
 import { useDebounce } from '@/hooks/useDebounce';
+import { useRouter } from 'next/navigation';
+import { Plus } from 'lucide-react';
 import { RecipeCard } from '@/components/recipes/RecipeCard';
 import { RecipeListFilters } from '@/components/recipes/RecipeListFilters';
 import { PaginationControls } from '@/components/recipes/PaginationControls';
 import { Skeleton } from '@/components/ui/Skeleton';
+import { RecipeNamePrompt } from '@/components/recipes/editor/RecipeNamePrompt';
 
 // Sort options
 const SORT_OPTIONS = [
@@ -43,6 +46,13 @@ function parseSortOption(sortOption: string): { sort: RecipeQueryParams['sort'];
 }
 
 export default function RecipeListPage() {
+  const router = useRouter();
+  const [showNamePrompt, setShowNamePrompt] = useState(false);
+
+  function handleRecipeCreated(recipe: RecipeDetailResponse) {
+    router.push(`/recipes/${recipe.slug}?id=${recipe.id}&edit=1`);
+  }
+
   // State
   const [searchInput, setSearchInput] = useState('');
   const [sortOption, setSortOption] = useState('updatedAt-desc');
@@ -249,6 +259,22 @@ export default function RecipeListPage() {
           }}
         />
       )}
+
+      {/* FAB */}
+      <button
+        onClick={() => setShowNamePrompt(true)}
+        aria-label="Nueva receta"
+        className="fixed bottom-8 right-5 z-30 w-14 h-14 rounded-[16px] bg-accent flex items-center justify-center shadow-md"
+      >
+        <Plus size={24} className="text-white" />
+      </button>
+
+      {/* Name prompt bottom sheet */}
+      <RecipeNamePrompt
+        isOpen={showNamePrompt}
+        onClose={() => setShowNamePrompt(false)}
+        onCreated={handleRecipeCreated}
+      />
     </div>
   );
 }

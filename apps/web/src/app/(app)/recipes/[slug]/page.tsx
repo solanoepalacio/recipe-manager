@@ -1,31 +1,63 @@
 'use client';
 
 import { useParams, useSearchParams, useRouter } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { ExternalLink, CookingPot } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { queryKeys } from '@/lib/query-keys';
 import { api } from '@/lib/api-client';
-import type { RecipeDetailResponse } from '@recipe-manager/shared';
+import type { RecipeDetailResponse, UpdateRecipeRequest } from '@recipe-manager/shared';
 import { DetailTopBar } from '@/components/recipes/DetailTopBar';
 import { SectionAccordion } from '@/components/recipes/SectionAccordion';
 import { InfoGrid } from '@/components/recipes/InfoGrid';
 import { IngredientList } from '@/components/recipes/IngredientList';
 import { InstructionList } from '@/components/recipes/InstructionList';
 import { Skeleton } from '@/components/ui/Skeleton';
+import { EditorTabs } from '@/components/recipes/editor/EditorTabs';
+import { MetadataForm, MetadataFormRef } from '@/components/recipes/editor/MetadataForm';
 
 export default function RecipeDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const searchParams = useSearchParams();
   const recipeId = searchParams.get('id');
   const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [activeTab, setActiveTab] = useState('Ingredientes');
+  const metadataFormRef = useRef<MetadataFormRef>(null);
+
+  // Enter edit mode when ?edit=1 is present on load
+  useEffect(() => {
+    if (searchParams.get('edit') === '1') {
+      setIsEditMode(true);
+    }
+  }, []);
 
   const { data: recipe, isLoading, isError } = useQuery({
     queryKey: queryKeys.recipes.detail(slug),
     queryFn: () => api.get<RecipeDetailResponse>(`/recipes/${recipeId}`),
     enabled: Boolean(recipeId),
   });
+
+  const updateMutation = useMutation({
+    mutationFn: (data: UpdateRecipeRequest) =>
+      api.patch<RecipeDetailResponse>(`/recipes/${recipeId}`, data),
+    onSuccess: (updated) => {
+      queryClient.setQueryData(queryKeys.recipes.detail(slug), updated);
+      toast.success('Guardado');
+    },
+    onError: () => toast.error('Error al guardar. Intenta de nuevo.'),
+  });
+
+  const handleSave = useCallback(() => {
+    if (metadataFormRef.current) {
+      updateMutation.mutate(metadataFormRef.current.getValues());
+    }
+  }, [updateMutation]);
 
   // No recipeId in query params — show navigation error
   if (!recipeId) {
@@ -76,8 +108,8 @@ export default function RecipeDetailPage() {
       {/* Detail top bar */}
       <DetailTopBar recipeName={recipe.name} onBack={() => router.back()} />
 
-      {/* Hero image */}
-      {recipe.images.length > 0 && (
+      {/* Hero image — hidden in edit mode */}
+      {!isEditMode && recipe.images.length > 0 && (
         <div className="w-full h-[220px]">
           <img
             src={recipe.images[0].url}
@@ -99,40 +131,97 @@ export default function RecipeDetailPage() {
             Compartir
           </button>
 
-          {/* Iniciar receta */}
-          <Link
-            href={`/recipes/${slug}/cook?id=${recipeId}`}
-            className="bg-foreground text-background rounded-[20px] px-5 py-2 text-[13px] font-semibold flex items-center gap-2"
-          >
-            <CookingPot size={16} strokeWidth={2} />
-            Iniciar receta
-          </Link>
+          {/* Iniciar receta — hidden in edit mode */}
+          {!isEditMode && (
+            <Link
+              href={`/recipes/${slug}/cook?id=${recipeId}`}
+              className="bg-foreground text-background rounded-[20px] px-5 py-2 text-[13px] font-semibold flex items-center gap-2"
+            >
+              <CookingPot size={16} strokeWidth={2} />
+              Iniciar receta
+            </Link>
+          )}
 
-          {/* Editar receta — disabled placeholder for Phase 9 */}
-          <span className="border border-subtle text-placeholder rounded-[20px] px-5 py-2 text-[13px] font-semibold cursor-not-allowed">
-            Editar receta
-          </span>
+          {/* Edit toggle button */}
+          <button
+            onClick={() => setIsEditMode((v) => !v)}
+            className="border border-border text-foreground rounded-[20px] px-5 py-2 text-[13px] font-semibold"
+          >
+            {isEditMode ? 'Listo' : 'Editar receta'}
+          </button>
         </div>
       </div>
 
-      {/* Accordion sections */}
-      <SectionAccordion title="Información">
-        <InfoGrid
-          prepTime={recipe.prepTime}
-          cookTime={recipe.cookTime}
-          totalTime={recipe.totalTime}
-          servingsQty={recipe.servingsQty}
-          servingsUnit={recipe.servingsUnit}
-        />
-      </SectionAccordion>
+      {/* Edit mode: tab editor */}
+      {isEditMode && (
+        <>
+          <EditorTabs activeTab={activeTab} onTabChange={setActiveTab} isNewRecipe={false} />
 
-      <SectionAccordion title="Ingredientes">
-        <IngredientList sections={recipe.sections} />
-      </SectionAccordion>
+          {/* Tab content */}
+          {activeTab === 'Ingredientes' && (
+            <div className="px-5 py-8 text-center text-[15px] text-secondary">
+              Editor de ingredientes (Plan 09-02)
+            </div>
+          )}
+          {activeTab === 'Instrucciones' && (
+            <div className="px-5 py-8 text-center text-[15px] text-secondary">
+              Editor de instrucciones (Plan 09-03)
+            </div>
+          )}
+          {activeTab === 'Básico' && (
+            <MetadataForm
+              ref={metadataFormRef}
+              recipe={recipe}
+              onSave={() => {}}
+              isSaving={updateMutation.isPending}
+            />
+          )}
+          {activeTab === 'Fotos' && (
+            <div className="px-5 py-8 text-center text-[15px] text-secondary">
+              Gestión de fotos (Plan 09-04)
+            </div>
+          )}
+          {activeTab === 'Ajustes' && (
+            <div className="px-5 py-8 text-center text-[15px] text-secondary">
+              Ajustes (Plan 09-05)
+            </div>
+          )}
 
-      <SectionAccordion title="Instrucciones">
-        <InstructionList steps={recipe.steps} />
-      </SectionAccordion>
+          {/* Guardar pill — visible on Básico tab only */}
+          {activeTab === 'Básico' && (
+            <button
+              onClick={handleSave}
+              disabled={updateMutation.isPending}
+              className="fixed bottom-8 right-5 z-30 bg-foreground text-background rounded-full px-6 py-3 text-[15px] font-semibold shadow-md disabled:opacity-50"
+            >
+              {updateMutation.isPending ? 'Guardando...' : 'Guardar'}
+            </button>
+          )}
+        </>
+      )}
+
+      {/* View mode: accordion sections */}
+      {!isEditMode && (
+        <>
+          <SectionAccordion title="Información">
+            <InfoGrid
+              prepTime={recipe.prepTime}
+              cookTime={recipe.cookTime}
+              totalTime={recipe.totalTime}
+              servingsQty={recipe.servingsQty}
+              servingsUnit={recipe.servingsUnit}
+            />
+          </SectionAccordion>
+
+          <SectionAccordion title="Ingredientes">
+            <IngredientList sections={recipe.sections} />
+          </SectionAccordion>
+
+          <SectionAccordion title="Instrucciones">
+            <InstructionList steps={recipe.steps} />
+          </SectionAccordion>
+        </>
+      )}
     </div>
   );
 }
