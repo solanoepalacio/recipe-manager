@@ -13,6 +13,7 @@ import {
   localDateString,
 } from '@/lib/planner-dates';
 import { WeekNav } from '@/components/planner/WeekNav';
+import { WeekCalendarModal } from '@/components/planner/WeekCalendarModal';
 import { DayAccordion } from '@/components/planner/DayAccordion';
 import { RecipePickerSheet } from '@/components/planner/RecipePickerSheet';
 import { EditEntrySheet } from '@/components/planner/EditEntrySheet';
@@ -24,6 +25,7 @@ export default function PlannerPage() {
   const [expandedDays, setExpandedDays] = useState<Set<string>>(
     () => new Set([localDateString(new Date())])
   );
+  const [calendarOpen, setCalendarOpen] = useState(false);
   const [pickerDate, setPickerDate] = useState<string | null>(null);
   const [editEntry, setEditEntry] = useState<MealPlanEntryResponse | null>(null);
 
@@ -58,6 +60,11 @@ export default function PlannerPage() {
       d.setDate(d.getDate() + 7);
       return d;
     });
+  }, []);
+
+  const handleCalendarSelect = useCallback((date: Date) => {
+    setAnchor(date);
+    setExpandedDays(new Set([localDateString(date)]));
   }, []);
 
   const toggleDay = useCallback((date: string) => {
@@ -138,6 +145,7 @@ export default function PlannerPage() {
         label={formatWeekLabel(range.from, range.to)}
         onPrev={handlePrev}
         onNext={handleNext}
+        onLabelClick={() => setCalendarOpen(true)}
       />
 
       {isLoading ? (
@@ -180,6 +188,14 @@ export default function PlannerPage() {
         entry={editEntry}
         from={range.from}
         to={range.to}
+      />
+
+      {/* Calendar jump modal */}
+      <WeekCalendarModal
+        isOpen={calendarOpen}
+        onClose={() => setCalendarOpen(false)}
+        currentDate={anchor}
+        onSelectDate={handleCalendarSelect}
       />
     </div>
   );
