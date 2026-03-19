@@ -162,7 +162,7 @@ Plans:
 - [x] 08-02-PLAN.md — Recipe detail page: DetailTopBar, SectionAccordion, InfoGrid, IngredientList, InstructionList, full detail view
 - [x] 08-03-PLAN.md — Cook mode page: full-screen overlay, CookStep component, step state machine, check-off navigation, completion state
 
-### ✅ Phase 9: Frontend Recipe Creation + Editing
+### Phase 9: Frontend Recipe Creation + Editing
 **Goal**: Users can create recipes from scratch, duplicate existing ones, and edit all recipe content (metadata, ingredients in sections, instruction steps, images) including locking.
 **Depends on**: Phase 4, Phase 7
 **Requirements**: RCP-01, RCP-02, RCP-03, RCP-04, RCP-05, ING-01, ING-02, ING-03, INS-01, INS-02, IMG-01, IMG-02
@@ -191,13 +191,12 @@ Plans:
   2. A user can assign a recipe to a date and meal type (breakfast, lunch, dinner, snack, dessert); the entry appears in the correct calendar cell
   3. Dragging a meal plan entry to a different date or meal type slot updates it on the server and reflects in the UI
   4. A user can edit an entry (change recipe or meal type) or delete it; changes are visible to all household members after refresh
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 10-01: Planner layout — calendar grid component, 1-week/4-week toggle, MealPlanEntry display cards
-- [ ] 10-02: Assign recipe — recipe picker modal/drawer, meal type selector, entry creation
-- [ ] 10-03: Drag-and-drop reorganization — drag-drop library integration, optimistic update on drop
-- [ ] 10-04: Edit/delete entry — entry edit modal, delete confirmation
+- [ ] 10-01-PLAN.md — Planner layout: date utils, WeekNav, WeekToggle, DayAccordion, MealEntryRow, MealTypeChips, PlannerPage with data fetching + delete mutation, Wave 0 test scaffold
+- [ ] 10-02-PLAN.md — Assign recipe: RecipePickerSheet with search + meal type chips, ConfirmDialog cancelLabel prop, create entry mutation, wired into PlannerPage
+- [ ] 10-03-PLAN.md — Drag-and-drop + edit/delete: useDraggable on MealEntryRow, useDroppable on DayAccordion, DndContext + optimistic PATCH, EditEntrySheet with save/delete
 
 ### Phase 11: Frontend Profile + Household + Shared Recipe
 **Goal**: Users can view and edit their own profile, see household membership, and anyone with a share link can view a recipe publicly without logging in.
@@ -237,7 +236,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -250,6 +249,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 7. Frontend Setup + App Shell + Auth Flows | 4/4 | Complete   | 2026-03-18 |
 | 8. Frontend Recipe List + Detail + Cook Mode | 2/3 | In Progress|  |
 | 9. Frontend Recipe Creation + Editing | 5/5 | Complete   | 2026-03-18 |
-| 10. Frontend Meal Planner | 0/4 | Not started | - |
+| 10. Frontend Meal Planner | 0/3 | Not started | - |
 | 11. Frontend Profile + Household + Shared Recipe | 0/3 | Not started | - |
 | 12. Frontend Admin Panel | 0/7 | Not started | - |
