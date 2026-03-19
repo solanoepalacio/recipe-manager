@@ -1,6 +1,6 @@
 // apps/api/src/admin/auth/admin-auth.controller.ts
 import {
-  Controller, Post, Body, Req, Res, UnauthorizedException, UseGuards,
+  Controller, Post, Get, Body, Req, Res, UnauthorizedException, UseGuards,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Request, Response } from 'express';
@@ -8,6 +8,7 @@ import { AdminAuthService } from './admin-auth.service';
 import { AdminLoginDto } from './dto/admin-login.dto';
 import { Public } from '../../auth/decorators/public.decorator';
 import { AdminAuthGuard } from '../../auth/guards/admin-auth.guard';
+import { CurrentAdmin } from '../../auth/decorators/current-admin.decorator';
 
 @ApiTags('admin-auth')
 @Controller('admin/auth')
@@ -36,5 +37,14 @@ export class AdminAuthController {
     );
     res.clearCookie('admin.sid');
     return { message: 'Logged out' };
+  }
+
+  @UseGuards(AdminAuthGuard)
+  @Get('me')
+  @ApiOperation({ summary: 'Get current admin' })
+  @ApiResponse({ status: 200, description: 'Current admin info' })
+  @ApiResponse({ status: 401, description: 'Not authenticated' })
+  getMe(@CurrentAdmin() admin: { id: string; email: string; name: string }): { id: string; email: string; name: string } {
+    return { id: admin.id, email: admin.email, name: admin.name };
   }
 }

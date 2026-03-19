@@ -61,3 +61,10 @@ export interface AdminTokenResponse {
 export interface AdminTokenCreatedResponse extends AdminTokenResponse {
   token: string;
 }
+
+/** Returned by GET /admin/auth/me */
+export interface AdminMeResponse {
+  id: string;
+  email: string;
+  name: string;
+}
