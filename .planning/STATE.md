@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 12-01-PLAN.md
-last_updated: "2026-03-19T18:53:18.573Z"
+stopped_at: Completed 12-02-PLAN.md
+last_updated: "2026-03-19T18:58:10.789Z"
 last_activity: 2026-03-19
 progress:
   total_phases: 12
   completed_phases: 11
   total_plans: 45
-  completed_plans: 41
+  completed_plans: 42
 ---
 
 # Project State
@@ -84,6 +84,7 @@ Plan: 1 of 5
 | Phase 11-frontend-profile-household-shared-recipe P02 | 2 | 2 tasks | 2 files |
 | Phase 11 P03 | 2 | 2 tasks | 3 files |
 | Phase 12-frontend-admin-panel P01 | 4 | 2 tasks | 11 files |
+| Phase 12-frontend-admin-panel P02 | 5 | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -191,6 +192,9 @@ Recent decisions affecting current work:
 - [Phase 12-01]: AdminGuardedShell checks pathname for /admin/login and /setup to skip auth guard — avoids redirect loop on public admin paths
 - [Phase 12-01]: admin-api-client uses typeof window !== 'undefined' guard before window.location.replace — prevents SSR/build crash on 401
 - [Phase 12-01]: (admin)/layout.tsx creates its own QueryClient instance — admin panel has isolated query state from user app
+- [Phase 12-02]: AdminSidebar renders desktop sidebar (lg:flex, 280px) + mobile tab bar (lg:hidden) in same component
+- [Phase 12-02]: AdminTable<T> generic pattern: columns/rows/getRowKey — all 5 CRUD sections follow same interface
+- [Phase 12-02]: pageSizeOptions prop on PaginationControls defaults to [10,20,50] — fully backward-compatible
 
 ### Pending Todos
 
@@ -209,5 +213,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-19
-Stopped at: Completed 12-01-PLAN.md
+Stopped at: Completed 12-02-PLAN.md
 Resume file: None
