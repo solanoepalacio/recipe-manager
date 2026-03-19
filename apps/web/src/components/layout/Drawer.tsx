@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { label: 'Hoy', href: '/' },
   { label: 'Recetas', href: '/recipes' },
   { label: 'Planificador', href: '/planner' },
+  { label: 'Perfil', href: '/profile' },
 ];
 
 export function Drawer({ isOpen, onClose, user, onLogout }: DrawerProps) {
@@ -44,12 +45,14 @@ export function Drawer({ isOpen, onClose, user, onLogout }: DrawerProps) {
         {/* Header */}
         <div className="bg-sand pt-8 px-6 pb-6 rounded-tr-[20px]">
           <p className="text-[15px] text-secondary mb-1">Hola,</p>
-          <p
-            className="text-[18px] font-semibold text-foreground mb-3"
+          <button
+            type="button"
+            onClick={() => handleNav('/profile')}
+            className="text-[18px] font-semibold text-foreground mb-3 text-left"
             style={{ letterSpacing: '-0.3px' }}
           >
             {user?.name ?? ''}
-          </p>
+          </button>
           <button
             className="flex items-center gap-1 text-[15px] text-secondary"
             aria-label="Ver hogar"
