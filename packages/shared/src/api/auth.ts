@@ -4,12 +4,9 @@
  * Sources: mvp_plans/03_api_design.md + mvp_plans/01_tech_stack_and_data_model.md
  */
 
-/** POST /api/auth/login — login with email or username + password */
+/** POST /api/auth/login — login with email + password */
 export interface LoginRequest {
-  /** User's email address. One of email or username is required. */
-  email?: string;
-  /** User's username. One of email or username is required. */
-  username?: string;
+  email: string;
   password: string;
 }
 
@@ -23,7 +20,6 @@ export interface MeResponse {
   householdId: string;
   name: string;
   email: string | null;
-  username: string | null;
   createdAt: string;
   updatedAt: string;
 }

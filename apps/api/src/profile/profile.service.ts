@@ -1,4 +1,4 @@
-import { Injectable, ConflictException } from '@nestjs/common';
+import { Injectable, ConflictException, UnauthorizedException, BadRequestException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../prisma/prisma.service';
 import { ProfileResponse } from '@recipe-manager/shared';
@@ -9,7 +9,6 @@ function toProfileResponse(user: {
   householdId: string;
   name: string;
   email: string | null;
-  username: string | null;
   gender: string | null;
   dateOfBirth: Date | null;
   createdAt: Date;
@@ -20,7 +19,6 @@ function toProfileResponse(user: {
     householdId: user.householdId,
     name: user.name,
     email: user.email,
-    username: user.username,
     gender: user.gender as ProfileResponse['gender'],
     dateOfBirth: user.dateOfBirth?.toISOString() ?? null,
     createdAt: user.createdAt.toISOString(),
@@ -38,25 +36,29 @@ export class ProfileService {
   }
 
   async updateProfile(userId: string, dto: UpdateProfileDto): Promise<ProfileResponse> {
-    const { password, ...rest } = dto;
+    const { password, currentPassword, ...rest } = dto;
     const data: Record<string, unknown> = { ...rest };
 
     if (password) {
+      if (!currentPassword) {
+        throw new BadRequestException('currentPassword is required to change password');
+      }
+      const user = await this.prisma.user.findUniqueOrThrow({ where: { id: userId } });
+      if (!user.passwordHash) {
+        throw new BadRequestException('No password is set for this account');
+      }
+      const valid = await bcrypt.compare(currentPassword, user.passwordHash);
+      if (!valid) {
+        throw new UnauthorizedException('Current password is incorrect');
+      }
       data.passwordHash = await bcrypt.hash(password, 10);
     }
 
-    // Check uniqueness conflicts before updating
-    if (dto.email || dto.username) {
+    if (dto.email) {
       const conflict = await this.prisma.user.findFirst({
-        where: {
-          id: { not: userId },
-          OR: [
-            dto.email ? { email: dto.email } : {},
-            dto.username ? { username: dto.username } : {},
-          ].filter((c) => Object.keys(c).length > 0),
-        },
+        where: { id: { not: userId }, email: dto.email },
       });
-      if (conflict) throw new ConflictException('Email or username already in use');
+      if (conflict) throw new ConflictException('Email already in use');
     }
 
     const updated = await this.prisma.user.update({ where: { id: userId }, data });

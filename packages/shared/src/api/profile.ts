@@ -14,7 +14,6 @@ export interface ProfileResponse {
   householdId: string;
   name: string;
   email: string | null;
-  username: string | null;
   gender: Gender | null;
   dateOfBirth: string | null;
   createdAt: string;
@@ -24,13 +23,13 @@ export interface ProfileResponse {
 /**
  * PATCH /api/profile — update profile fields.
  * All fields optional — only provided fields are updated.
- * password triggers passwordHash update server-side.
+ * password triggers passwordHash update server-side; requires currentPassword.
  */
 export interface UpdateProfileRequest {
   name?: string;
   email?: string;
-  username?: string;
-  password?: string;
   gender?: Gender | null;
   dateOfBirth?: string | null;
+  currentPassword?: string;
+  password?: string;
 }

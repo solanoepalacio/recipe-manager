@@ -6,8 +6,8 @@ import { Gender } from '@recipe-manager/shared';
 export class UpdateProfileDto implements UpdateProfileRequest {
   @ApiPropertyOptional() @IsOptional() @IsString() name?: string;
   @ApiPropertyOptional() @IsOptional() @IsEmail() email?: string;
-  @ApiPropertyOptional() @IsOptional() @IsString() username?: string;
-  @ApiPropertyOptional() @IsOptional() @IsString() @MinLength(6) password?: string;
   @ApiPropertyOptional({ enum: Gender, nullable: true }) @IsOptional() @IsEnum(Gender) gender?: Gender | null;
   @ApiPropertyOptional({ nullable: true }) @IsOptional() @IsDateString() dateOfBirth?: string | null;
+  @ApiPropertyOptional() @IsOptional() @IsString() currentPassword?: string;
+  @ApiPropertyOptional() @IsOptional() @IsString() @MinLength(6) password?: string;
 }

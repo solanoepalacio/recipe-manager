@@ -43,7 +43,6 @@ const mockProfile = {
   householdId: 'hh-1',
   name: 'Ana Garcia',
   email: 'ana@example.com',
-  username: 'anagarcia',
   gender: null,
   dateOfBirth: null,
   createdAt: '2026-01-01T00:00:00.000Z',
@@ -60,7 +59,7 @@ describe('ProfilePage', () => {
     render(<ProfilePage />, { wrapper });
     await waitFor(() => expect(screen.getByDisplayValue('Ana Garcia')).toBeInTheDocument());
     expect(screen.getByDisplayValue('ana@example.com')).toBeInTheDocument();
-    expect(screen.getByDisplayValue('anagarcia')).toBeInTheDocument();
+    expect(screen.queryByLabelText('Usuario')).toBeNull();
   });
 
   it('shows skeleton while loading', () => {
@@ -101,12 +100,30 @@ describe('ProfilePage', () => {
     );
   });
 
-  it('reveals password field on Cambiar contrasena click', async () => {
+  it('opens password change modal on Cambiar contrasena click', async () => {
     (api.get as ReturnType<typeof vi.fn>).mockResolvedValue(mockProfile);
     render(<ProfilePage />, { wrapper });
     await waitFor(() => expect(screen.getByDisplayValue('Ana Garcia')).toBeInTheDocument());
-    expect(screen.queryByLabelText('Nueva contrasena')).toBeNull();
+    expect(screen.queryByLabelText('Contrasena actual')).toBeNull();
     fireEvent.click(screen.getByText('Cambiar contrasena'));
+    expect(screen.getByLabelText('Contrasena actual')).toBeInTheDocument();
     expect(screen.getByLabelText('Nueva contrasena')).toBeInTheDocument();
+  });
+
+  it('sends currentPassword and password when changing password via modal', async () => {
+    (api.get as ReturnType<typeof vi.fn>).mockResolvedValue(mockProfile);
+    (api.patch as ReturnType<typeof vi.fn>).mockResolvedValue(mockProfile);
+    render(<ProfilePage />, { wrapper });
+    await waitFor(() => expect(screen.getByDisplayValue('Ana Garcia')).toBeInTheDocument());
+    fireEvent.click(screen.getByText('Cambiar contrasena'));
+    fireEvent.change(screen.getByLabelText('Contrasena actual'), { target: { value: 'oldpass123' } });
+    fireEvent.change(screen.getByLabelText('Nueva contrasena'), { target: { value: 'newpass123' } });
+    fireEvent.click(screen.getByText('Confirmar'));
+    await waitFor(() =>
+      expect(api.patch).toHaveBeenCalledWith('/profile', {
+        currentPassword: 'oldpass123',
+        password: 'newpass123',
+      }),
+    );
   });
 });

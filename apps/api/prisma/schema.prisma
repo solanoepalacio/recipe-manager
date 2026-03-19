@@ -41,7 +41,6 @@ model User {
   household        Household  @relation(fields: [householdId], references: [id])
   name             String
   email            String?    @unique
-  username         String?    @unique
   passwordHash     String?
   resetToken       String?
   resetTokenExpiry DateTime?

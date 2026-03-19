@@ -16,11 +16,11 @@ export class AuthController {
 
   @Public()
   @Post('login')
-  @ApiOperation({ summary: 'Login with email or username + password' })
+  @ApiOperation({ summary: 'Login with email + password' })
   @ApiResponse({ status: 200, description: 'Returns authenticated user info' })
   @ApiResponse({ status: 401, description: 'Invalid credentials' })
   async login(@Body() dto: LoginDto, @Req() req: Request) {
-    const user = await this.authService.validateUser(dto.email, dto.username, dto.password);
+    const user = await this.authService.validateUser(dto.email, dto.password);
     if (!user) throw new UnauthorizedException('Invalid credentials');
     req.session.userId = user.id;
     return toMeResponse(user);

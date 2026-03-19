@@ -8,14 +8,8 @@ import { MeResponse } from '@recipe-manager/shared';
 export class AuthService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async validateUser(
-    email: string | undefined,
-    username: string | undefined,
-    password: string,
-  ) {
-    const user = await this.prisma.user.findFirst({
-      where: email ? { email } : { username },
-    });
+  async validateUser(email: string, password: string) {
+    const user = await this.prisma.user.findFirst({ where: { email } });
     if (!user || !user.passwordHash) return null;
     const valid = await bcrypt.compare(password, user.passwordHash);
     if (!valid) return null;
@@ -28,7 +22,6 @@ export function toMeResponse(user: {
   householdId: string;
   name: string;
   email: string | null;
-  username: string | null;
   createdAt: Date;
   updatedAt: Date;
 }): MeResponse {
@@ -37,7 +30,6 @@ export function toMeResponse(user: {
     householdId: user.householdId,
     name: user.name,
     email: user.email,
-    username: user.username,
     createdAt: user.createdAt.toISOString(),
     updatedAt: user.updatedAt.toISOString(),
   };
