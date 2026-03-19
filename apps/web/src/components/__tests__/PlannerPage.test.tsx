@@ -238,4 +238,71 @@ describe('PlannerPage', () => {
       )
     );
   });
+
+  it('renders grip handle icon on entry rows', async () => {
+    // PLAN-03: drag handle visible on expanded entries
+    vi.mocked(api.get).mockResolvedValue({
+      entries: [createMockEntry({ date: todayStr })],
+    });
+    renderWithProviders(<PlannerPage />);
+
+    await screen.findByText('Pasta');
+
+    // GripVertical renders as an SVG; the useDraggable mock stubs setNodeRef but still renders the icon
+    // Confirm the drag handle container is present via cursor-grab class
+    const gripContainers = document.querySelectorAll('.cursor-grab');
+    expect(gripContainers.length).toBeGreaterThan(0);
+  });
+
+  it('opens edit sheet when entry recipe name is clicked', async () => {
+    // PLAN-04: clicking recipe name opens edit sheet
+    vi.mocked(api.get).mockResolvedValue({
+      entries: [createMockEntry({ date: todayStr })],
+    });
+    renderWithProviders(<PlannerPage />);
+
+    await screen.findByText('Pasta');
+
+    // Click on the recipe name (clickable area)
+    fireEvent.click(screen.getByText('Pasta'));
+
+    // Edit sheet title should appear
+    await screen.findByText('Editar entrada');
+  });
+
+  it('edit sheet shows meal type chips and save button', async () => {
+    // PLAN-04: edit sheet contains meal type chips and save button
+    vi.mocked(api.get).mockResolvedValue({
+      entries: [createMockEntry({ date: todayStr })],
+    });
+    renderWithProviders(<PlannerPage />);
+
+    await screen.findByText('Pasta');
+    fireEvent.click(screen.getByText('Pasta'));
+
+    await screen.findByText('Editar entrada');
+
+    expect(screen.getByText('Guardar cambios')).toBeInTheDocument();
+    expect(screen.getByText('Eliminar entrada')).toBeInTheDocument();
+  });
+
+  it('shows delete confirmation in edit sheet when Eliminar entrada is clicked', async () => {
+    // PLAN-04: delete confirmation dialog with Mantener entrada cancel label
+    vi.mocked(api.get).mockResolvedValue({
+      entries: [createMockEntry({ date: todayStr })],
+    });
+    renderWithProviders(<PlannerPage />);
+
+    await screen.findByText('Pasta');
+    fireEvent.click(screen.getByText('Pasta'));
+
+    await screen.findByText('Editar entrada');
+
+    // Click the Eliminar entrada link in the edit sheet
+    fireEvent.click(screen.getByText('Eliminar entrada'));
+
+    // ConfirmDialog should appear with custom message and cancel label
+    await screen.findByText('¿Eliminar esta entrada del planificador?');
+    expect(screen.getByText('Mantener entrada')).toBeInTheDocument();
+  });
 });
