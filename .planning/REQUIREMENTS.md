@@ -60,7 +60,7 @@
 
 ### Profile
 
-- [ ] **PROF-01**: User can view and edit their profile (name, email, username)
+- [x] **PROF-01**: User can view and edit their profile (name, email, username)
 
 ### Households
 
@@ -160,7 +160,7 @@
 | PLAN-03 | Phase 10: Frontend Meal Planner | Complete |
 | PLAN-04 | Phase 10: Frontend Meal Planner | Complete |
 | HH-02 | Phase 10: Frontend Meal Planner | Complete |
-| PROF-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Pending |
+| PROF-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
 | SHR-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Pending |
 | SHR-02 | Phase 11: Frontend Profile + Household + Shared Recipe | Pending |
 | ADM-01 | Phase 12: Frontend Admin Panel | Pending |

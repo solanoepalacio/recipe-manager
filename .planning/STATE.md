@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 10-03-PLAN.md
-last_updated: "2026-03-19T01:30:00.000Z"
+stopped_at: Completed 11-01-PLAN.md
+last_updated: "2026-03-19T03:16:04.022Z"
 last_activity: 2026-03-19
 progress:
   total_phases: 12
   completed_phases: 10
-  total_plans: 37
-  completed_plans: 37
+  total_plans: 40
+  completed_plans: 38
 ---
 
 # Project State
@@ -24,8 +24,8 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 
 ## Current Position
 
-Phase: 11 (frontend-profile-household-shared-recipe) — NOT STARTED
-Plan: 0 of 3
+Phase: 11 (frontend-profile-household-shared-recipe) — EXECUTING
+Plan: 1 of 3
 
 ## Performance Metrics
 
@@ -80,6 +80,7 @@ Plan: 0 of 3
 | Phase 10-frontend-meal-planner P01 | 4 | 2 tasks | 8 files |
 | Phase 10-frontend-meal-planner P02 | 3 | 2 tasks | 4 files |
 | Phase 10-frontend-meal-planner P03 | 2 | 2 tasks | 5 files |
+| Phase 11-frontend-profile-household-shared-recipe P01 | 2 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -179,6 +180,8 @@ Recent decisions affecting current work:
 - [Phase 10-frontend-meal-planner]: cancelLabel prop on ConfirmDialog is optional with default Cancelar — fully backward-compatible for existing callers
 - [Phase 10-frontend-meal-planner]: enabled: isOpen on recipes query in RecipePickerSheet prevents network requests until sheet opens
 - [Phase 10-frontend-meal-planner]: DndContext placed inside loading branch only (not wrapping WeekToggle/WeekNav) — drag context active only when entries are loaded
+- [Phase 11-01]: Drawer user name wrapped in button calling handleNav('/profile') — reuses existing handleNav pattern, no new imports needed
+- [Phase 11-01]: Profile form payload: name always included; email/username/password only when truthy — prevents empty strings reaching API
 
 ### Pending Todos
 
@@ -197,5 +200,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-19
-Stopped at: Completed Phase 10 (frontend-meal-planner) — all 3 plans done, verified, bug fixes committed
+Stopped at: Completed 11-01-PLAN.md
 Resume file: None
