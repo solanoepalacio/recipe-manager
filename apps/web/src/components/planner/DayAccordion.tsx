@@ -1,6 +1,7 @@
 'use client';
 
 import { ChevronRight, ChevronDown, Plus } from 'lucide-react';
+import { useDroppable } from '@dnd-kit/core';
 import type { MealPlanEntryResponse } from '@recipe-manager/shared';
 import { formatDayHeader } from '@/lib/planner-dates';
 import { MealEntryRow } from './MealEntryRow';
@@ -25,11 +26,15 @@ export function DayAccordion({
   onEditEntry,
 }: DayAccordionProps) {
   const { dayName, dateLabel } = formatDayHeader(date);
+  const { setNodeRef: setDroppableRef, isOver } = useDroppable({
+    id: `day-${date}`,
+  });
 
   if (!isExpanded) {
     return (
       <div
-        className="py-3 px-4 border-b border-subtle cursor-pointer"
+        ref={setDroppableRef}
+        className={`py-3 px-4 border-b border-subtle cursor-pointer ${isOver ? 'bg-accent/5' : ''}`}
         onClick={onToggle}
         aria-expanded={false}
       >
@@ -50,7 +55,7 @@ export function DayAccordion({
   }
 
   return (
-    <div>
+    <div ref={setDroppableRef} className={isOver ? 'bg-accent/5' : ''}>
       <div
         className="py-3 px-4 bg-subtle border-b border-subtle cursor-pointer flex items-center gap-1"
         onClick={onToggle}
@@ -60,7 +65,7 @@ export function DayAccordion({
         <span className="text-[15px] font-semibold text-foreground">{dayName}</span>
         <span className="text-[13px] text-secondary">{dateLabel}</span>
       </div>
-      <div>
+      <div className={isOver ? 'border-l-2 border-accent' : ''}>
         {entries.length === 0 ? (
           <p className="py-3 px-4 text-[13px] italic text-placeholder">Sin recetas planificadas</p>
         ) : (
