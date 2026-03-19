@@ -347,7 +347,7 @@ export default function AdminHouseholdsPage() {
     setFormMemberUsername(user.username ?? '');
     setFormMemberPassword('');
     setFormMemberGender(user.gender);
-    setFormMemberDateOfBirth(user.dateOfBirth ?? '');
+    setFormMemberDateOfBirth(user.dateOfBirth ? user.dateOfBirth.slice(0, 10) : '');
     setFormMode({ type: 'editMember', user });
   }
 
@@ -371,7 +371,7 @@ export default function AdminHouseholdsPage() {
     } else if (formMode.type === 'editMember') {
       updateMember.mutate({
         id: formMode.user.id,
-        body: { name: formMemberName, email: formMemberEmail, username: formMemberUsername, gender: formMemberGender, dateOfBirth: formMemberDateOfBirth },
+        body: { name: formMemberName, email: formMemberEmail, gender: formMemberGender, dateOfBirth: formMemberDateOfBirth },
       });
     }
   }

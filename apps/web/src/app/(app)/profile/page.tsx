@@ -122,7 +122,7 @@ export default function ProfilePage() {
       setName(profile.name ?? '');
       setEmail(profile.email ?? '');
       setGender(profile.gender);
-      setDateOfBirth(profile.dateOfBirth ?? '');
+      setDateOfBirth(profile.dateOfBirth ? profile.dateOfBirth.slice(0, 10) : '');
     }
   }, [profile]);
 
