@@ -194,9 +194,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 10-01-PLAN.md — Planner layout: date utils, WeekNav, WeekToggle, DayAccordion, MealEntryRow, MealTypeChips, PlannerPage with data fetching + delete mutation, Wave 0 test scaffold
-- [ ] 10-02-PLAN.md — Assign recipe: RecipePickerSheet with search + meal type chips, ConfirmDialog cancelLabel prop, create entry mutation, wired into PlannerPage
-- [ ] 10-03-PLAN.md — Drag-and-drop + edit/delete: useDraggable on MealEntryRow, useDroppable on DayAccordion, DndContext + optimistic PATCH, EditEntrySheet with save/delete
+- [x] 10-01-PLAN.md — Planner layout: date utils, WeekNav, WeekToggle, DayAccordion, MealEntryRow, MealTypeChips, PlannerPage with data fetching + delete mutation, Wave 0 test scaffold
+- [x] 10-02-PLAN.md — Assign recipe: RecipePickerSheet with search + meal type chips, ConfirmDialog cancelLabel prop, create entry mutation, wired into PlannerPage
+- [x] 10-03-PLAN.md — Drag-and-drop + edit/delete: useDraggable on MealEntryRow, useDroppable on DayAccordion, DndContext + optimistic PATCH, EditEntrySheet with save/delete
 
 ### Phase 11: Frontend Profile + Household + Shared Recipe
 **Goal**: Users can view and edit their own profile, see household membership, and anyone with a share link can view a recipe publicly without logging in.
@@ -241,13 +241,13 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Monorepo + Shared Types | 3/3 | Complete   | 2026-03-16 |
-| 2. Database Schema + Prisma | 0/2 | Planned | - |
+| 2. Database Schema + Prisma | 2/2 | Complete | 2026-03-16 |
 | 3. Backend Auth | 4/4 | Complete   | 2026-03-16 |
 | 4. Backend Recipe CRUD | 4/4 | Complete   | 2026-03-16 |
 | 5. Backend Search, Sharing, Meal Plan | 4/4 | Complete   | 2026-03-16 |
 | 6. Backend Admin Endpoints | 5/5 | Complete   | 2026-03-18 |
 | 7. Frontend Setup + App Shell + Auth Flows | 4/4 | Complete   | 2026-03-18 |
-| 8. Frontend Recipe List + Detail + Cook Mode | 2/3 | In Progress|  |
+| 8. Frontend Recipe List + Detail + Cook Mode | 3/3 | Complete | 2026-03-18 |
 | 9. Frontend Recipe Creation + Editing | 5/5 | Complete   | 2026-03-18 |
 | 10. Frontend Meal Planner | 3/3 | Complete   | 2026-03-19 |
 | 11. Frontend Profile + Household + Shared Recipe | 0/3 | Not started | - |

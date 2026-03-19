@@ -38,11 +38,11 @@ export function DayAccordion({
         onClick={onToggle}
         aria-expanded={false}
       >
-        <div className="flex items-center gap-1">
-          <ChevronRight size={16} className="text-secondary" />
-          <span className="text-[15px] font-semibold text-foreground">{dayName}</span>
-          <span className="text-[13px] text-secondary">{dateLabel}</span>
-          <span className="text-[13px] text-secondary ml-2 truncate">
+        <div className="flex items-center gap-1 min-w-0">
+          <ChevronRight size={16} className="shrink-0 text-secondary" />
+          <span className="text-[15px] font-semibold text-foreground shrink-0 whitespace-nowrap">{dayName}</span>
+          <span className="text-[13px] text-secondary shrink-0 whitespace-nowrap">{dateLabel}</span>
+          <span className="text-[13px] text-secondary ml-2 truncate min-w-0">
             {entries.length > 0 ? (
               entries.map((e) => e.recipeName).join(', ')
             ) : (
@@ -80,10 +80,10 @@ export function DayAccordion({
         )}
         <button
           onClick={onAddEntry}
-          className="py-3 px-4 flex items-center gap-1 text-accent text-[15px] w-full"
+          className="py-3 px-5 flex items-center gap-1 text-accent text-[15px] w-full"
         >
           <Plus size={16} />
-          Anadir receta
+          Agregar receta
         </button>
       </div>
     </div>
