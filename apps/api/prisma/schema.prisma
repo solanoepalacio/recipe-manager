@@ -44,8 +44,8 @@ model User {
   passwordHash     String?
   resetToken       String?
   resetTokenExpiry DateTime?
-  gender           Gender?
-  dateOfBirth      DateTime?
+  gender           Gender
+  dateOfBirth      DateTime
   createdAt        DateTime   @default(now())
   updatedAt        DateTime   @updatedAt
   recipes          Recipe[]
