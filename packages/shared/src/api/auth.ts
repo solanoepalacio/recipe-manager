@@ -28,3 +28,14 @@ export interface MeResponse {
 export interface LogoutResponse {
   message: string;
 }
+
+/** POST /api/auth/reset-password — consume a one-time reset token and set a new password */
+export interface ResetPasswordRequest {
+  token: string;
+  newPassword: string;
+}
+
+/** POST /api/auth/reset-password — success response */
+export interface ResetPasswordResponse {
+  message: string;
+}

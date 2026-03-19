@@ -1,11 +1,12 @@
 // apps/api/src/auth/auth.controller.ts
 import {
-  Controller, Get, Post, Body, Req, Res, UnauthorizedException,
+  Controller, Get, Post, Body, Req, Res, UnauthorizedException, HttpCode, HttpStatus,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { AuthService, toMeResponse } from './auth.service';
 import { LoginDto } from './dto/login.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
 import { Public } from './decorators/public.decorator';
 import { CurrentUser } from './decorators/current-user.decorator';
 
@@ -42,5 +43,16 @@ export class AuthController {
   @ApiResponse({ status: 200, description: 'Returns authenticated user info' })
   async me(@CurrentUser() user: any) {
     return toMeResponse(user);
+  }
+
+  @Public()
+  @Post('reset-password')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Consume a one-time reset token and set a new password' })
+  @ApiResponse({ status: 200, description: 'Password updated successfully' })
+  @ApiResponse({ status: 400, description: 'Invalid or expired token' })
+  async resetPassword(@Body() dto: ResetPasswordDto) {
+    await this.authService.resetPassword(dto.token, dto.newPassword);
+    return { message: 'Contraseña actualizada correctamente' };
   }
 }

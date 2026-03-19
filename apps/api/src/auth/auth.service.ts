@@ -1,5 +1,6 @@
 // apps/api/src/auth/auth.service.ts
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
+import { createHash } from 'crypto';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../prisma/prisma.service';
 import { MeResponse } from '@recipe-manager/shared';
@@ -14,6 +15,31 @@ export class AuthService {
     const valid = await bcrypt.compare(password, user.passwordHash);
     if (!valid) return null;
     return user;
+  }
+
+  async resetPassword(rawToken: string, newPassword: string): Promise<void> {
+    const tokenHash = createHash('sha256').update(rawToken).digest('hex');
+    const user = await this.prisma.user.findFirst({
+      where: { resetToken: tokenHash },
+    });
+
+    if (!user) {
+      throw new BadRequestException('Token de restablecimiento no válido o ya utilizado');
+    }
+
+    if (!user.resetTokenExpiry || user.resetTokenExpiry < new Date()) {
+      throw new BadRequestException('El token de restablecimiento ha expirado');
+    }
+
+    const passwordHash = await bcrypt.hash(newPassword, 10);
+    await this.prisma.user.update({
+      where: { id: user.id },
+      data: {
+        passwordHash,
+        resetToken: null,
+        resetTokenExpiry: null,
+      },
+    });
   }
 }
 
