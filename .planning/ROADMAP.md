@@ -209,9 +209,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 11-01-PLAN.md — Profile page: display + edit form, PATCH /profile, Drawer nav link, ProfilePage tests
-- [ ] 11-02-PLAN.md — Share link: wire Compartir button to POST /share, BottomSheet with copy-to-clipboard, ShareLinkFlow tests
-- [ ] 11-03-PLAN.md — Public shared recipe page: /shared/[token] route outside (app), PublicLayout, read-only detail, SharedRecipePage tests
+- [x] 11-01-PLAN.md — Profile page: display + edit form, PATCH /profile, Drawer nav link, ProfilePage tests
+- [x] 11-02-PLAN.md — Share link: wire Compartir button to POST /share, BottomSheet with copy-to-clipboard, ShareLinkFlow tests
+- [x] 11-03-PLAN.md — Public shared recipe page: /shared/[token] route outside (app), PublicLayout, read-only detail, SharedRecipePage tests
 
 ### Phase 12: Frontend Admin Panel
 **Goal**: Admins can log in, complete the setup wizard on first install, and manage all system data (users, households, foods, units, API tokens) through a dedicated admin panel.
