@@ -13,7 +13,6 @@ const NAV_ITEMS = [
   { label: 'Hoy', href: '/' },
   { label: 'Recetas', href: '/recipes' },
   { label: 'Planificador', href: '/planner' },
-  { label: 'Perfil', href: '/profile' },
 ];
 
 export function Drawer({ isOpen, onClose, user, onLogout }: DrawerProps) {

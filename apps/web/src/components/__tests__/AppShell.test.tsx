@@ -32,9 +32,9 @@ describe('AppShell', () => {
 
   it('renders nav items: Hoy, Recetas, Planificador', () => {
     render(<AppShell user={mockUser} onLogout={vi.fn()}><div /></AppShell>);
-    expect(screen.getByText('Hoy')).toBeInTheDocument();
-    // "Recetas" appears in both the TopBar title and the nav — getAllByText asserts at least one
-    expect(screen.getAllByText('Recetas').length).toBeGreaterThanOrEqual(1);
+    // pathname='/' → title is "Hoy", so "Hoy" appears in both TopBar and nav
+    expect(screen.getAllByText('Hoy').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText('Recetas')).toBeInTheDocument();
     expect(screen.getByText('Planificador')).toBeInTheDocument();
   });
 
