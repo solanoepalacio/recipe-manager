@@ -222,16 +222,14 @@ Plans:
   2. The `/admin/panel` page shows tabs or sections for Users, Households, Foods, Units, and Tokens; all CRUD actions work end-to-end
   3. Admin can generate a password reset URL for any user from the Users section; the URL is displayed for out-of-band sharing
   4. Admin can create an API token tied to a user; the raw token is shown exactly once; existing tokens are listed with name and creation date; tokens can be deleted
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 12-01: Admin login page (/admin/login), admin session handling, AdminAuthProvider
-- [ ] 12-02: Setup wizard page (/setup) — first-time setup form, SetupGuard redirect logic
-- [ ] 12-03: Admin panel shell — layout, tab/section navigation, admin API client
-- [ ] 12-04: Users management — paginated user list, create/edit/delete user forms, password reset URL display
-- [ ] 12-05: Households management — household list, create/edit/delete
-- [ ] 12-06: Foods + Units management — CRUD tables for both
-- [ ] 12-07: API Tokens management — create token (show raw token once), token list, delete
+- [ ] 12-01-PLAN.md — Backend GET /admin/auth/me + AdminMeResponse type + admin-api-client + AdminAuthProvider + admin login + setup wizard
+- [ ] 12-02-PLAN.md — Admin panel shell: AdminSidebar, AdminTable, AdminForm, OneTimeDisplay, panel layout, query keys, PaginationControls update
+- [ ] 12-03-PLAN.md — Users management (CRUD + password reset URL) + Households management (CRUD + cascade warning)
+- [ ] 12-04-PLAN.md — Foods management (CRUD) + Units management (CRUD with abbreviation)
+- [ ] 12-05-PLAN.md — API Tokens management (create with one-time display, list, revoke)
 
 ## Progress
 
@@ -251,4 +249,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 9. Frontend Recipe Creation + Editing | 5/5 | Complete   | 2026-03-18 |
 | 10. Frontend Meal Planner | 3/3 | Complete   | 2026-03-19 |
 | 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete    | 2026-03-19 |
-| 12. Frontend Admin Panel | 0/7 | Not started | - |
+| 12. Frontend Admin Panel | 0/5 | Not started | - |
