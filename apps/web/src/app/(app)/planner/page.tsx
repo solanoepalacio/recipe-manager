@@ -9,41 +9,26 @@ import { api } from '@/lib/api-client';
 import { queryKeys } from '@/lib/query-keys';
 import {
   getWeekRange,
-  getMonthRange,
   formatWeekLabel,
-  isToday,
+  localDateString,
 } from '@/lib/planner-dates';
 import { WeekNav } from '@/components/planner/WeekNav';
-import { WeekToggle } from '@/components/planner/WeekToggle';
 import { DayAccordion } from '@/components/planner/DayAccordion';
 import { RecipePickerSheet } from '@/components/planner/RecipePickerSheet';
 import { EditEntrySheet } from '@/components/planner/EditEntrySheet';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { toast } from 'sonner';
 
-// Suppress unused import warning — isToday used for initial expandedDays logic below
-void isToday;
-
 export default function PlannerPage() {
   const [anchor, setAnchor] = useState<Date>(() => new Date());
-  const [viewMode, setViewMode] = useState<1 | 4>(1);
   const [expandedDays, setExpandedDays] = useState<Set<string>>(
-    () => new Set([new Date().toISOString().slice(0, 10)])
+    () => new Set([localDateString(new Date())])
   );
   const [pickerDate, setPickerDate] = useState<string | null>(null);
   const [editEntry, setEditEntry] = useState<MealPlanEntryResponse | null>(null);
 
-  const range = useMemo(() => {
-    if (viewMode === 1) {
-      return getWeekRange(anchor);
-    }
-    return getMonthRange(anchor);
-  }, [anchor, viewMode]);
-
-  const allDays = useMemo(() => {
-    if (viewMode === 1) return (range as ReturnType<typeof getWeekRange>).days;
-    return (range as ReturnType<typeof getMonthRange>).weeks.flatMap((w) => w.days);
-  }, [range, viewMode]);
+  const range = useMemo(() => getWeekRange(anchor), [anchor]);
+  const allDays = range.days;
 
   const { data, isLoading } = useQuery({
     queryKey: queryKeys.mealPlan.week(range.from, range.to),
@@ -62,18 +47,18 @@ export default function PlannerPage() {
   const handlePrev = useCallback(() => {
     setAnchor((prev) => {
       const d = new Date(prev);
-      d.setDate(d.getDate() - (viewMode === 1 ? 7 : 28));
+      d.setDate(d.getDate() - 7);
       return d;
     });
-  }, [viewMode]);
+  }, []);
 
   const handleNext = useCallback(() => {
     setAnchor((prev) => {
       const d = new Date(prev);
-      d.setDate(d.getDate() + (viewMode === 1 ? 7 : 28));
+      d.setDate(d.getDate() + 7);
       return d;
     });
-  }, [viewMode]);
+  }, []);
 
   const toggleDay = useCallback((date: string) => {
     setExpandedDays((prev) => {
@@ -149,78 +134,33 @@ export default function PlannerPage() {
 
   return (
     <div>
-      {/* Week toggle */}
-      <WeekToggle value={viewMode} onChange={setViewMode} />
+      <WeekNav
+        label={formatWeekLabel(range.from, range.to)}
+        onPrev={handlePrev}
+        onNext={handleNext}
+      />
 
-      {viewMode === 1 ? (
-        <>
-          <WeekNav
-            label={formatWeekLabel(range.from, range.to)}
-            onPrev={handlePrev}
-            onNext={handleNext}
-          />
-          {isLoading ? (
-            <div className="flex flex-col gap-1 px-4 py-2">
-              {Array.from({ length: 7 }, (_, i) => (
-                <Skeleton key={i} className="h-[52px] w-full rounded-[8px]" />
-              ))}
-            </div>
-          ) : (
-            <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-              {allDays.map((day) => (
-                <DayAccordion
-                  key={day}
-                  date={day}
-                  entries={entriesByDate[day] ?? []}
-                  isExpanded={expandedDays.has(day)}
-                  onToggle={() => toggleDay(day)}
-                  onAddEntry={() => setPickerDate(day)}
-                  onDeleteEntry={(id) => deleteMutation.mutate(id)}
-                  onEditEntry={(entry) => setEditEntry(entry)}
-                />
-              ))}
-            </DndContext>
-          )}
-        </>
+      {isLoading ? (
+        <div className="flex flex-col gap-1 px-4 py-2">
+          {Array.from({ length: 7 }, (_, i) => (
+            <Skeleton key={i} className="h-[52px] w-full rounded-[8px]" />
+          ))}
+        </div>
       ) : (
-        <>
-          <WeekNav
-            label={formatWeekLabel(range.from, range.to)}
-            onPrev={handlePrev}
-            onNext={handleNext}
-          />
-          {isLoading ? (
-            <div className="flex flex-col gap-1 px-4 py-2">
-              {Array.from({ length: 28 }, (_, i) => (
-                <Skeleton key={i} className="h-[52px] w-full rounded-[8px]" />
-              ))}
-            </div>
-          ) : (
-            <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-              {(range as ReturnType<typeof getMonthRange>).weeks.map((week, wi) => (
-                <div key={week.from}>
-                  {wi > 0 && (
-                    <div className="py-2 px-4 text-[13px] font-semibold text-secondary border-b border-border">
-                      {formatWeekLabel(week.from, week.to)}
-                    </div>
-                  )}
-                  {week.days.map((day) => (
-                    <DayAccordion
-                      key={day}
-                      date={day}
-                      entries={entriesByDate[day] ?? []}
-                      isExpanded={expandedDays.has(day)}
-                      onToggle={() => toggleDay(day)}
-                      onAddEntry={() => setPickerDate(day)}
-                      onDeleteEntry={(id) => deleteMutation.mutate(id)}
-                      onEditEntry={(entry) => setEditEntry(entry)}
-                    />
-                  ))}
-                </div>
-              ))}
-            </DndContext>
-          )}
-        </>
+        <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+          {allDays.map((day) => (
+            <DayAccordion
+              key={day}
+              date={day}
+              entries={entriesByDate[day] ?? []}
+              isExpanded={expandedDays.has(day)}
+              onToggle={() => toggleDay(day)}
+              onAddEntry={() => setPickerDate(day)}
+              onDeleteEntry={(id) => deleteMutation.mutate(id)}
+              onEditEntry={(entry) => setEditEntry(entry)}
+            />
+          ))}
+        </DndContext>
       )}
 
       {/* Recipe picker bottom sheet */}

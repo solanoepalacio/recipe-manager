@@ -8,9 +8,6 @@ human_verification:
   - test: "Drag entry from one day row to another"
     expected: "Entry moves immediately (optimistic), day accordion highlights on hover, server PATCH fires"
     why_human: "dnd-kit drag interactions require real pointer events; test suite stubs @dnd-kit/core"
-  - test: "4-week view renders 28 day rows"
-    expected: "Toggle to '4 semanas', see four weeks of DayAccordion rows with week sub-headers"
-    why_human: "View toggle behavior and multi-week layout need visual confirmation"
   - test: "Skeleton loading state appears while data fetches"
     expected: "Placeholder rows visible briefly before entries render"
     why_human: "Async loading state requires real network timing or controlled delay to observe"
@@ -122,7 +119,21 @@ The stub comment `/* wired in Plan 10-03 */` that appeared in the plan spec was 
 
 Phase 10 goal is fully achieved. All 14 observable truths are verified across the codebase. All 5 requirement IDs (PLAN-01, PLAN-02, PLAN-03, PLAN-04, HH-02) are satisfied. All 9 required artifacts exist with substantive implementations and are correctly wired to their counterparts. All 9 key links are live (imports present, call sites confirmed). 72 tests pass with 13 PlannerPage-specific test cases covering the complete CRUD and UI behavior surface.
 
-Three items remain for human verification: the drag-and-drop interaction (dnd-kit is mocked in tests), the 4-week view visual layout, and the skeleton loading state. None of these are blockers — the underlying code logic is fully wired and correct.
+Two items remain for human verification: the drag-and-drop interaction (dnd-kit is mocked in tests) and the skeleton loading state. None of these are blockers — the underlying code logic is fully wired and correct.
+
+---
+
+## Post-Phase Decision: 1-week / 4-week toggle removed (2026-03-18)
+
+**Decision:** The `WeekToggle` component and 4-week view mode were removed after phase completion.
+
+**Rationale:** The 1-week / 4-week switch added UI complexity without clear user value. The 4-week view rendered 28 accordion rows simultaneously with week sub-headers, but the interaction model (tap to expand, drag to move) doesn't benefit from seeing more weeks at once — users navigate week-by-week anyway. The toggle was cut as unnecessary scope.
+
+**Changes made:**
+- Deleted `apps/web/src/components/planner/WeekToggle.tsx`
+- Simplified `PlannerPage` to always use `getWeekRange` (week view only); removed `viewMode` state, `getMonthRange` import, and all conditional 4-week rendering branches
+- Removed the "shows 1 semana / 4 semanas toggle" test case from `PlannerPage.test.tsx`
+- All 13 remaining tests pass
 
 ---
 

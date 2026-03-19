@@ -107,14 +107,6 @@ describe('PlannerPage', () => {
     expect(screen.getByText(/Semana del/)).toBeInTheDocument();
   });
 
-  it('shows 1 semana / 4 semanas toggle', async () => {
-    vi.mocked(api.get).mockResolvedValue({ entries: [] });
-    renderWithProviders(<PlannerPage />);
-
-    expect(screen.getByText('1 semana')).toBeInTheDocument();
-    expect(screen.getByText('4 semanas')).toBeInTheDocument();
-  });
-
   it('displays entry recipe name in expanded day row', async () => {
     vi.mocked(api.get).mockResolvedValue({
       entries: [createMockEntry({ date: todayStr, recipeName: 'Tacos' })],

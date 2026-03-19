@@ -45,10 +45,10 @@ export function RecipePickerSheet({
   }, [isOpen]);
 
   const { data: recipesData, isLoading: recipesLoading } = useQuery({
-    queryKey: queryKeys.recipes.list({ search: debouncedSearch, perPage: 50 }),
+    queryKey: queryKeys.recipes.list({ search: debouncedSearch, pageSize: 50 }),
     queryFn: () =>
       api.get<PaginatedResponse<RecipeListItem>>(
-        `/recipes?search=${encodeURIComponent(debouncedSearch)}&perPage=50`
+        `/recipes?search=${encodeURIComponent(debouncedSearch)}&pageSize=50`
       ),
     enabled: isOpen,
   });

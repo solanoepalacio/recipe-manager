@@ -11,13 +11,20 @@ export const MEAL_TYPE_LABELS: Record<MealType, string> = {
 const DAYS_ES = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
 const MONTHS_ES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
 
+export function localDateString(d: Date): string {
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
 export function getWeekRange(anchor: Date): { from: string; to: string; days: string[] } {
   const monday = new Date(anchor);
   monday.setDate(anchor.getDate() - ((anchor.getDay() + 6) % 7));
   const days = Array.from({ length: 7 }, (_, i) => {
     const d = new Date(monday);
     d.setDate(monday.getDate() + i);
-    return d.toISOString().slice(0, 10);
+    return localDateString(d);
   });
   return { from: days[0], to: days[6], days };
 }
@@ -55,5 +62,5 @@ export function formatDayHeader(dateStr: string): { dayName: string; dateLabel: 
 }
 
 export function isToday(dateStr: string): boolean {
-  return dateStr === new Date().toISOString().slice(0, 10);
+  return dateStr === localDateString(new Date());
 }
