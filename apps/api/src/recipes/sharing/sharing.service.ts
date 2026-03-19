@@ -27,6 +27,8 @@ export class SharingService {
     if (!recipe) throw new NotFoundException(`Recipe ${recipeId} not found`);
     if (recipe.householdId !== householdId) throw new ForbiddenException('Access denied');
 
+    if (recipe.shareToken) return { shareToken: recipe.shareToken };
+
     const token = randomBytes(32).toString('hex');
     await this.prisma.recipe.update({
       where: { id: recipeId },
