@@ -129,8 +129,8 @@ describe('RecipeDetailPage', () => {
     expect(screen.getByText(/Sazonar/)).toBeInTheDocument();
   });
 
-  it('renders Iniciar receta button', () => {
+  it('renders Cocinar button', () => {
     render(<RecipeDetailPage />);
-    expect(screen.getByText('Iniciar receta')).toBeInTheDocument();
+    expect(screen.getByText('Cocinar')).toBeInTheDocument();
   });
 });

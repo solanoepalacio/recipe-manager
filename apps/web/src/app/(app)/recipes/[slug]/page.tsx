@@ -135,14 +135,14 @@ export default function RecipeDetailPage() {
             Compartir
           </button>
 
-          {/* Iniciar receta — hidden in edit mode */}
+          {/* Cocinar — hidden in edit mode */}
           {!isEditMode && (
             <Link
               href={`/recipes/${slug}/cook?id=${recipeId}`}
               className="bg-foreground text-background rounded-[20px] px-5 py-2 text-[13px] font-semibold flex items-center gap-2"
             >
               <CookingPot size={16} strokeWidth={2} />
-              Iniciar receta
+              Cocinar
             </Link>
           )}
 
@@ -160,7 +160,7 @@ export default function RecipeDetailPage() {
               }}
               className="border border-border text-foreground rounded-[20px] px-5 py-2 text-[13px] font-semibold"
             >
-              {isEditMode ? 'Listo' : 'Editar receta'}
+              {isEditMode ? 'Listo' : 'Editar'}
             </button>
           )}
         </div>
