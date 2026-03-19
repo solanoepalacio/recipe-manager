@@ -6,8 +6,9 @@ import { SetupModule } from './setup/setup.module';
 import { RecipesModule } from './recipes/recipes.module';
 import { SharedModule } from './shared/shared.module';
 import { MealPlanModule } from './meal-plan/meal-plan.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, AdminModule, SetupModule, RecipesModule, SharedModule, MealPlanModule],
+  imports: [PrismaModule, AuthModule, AdminModule, SetupModule, RecipesModule, SharedModule, MealPlanModule, ProfileModule],
 })
 export class AppModule {}
