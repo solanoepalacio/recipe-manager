@@ -15,7 +15,7 @@ export default function AdminLoginPage() {
     mutationFn: (body: { email: string; password: string }) =>
       adminApi.post<{ message: string }>('/admin/auth/login', body),
     onSuccess: () => {
-      router.replace('/admin/panel');
+      window.location.replace('/admin/panel');
     },
     onError: (err: Error & { status?: number }) => {
       if (err.status === 401) {
