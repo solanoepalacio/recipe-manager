@@ -64,3 +64,50 @@ export function formatDayHeader(dateStr: string): { dayName: string; dateLabel: 
 export function isToday(dateStr: string): boolean {
   return dateStr === localDateString(new Date());
 }
+
+/**
+ * Returns a 2D array of Date objects representing a calendar grid for the given month.
+ * Each inner array is a week row with 7 Date objects (Sunday to Saturday).
+ * Leading days from the previous month and trailing days from the next month fill
+ * incomplete weeks.
+ */
+export function getCalendarGrid(year: number, month: number): Date[][] {
+  // First day of the month
+  const firstDay = new Date(year, month, 1);
+  // Last day of the month
+  const lastDay = new Date(year, month + 1, 0);
+
+  // Sunday index of the first day (0=Sun)
+  const startPad = firstDay.getDay();
+  // Days to fill after last day to complete the last week
+  const endPad = 6 - lastDay.getDay();
+
+  const allDays: Date[] = [];
+
+  // Leading days from previous month
+  for (let i = startPad - 1; i >= 0; i--) {
+    const d = new Date(firstDay);
+    d.setDate(firstDay.getDate() - (i + 1));
+    allDays.push(d);
+  }
+
+  // Current month days
+  for (let d = 1; d <= lastDay.getDate(); d++) {
+    allDays.push(new Date(year, month, d));
+  }
+
+  // Trailing days from next month
+  for (let i = 1; i <= endPad; i++) {
+    const d = new Date(lastDay);
+    d.setDate(lastDay.getDate() + i);
+    allDays.push(d);
+  }
+
+  // Split into weeks of 7
+  const grid: Date[][] = [];
+  for (let i = 0; i < allDays.length; i += 7) {
+    grid.push(allDays.slice(i, i + 7));
+  }
+
+  return grid;
+}
