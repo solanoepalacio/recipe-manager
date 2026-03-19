@@ -216,9 +216,10 @@ None yet.
 |---|-------------|------|--------|-----------|
 | 260318-jf3 | fix packages/shared build output to separate dist dir | 2026-03-18 | 0525c76 | [260318-jf3-fix-packages-shared-build-output-to-sepa](./quick/260318-jf3-fix-packages-shared-build-output-to-sepa/) |
 | 260319-pkp | add calendar jump modal to meal planner WeekNav | 2026-03-19 | f2e03d8 | [260319-pkp-add-feature-on-the-meal-planner-view-of-](./quick/260319-pkp-add-feature-on-the-meal-planner-view-of-/) |
+| 260319-qas | make gender and dateOfBirth required on User model | 2026-03-19 | 4edfcb5 | [260319-qas-we-need-to-make-two-small-changes-to-the](./quick/260319-qas-we-need-to-make-two-small-changes-to-the/) |
 
 ## Session Continuity
 
 Last activity: 2026-03-19
-Stopped at: Completed quick task 260319-pkp
+Stopped at: Completed quick task 260319-qas
 Resume file: None
