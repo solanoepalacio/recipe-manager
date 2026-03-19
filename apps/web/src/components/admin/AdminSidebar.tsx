@@ -1,11 +1,10 @@
 'use client';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Users, Home, Apple, Ruler, Key, LogOut } from 'lucide-react';
+import { Home, Apple, Ruler, Key, LogOut } from 'lucide-react';
 import { adminApi } from '@/lib/admin-api-client';
 
 const navItems = [
-  { href: '/admin/panel/users',       label: 'Usuarios',  icon: Users  },
   { href: '/admin/panel/households',  label: 'Hogares',   icon: Home   },
   { href: '/admin/panel/foods',       label: 'Alimentos', icon: Apple  },
   { href: '/admin/panel/units',       label: 'Unidades',  icon: Ruler  },

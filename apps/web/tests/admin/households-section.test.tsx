@@ -83,9 +83,8 @@ describe('AdminHouseholdsPage', () => {
     await waitFor(() => {
       expect(screen.getByText('Familia García')).toBeInTheDocument();
       expect(screen.getByText('Casa López')).toBeInTheDocument();
-      // Member counts rendered as strings
-      expect(screen.getByText('3')).toBeInTheDocument();
-      expect(screen.getByText('1')).toBeInTheDocument();
+      expect(screen.getByText('3 miembros')).toBeInTheDocument();
+      expect(screen.getByText('1 miembro')).toBeInTheDocument();
     });
   });
 
