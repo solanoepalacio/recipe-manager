@@ -48,7 +48,7 @@
 
 ### Sharing
 
-- [ ] **SHR-01**: User can generate a shareable public link for a recipe
+- [x] **SHR-01**: User can generate a shareable public link for a recipe
 - [ ] **SHR-02**: Anyone with the share link can view a recipe without logging in
 
 ### Meal Planning
@@ -161,7 +161,7 @@
 | PLAN-04 | Phase 10: Frontend Meal Planner | Complete |
 | HH-02 | Phase 10: Frontend Meal Planner | Complete |
 | PROF-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
-| SHR-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Pending |
+| SHR-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
 | SHR-02 | Phase 11: Frontend Profile + Household + Shared Recipe | Pending |
 | ADM-01 | Phase 12: Frontend Admin Panel | Pending |
 | ADM-02 | Phase 12: Frontend Admin Panel | Pending |

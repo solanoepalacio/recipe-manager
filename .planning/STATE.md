@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 11-01-PLAN.md
-last_updated: "2026-03-19T03:16:04.022Z"
+stopped_at: Completed 11-02-PLAN.md
+last_updated: "2026-03-19T03:19:22.834Z"
 last_activity: 2026-03-19
 progress:
   total_phases: 12
   completed_phases: 10
   total_plans: 40
-  completed_plans: 38
+  completed_plans: 39
 ---
 
 # Project State
@@ -81,6 +81,7 @@ Plan: 1 of 3
 | Phase 10-frontend-meal-planner P02 | 3 | 2 tasks | 4 files |
 | Phase 10-frontend-meal-planner P03 | 2 | 2 tasks | 5 files |
 | Phase 11-frontend-profile-household-shared-recipe P01 | 2 | 2 tasks | 3 files |
+| Phase 11-frontend-profile-household-shared-recipe P02 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -182,6 +183,7 @@ Recent decisions affecting current work:
 - [Phase 10-frontend-meal-planner]: DndContext placed inside loading branch only (not wrapping WeekToggle/WeekNav) — drag context active only when entries are loaded
 - [Phase 11-01]: Drawer user name wrapped in button calling handleNav('/profile') — reuses existing handleNav pattern, no new imports needed
 - [Phase 11-01]: Profile form payload: name always included; email/username/password only when truthy — prevents empty strings reaching API
+- [Phase 11]: ShareLinkFlow tests use real QueryClientProvider (not vi.mock tanstack-react-query) so mutation callbacks execute — needed to test share flow state transitions
 
 ### Pending Todos
 
@@ -200,5 +202,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-19
-Stopped at: Completed 11-01-PLAN.md
+Stopped at: Completed 11-02-PLAN.md
 Resume file: None
