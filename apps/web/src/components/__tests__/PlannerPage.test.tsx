@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { MealPlanEntryResponse } from '@recipe-manager/shared';
 
@@ -148,5 +148,94 @@ describe('PlannerPage', () => {
 
     // MEAL_TYPE_LABELS maps breakfast => 'Desayuno'
     await screen.findByText('Desayuno');
+  });
+
+  it('opens recipe picker sheet when "+ Anadir receta" is tapped', async () => {
+    // PLAN-02: picker opens on add button tap
+    vi.mocked(api.get).mockImplementation((url: string) => {
+      if (url.includes('meal-plan')) return Promise.resolve({ entries: [] });
+      if (url.includes('recipes'))
+        return Promise.resolve({
+          items: [{ id: 'r1', name: 'Tacos', slug: 'tacos' }],
+          total: 1,
+          page: 1,
+          perPage: 50,
+        });
+      return Promise.resolve({});
+    });
+
+    renderWithProviders(<PlannerPage />);
+
+    // Today's day is auto-expanded; wait for add button
+    const addBtn = await screen.findByText('Anadir receta');
+    fireEvent.click(addBtn);
+
+    // Picker sheet opened — search bar placeholder visible
+    await screen.findByPlaceholderText('Buscar receta...');
+  });
+
+  it('calls api.post to create entry when recipe is selected in picker', async () => {
+    // PLAN-02: selecting a recipe creates entry via POST
+    vi.mocked(api.get).mockImplementation((url: string) => {
+      if (url.includes('meal-plan')) return Promise.resolve({ entries: [] });
+      if (url.includes('recipes'))
+        return Promise.resolve({
+          items: [{ id: 'r1', name: 'Tacos', slug: 'tacos' }],
+          total: 1,
+          page: 1,
+          perPage: 50,
+        });
+      return Promise.resolve({});
+    });
+    vi.mocked(api.post).mockResolvedValue({
+      id: 'new-entry',
+      date: todayStr,
+      mealType: 'lunch',
+      recipeId: 'r1',
+      recipeName: 'Tacos',
+      recipeSlug: 'tacos',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    });
+
+    renderWithProviders(<PlannerPage />);
+
+    // Open picker
+    const addBtn = await screen.findByText('Anadir receta');
+    fireEvent.click(addBtn);
+
+    // Wait for recipe to appear in picker list
+    const recipeBtn = await screen.findByText('Tacos');
+    fireEvent.click(recipeBtn);
+
+    await waitFor(() =>
+      expect(api.post).toHaveBeenCalledWith(
+        '/meal-plan/entries',
+        expect.objectContaining({ recipeId: 'r1' })
+      )
+    );
+  });
+
+  it('calls api.delete when X button on entry row is clicked', async () => {
+    // PLAN-04: delete entry from row
+    vi.mocked(api.get).mockResolvedValue({
+      entries: [createMockEntry({ date: todayStr, id: 'entry-del' })],
+    });
+    vi.mocked(api.delete).mockResolvedValue(undefined);
+
+    renderWithProviders(<PlannerPage />);
+
+    // Wait for entry to appear (today is auto-expanded)
+    await screen.findByText('Pasta');
+
+    // Click the delete button
+    const deleteBtn = screen.getByLabelText('Eliminar entrada');
+    fireEvent.click(deleteBtn);
+
+    await waitFor(() =>
+      expect(api.delete).toHaveBeenCalledWith(
+        expect.stringContaining('/meal-plan/entries/')
+      )
+    );
   });
 });

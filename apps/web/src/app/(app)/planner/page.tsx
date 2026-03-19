@@ -14,6 +14,7 @@ import {
 import { WeekNav } from '@/components/planner/WeekNav';
 import { WeekToggle } from '@/components/planner/WeekToggle';
 import { DayAccordion } from '@/components/planner/DayAccordion';
+import { RecipePickerSheet } from '@/components/planner/RecipePickerSheet';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { toast } from 'sonner';
 
@@ -27,9 +28,6 @@ export default function PlannerPage() {
     () => new Set([new Date().toISOString().slice(0, 10)])
   );
   const [pickerDate, setPickerDate] = useState<string | null>(null);
-
-  // Suppress unused variable warning — pickerDate wired in Plan 10-02
-  void pickerDate;
 
   const range = useMemo(() => {
     if (viewMode === 1) {
@@ -177,6 +175,16 @@ export default function PlannerPage() {
             ))
           )}
         </>
+      )}
+
+      {/* Recipe picker bottom sheet */}
+      {pickerDate && (
+        <RecipePickerSheet
+          isOpen={!!pickerDate}
+          onClose={() => setPickerDate(null)}
+          date={pickerDate}
+          onEntryCreated={() => setPickerDate(null)}
+        />
       )}
     </div>
   );
