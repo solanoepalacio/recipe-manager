@@ -5,7 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ExternalLink, CookingPot, Lock } from 'lucide-react';
+import { ExternalLink, CookingPot, Lock, Loader2, Link as LinkIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { queryKeys } from '@/lib/query-keys';
@@ -23,6 +23,7 @@ import { IngredientSectionEditor } from '@/components/recipes/editor/IngredientS
 import { StepEditor } from '@/components/recipes/editor/StepEditor';
 import { ImageUpload } from '@/components/recipes/editor/ImageUpload';
 import { RecipeSettings } from '@/components/recipes/editor/RecipeSettings';
+import { BottomSheet } from '@/components/ui/BottomSheet';
 
 export default function RecipeDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -34,6 +35,9 @@ export default function RecipeDetailPage() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [activeTab, setActiveTab] = useState('Ingredientes');
   const metadataFormRef = useRef<MetadataFormRef>(null);
+  const [shareSheetOpen, setShareSheetOpen] = useState(false);
+  const [shareToken, setShareToken] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   // Enter edit mode when ?edit=1 is present on load
   useEffect(() => {
@@ -57,6 +61,24 @@ export default function RecipeDetailPage() {
     },
     onError: () => toast.error('Error al guardar. Intenta de nuevo.'),
   });
+
+  const shareMutation = useMutation({
+    mutationFn: () => api.post<{ shareToken: string }>(`/recipes/${recipeId}/share`, {}),
+    onSuccess: (data) => {
+      setShareToken(data.shareToken);
+      setShareSheetOpen(true);
+    },
+    onError: () => toast.error('No se pudo generar el enlace. Intenta de nuevo.'),
+  });
+
+  const handleCopy = useCallback(() => {
+    if (!shareToken) return;
+    const shareUrl = `${window.location.origin}/shared/${shareToken}`;
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }, [shareToken]);
 
   const handleSave = useCallback(() => {
     if (metadataFormRef.current) {
@@ -133,8 +155,16 @@ export default function RecipeDetailPage() {
         </h1>
         <div className="flex items-center justify-between">
           {/* Share */}
-          <button className="flex items-center gap-1 text-[13px] font-semibold text-accent">
-            <ExternalLink size={14} strokeWidth={2} />
+          <button
+            onClick={() => shareMutation.mutate()}
+            disabled={shareMutation.isPending}
+            className="flex items-center gap-1 text-[13px] font-semibold text-accent"
+          >
+            {shareMutation.isPending ? (
+              <Loader2 size={14} className="animate-spin" />
+            ) : (
+              <ExternalLink size={14} strokeWidth={2} />
+            )}
             Compartir
           </button>
 
@@ -239,6 +269,26 @@ export default function RecipeDetailPage() {
           </SectionAccordion>
         </>
       )}
+
+      <BottomSheet
+        isOpen={shareSheetOpen}
+        onClose={() => setShareSheetOpen(false)}
+        title="Enlace para compartir"
+      >
+        <div className="px-5 pb-6 space-y-3">
+          <div className="bg-subtle border border-border rounded-[12px] py-3 px-4 text-[13px] text-secondary break-all">
+            {shareToken ? `${typeof window !== 'undefined' ? window.location.origin : ''}/shared/${shareToken}` : ''}
+          </div>
+          <button
+            onClick={handleCopy}
+            className="w-full bg-foreground text-background rounded-[20px] py-3 text-[15px] font-semibold flex items-center justify-center gap-2"
+            aria-label="Copiar enlace al portapapeles"
+          >
+            <LinkIcon size={16} />
+            {copied ? 'Copiado' : 'Copiar enlace'}
+          </button>
+        </div>
+      </BottomSheet>
     </div>
   );
 }
