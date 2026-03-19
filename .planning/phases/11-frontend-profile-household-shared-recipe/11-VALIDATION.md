@@ -40,11 +40,10 @@ created: 2026-03-18
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
 | 11-01-01 | 01 | 1 | PROF-01 | unit | `yarn workspace @recipe-manager/web test --run profile` | ❌ W0 | ⬜ pending |
 | 11-01-02 | 01 | 1 | PROF-01 | unit | `yarn workspace @recipe-manager/web test --run profile` | ❌ W0 | ⬜ pending |
-| 11-01-03 | 01 | 1 | PROF-01 | unit | `yarn workspace @recipe-manager/web test --run profile` | ❌ W0 | ⬜ pending |
-| 11-02-01 | 02 | 2 | SHR-01 | unit | `yarn workspace @recipe-manager/web test --run share` | ❌ W0 | ⬜ pending |
-| 11-02-02 | 02 | 2 | SHR-01 | unit | `yarn workspace @recipe-manager/web test --run share` | ❌ W0 | ⬜ pending |
-| 11-03-01 | 03 | 3 | SHR-02 | unit | `yarn workspace @recipe-manager/web test --run shared` | ❌ W0 | ⬜ pending |
-| 11-03-02 | 03 | 3 | SHR-02 | unit | `yarn workspace @recipe-manager/web test --run shared` | ❌ W0 | ⬜ pending |
+| 11-02-01 | 02 | 1 | SHR-01 | unit | `yarn workspace @recipe-manager/web test --run share` | ❌ W0 | ⬜ pending |
+| 11-02-02 | 02 | 1 | SHR-01 | unit | `yarn workspace @recipe-manager/web test --run share` | ❌ W0 | ⬜ pending |
+| 11-03-01 | 03 | 1 | SHR-02 | unit | `yarn workspace @recipe-manager/web test --run shared` | ❌ W0 | ⬜ pending |
+| 11-03-02 | 03 | 1 | SHR-02 | unit | `yarn workspace @recipe-manager/web test --run shared` | ❌ W0 | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -52,9 +51,9 @@ created: 2026-03-18
 
 ## Wave 0 Requirements
 
-- [ ] `apps/web/tests/profile/profile-page.test.tsx` — stubs for PROF-01
-- [ ] `apps/web/tests/share/share-link.test.tsx` — stubs for SHR-01
-- [ ] `apps/web/tests/shared/shared-recipe-page.test.tsx` — stubs for SHR-02
+- [ ] `apps/web/src/components/__tests__/ProfilePage.test.tsx` — stubs for PROF-01
+- [ ] `apps/web/src/components/__tests__/ShareLinkFlow.test.tsx` — stubs for SHR-01
+- [ ] `apps/web/src/components/__tests__/SharedRecipePage.test.tsx` — stubs for SHR-02
 
 *Existing Vitest + RTL infrastructure covers all phase requirements — no new framework installs needed.*
 
