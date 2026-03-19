@@ -22,7 +22,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 8: Frontend Recipe List + Detail + Cook Mode** - Recipe browsing, search, filter, sort, detail view, cook mode (completed 2026-03-18)
 - [x] **Phase 9: Frontend Recipe Creation + Editing** - Create/edit form, ingredients, sections, steps, images, lock (completed 2026-03-18)
 - [x] **Phase 10: Frontend Meal Planner** - Weekly/monthly calendar, assign recipes, drag-drop, edit/delete entries (completed 2026-03-19)
-- [ ] **Phase 11: Frontend Profile + Household + Shared Recipe** - Profile editing, household view, public shared recipe page
+- [x] **Phase 11: Frontend Profile + Household + Shared Recipe** - Profile editing, household view, public shared recipe page (completed 2026-03-19)
 - [ ] **Phase 12: Frontend Admin Panel** - Admin login, setup wizard, user/household/foods/units/tokens management UI
 
 ## Phase Details
@@ -250,5 +250,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 8. Frontend Recipe List + Detail + Cook Mode | 3/3 | Complete | 2026-03-18 |
 | 9. Frontend Recipe Creation + Editing | 5/5 | Complete   | 2026-03-18 |
 | 10. Frontend Meal Planner | 3/3 | Complete   | 2026-03-19 |
-| 11. Frontend Profile + Household + Shared Recipe | 2/3 | In Progress|  |
+| 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete   | 2026-03-19 |
 | 12. Frontend Admin Panel | 0/7 | Not started | - |
