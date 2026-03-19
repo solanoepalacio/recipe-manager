@@ -206,12 +206,12 @@ Plans:
   1. The `/profile` page displays the current user's name, email, and username; editing and saving updates the data and confirms with a toast
   2. A user can generate a shareable public link from a recipe detail page; copying the link is accessible in one click
   3. Visiting `/shared/:token` in an unauthenticated browser tab shows the full recipe detail (no login prompt, no app shell)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 11-01: Profile page — display and edit form, PATCH /profile integration, success/error toasts
-- [ ] 11-02: Share link generation — share button on recipe detail, token generation, copy-to-clipboard
-- [ ] 11-03: Public shared recipe page — /shared/:token route, public layout, full recipe detail (no auth)
+- [ ] 11-01-PLAN.md — Profile page: display + edit form, PATCH /profile, Drawer nav link, ProfilePage tests
+- [ ] 11-02-PLAN.md — Share link: wire Compartir button to POST /share, BottomSheet with copy-to-clipboard, ShareLinkFlow tests
+- [ ] 11-03-PLAN.md — Public shared recipe page: /shared/[token] route outside (app), PublicLayout, read-only detail, SharedRecipePage tests
 
 ### Phase 12: Frontend Admin Panel
 **Goal**: Admins can log in, complete the setup wizard on first install, and manage all system data (users, households, foods, units, API tokens) through a dedicated admin panel.
