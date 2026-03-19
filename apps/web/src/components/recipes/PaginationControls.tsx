@@ -4,6 +4,7 @@ interface PaginationControlsProps {
   pageSize: number;
   onPageChange: (page: number) => void;
   onPageSizeChange: (size: number) => void;
+  pageSizeOptions?: number[];
 }
 
 export function PaginationControls({
@@ -12,7 +13,9 @@ export function PaginationControls({
   pageSize,
   onPageChange,
   onPageSizeChange,
+  pageSizeOptions,
 }: PaginationControlsProps) {
+  const sizes = pageSizeOptions ?? [10, 20, 50];
   const isFirst = page <= 1;
   const isLast = page >= totalPages;
 
@@ -50,9 +53,9 @@ export function PaginationControls({
           onChange={(e) => onPageSizeChange(Number(e.target.value))}
           className="text-[13px] text-secondary bg-transparent border-none outline-none"
         >
-          <option value={10}>10</option>
-          <option value={20}>20</option>
-          <option value={50}>50</option>
+          {sizes.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
         </select>
       </div>
     </div>
