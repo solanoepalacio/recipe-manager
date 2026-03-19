@@ -36,8 +36,9 @@ export class ProfileService {
   }
 
   async updateProfile(userId: string, dto: UpdateProfileDto): Promise<ProfileResponse> {
-    const { password, currentPassword, ...rest } = dto;
+    const { password, currentPassword, dateOfBirth, ...rest } = dto;
     const data: Record<string, unknown> = { ...rest };
+    if (dateOfBirth !== undefined) data.dateOfBirth = new Date(dateOfBirth);
 
     if (password) {
       if (!currentPassword) {
