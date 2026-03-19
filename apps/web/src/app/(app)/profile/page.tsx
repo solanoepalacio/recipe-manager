@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { Loader2, X } from 'lucide-react';
 import type { ProfileResponse, UpdateProfileRequest } from '@recipe-manager/shared';
+import { Gender } from '@recipe-manager/shared';
 import { api } from '@/lib/api-client';
 import { queryKeys } from '@/lib/query-keys';
 
@@ -112,12 +113,16 @@ export default function ProfilePage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [gender, setGender] = useState<Gender>(Gender.Male);
+  const [dateOfBirth, setDateOfBirth] = useState('');
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   useEffect(() => {
     if (profile) {
       setName(profile.name ?? '');
       setEmail(profile.email ?? '');
+      setGender(profile.gender);
+      setDateOfBirth(profile.dateOfBirth ?? '');
     }
   }, [profile]);
 
@@ -130,6 +135,8 @@ export default function ProfilePage() {
 
     const payload: UpdateProfileRequest = { name };
     if (email) payload.email = email;
+    if (gender) payload.gender = gender;
+    if (dateOfBirth) payload.dateOfBirth = dateOfBirth;
 
     updateMutation.mutate(payload);
   };
@@ -203,6 +210,37 @@ export default function ProfilePage() {
               className="w-full bg-subtle border-[1.5px] border-border rounded-[12px] py-4 px-4 text-[15px] text-foreground placeholder:text-placeholder focus:outline-none focus:border-foreground"
             />
             {emailError && <p className="text-[13px] text-destructive mt-1">{emailError}</p>}
+          </div>
+
+          {/* Genero */}
+          <div>
+            <label htmlFor="profile-gender" className="text-[13px] text-secondary mb-1 block">
+              Genero
+            </label>
+            <select
+              id="profile-gender"
+              value={gender}
+              onChange={(e) => setGender(e.target.value as Gender)}
+              className="w-full bg-subtle border-[1.5px] border-border rounded-[12px] py-4 px-4 text-[15px] text-foreground focus:outline-none focus:border-foreground"
+            >
+              <option value={Gender.Male}>Masculino</option>
+              <option value={Gender.Female}>Femenino</option>
+              <option value={Gender.Other}>Otro</option>
+            </select>
+          </div>
+
+          {/* Fecha de nacimiento */}
+          <div>
+            <label htmlFor="profile-dob" className="text-[13px] text-secondary mb-1 block">
+              Fecha de nacimiento
+            </label>
+            <input
+              id="profile-dob"
+              type="date"
+              value={dateOfBirth}
+              onChange={(e) => setDateOfBirth(e.target.value)}
+              className="w-full bg-subtle border-[1.5px] border-border rounded-[12px] py-4 px-4 text-[15px] text-foreground focus:outline-none focus:border-foreground"
+            />
           </div>
 
           {/* Change password */}
