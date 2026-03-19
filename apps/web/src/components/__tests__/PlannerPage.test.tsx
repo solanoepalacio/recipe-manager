@@ -125,11 +125,11 @@ describe('PlannerPage', () => {
     expect(empties.length).toBeGreaterThan(0);
   });
 
-  it('renders "+ Anadir receta" button in expanded day', async () => {
+  it('renders "+ Agregar receta" button in expanded day', async () => {
     vi.mocked(api.get).mockResolvedValue({ entries: [] });
     renderWithProviders(<PlannerPage />);
 
-    await screen.findByText('Anadir receta');
+    await screen.findByText('Agregar receta');
   });
 
   it('renders meal type label on entry rows', async () => {
@@ -159,7 +159,7 @@ describe('PlannerPage', () => {
     renderWithProviders(<PlannerPage />);
 
     // Today's day is auto-expanded; wait for add button
-    const addBtn = await screen.findByText('Anadir receta');
+    const addBtn = await screen.findByText('Agregar receta');
     fireEvent.click(addBtn);
 
     // Picker sheet opened — search bar placeholder visible
@@ -193,7 +193,7 @@ describe('PlannerPage', () => {
     renderWithProviders(<PlannerPage />);
 
     // Open picker
-    const addBtn = await screen.findByText('Anadir receta');
+    const addBtn = await screen.findByText('Agregar receta');
     fireEvent.click(addBtn);
 
     // Wait for recipe to appear in picker list
