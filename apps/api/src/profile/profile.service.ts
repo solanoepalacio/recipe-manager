@@ -9,8 +9,8 @@ function toProfileResponse(user: {
   householdId: string;
   name: string;
   email: string | null;
-  gender: string | null;
-  dateOfBirth: Date | null;
+  gender: string;
+  dateOfBirth: Date;
   createdAt: Date;
   updatedAt: Date;
 }): ProfileResponse {
@@ -20,7 +20,7 @@ function toProfileResponse(user: {
     name: user.name,
     email: user.email,
     gender: user.gender as ProfileResponse['gender'],
-    dateOfBirth: user.dateOfBirth?.toISOString() ?? null,
+    dateOfBirth: user.dateOfBirth.toISOString(),
     createdAt: user.createdAt.toISOString(),
     updatedAt: user.updatedAt.toISOString(),
   };

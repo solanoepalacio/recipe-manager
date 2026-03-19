@@ -43,8 +43,8 @@ const mockProfile = {
   householdId: 'hh-1',
   name: 'Ana Garcia',
   email: 'ana@example.com',
-  gender: null,
-  dateOfBirth: null,
+  gender: 'female',
+  dateOfBirth: '1990-05-15',
   createdAt: '2026-01-01T00:00:00.000Z',
   updatedAt: '2026-01-01T00:00:00.000Z',
 };

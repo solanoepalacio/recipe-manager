@@ -10,7 +10,7 @@ import { UpdateAdminUserDto } from './dto/update-user.dto';
 
 function toAdminUserResponse(user: {
   id: string; householdId: string; name: string; email: string | null;
-  username: string | null; gender: string | null; dateOfBirth: Date | null;
+  gender: string; dateOfBirth: Date;
   createdAt: Date; updatedAt: Date;
 }): AdminUserResponse {
   return {
@@ -18,16 +18,16 @@ function toAdminUserResponse(user: {
     householdId: user.householdId,
     name: user.name,
     email: user.email,
-    username: user.username,
+    username: null,
     gender: user.gender,
-    dateOfBirth: user.dateOfBirth ? user.dateOfBirth.toISOString() : null,
+    dateOfBirth: user.dateOfBirth.toISOString(),
     createdAt: user.createdAt.toISOString(),
     updatedAt: user.updatedAt.toISOString(),
   };
 }
 
 const USER_SELECT = {
-  id: true, householdId: true, name: true, email: true, username: true,
+  id: true, householdId: true, name: true, email: true,
   gender: true, dateOfBirth: true, createdAt: true, updatedAt: true,
 } as const;
 
@@ -63,10 +63,9 @@ export class AdminUsersService {
         householdId: dto.householdId,
         name: dto.name,
         email: dto.email ?? null,
-        username: dto.username ?? null,
         passwordHash,
-        gender: (dto.gender as $Enums.Gender | undefined) ?? null,
-        dateOfBirth: dto.dateOfBirth ? new Date(dto.dateOfBirth) : null,
+        gender: dto.gender as $Enums.Gender,
+        dateOfBirth: new Date(dto.dateOfBirth),
       },
       select: USER_SELECT,
     });
@@ -79,7 +78,6 @@ export class AdminUsersService {
     const data: Record<string, unknown> = {};
     if (dto.name !== undefined) data.name = dto.name;
     if (dto.email !== undefined) data.email = dto.email;
-    if (dto.username !== undefined) data.username = dto.username;
     if (dto.gender !== undefined) data.gender = dto.gender;
     if (dto.dateOfBirth !== undefined) data.dateOfBirth = dto.dateOfBirth ? new Date(dto.dateOfBirth) : null;
     if (dto.householdId !== undefined) data.householdId = dto.householdId;

@@ -14,8 +14,8 @@ export interface ProfileResponse {
   householdId: string;
   name: string;
   email: string | null;
-  gender: Gender | null;
-  dateOfBirth: string | null;
+  gender: Gender;
+  dateOfBirth: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -28,8 +28,8 @@ export interface ProfileResponse {
 export interface UpdateProfileRequest {
   name?: string;
   email?: string;
-  gender?: Gender | null;
-  dateOfBirth?: string | null;
+  gender?: Gender;
+  dateOfBirth?: string;
   currentPassword?: string;
   password?: string;
 }

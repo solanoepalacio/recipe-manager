@@ -13,12 +13,6 @@ export class UpdateAdminUserDto {
   @IsEmail()
   email?: string;
 
-  @ApiPropertyOptional()
-  @IsOptional()
-  @IsString()
-  @MinLength(2)
-  username?: string;
-
   @ApiPropertyOptional({ description: 'New password — omit to keep existing' })
   @IsOptional()
   @IsString()

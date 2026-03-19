@@ -101,7 +101,7 @@ describe('AdminUsersService', () => {
 
   describe('findAll', () => {
     it('returns paginated list of users', async () => {
-      prisma.user.findMany = jest.fn().mockResolvedValue([{ id: 'u1', householdId: 'h1', name: 'Alice', email: null, username: null, gender: null, dateOfBirth: null, createdAt: new Date(), updatedAt: new Date() }]);
+      prisma.user.findMany = jest.fn().mockResolvedValue([{ id: 'u1', householdId: 'h1', name: 'Alice', email: null, username: null, gender: 'other', dateOfBirth: new Date('2000-01-01'), createdAt: new Date(), updatedAt: new Date() }]);
       prisma.user.count = jest.fn().mockResolvedValue(1);
       const result = await (service as any).findAll(1, 20);
       expect(result.total).toBe(1);
@@ -117,7 +117,7 @@ describe('AdminUsersService', () => {
       await expect((service as any).findOne('missing')).rejects.toThrow(NotFoundException);
     });
     it('returns user response when found', async () => {
-      prisma.user.findUnique = jest.fn().mockResolvedValue({ id: 'u1', householdId: 'h1', name: 'Alice', email: null, username: null, gender: null, dateOfBirth: null, createdAt: new Date(), updatedAt: new Date() });
+      prisma.user.findUnique = jest.fn().mockResolvedValue({ id: 'u1', householdId: 'h1', name: 'Alice', email: null, username: null, gender: 'other', dateOfBirth: new Date('2000-01-01'), createdAt: new Date(), updatedAt: new Date() });
       const result = await (service as any).findOne('u1');
       expect(result.id).toBe('u1');
     });
@@ -126,14 +126,14 @@ describe('AdminUsersService', () => {
   describe('create', () => {
     it('hashes password when provided', async () => {
       prisma.household = { findUnique: jest.fn().mockResolvedValue({ id: 'h1' }) } as any;
-      prisma.user.create = jest.fn().mockResolvedValue({ id: 'u2', householdId: 'h1', name: 'Bob', email: 'bob@ex.com', username: null, gender: null, dateOfBirth: null, createdAt: new Date(), updatedAt: new Date() });
+      prisma.user.create = jest.fn().mockResolvedValue({ id: 'u2', householdId: 'h1', name: 'Bob', email: 'bob@ex.com', username: null, gender: 'other', dateOfBirth: new Date('2000-01-01'), createdAt: new Date(), updatedAt: new Date() });
       const result = await (service as any).create({ householdId: 'h1', name: 'Bob', email: 'bob@ex.com', password: 'secret123' });
       expect(prisma.user.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ passwordHash: expect.any(String) }) }));
       expect(result.id).toBe('u2');
     });
     it('creates user with null passwordHash when no password provided', async () => {
       prisma.household = { findUnique: jest.fn().mockResolvedValue({ id: 'h1' }) } as any;
-      prisma.user.create = jest.fn().mockResolvedValue({ id: 'u3', householdId: 'h1', name: 'Carol', email: null, username: null, gender: null, dateOfBirth: null, createdAt: new Date(), updatedAt: new Date() });
+      prisma.user.create = jest.fn().mockResolvedValue({ id: 'u3', householdId: 'h1', name: 'Carol', email: null, username: null, gender: 'other', dateOfBirth: new Date('2000-01-01'), createdAt: new Date(), updatedAt: new Date() });
       await (service as any).create({ householdId: 'h1', name: 'Carol' });
       expect(prisma.user.create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ passwordHash: null }) }));
     });
@@ -142,7 +142,7 @@ describe('AdminUsersService', () => {
   describe('update', () => {
     it('returns updated user', async () => {
       prisma.user.findUnique = jest.fn().mockResolvedValue({ id: 'u1' });
-      prisma.user.update = jest.fn().mockResolvedValue({ id: 'u1', householdId: 'h1', name: 'Updated', email: null, username: null, gender: null, dateOfBirth: null, createdAt: new Date(), updatedAt: new Date() });
+      prisma.user.update = jest.fn().mockResolvedValue({ id: 'u1', householdId: 'h1', name: 'Updated', email: null, username: null, gender: 'other', dateOfBirth: new Date('2000-01-01'), createdAt: new Date(), updatedAt: new Date() });
       const result = await (service as any).update('u1', { name: 'Updated' });
       expect(result.name).toBe('Updated');
     });

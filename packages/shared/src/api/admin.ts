@@ -10,8 +10,8 @@ export interface AdminUserResponse {
   name: string;
   email: string | null;
   username: string | null;
-  gender: string | null;
-  dateOfBirth: string | null;
+  gender: string;
+  dateOfBirth: string;
   createdAt: string;
   updatedAt: string;
 }

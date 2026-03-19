@@ -12,13 +12,13 @@ import { UpdateAdminHouseholdDto } from './dto/update-household.dto';
 
 function toAdminUserResponse(user: {
   id: string; householdId: string; name: string; email: string | null;
-  username: string | null; gender: string | null; dateOfBirth: Date | null;
+  gender: string; dateOfBirth: Date;
   createdAt: Date; updatedAt: Date;
 }): AdminUserResponse {
   return {
     id: user.id, householdId: user.householdId, name: user.name,
-    email: user.email, username: user.username, gender: user.gender,
-    dateOfBirth: user.dateOfBirth ? user.dateOfBirth.toISOString() : null,
+    email: user.email, username: null, gender: user.gender,
+    dateOfBirth: user.dateOfBirth.toISOString(),
     createdAt: user.createdAt.toISOString(), updatedAt: user.updatedAt.toISOString(),
   };
 }
@@ -33,7 +33,7 @@ function toAdminHouseholdResponse(h: {
 }
 
 const USER_SELECT = {
-  id: true, householdId: true, name: true, email: true, username: true,
+  id: true, householdId: true, name: true, email: true,
   gender: true, dateOfBirth: true, createdAt: true, updatedAt: true,
 } as const;
 

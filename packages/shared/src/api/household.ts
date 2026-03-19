@@ -20,8 +20,8 @@ export interface HouseholdMemberResponse {
   name: string;
   email: string | null;
   username: string | null;
-  gender: Gender | null;
-  dateOfBirth: string | null;
+  gender: Gender;
+  dateOfBirth: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -47,8 +47,8 @@ export interface CreateMemberRequest {
   email?: string;
   username?: string;
   password?: string;
-  gender?: Gender | null;
-  dateOfBirth?: string | null;
+  gender: Gender;
+  dateOfBirth: string;
 }
 
 /**
@@ -59,6 +59,6 @@ export interface UpdateMemberRequest {
   name?: string;
   email?: string | null;
   username?: string | null;
-  gender?: Gender | null;
-  dateOfBirth?: string | null;
+  gender?: Gender;
+  dateOfBirth?: string;
 }
