@@ -16,6 +16,7 @@ import type {
   AdminUserResponse,
 } from '@recipe-manager/shared';
 import type { PaginatedResponse } from '@recipe-manager/shared';
+import { Gender } from '@recipe-manager/shared';
 
 // ---------------------------------------------------------------------------
 // Types for form mode
@@ -216,6 +217,8 @@ export default function AdminHouseholdsPage() {
   const [formMemberEmail, setFormMemberEmail] = useState('');
   const [formMemberPassword, setFormMemberPassword] = useState('');
   const [formMemberUsername, setFormMemberUsername] = useState('');
+  const [formMemberGender, setFormMemberGender] = useState<string>(Gender.Male);
+  const [formMemberDateOfBirth, setFormMemberDateOfBirth] = useState('');
 
   // Households query
   const { data, isLoading } = useQuery({
@@ -261,7 +264,7 @@ export default function AdminHouseholdsPage() {
 
   // --- Member mutations ---
   const createMember = useMutation({
-    mutationFn: (body: { name: string; email: string; password: string; householdId: string }) =>
+    mutationFn: (body: { name: string; email: string; password: string; householdId: string; gender: string; dateOfBirth: string }) =>
       adminApi.post<AdminUserResponse>('/admin/users', body),
     onSuccess: (_data, vars) => {
       queryClient.invalidateQueries({ queryKey: ['admin', 'households', 'detail', vars.householdId] });
@@ -272,7 +275,7 @@ export default function AdminHouseholdsPage() {
   });
 
   const updateMember = useMutation({
-    mutationFn: ({ id, body }: { id: string; body: { name?: string; email?: string; username?: string } }) =>
+    mutationFn: ({ id, body }: { id: string; body: { name?: string; email?: string; username?: string; gender?: string; dateOfBirth?: string } }) =>
       adminApi.patch<AdminUserResponse>(`/admin/users/${id}`, body),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.admin.households.all });
@@ -312,6 +315,8 @@ export default function AdminHouseholdsPage() {
     setFormMemberEmail('');
     setFormMemberPassword('');
     setFormMemberUsername('');
+    setFormMemberGender(Gender.Male);
+    setFormMemberDateOfBirth('');
   }
 
   function handleOpenCreateHousehold() {
@@ -341,6 +346,8 @@ export default function AdminHouseholdsPage() {
     setFormMemberEmail(user.email ?? '');
     setFormMemberUsername(user.username ?? '');
     setFormMemberPassword('');
+    setFormMemberGender(user.gender);
+    setFormMemberDateOfBirth(user.dateOfBirth ?? '');
     setFormMode({ type: 'editMember', user });
   }
 
@@ -358,11 +365,13 @@ export default function AdminHouseholdsPage() {
         email: formMemberEmail,
         password: formMemberPassword,
         householdId: formMode.householdId,
+        gender: formMemberGender,
+        dateOfBirth: formMemberDateOfBirth,
       });
     } else if (formMode.type === 'editMember') {
       updateMember.mutate({
         id: formMode.user.id,
-        body: { name: formMemberName, email: formMemberEmail, username: formMemberUsername },
+        body: { name: formMemberName, email: formMemberEmail, username: formMemberUsername, gender: formMemberGender, dateOfBirth: formMemberDateOfBirth },
       });
     }
   }
@@ -458,6 +467,37 @@ export default function AdminHouseholdsPage() {
                     onChange={(e) => setFormMemberEmail(e.target.value)}
                     className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground placeholder:text-placeholder outline-none"
                     placeholder="correo@ejemplo.com"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="member-gender" className="text-[13px] text-foreground">
+                    {formMode.type === 'createMember' ? 'Genero *' : 'Genero'}
+                  </label>
+                  <select
+                    id="member-gender"
+                    value={formMemberGender}
+                    onChange={(e) => setFormMemberGender(e.target.value)}
+                    required={formMode.type === 'createMember'}
+                    className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground outline-none"
+                  >
+                    <option value={Gender.Male}>Masculino</option>
+                    <option value={Gender.Female}>Femenino</option>
+                    <option value={Gender.Other}>Otro</option>
+                  </select>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="member-dob" className="text-[13px] text-foreground">
+                    {formMode.type === 'createMember' ? 'Fecha de nacimiento *' : 'Fecha de nacimiento'}
+                  </label>
+                  <input
+                    id="member-dob"
+                    type="date"
+                    value={formMemberDateOfBirth}
+                    onChange={(e) => setFormMemberDateOfBirth(e.target.value)}
+                    required={formMode.type === 'createMember'}
+                    className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground outline-none"
                   />
                 </div>
 
