@@ -17,7 +17,8 @@ async function bootstrap() {
   const uploadsDir = join(process.cwd(), 'uploads');
   fs.mkdirSync(uploadsDir, { recursive: true });
   // Serve uploaded images at /uploads/* (no new package — NestExpressApplication built-in)
-  app.useStaticAssets(uploadsDir, { prefix: '/uploads' });
+  // fallthrough: false → missing files return 404, not passed to auth guard (prevents 403)
+  app.useStaticAssets(uploadsDir, { prefix: '/uploads', fallthrough: false });
 
   app.setGlobalPrefix('api');
 

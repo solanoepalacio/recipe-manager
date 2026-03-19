@@ -4,6 +4,7 @@ import { useParams, useSearchParams, useRouter } from 'next/navigation';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ExternalLink, CookingPot, Lock } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -114,11 +115,13 @@ export default function RecipeDetailPage() {
 
       {/* Hero image — hidden in edit mode */}
       {!isEditMode && recipe.images.length > 0 && (
-        <div className="w-full h-[220px]">
-          <img
+        <div className="w-full h-[220px] relative">
+          <Image
             src={recipe.images[0].url}
             alt={recipe.name}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            priority
           />
         </div>
       )}
