@@ -69,12 +69,12 @@
 
 ### Administration
 
-- [ ] **ADM-01**: Admin can view, create, edit, and delete user accounts
-- [ ] **ADM-02**: Admin can view, create, edit, and delete households
-- [ ] **ADM-03**: Admin can manage the foods database (view, create, edit, delete)
-- [ ] **ADM-04**: Admin can manage the units database (view, create, edit, delete)
-- [ ] **ADM-05**: Admin can create long-lived API tokens tied to a user account
-- [ ] **ADM-06**: Admin can view and delete existing API tokens
+- [x] **ADM-01**: Admin can view, create, edit, and delete user accounts
+- [x] **ADM-02**: Admin can view, create, edit, and delete households
+- [x] **ADM-03**: Admin can manage the foods database (view, create, edit, delete)
+- [x] **ADM-04**: Admin can manage the units database (view, create, edit, delete)
+- [x] **ADM-05**: Admin can create long-lived API tokens tied to a user account
+- [x] **ADM-06**: Admin can view and delete existing API tokens
 
 ### API & Developer Access
 
@@ -163,12 +163,12 @@
 | PROF-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
 | SHR-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
 | SHR-02 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
-| ADM-01 | Phase 12: Frontend Admin Panel | Pending |
-| ADM-02 | Phase 12: Frontend Admin Panel | Pending |
-| ADM-03 | Phase 12: Frontend Admin Panel | Pending |
-| ADM-04 | Phase 12: Frontend Admin Panel | Pending |
-| ADM-05 | Phase 12: Frontend Admin Panel | Pending |
-| ADM-06 | Phase 12: Frontend Admin Panel | Pending |
+| ADM-01 | Phase 12: Frontend Admin Panel | Complete |
+| ADM-02 | Phase 12: Frontend Admin Panel | Complete |
+| ADM-03 | Phase 12: Frontend Admin Panel | Complete |
+| ADM-04 | Phase 12: Frontend Admin Panel | Complete |
+| ADM-05 | Phase 12: Frontend Admin Panel | Complete |
+| ADM-06 | Phase 12: Frontend Admin Panel | Complete |
 
 **Coverage:**
 - v1 requirements: 46 total

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Phase 12 context gathered
-last_updated: "2026-03-19T18:24:24.022Z"
+stopped_at: Completed 12-01-PLAN.md
+last_updated: "2026-03-19T18:53:18.573Z"
 last_activity: 2026-03-19
 progress:
   total_phases: 12
   completed_phases: 11
-  total_plans: 40
-  completed_plans: 40
+  total_plans: 45
+  completed_plans: 41
 ---
 
 # Project State
@@ -20,12 +20,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-16)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 11 — frontend-profile-household-shared-recipe
+**Current focus:** Phase 12 — frontend-admin-panel
 
 ## Current Position
 
-Phase: 11 (frontend-profile-household-shared-recipe) — COMPLETE
-Plan: 3 of 3
+Phase: 12 (frontend-admin-panel) — EXECUTING
+Plan: 1 of 5
 
 ## Performance Metrics
 
@@ -83,6 +83,7 @@ Plan: 3 of 3
 | Phase 11-frontend-profile-household-shared-recipe P01 | 2 | 2 tasks | 3 files |
 | Phase 11-frontend-profile-household-shared-recipe P02 | 2 | 2 tasks | 2 files |
 | Phase 11 P03 | 2 | 2 tasks | 3 files |
+| Phase 12-frontend-admin-panel P01 | 4 | 2 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -187,6 +188,9 @@ Recent decisions affecting current work:
 - [Phase 11]: ShareLinkFlow tests use real QueryClientProvider (not vi.mock tanstack-react-query) so mutation callbacks execute — needed to test share flow state transitions
 - [Phase 11]: PublicLayout uses 'use client' because QueryClientProvider is a client component
 - [Phase 11]: SharedRecipePage shows 'Este enlace no es valido o ha expirado.' for invalid tokens with no login redirect
+- [Phase 12-01]: AdminGuardedShell checks pathname for /admin/login and /setup to skip auth guard — avoids redirect loop on public admin paths
+- [Phase 12-01]: admin-api-client uses typeof window !== 'undefined' guard before window.location.replace — prevents SSR/build crash on 401
+- [Phase 12-01]: (admin)/layout.tsx creates its own QueryClient instance — admin panel has isolated query state from user app
 
 ### Pending Todos
 
@@ -205,5 +209,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-19
-Stopped at: Phase 12 context gathered
-Resume file: .planning/phases/12-frontend-admin-panel/12-CONTEXT.md
+Stopped at: Completed 12-01-PLAN.md
+Resume file: None
