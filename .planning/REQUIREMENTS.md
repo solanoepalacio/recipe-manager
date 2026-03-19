@@ -54,9 +54,9 @@
 ### Meal Planning
 
 - [x] **PLAN-01**: User can view a weekly meal planner (1 or 4 weeks)
-- [ ] **PLAN-02**: User can assign a recipe to a date and meal type (breakfast, lunch, dinner, snack, dessert)
+- [x] **PLAN-02**: User can assign a recipe to a date and meal type (breakfast, lunch, dinner, snack, dessert)
 - [ ] **PLAN-03**: User can drag-and-drop meal plan entries to reorganize
-- [ ] **PLAN-04**: User can edit or delete individual meal plan entries
+- [x] **PLAN-04**: User can edit or delete individual meal plan entries
 
 ### Profile
 
@@ -156,9 +156,9 @@
 | IMG-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | IMG-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
 | PLAN-01 | Phase 10: Frontend Meal Planner | Complete |
-| PLAN-02 | Phase 10: Frontend Meal Planner | Pending |
+| PLAN-02 | Phase 10: Frontend Meal Planner | Complete |
 | PLAN-03 | Phase 10: Frontend Meal Planner | Pending |
-| PLAN-04 | Phase 10: Frontend Meal Planner | Pending |
+| PLAN-04 | Phase 10: Frontend Meal Planner | Complete |
 | HH-02 | Phase 10: Frontend Meal Planner | Complete |
 | PROF-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Pending |
 | SHR-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Pending |
