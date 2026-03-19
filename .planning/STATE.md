@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 10-02-PLAN.md
-last_updated: "2026-03-19T00:45:04.590Z"
+stopped_at: Completed 10-03-PLAN.md
+last_updated: "2026-03-19T00:49:12.612Z"
 last_activity: 2026-03-19
 progress:
   total_phases: 12
-  completed_phases: 9
+  completed_phases: 10
   total_plans: 37
-  completed_plans: 36
+  completed_plans: 37
 ---
 
 # Project State
@@ -79,6 +79,7 @@ Plan: 1 of 3
 | Phase 09 P05 | 6 | 2 tasks | 9 files |
 | Phase 10-frontend-meal-planner P01 | 4 | 2 tasks | 8 files |
 | Phase 10-frontend-meal-planner P02 | 3 | 2 tasks | 4 files |
+| Phase 10-frontend-meal-planner P03 | 2 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -177,6 +178,7 @@ Recent decisions affecting current work:
 - [Phase 10-frontend-meal-planner]: entriesByDate Record<string, MealPlanEntryResponse[]> pattern groups API entries by date for O(1) lookup in DayAccordion rendering
 - [Phase 10-frontend-meal-planner]: cancelLabel prop on ConfirmDialog is optional with default Cancelar — fully backward-compatible for existing callers
 - [Phase 10-frontend-meal-planner]: enabled: isOpen on recipes query in RecipePickerSheet prevents network requests until sheet opens
+- [Phase 10-frontend-meal-planner]: DndContext placed inside loading branch only (not wrapping WeekToggle/WeekNav) — drag context active only when entries are loaded
 
 ### Pending Todos
 
@@ -195,5 +197,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-19
-Stopped at: Completed 10-02-PLAN.md
+Stopped at: Completed 10-03-PLAN.md
 Resume file: None
