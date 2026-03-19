@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 12-04-PLAN.md
-last_updated: "2026-03-19T19:10:36.088Z"
+stopped_at: Completed 12-05-PLAN.md
+last_updated: "2026-03-19T19:15:47.412Z"
 last_activity: 2026-03-19
 progress:
   total_phases: 12
-  completed_phases: 11
+  completed_phases: 12
   total_plans: 45
-  completed_plans: 44
+  completed_plans: 45
 ---
 
 # Project State
@@ -87,6 +87,7 @@ Plan: 1 of 5
 | Phase 12-frontend-admin-panel P02 | 5 | 2 tasks | 10 files |
 | Phase 12-frontend-admin-panel P03 | 6 | 2 tasks | 4 files |
 | Phase 12-frontend-admin-panel P04 | 4 | 2 tasks | 4 files |
+| Phase 12-frontend-admin-panel P05 | 4 | 1 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -199,6 +200,7 @@ Recent decisions affecting current work:
 - [Phase 12-02]: pageSizeOptions prop on PaginationControls defaults to [10,20,50] — fully backward-compatible
 - [Phase 12-03]: PaginatedResponse uses items[] not data[]; totalPages computed as Math.ceil(total/perPage) — plan spec was wrong, fixed to match shared type
 - [Phase 12-03]: Delete mutation tests use single-row mock to avoid multi-row Eliminar button ambiguity with inline ConfirmDialog
+- [Phase 12-05]: [12-05] Raw token stored only in createdToken useState — never in query cache; onDismiss clears it permanently
 
 ### Pending Todos
 
@@ -217,5 +219,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-19
-Stopped at: Completed 12-04-PLAN.md
+Stopped at: Completed 12-05-PLAN.md
 Resume file: None
