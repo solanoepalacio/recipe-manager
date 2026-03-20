@@ -276,7 +276,10 @@ Plans:
   1. `rmapi recipes list` returns a JSON object with `items` array and pagination metadata; `--search`, `--food-id`, `--sort`, `--order`, `--page`, and `--per-page` flags all filter and paginate correctly
   2. `rmapi recipes get <id>` returns the full recipe detail including sections, ingredients, and steps
   3. `rmapi recipes get <id> --fields id,name,sections` strips the response to only the named top-level fields, reducing token consumption for the agent
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 15-01-PLAN.md — recipes list (6 query flags + --fields items projection) + recipes get (detail + --fields) + TDD test suite
 
 ### Phase 16: Recipe Write Commands
 **Goal**: The agent can create, update, delete, duplicate, and add images to recipes — completing the full recipe lifecycle over CLI.
