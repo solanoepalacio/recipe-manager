@@ -40,10 +40,10 @@
 | SKILL-02 | Phase 13 | Pending |
 | SKILL-03 | Phase 13 | Pending |
 | SKILL-04 | Phase 13 | Pending |
-| SKILL-05 | Phase 13 | Pending |
-| SKILL-06 | Phase 13 | Pending |
-| SKILL-07 | Phase 13 | Pending |
-| SKILL-08 | Phase 13 | Pending |
+| SKILL-05 | Phase 14 | Pending |
+| SKILL-06 | Phase 14 | Pending |
+| SKILL-07 | Phase 14 | Pending |
+| SKILL-08 | Phase 14 | Pending |
 
 **Coverage:**
 - v1.1 requirements: 8 total
@@ -52,4 +52,4 @@
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-20 after initial definition*
+*Last updated: 2026-03-20 — traceability updated after roadmap creation (phases 13–14)*

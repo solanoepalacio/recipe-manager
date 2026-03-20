@@ -4,6 +4,8 @@
 
 This roadmap takes the project from an empty monorepo to a fully functional household recipe manager. The first six phases build the backend layer-by-layer (infrastructure, database, auth, recipe CRUD, search/sharing/meal plan, admin endpoints). The final six phases deliver the frontend, making every requirement observable to real users. Backend phases validate against the Swagger UI; frontend phases validate through the browser. Every v1 requirement is assigned to the phase where it first becomes fully verifiable.
 
+Milestone v1.1 (phases 13–14) produces the skill bundle — a set of Markdown files that teach an AI agent to consume the recipe-manager REST API with no prior knowledge.
+
 ## Phases
 
 **Phase Numbering:**
@@ -24,6 +26,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 10: Frontend Meal Planner** - Weekly/monthly calendar, assign recipes, drag-drop, edit/delete entries (completed 2026-03-19)
 - [x] **Phase 11: Frontend Profile + Household + Shared Recipe** - Profile editing, household view, public shared recipe page (completed 2026-03-19)
 - [x] **Phase 12: Frontend Admin Panel** - Admin login, setup wizard, user/household/foods/units/tokens management UI (completed 2026-03-19)
+- [ ] **Phase 13: Skill Bundle — Foundation + Read Operations** - index.md, shared.md, recipes_search.md, recipes_get.md
+- [ ] **Phase 14: Skill Bundle — Write Operations + Meal Plan** - recipes_create.md, recipes_edit.md, recipes_image.md, meal_plan.md
 
 ## Phase Details
 
@@ -231,10 +235,32 @@ Plans:
 - [ ] 12-04-PLAN.md — Foods management (CRUD) + Units management (CRUD with abbreviation)
 - [ ] 12-05-PLAN.md — API Tokens management (create with one-time display, list, revoke)
 
+### Phase 13: Skill Bundle — Foundation + Read Operations
+**Goal**: An agent can authenticate, understand shared conventions, and perform all read operations on recipes without prior knowledge of the API.
+**Depends on**: Nothing (documentation only — no code dependencies)
+**Requirements**: SKILL-01, SKILL-02, SKILL-03, SKILL-04
+**Success Criteria** (what must be TRUE):
+  1. An agent reading only `index.md` knows which file to open for any recipe-manager operation and does not need to guess
+  2. An agent reading `shared.md` can construct a correctly authenticated request, interpret any error status code, and parse any paginated response
+  3. An agent reading `recipes_search.md` can call `GET /api/recipes` with any combination of search, foodId, sort, order, page, and pageSize parameters and parse the response
+  4. An agent reading `recipes_get.md` can call `GET /api/recipes/:id` and extract sections, ingredients, steps, and images from the response shape
+**Plans**: TBD
+
+### Phase 14: Skill Bundle — Write Operations + Meal Plan
+**Goal**: An agent can create and edit recipes (including sections, ingredients, steps, and images) and manage meal plan entries entirely from the skill files.
+**Depends on**: Phase 13
+**Requirements**: SKILL-05, SKILL-06, SKILL-07, SKILL-08
+**Success Criteria** (what must be TRUE):
+  1. An agent reading `recipes_create.md` can resolve food and unit IDs, create a recipe, add sections with ingredients, and add steps — in the correct sequence — without consulting any other source
+  2. An agent reading `recipes_edit.md` can update or delete recipe metadata, a section, an ingredient, or a step using only the IDs obtained from `recipes_get.md`
+  3. An agent reading `recipes_image.md` can upload a multipart image and delete an existing image using only the recipe `id`
+  4. An agent reading `meal_plan.md` can list entries for a date range, create an entry with a valid mealType value, update an entry, and delete an entry
+**Plans**: TBD
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -250,3 +276,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 10. Frontend Meal Planner | 3/3 | Complete   | 2026-03-19 |
 | 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete    | 2026-03-19 |
 | 12. Frontend Admin Panel | 5/5 | Complete    | 2026-03-19 |
+| 13. Skill Bundle — Foundation + Read Operations | 0/? | Not started | - |
+| 14. Skill Bundle — Write Operations + Meal Plan | 0/? | Not started | - |
