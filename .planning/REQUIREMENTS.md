@@ -1,184 +1,55 @@
 # Requirements: Recipe Manager
 
-**Defined:** 2026-03-16
+**Defined:** 2026-03-20
 **Core Value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
 
 ## v1 Requirements
 
-### Authentication
+*(All v1.0 requirements are complete — see ROADMAP.md phases 1–12)*
 
-- [x] **AUTH-01**: User can sign in with email or username + password
-- [x] **AUTH-02**: User session persists across browser refresh (persistent by default)
-- [x] **AUTH-03**: User can sign out
-- [x] **AUTH-04**: Admin can complete first-time setup wizard (creates single Admin record; wizard inaccessible after)
-- [x] **AUTH-05**: Admin can generate a one-time password reset URL for any user (no email — shared out-of-band)
+## v1.1 Requirements
 
-### Recipes
+### Skill Bundle
 
-- [x] **RCP-01**: User can create a new recipe from scratch
-- [x] **RCP-02**: User can duplicate an existing recipe (creates independent copy)
-- [x] **RCP-03**: User can set recipe name with auto-generated URL slug
-- [x] **RCP-04**: User can set recipe description, servings (qty + unit), prep/cook/total/perform times, and source URL
-- [x] **RCP-05**: User can lock a recipe to prevent editing
-- [x] **RCP-07**: User can view full recipe detail (ingredients, instructions, images)
-- [x] **RCP-08**: User can enter cook mode (full-screen, large text, step-by-step navigation)
-
-### Ingredients
-
-- [x] **ING-01**: User can add ingredients to a recipe with quantity, unit, food name, and optional note
-- [x] **ING-02**: User can organize ingredients into titled sections
-- [x] **ING-03**: User can reorder ingredients within a section
-
-### Instructions
-
-- [x] **INS-01**: User can add step-by-step instructions with optional step title
-- [x] **INS-02**: User can reorder instruction steps via drag-and-drop
-
-### Images
-
-- [x] **IMG-01**: User can upload an image for a recipe
-- [x] **IMG-02**: User can delete a recipe image
-
-### Search & Discovery
-
-- [x] **SRCH-01**: User can search recipes by name with fuzzy matching
-- [x] **SRCH-02**: User can filter recipes by food/ingredient
-- [x] **SRCH-03**: User can sort recipes by name, date created, date updated, or random (asc/desc)
-- [x] **SRCH-04**: User can paginate recipe list with configurable page size
-
-### Sharing
-
-- [x] **SHR-01**: User can generate a shareable public link for a recipe
-- [x] **SHR-02**: Anyone with the share link can view a recipe without logging in
-
-### Meal Planning
-
-- [x] **PLAN-01**: User can view a weekly meal planner (1 or 4 weeks)
-- [x] **PLAN-02**: User can assign a recipe to a date and meal type (breakfast, lunch, dinner, snack, dessert)
-- [x] **PLAN-03**: User can drag-and-drop meal plan entries to reorganize
-- [x] **PLAN-04**: User can edit or delete individual meal plan entries
-
-### Profile
-
-- [x] **PROF-01**: User can view and edit their profile (name, email, username)
-
-### Households
-
-- [x] **HH-01**: Users belong to a household; all recipes and meal plans are household-scoped and private to members
-- [x] **HH-02**: All household members share the same meal plan
-
-### Administration
-
-- [x] **ADM-01**: Admin can view, create, edit, and delete user accounts
-- [x] **ADM-02**: Admin can view, create, edit, and delete households
-- [x] **ADM-03**: Admin can manage the foods database (view, create, edit, delete)
-- [x] **ADM-04**: Admin can manage the units database (view, create, edit, delete)
-- [x] **ADM-05**: Admin can create long-lived API tokens tied to a user account
-- [x] **ADM-06**: Admin can view and delete existing API tokens
-
-### API & Developer Access
-
-- [x] **API-01**: Full non-admin functionality is accessible via REST API (same endpoints as UI)
-- [x] **API-02**: Agent authenticates via Bearer token (API key tied to a user account)
-- [x] **API-03**: Interactive API documentation is available at `/api/docs` (Swagger UI)
-
-### Mobile & UX
-
-- [x] **UX-01**: Application has a responsive layout (phone, tablet, desktop)
-- [x] **UX-02**: Loading indicators are shown while data is being fetched
-- [x] **UX-03**: Toast/notification system for success, error, and info states
+- [ ] **SKILL-01**: Agent can find which skill file to read for any operation (`index.md` — startup index with one-line descriptions and read guidance)
+- [ ] **SKILL-02**: Agent can authenticate and understand error codes and pagination (`shared.md` — Bearer auth, base URL, 400/401/403/404/500 meanings, pagination envelope)
+- [ ] **SKILL-03**: Agent can search and list recipes by name, food, sort, and pagination (`recipes_search.md` — GET /api/recipes with all query params, example request/response)
+- [ ] **SKILL-04**: Agent can fetch full recipe detail including sections, ingredients, steps, and images (`recipes_get.md` — GET /api/recipes/:id full response shape)
+- [ ] **SKILL-05**: Agent can create a recipe with sections, ingredients (resolved food/unit IDs), and steps (`recipes_create.md` — POST /api/recipes, GET /api/foods, GET /api/units, POST sections/ingredients/steps with recommended sequence)
+- [ ] **SKILL-06**: Agent can update or delete recipe metadata, sections, ingredients, and steps (`recipes_edit.md` — PATCH/DELETE for recipe, sections, ingredients, steps)
+- [ ] **SKILL-07**: Agent can upload and delete recipe images via multipart form (`recipes_image.md` — POST /api/recipes/:id/images multipart, DELETE image)
+- [ ] **SKILL-08**: Agent can read, create, update, and delete meal plan entries (`meal_plan.md` — GET/POST/PATCH/DELETE /api/meal-plan/entries with date range and mealType enum)
 
 ## v2 Requirements
 
-### Notifications
-
-- **NOTF-01**: User receives in-app notifications for household activity
-- **NOTF-02**: Email notifications (requires email infrastructure)
-
-### Social / Collaboration
-
-- **SOCL-01**: Users can leave comments or notes on recipes
-- **SOCL-02**: Recipe rating system
-
-### Import / Export
-
-- **IMP-01**: Import recipe from URL (scraping)
-- **IMP-02**: Export recipes to PDF
+*(None defined yet)*
 
 ## Out of Scope
 
 | Feature | Reason |
 |---------|--------|
-| Email sending | No email infrastructure in MVP; password reset URLs shared out-of-band by admin |
-| Agent implementation | Agent consumes the same REST API as UI — its design/impl is out of scope |
-| Deployment / CI/CD | Infrastructure is out of scope for this project |
-| OAuth / social login | Email + password sufficient for v1 |
-| Mobile native app | Web-only (responsive) |
-| Nutritional information | Not part of core household recipe management value |
-| Real-time updates | No websockets; page refresh / TanStack Query refetch covers use cases |
-| Rich text descriptions | Plain text for MVP (simplifies data model) |
+| Admin endpoints | Agent users have no admin access by design |
+| Auth flows (login/logout) | Agent authenticates via API key Bearer token only — no session management |
+| Image download/display | Skill only covers upload/delete; rendering is the consuming app's concern |
 
 ## Traceability
 
-*Updated: 2026-03-16 — roadmap created (12 phases)*
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| API-03 | Phase 1: Monorepo + Shared Types | Complete |
-| HH-01 | Phase 2: Database Schema + Prisma | Complete |
-| AUTH-01 | Phase 3: Backend Auth | Complete |
-| AUTH-02 | Phase 3: Backend Auth | Complete |
-| AUTH-03 | Phase 3: Backend Auth | Complete |
-| AUTH-04 | Phase 3: Backend Auth | Complete |
-| AUTH-05 | Phase 3: Backend Auth | Complete |
-| API-02 | Phase 3: Backend Auth | Complete |
-| API-01 | Phase 4: Backend Recipe CRUD | Complete |
-| UX-01 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
-| UX-02 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
-| UX-03 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
-| RCP-07 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| RCP-08 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| SRCH-01 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| SRCH-02 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| SRCH-03 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| SRCH-04 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| RCP-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-03 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-04 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-05 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-06 | Phase 9: Frontend Recipe Creation + Editing | Pending |
-| ING-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| ING-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| ING-03 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| INS-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| INS-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| IMG-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| IMG-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| PLAN-01 | Phase 10: Frontend Meal Planner | Complete |
-| PLAN-02 | Phase 10: Frontend Meal Planner | Complete |
-| PLAN-03 | Phase 10: Frontend Meal Planner | Complete |
-| PLAN-04 | Phase 10: Frontend Meal Planner | Complete |
-| HH-02 | Phase 10: Frontend Meal Planner | Complete |
-| PROF-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
-| SHR-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
-| SHR-02 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
-| ADM-01 | Phase 12: Frontend Admin Panel | Complete |
-| ADM-02 | Phase 12: Frontend Admin Panel | Complete |
-| ADM-03 | Phase 12: Frontend Admin Panel | Complete |
-| ADM-04 | Phase 12: Frontend Admin Panel | Complete |
-| ADM-05 | Phase 12: Frontend Admin Panel | Complete |
-| ADM-06 | Phase 12: Frontend Admin Panel | Complete |
+| SKILL-01 | Phase 13 | Pending |
+| SKILL-02 | Phase 13 | Pending |
+| SKILL-03 | Phase 13 | Pending |
+| SKILL-04 | Phase 13 | Pending |
+| SKILL-05 | Phase 13 | Pending |
+| SKILL-06 | Phase 13 | Pending |
+| SKILL-07 | Phase 13 | Pending |
+| SKILL-08 | Phase 13 | Pending |
 
 **Coverage:**
-- v1 requirements: 46 total
-- Mapped to phases: 46 ✓
+- v1.1 requirements: 8 total
+- Mapped to phases: 8
 - Unmapped: 0 ✓
 
-**Notes on phase assignments:**
-- Requirements are assigned to the phase where they first become fully verifiable by a user or developer. Backend phases (1-6) verify against the live API/Swagger. Frontend phases (7-12) verify through the browser.
-- Phases 5 and 6 are backend infrastructure phases with no direct requirement assignments; they deliver the API capabilities consumed by frontend phases 8, 10, 11, and 12.
-
 ---
-*Requirements defined: 2026-03-16*
-*Last updated: 2026-03-16 after roadmap creation*
+*Requirements defined: 2026-03-20*
+*Last updated: 2026-03-20 after initial definition*
