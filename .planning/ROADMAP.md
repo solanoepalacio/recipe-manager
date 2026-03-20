@@ -250,7 +250,10 @@ Plans:
   3. Exit codes are consistent: 0 for success, 1 for general API error, 2 for auth failure, 3 for not found, 4 for validation error — verified by parsing exit code in a shell script
   4. `rmapi recipes list --fields id,name` returns only `id` and `name` keys on each item; omitting `--fields` returns the full response
   5. Running `rmapi recipes delete <id>` without `--yes` on a non-TTY stdin fails immediately with exit code 4 and a JSON error; with `--yes` it proceeds
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 13-01-PLAN.md — Package scaffold + core modules (config, errors, utils, http, cli) + test suite (CLI-01 through CLI-05)
 
 ### Phase 14: Lookup Commands
 **Goal**: The agent can resolve food names to IDs and list all units in a single call, enabling all subsequent ingredient and recipe commands that require controlled-vocabulary IDs.
@@ -337,7 +340,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 10. Frontend Meal Planner | 3/3 | Complete   | 2026-03-19 |
 | 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete    | 2026-03-19 |
 | 12. Frontend Admin Panel | 5/5 | Complete    | 2026-03-19 |
-| 13. CLI Scaffold | 0/TBD | Not started | - |
+| 13. CLI Scaffold | 0/1 | Not started | - |
 | 14. Lookup Commands | 0/TBD | Not started | - |
 | 15. Recipe Read Commands | 0/TBD | Not started | - |
 | 16. Recipe Write Commands | 0/TBD | Not started | - |
