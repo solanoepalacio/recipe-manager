@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -658,22 +657,6 @@ async function main() {
     });
   }
   console.log(`Seeded ${foods.length} foods`);
-
-  // Seed dev admin account
-  const adminEmail = 'admin@example.com';
-  const adminPassword = 'admin123';
-  const passwordHash = await bcrypt.hash(adminPassword, 10);
-
-  await prisma.admin.upsert({
-    where: { email: adminEmail },
-    update: {},
-    create: {
-      name: 'Admin',
-      email: adminEmail,
-      passwordHash,
-    },
-  });
-  console.log(`Seeded dev admin: ${adminEmail} / ${adminPassword}`);
 
   console.log('Seeding complete.');
 }

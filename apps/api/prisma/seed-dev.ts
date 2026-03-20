@@ -17,9 +17,16 @@ const prisma = new PrismaClient();
 // ---------------------------------------------------------------------------
 const TEST_USER = {
   email: 'test@example.com',
-  username: 'testuser',
   password: 'password123',
   name: 'Test User',
+  gender: 'male' as const,
+  dateOfBirth: new Date('1990-01-01'),
+};
+
+const TEST_ADMIN = {
+  email: 'admin@example.com',
+  password: 'admin123',
+  name: 'Admin',
 };
 
 // ---------------------------------------------------------------------------
@@ -231,22 +238,32 @@ async function main() {
   });
   console.log(`✓ Household: ${household.name} (${household.id})`);
 
-  // 2. User
+  // 2. Admin
+  const adminHash = await bcrypt.hash(TEST_ADMIN.password, 10);
+  await prisma.admin.upsert({
+    where: { email: TEST_ADMIN.email },
+    update: {},
+    create: { name: TEST_ADMIN.name, email: TEST_ADMIN.email, passwordHash: adminHash },
+  });
+  console.log(`✓ Admin: ${TEST_ADMIN.email} / password: ${TEST_ADMIN.password}`);
+
+  // 3. User
   const passwordHash = await bcrypt.hash(TEST_USER.password, 10);
   const user = await prisma.user.upsert({
     where: { email: TEST_USER.email },
-    update: { passwordHash, username: TEST_USER.username, name: TEST_USER.name, householdId: household.id },
+    update: { passwordHash, name: TEST_USER.name, householdId: household.id, gender: TEST_USER.gender, dateOfBirth: TEST_USER.dateOfBirth },
     create: {
       email: TEST_USER.email,
-      username: TEST_USER.username,
       name: TEST_USER.name,
       passwordHash,
       householdId: household.id,
+      gender: TEST_USER.gender,
+      dateOfBirth: TEST_USER.dateOfBirth,
     },
   });
   console.log(`✓ User: ${user.email} / password: ${TEST_USER.password}`);
 
-  // 3. Recipes
+  // 4. Recipes
   console.log(`\nSeeding ${RECIPES.length} recipes...\n`);
 
   for (const data of RECIPES) {
