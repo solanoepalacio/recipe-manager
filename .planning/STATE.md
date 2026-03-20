@@ -222,9 +222,10 @@ None yet.
 | 260320-eq1 | fix admin login 403 by adding @Public() to admin controllers | 2026-03-20 | afe2110 | [260320-eq1-admin-login-is-not-working-properly-when](./quick/260320-eq1-admin-login-is-not-working-properly-when/) |
 | 260320-ffj | integrate user types: normal users, kids, and agents with type-specific fields and behaviors | 2026-03-20 | 5f7c7a3 | [260320-ffj-integrate-user-types-normal-users-kids-a](./quick/260320-ffj-integrate-user-types-normal-users-kids-a/) |
 | 260320-h10 | auto-create default ingredient section on recipe creation to fix UX bug | 2026-03-20 | e318461 | [260320-h10-fix-ux-bug-auto-create-default-section-w](./quick/260320-h10-fix-ux-bug-auto-create-default-section-w/) |
+| 260320-h8h | wire recipe delete flow from detail page ellipsis dropdown | 2026-03-20 | 6553a0a | [260320-h8h-recipes-can-t-be-deleted-currently-when-](./quick/260320-h8h-recipes-can-t-be-deleted-currently-when-/) |
 
 ## Session Continuity
 
-Last activity: 2026-03-20 - Completed quick task 260320-h10: auto-create default ingredient section on recipe creation to fix UX bug
-Stopped at: Completed quick task 260320-h10
+Last activity: 2026-03-20 - Completed quick task 260320-h8h: wire recipe delete flow from detail page ellipsis dropdown
+Stopped at: Completed quick task 260320-h8h
 Resume file: None
