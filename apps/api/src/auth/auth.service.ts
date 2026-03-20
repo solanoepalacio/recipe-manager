@@ -12,6 +12,8 @@ export class AuthService {
   async validateUser(email: string, password: string) {
     const user = await this.prisma.user.findFirst({ where: { email } });
     if (!user || !user.passwordHash) return null;
+    // Only normal users can log in via session auth
+    if (user.userType !== 'normal') return null;
     const valid = await bcrypt.compare(password, user.passwordHash);
     if (!valid) return null;
     return user;

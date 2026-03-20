@@ -7,13 +7,20 @@
 export interface AdminUserResponse {
   id: string;
   householdId: string;
+  householdName?: string;
   name: string;
   email: string | null;
   username: string | null;
-  gender: string;
-  dateOfBirth: string;
+  userType: string;
+  gender: string | null;
+  dateOfBirth: string | null;
   createdAt: string;
   updatedAt: string;
+}
+
+/** Returned by POST /admin/users when userType=agent — autoToken shown once */
+export interface AdminUserCreatedResponse extends AdminUserResponse {
+  autoToken?: string;
 }
 
 export interface AdminHouseholdResponse {
@@ -52,6 +59,8 @@ export interface AdminTokenResponse {
   id: string;
   name: string;
   userId: string;
+  userName?: string;
+  householdName?: string;
   createdById: string;
   createdAt: string;
   lastUsedAt: string | null;

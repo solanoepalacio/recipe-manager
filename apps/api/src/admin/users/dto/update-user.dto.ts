@@ -1,7 +1,13 @@
-import { IsString, IsEmail, IsOptional, IsUUID, MinLength } from 'class-validator';
+import { IsString, IsEmail, IsOptional, IsUUID, MinLength, IsIn } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class UpdateAdminUserDto {
+  @ApiPropertyOptional({ description: 'User type: normal, kid, or agent', enum: ['normal', 'kid', 'agent'] })
+  @IsOptional()
+  @IsString()
+  @IsIn(['normal', 'kid', 'agent'])
+  userType?: string;
+
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()

@@ -1,4 +1,4 @@
-import { IsString, IsEmail, IsOptional, IsUUID, MinLength, IsDateString } from 'class-validator';
+import { IsString, IsEmail, IsOptional, IsUUID, MinLength, IsDateString, IsIn } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateAdminUserDto {
@@ -11,22 +11,30 @@ export class CreateAdminUserDto {
   @MinLength(1)
   name!: string;
 
-  @ApiPropertyOptional({ description: 'Email address (unique)' })
+  @ApiPropertyOptional({ description: 'User type: normal, kid, or agent (default: normal)', enum: ['normal', 'kid', 'agent'] })
+  @IsOptional()
+  @IsString()
+  @IsIn(['normal', 'kid', 'agent'])
+  userType?: string;
+
+  @ApiPropertyOptional({ description: 'Email address (required for normal users)' })
   @IsOptional()
   @IsEmail()
   email?: string;
 
-  @ApiPropertyOptional({ description: 'Password — omit to create no-login member' })
+  @ApiPropertyOptional({ description: 'Password — required for normal users (min 8 chars)' })
   @IsOptional()
   @IsString()
   @MinLength(8)
   password?: string;
 
-  @ApiProperty({ description: 'Gender string (e.g. "male", "female", "other")' })
+  @ApiPropertyOptional({ description: 'Gender string (e.g. "male", "female", "other") — required for normal users' })
+  @IsOptional()
   @IsString()
-  gender!: string;
+  gender?: string;
 
-  @ApiProperty({ description: 'Date of birth (ISO 8601 string)' })
+  @ApiPropertyOptional({ description: 'Date of birth (ISO 8601 string) — required for normal and kid users' })
+  @IsOptional()
   @IsDateString()
-  dateOfBirth!: string;
+  dateOfBirth?: string;
 }

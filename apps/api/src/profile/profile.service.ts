@@ -9,8 +9,8 @@ function toProfileResponse(user: {
   householdId: string;
   name: string;
   email: string | null;
-  gender: string;
-  dateOfBirth: Date;
+  gender: string | null;
+  dateOfBirth: Date | null;
   createdAt: Date;
   updatedAt: Date;
 }): ProfileResponse {
@@ -19,8 +19,9 @@ function toProfileResponse(user: {
     householdId: user.householdId,
     name: user.name,
     email: user.email,
-    gender: user.gender as ProfileResponse['gender'],
-    dateOfBirth: user.dateOfBirth.toISOString(),
+    // Normal users always have gender/dob set; cast safely
+    gender: (user.gender ?? '') as ProfileResponse['gender'],
+    dateOfBirth: user.dateOfBirth ? user.dateOfBirth.toISOString() : '',
     createdAt: user.createdAt.toISOString(),
     updatedAt: user.updatedAt.toISOString(),
   };

@@ -17,6 +17,12 @@ enum Gender {
   other
 }
 
+enum UserType {
+  normal
+  kid
+  agent
+}
+
 enum MealType {
   breakfast
   lunch
@@ -44,8 +50,9 @@ model User {
   passwordHash     String?
   resetToken       String?
   resetTokenExpiry DateTime?
-  gender           Gender
-  dateOfBirth      DateTime
+  userType         UserType   @default(normal)
+  gender           Gender?
+  dateOfBirth      DateTime?
   createdAt        DateTime   @default(now())
   updatedAt        DateTime   @updatedAt
   recipes          Recipe[]

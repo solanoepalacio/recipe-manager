@@ -9,7 +9,7 @@
  *   DELETE /api/household/members/:id
  * Sources: mvp_plans/03_api_design.md + mvp_plans/01_tech_stack_and_data_model.md
  */
-import { Gender } from '../enums';
+import { Gender, UserType } from '../enums';
 
 /**
  * A single household member (User row with safe fields).
@@ -20,8 +20,9 @@ export interface HouseholdMemberResponse {
   name: string;
   email: string | null;
   username: string | null;
-  gender: Gender;
-  dateOfBirth: string;
+  userType: UserType;
+  gender: Gender | null;
+  dateOfBirth: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -39,16 +40,20 @@ export interface HouseholdResponse {
 }
 
 /**
- * POST /api/household/members — add a no-login member (e.g. a child).
- * email, username, password are optional for no-login members.
+ * POST /api/household/members — add a member.
+ * Required fields depend on userType:
+ *   normal: name, email, password, gender, dateOfBirth
+ *   kid: name, dateOfBirth (gender optional)
+ *   agent: name only
  */
 export interface CreateMemberRequest {
+  userType: UserType;
   name: string;
   email?: string;
   username?: string;
   password?: string;
-  gender: Gender;
-  dateOfBirth: string;
+  gender?: Gender;
+  dateOfBirth?: string;
 }
 
 /**
@@ -56,6 +61,7 @@ export interface CreateMemberRequest {
  * All fields optional.
  */
 export interface UpdateMemberRequest {
+  userType?: UserType;
   name?: string;
   email?: string | null;
   username?: string | null;

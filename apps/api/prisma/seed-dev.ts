@@ -247,23 +247,68 @@ async function main() {
   });
   console.log(`✓ Admin: ${TEST_ADMIN.email} / password: ${TEST_ADMIN.password}`);
 
-  // 3. User
+  // 3. User (normal)
   const passwordHash = await bcrypt.hash(TEST_USER.password, 10);
   const user = await prisma.user.upsert({
     where: { email: TEST_USER.email },
-    update: { passwordHash, name: TEST_USER.name, householdId: household.id, gender: TEST_USER.gender, dateOfBirth: TEST_USER.dateOfBirth },
+    update: { passwordHash, name: TEST_USER.name, householdId: household.id, gender: TEST_USER.gender, dateOfBirth: TEST_USER.dateOfBirth, userType: 'normal' },
     create: {
       email: TEST_USER.email,
       name: TEST_USER.name,
       passwordHash,
       householdId: household.id,
+      userType: 'normal',
       gender: TEST_USER.gender,
       dateOfBirth: TEST_USER.dateOfBirth,
     },
   });
   console.log(`✓ User: ${user.email} / password: ${TEST_USER.password}`);
 
-  // 4. Recipes
+  // 4a. Kid member
+  const existingKid = await prisma.user.findFirst({ where: { name: 'Sofia', householdId: household.id } });
+  if (!existingKid) {
+    await prisma.user.create({
+      data: {
+        name: 'Sofia',
+        householdId: household.id,
+        userType: 'kid',
+        gender: 'female',
+        dateOfBirth: new Date('2018-06-15'),
+      },
+    });
+  }
+  console.log('✓ Kid member: Sofia');
+
+  // 4b. Agent member
+  const existingAgent = await prisma.user.findFirst({ where: { name: 'Recipe Bot', householdId: household.id } });
+  let agentUser = existingAgent;
+  if (!agentUser) {
+    agentUser = await prisma.user.create({
+      data: {
+        name: 'Recipe Bot',
+        householdId: household.id,
+        userType: 'agent',
+      },
+    });
+  }
+  console.log('✓ Agent member: Recipe Bot');
+
+  // Auto-create a token for the agent if none exists
+  const existingToken = await prisma.apiToken.findFirst({ where: { userId: agentUser.id } });
+  if (!existingToken) {
+    const { randomBytes, createHash } = await import('crypto');
+    const admin = await prisma.admin.findFirst();
+    if (admin) {
+      const rawToken = randomBytes(32).toString('hex');
+      const tokenHash = createHash('sha256').update(rawToken).digest('hex');
+      await prisma.apiToken.create({
+        data: { name: 'Auto: Recipe Bot', userId: agentUser.id, createdById: admin.id, tokenHash },
+      });
+      console.log(`✓ Agent token created for Recipe Bot`);
+    }
+  }
+
+  // 5. Recipes
   console.log(`\nSeeding ${RECIPES.length} recipes...\n`);
 
   for (const data of RECIPES) {

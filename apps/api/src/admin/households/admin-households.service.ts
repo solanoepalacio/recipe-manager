@@ -12,13 +12,14 @@ import { UpdateAdminHouseholdDto } from './dto/update-household.dto';
 
 function toAdminUserResponse(user: {
   id: string; householdId: string; name: string; email: string | null;
-  gender: string; dateOfBirth: Date;
+  userType: string; gender: string | null; dateOfBirth: Date | null;
   createdAt: Date; updatedAt: Date;
 }): AdminUserResponse {
   return {
     id: user.id, householdId: user.householdId, name: user.name,
-    email: user.email, username: null, gender: user.gender,
-    dateOfBirth: user.dateOfBirth.toISOString(),
+    email: user.email, username: null, userType: user.userType,
+    gender: user.gender,
+    dateOfBirth: user.dateOfBirth ? user.dateOfBirth.toISOString() : null,
     createdAt: user.createdAt.toISOString(), updatedAt: user.updatedAt.toISOString(),
   };
 }
@@ -34,7 +35,7 @@ function toAdminHouseholdResponse(h: {
 
 const USER_SELECT = {
   id: true, householdId: true, name: true, email: true,
-  gender: true, dateOfBirth: true, createdAt: true, updatedAt: true,
+  userType: true, gender: true, dateOfBirth: true, createdAt: true, updatedAt: true,
 } as const;
 
 @Injectable()

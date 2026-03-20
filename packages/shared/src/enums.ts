@@ -9,6 +9,18 @@ export enum Gender {
 }
 
 /**
+ * User type — determines which credentials are required and how the user interacts.
+ * normal: full login user (email + password required)
+ * kid: no-login member (name + dateOfBirth only)
+ * agent: API-consuming bot (name only, gets an auto-assigned API token)
+ */
+export enum UserType {
+  Normal = 'normal',
+  Kid = 'kid',
+  Agent = 'agent',
+}
+
+/**
  * Meal plan entry meal type.
  * From mvp_plans/01_tech_stack_and_data_model.md: MealPlanEntry.mealType
  * Values: breakfast | lunch | dinner | snack | dessert
