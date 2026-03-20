@@ -1,4 +1,4 @@
-import { IsOptional, IsInt, Min } from 'class-validator';
+import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 
@@ -16,4 +16,9 @@ export class AdminPaginationDto {
   @IsInt()
   @Min(1)
   perPage?: number = 20;
+
+  @ApiPropertyOptional({ description: 'Filter by user type (normal, kid, agent)' })
+  @IsOptional()
+  @IsString()
+  userType?: string;
 }

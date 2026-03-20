@@ -22,8 +22,8 @@ export class AdminUsersController {
   @ApiOperation({ summary: 'List all users (paginated); optionally filter by ?userType=normal|kid|agent' })
   @ApiResponse({ status: 200, description: 'Paginated user list' })
   @ApiResponse({ status: 401, description: 'Admin not authenticated' })
-  findAll(@Query() query: AdminPaginationDto, @Query('userType') userType?: string) {
-    return this.adminUsersService.findAll(query.page, query.perPage, userType);
+  findAll(@Query() query: AdminPaginationDto) {
+    return this.adminUsersService.findAll(query.page, query.perPage, query.userType);
   }
 
   @Post()
