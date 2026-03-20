@@ -20,8 +20,8 @@
 
 ### Recipe Operations
 
-- [ ] **RCP-01**: Agent can search and list recipes — `rmapi recipes list` with `--search`, `--food-id`, `--sort`, `--order`, `--page`, `--per-page`
-- [ ] **RCP-02**: Agent can get full recipe detail — `rmapi recipes get <id>` with `--fields` projection to strip images/timestamps
+- [x] **RCP-01**: Agent can search and list recipes — `rmapi recipes list` with `--search`, `--food-id`, `--sort`, `--order`, `--page`, `--per-page`
+- [x] **RCP-02**: Agent can get full recipe detail — `rmapi recipes get <id>` with `--fields` projection to strip images/timestamps
 - [ ] **RCP-03**: Agent can create a recipe — `rmapi recipes create` with name and optional metadata (description, servings, times, source URL)
 - [ ] **RCP-04**: Agent can update recipe metadata — `rmapi recipes update <id>` with any subset of metadata fields
 - [ ] **RCP-05**: Agent can delete a recipe — `rmapi recipes delete <id> --yes`
@@ -96,8 +96,8 @@
 | CLI-05 | Phase 13 | Complete |
 | LOOK-01 | Phase 14 | Complete |
 | LOOK-02 | Phase 14 | Complete |
-| RCP-01 | Phase 15 | Pending |
-| RCP-02 | Phase 15 | Pending |
+| RCP-01 | Phase 15 | Complete |
+| RCP-02 | Phase 15 | Complete |
 | RCP-03 | Phase 16 | Pending |
 | RCP-04 | Phase 16 | Pending |
 | RCP-05 | Phase 16 | Pending |
