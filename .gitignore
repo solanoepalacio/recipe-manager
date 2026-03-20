@@ -7,6 +7,11 @@ dist/
 
 .claude
 
+
 # Yarn Berry
 .yarn/cache
 .yarn/install-state.gz
+
+# Project specifics
+screenshots/*
+apps/api/uploads/*
