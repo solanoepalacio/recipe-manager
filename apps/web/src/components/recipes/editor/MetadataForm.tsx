@@ -38,12 +38,12 @@ export const MetadataForm = forwardRef<MetadataFormRef, MetadataFormProps>(
       getValues(): UpdateRecipeRequest {
         return {
           name,
-          description: description || null,
+          description: description || undefined,
           servingsQty: servingsQty ? Number(servingsQty) : null,
-          servingsUnit: servingsUnit || null,
+          servingsUnit: servingsUnit || undefined,
           prepTime: prepTime ? Number(prepTime) : null,
           cookTime: cookTime ? Number(cookTime) : null,
-          sourceUrl: sourceUrl || null,
+          sourceUrl: sourceUrl || undefined,
         };
       },
     }));
