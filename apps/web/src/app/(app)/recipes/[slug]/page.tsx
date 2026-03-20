@@ -24,6 +24,7 @@ import { StepEditor } from '@/components/recipes/editor/StepEditor';
 import { ImageUpload } from '@/components/recipes/editor/ImageUpload';
 import { RecipeSettings } from '@/components/recipes/editor/RecipeSettings';
 import { BottomSheet } from '@/components/ui/BottomSheet';
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 
 export default function RecipeDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -34,6 +35,7 @@ export default function RecipeDetailPage() {
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [activeTab, setActiveTab] = useState('Ingredientes');
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const metadataFormRef = useRef<MetadataFormRef>(null);
   const [shareSheetOpen, setShareSheetOpen] = useState(false);
   const [shareToken, setShareToken] = useState<string | null>(null);
@@ -60,6 +62,16 @@ export default function RecipeDetailPage() {
       toast.success('Guardado');
     },
     onError: () => toast.error('Error al guardar. Intenta de nuevo.'),
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: () => api.delete<{ id: string }>(`/recipes/${recipeId}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.recipes.all });
+      toast.success('Receta eliminada');
+      router.push('/recipes');
+    },
+    onError: () => toast.error('No se pudo eliminar la receta. Intenta de nuevo.'),
   });
 
   const shareMutation = useMutation({
@@ -133,7 +145,20 @@ export default function RecipeDetailPage() {
   return (
     <div className="pb-20">
       {/* Detail top bar */}
-      <DetailTopBar recipeName={recipe.name} onBack={() => router.back()} />
+      <DetailTopBar
+        recipeName={recipe.name}
+        onBack={() => router.back()}
+        onDelete={() => setShowDeleteConfirm(true)}
+        isDeleting={deleteMutation.isPending}
+      />
+      {showDeleteConfirm && (
+        <ConfirmDialog
+          message="Seguro que quieres eliminar esta receta? Esta accion no se puede deshacer."
+          confirmLabel="Eliminar"
+          onConfirm={() => { setShowDeleteConfirm(false); deleteMutation.mutate(); }}
+          onCancel={() => setShowDeleteConfirm(false)}
+        />
+      )}
 
       {/* Hero image — hidden in edit mode */}
       {!isEditMode && recipe.images.length > 0 && (

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import type { RecipeDetailResponse } from '@recipe-manager/shared';
 
 const mockBack = vi.fn();
@@ -82,6 +82,8 @@ const mockRecipe: RecipeDetailResponse = {
   images: [],
 };
 
+const mockInvalidateQueries = vi.fn();
+
 // Mock @tanstack/react-query
 vi.mock('@tanstack/react-query', () => ({
   useQuery: () => ({
@@ -89,12 +91,13 @@ vi.mock('@tanstack/react-query', () => ({
     isLoading: false,
     isError: false,
   }),
-  useMutation: () => ({
-    mutate: vi.fn(),
+  useMutation: ({ mutationFn }: { mutationFn: () => Promise<unknown>; onSuccess?: (data: unknown) => void; onError?: () => void }) => ({
+    mutate: vi.fn().mockImplementation(() => { mutationFn(); }),
     isPending: false,
   }),
   useQueryClient: () => ({
     setQueryData: vi.fn(),
+    invalidateQueries: mockInvalidateQueries,
   }),
 }));
 
@@ -132,5 +135,33 @@ describe('RecipeDetailPage', () => {
   it('renders Cocinar button', () => {
     render(<RecipeDetailPage />);
     expect(screen.getByText('Cocinar')).toBeInTheDocument();
+  });
+
+  it('deletes recipe after confirmation', async () => {
+    const { api } = await import('@/lib/api-client');
+    vi.mocked(api.delete).mockResolvedValue({ id: 'uuid-123' });
+
+    render(<RecipeDetailPage />);
+
+    // Click the ellipsis button to open dropdown
+    const ellipsisButton = screen.getByLabelText('Mas opciones');
+    fireEvent.click(ellipsisButton);
+
+    // Click "Eliminar" in the dropdown
+    const eliminateButtons = screen.getAllByText('Eliminar');
+    fireEvent.click(eliminateButtons[0]);
+
+    // ConfirmDialog should now appear with confirmation message
+    expect(screen.getByText(/Seguro que quieres eliminar/)).toBeInTheDocument();
+
+    // Click the confirm "Eliminar" button in the dialog
+    const confirmButtons = screen.getAllByText('Eliminar');
+    // The last one should be the confirm button in the dialog
+    fireEvent.click(confirmButtons[confirmButtons.length - 1]);
+
+    // Assert api.delete was called with /recipes/uuid-123
+    await waitFor(() => {
+      expect(api.delete).toHaveBeenCalledWith('/recipes/uuid-123');
+    });
   });
 });
