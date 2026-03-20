@@ -7,6 +7,7 @@ interface DrawerProps {
   onClose: () => void;
   user: { name: string; householdId: string } | null;
   onLogout: () => void;
+  householdName: string;
 }
 
 const NAV_ITEMS = [
@@ -15,7 +16,7 @@ const NAV_ITEMS = [
   { label: 'Planificador', href: '/planner' },
 ];
 
-export function Drawer({ isOpen, onClose, user, onLogout }: DrawerProps) {
+export function Drawer({ isOpen, onClose, user, onLogout, householdName }: DrawerProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -53,10 +54,12 @@ export function Drawer({ isOpen, onClose, user, onLogout }: DrawerProps) {
             {user?.name ?? ''}
           </button>
           <button
+            type="button"
+            onClick={() => handleNav('/household')}
             className="flex items-center gap-1 text-[15px] text-secondary"
             aria-label="Ver hogar"
           >
-            <span>Hogar</span>
+            <span>{householdName || 'Hogar'}</span>
             <ChevronRight size={14} className="text-placeholder" />
           </button>
         </div>

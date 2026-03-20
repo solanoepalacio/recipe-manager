@@ -1,9 +1,12 @@
 'use client';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
 import { AuthProvider, useAuth } from '@/lib/auth';
 import { AppShell } from '@/components/layout/AppShell';
 import { api } from '@/lib/api-client';
+import { queryKeys } from '@/lib/query-keys';
+import type { HouseholdResponse } from '@recipe-manager/shared';
 
 // AppShellSkeleton shown while /api/auth/me is in-flight
 function AppShellSkeleton() {
@@ -39,6 +42,12 @@ function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth();
   const router = useRouter();
 
+  const { data: household } = useQuery({
+    queryKey: queryKeys.household.detail,
+    queryFn: () => api.get<HouseholdResponse>('/household'),
+    enabled: !!user,
+  });
+
   useEffect(() => {
     if (!isLoading && !user) {
       router.replace('/login');
@@ -58,7 +67,7 @@ function ProtectedLayout({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AppShell user={user} onLogout={handleLogout}>
+    <AppShell user={user} onLogout={handleLogout} householdName={household?.name ?? ''}>
       {children}
     </AppShell>
   );

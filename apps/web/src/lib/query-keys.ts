@@ -21,6 +21,9 @@ export const queryKeys = {
   profile: {
     me: ['profile', 'me'] as const,
   },
+  household: {
+    detail: ['household'] as const,
+  },
   admin: {
     users:      { all: ['admin', 'users'] as const, list: (p: Record<string, unknown>) => ['admin', 'users', 'list', p] as const },
     households: { all: ['admin', 'households'] as const, list: (p: Record<string, unknown>) => ['admin', 'households', 'list', p] as const },

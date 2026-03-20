@@ -8,6 +8,7 @@ interface AppShellProps {
   children: React.ReactNode;
   user: { name: string; householdId: string } | null;
   onLogout: () => void;
+  householdName: string;
 }
 
 function titleFromPathname(pathname: string): string {
@@ -15,10 +16,11 @@ function titleFromPathname(pathname: string): string {
   if (pathname.startsWith('/recipes')) return 'Recetas';
   if (pathname.startsWith('/planner')) return 'Planificador';
   if (pathname.startsWith('/profile')) return 'Perfil';
+  if (pathname.startsWith('/household')) return 'Mi hogar';
   return 'Recetas';
 }
 
-export function AppShell({ children, user, onLogout }: AppShellProps) {
+export function AppShell({ children, user, onLogout, householdName }: AppShellProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
   const title = titleFromPathname(pathname);
@@ -32,6 +34,7 @@ export function AppShell({ children, user, onLogout }: AppShellProps) {
         onClose={() => setDrawerOpen(false)}
         user={user}
         onLogout={onLogout}
+        householdName={householdName}
       />
 
       {/* Page content */}
