@@ -7,11 +7,11 @@
 
 ### CLI Scaffold
 
-- [ ] **CLI-01**: `rmapi` reads `RMAPI_BASE_URL` and `RMAPI_TOKEN` from environment variables; never accepts secrets via flags
-- [ ] **CLI-02**: All successful output goes to stdout as JSON; all errors go to stderr as `{"code": "...", "message": "...", "status": N}`
-- [ ] **CLI-03**: Exit codes are distinct per error class: 0 success, 1 API error, 2 auth failure, 3 not found, 4 validation error
-- [ ] **CLI-04**: All list and detail commands accept `--fields id,name,...` to strip response to named top-level fields only
-- [ ] **CLI-05**: All destructive commands (delete, remove) accept `--yes` to skip confirmation; without `--yes` on a non-TTY, the command fails fast with exit code 4
+- [x] **CLI-01**: `rmapi` reads `RMAPI_BASE_URL` and `RMAPI_TOKEN` from environment variables; never accepts secrets via flags
+- [x] **CLI-02**: All successful output goes to stdout as JSON; all errors go to stderr as `{"code": "...", "message": "...", "status": N}`
+- [x] **CLI-03**: Exit codes are distinct per error class: 0 success, 1 API error, 2 auth failure, 3 not found, 4 validation error
+- [x] **CLI-04**: All list and detail commands accept `--fields id,name,...` to strip response to named top-level fields only
+- [x] **CLI-05**: All destructive commands (delete, remove) accept `--yes` to skip confirmation; without `--yes` on a non-TTY, the command fails fast with exit code 4
 
 ### Lookup Prerequisites
 
@@ -89,11 +89,11 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CLI-01 | Phase 13 | Pending |
-| CLI-02 | Phase 13 | Pending |
-| CLI-03 | Phase 13 | Pending |
-| CLI-04 | Phase 13 | Pending |
-| CLI-05 | Phase 13 | Pending |
+| CLI-01 | Phase 13 | Complete |
+| CLI-02 | Phase 13 | Complete |
+| CLI-03 | Phase 13 | Complete |
+| CLI-04 | Phase 13 | Complete |
+| CLI-05 | Phase 13 | Complete |
 | LOOK-01 | Phase 14 | Pending |
 | LOOK-02 | Phase 14 | Pending |
 | RCP-01 | Phase 15 | Pending |

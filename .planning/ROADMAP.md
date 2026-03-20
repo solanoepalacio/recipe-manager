@@ -26,7 +26,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 10: Frontend Meal Planner** - Weekly/monthly calendar, assign recipes, drag-drop, edit/delete entries (completed 2026-03-19)
 - [x] **Phase 11: Frontend Profile + Household + Shared Recipe** - Profile editing, household view, public shared recipe page (completed 2026-03-19)
 - [x] **Phase 12: Frontend Admin Panel** - Admin login, setup wizard, user/household/foods/units/tokens management UI (completed 2026-03-19)
-- [ ] **Phase 13: CLI Scaffold** - rmapi binary with auth, normalized JSON errors, typed exit codes, --fields projection, --yes pattern
+- [x] **Phase 13: CLI Scaffold** - rmapi binary with auth, normalized JSON errors, typed exit codes, --fields projection, --yes pattern (completed 2026-03-20)
 - [ ] **Phase 14: Lookup Commands** - rmapi foods lookup and rmapi units list for ID resolution
 - [ ] **Phase 15: Recipe Read Commands** - rmapi recipes list and rmapi recipes get with full filter/projection support
 - [ ] **Phase 16: Recipe Write Commands** - rmapi recipes create/update/delete/duplicate/add-image
@@ -340,7 +340,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 10. Frontend Meal Planner | 3/3 | Complete   | 2026-03-19 |
 | 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete    | 2026-03-19 |
 | 12. Frontend Admin Panel | 5/5 | Complete    | 2026-03-19 |
-| 13. CLI Scaffold | 0/1 | Not started | - |
+| 13. CLI Scaffold | 1/1 | Complete   | 2026-03-20 |
 | 14. Lookup Commands | 0/TBD | Not started | - |
 | 15. Recipe Read Commands | 0/TBD | Not started | - |
 | 16. Recipe Write Commands | 0/TBD | Not started | - |
