@@ -247,8 +247,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 13-01-PLAN.md — Foundation files: skills directory, index.md (startup index), shared.md (auth, errors, pagination)
-- [ ] 13-02-PLAN.md — Read operation files: recipes_search.md (GET /api/recipes), recipes_get.md (GET /api/recipes/:id)
+- [x] 13-01-PLAN.md — Foundation files: skills directory, index.md (startup index), shared.md (auth, errors, pagination)
+- [x] 13-02-PLAN.md — Read operation files: recipes_search.md (GET /api/recipes), recipes_get.md (GET /api/recipes/:id)
 
 ### Phase 14: Skill Bundle — Write Operations + Meal Plan
 **Goal**: An agent can create and edit recipes (including sections, ingredients, steps, and images) and manage meal plan entries entirely from the skill files.
@@ -259,7 +259,11 @@ Plans:
   2. An agent reading `recipes_edit.md` can update or delete recipe metadata, a section, an ingredient, or a step using only the IDs obtained from `recipes_get.md`
   3. An agent reading `recipes_image.md` can upload a multipart image and delete an existing image using only the recipe `id`
   4. An agent reading `meal_plan.md` can list entries for a date range, create an entry with a valid mealType value, update an entry, and delete an entry
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 14-01-PLAN.md — Recipe write operations: recipes_create.md (POST recipe + food/unit resolution + sections + ingredients + steps with recommended sequence), recipes_edit.md (PATCH/DELETE for recipe, sections, ingredients, steps)
+- [ ] 14-02-PLAN.md — Image and meal plan: recipes_image.md (multipart upload + delete), meal_plan.md (list/create/update/delete entries with MealType enum)
 
 ## Progress
 
@@ -281,4 +285,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete    | 2026-03-19 |
 | 12. Frontend Admin Panel | 5/5 | Complete    | 2026-03-19 |
 | 13. Skill Bundle — Foundation + Read Operations | 2/2 | Complete    | 2026-03-20 |
-| 14. Skill Bundle — Write Operations + Meal Plan | 0/? | Not started | - |
+| 14. Skill Bundle — Write Operations + Meal Plan | 0/2 | Not started | - |
