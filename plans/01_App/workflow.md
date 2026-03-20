@@ -11,7 +11,7 @@ Every pre-implementation step follows the same loop:
 0. **Specialist agent (if needed)** — Before discussion begins, decide whether the step warrants a specialist sub-agent (e.g., an architecture specialist, a UI specialist). If so, create the agent definition in `.claude/agents/` first, then use it to drive the rest of the step. Not every step needs one — use judgement.
 1. **Discuss** — We have a conversation about the topic. Claude asks clarifying questions, surfaces trade-offs, and flags decisions that need to be made. The user provides context, preferences, and final calls.
 2. **Decide** — Decisions are made explicitly. Where relevant, the *why* is captured alongside the *what*.
-3. **Document** — Claude writes or updates the artifact for that step. The document is saved in `mvp_plans/` and linked from `mvp_plans/progress.md`.
+3. **Document** — Claude writes or updates the artifact for that step. The document is saved in `plans/01_App/` and linked from `plans/01_App/progress.md`.
 
 No step is considered complete until its artifact is written and `progress.md` is updated.
 
@@ -32,7 +32,7 @@ At the end of a session (or when switching steps), Claude should ensure:
 
 ## Artifact Conventions
 
-- One markdown file per step, stored in `mvp_plans/`.
+- One markdown file per step, stored in `plans/01_App/`.
 - Filename follows the pattern: `{step-number}_{short_name}.md` (e.g., `01_tech_stack.md`).
 - Each artifact includes a **Decisions** section that lists key choices and the reasoning behind them.
 - Artifacts are living documents — they can and should be updated when a later step reveals a gap or conflict.

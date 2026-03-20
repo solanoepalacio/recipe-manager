@@ -2,7 +2,7 @@
 
 ## Overview
 
-High-fidelity wireframes for all 12 views of the Robotina Cooks recipe manager. Each wireframe is a static HTML file in `mvp_plans/hifi/`, rendered as phone frames (375×812px) on a dark canvas. Files are numbered to match their low-fi counterparts in `mvp_plans/wireframes/`.
+High-fidelity wireframes for all 12 views of the Robotina Cooks recipe manager. Each wireframe is a static HTML file in `plans/01_App/hifi/`, rendered as phone frames (375×812px) on a dark canvas. Files are numbered to match their low-fi counterparts in `plans/01_App/wireframes/`.
 
 ---
 

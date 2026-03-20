@@ -229,7 +229,7 @@ recipe-manager/
 │       ├── integration_tests/          # Integration tests
 │       └── package.json
 │
-└── mvp_plans/                          # Design artifacts (stays)
+└── plans/01_App/                          # Design artifacts (stays)
 ```
 
 ---

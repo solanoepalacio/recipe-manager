@@ -1,6 +1,6 @@
 # Step 5 --- UI Views & Wireframes (Low-Fi)
 
-All wireframes are draw.io XML files stored in `mvp_plans/wireframes/`. Each file contains one or more mobile-first phone frames (390x780px). The primary design target is mobile; tablet and desktop adaptations are noted where significant.
+All wireframes are draw.io XML files stored in `plans/01_App/wireframes/`. Each file contains one or more mobile-first phone frames (390x780px). The primary design target is mobile; tablet and desktop adaptations are noted where significant.
 
 **Language:** Spanish throughout all UI text.
 **Style:** Grey wireframe (no color), direct Unicode characters.

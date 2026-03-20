@@ -47,7 +47,7 @@ Tracks the status of each pre-implementation step. See `workflow.md` for how to 
 
 ### 2026-03-12 — Step 6: High-Fidelity Wireframes plan
 
-**Tooling:** Static HTML files in `mvp_plans/hifi/`, previewed in browser. Figma abandoned (free tier tool call limits).
+**Tooling:** Static HTML files in `plans/01_App/hifi/`, previewed in browser. Figma abandoned (free tier tool call limits).
 
 **Approach:** Two rounds. Designs must follow the **structure** defined in the low-fi wireframes.
 
@@ -66,5 +66,5 @@ Apply patterns established in Round 1 to create all remaining views in one go.
 
 ## References
 
-- User stories: `mvp_plans/user_stories.md`
-- Workflow: `mvp_plans/workflow.md`
+- User stories: `plans/01_App/user_stories.md`
+- Workflow: `plans/01_App/workflow.md`
