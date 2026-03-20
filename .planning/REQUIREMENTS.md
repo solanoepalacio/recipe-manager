@@ -89,47 +89,47 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CLI-01 | — | Pending |
-| CLI-02 | — | Pending |
-| CLI-03 | — | Pending |
-| CLI-04 | — | Pending |
-| CLI-05 | — | Pending |
-| LOOK-01 | — | Pending |
-| LOOK-02 | — | Pending |
-| RCP-01 | — | Pending |
-| RCP-02 | — | Pending |
-| RCP-03 | — | Pending |
-| RCP-04 | — | Pending |
-| RCP-05 | — | Pending |
-| RCP-06 | — | Pending |
-| RCP-07 | — | Pending |
-| SEC-01 | — | Pending |
-| SEC-02 | — | Pending |
-| SEC-03 | — | Pending |
-| SEC-04 | — | Pending |
-| ING-01 | — | Pending |
-| ING-02 | — | Pending |
-| ING-03 | — | Pending |
-| ING-04 | — | Pending |
-| STP-01 | — | Pending |
-| STP-02 | — | Pending |
-| STP-03 | — | Pending |
-| STP-04 | — | Pending |
-| MPL-01 | — | Pending |
-| MPL-02 | — | Pending |
-| MPL-03 | — | Pending |
-| MPL-04 | — | Pending |
-| SKL-01 | — | Pending |
-| SKL-02 | — | Pending |
-| SKL-03 | — | Pending |
-| SKL-04 | — | Pending |
-| SKL-05 | — | Pending |
+| CLI-01 | Phase 13 | Pending |
+| CLI-02 | Phase 13 | Pending |
+| CLI-03 | Phase 13 | Pending |
+| CLI-04 | Phase 13 | Pending |
+| CLI-05 | Phase 13 | Pending |
+| LOOK-01 | Phase 14 | Pending |
+| LOOK-02 | Phase 14 | Pending |
+| RCP-01 | Phase 15 | Pending |
+| RCP-02 | Phase 15 | Pending |
+| RCP-03 | Phase 16 | Pending |
+| RCP-04 | Phase 16 | Pending |
+| RCP-05 | Phase 16 | Pending |
+| RCP-06 | Phase 16 | Pending |
+| RCP-07 | Phase 16 | Pending |
+| SEC-01 | Phase 17 | Pending |
+| SEC-02 | Phase 17 | Pending |
+| SEC-03 | Phase 17 | Pending |
+| SEC-04 | Phase 17 | Pending |
+| ING-01 | Phase 17 | Pending |
+| ING-02 | Phase 17 | Pending |
+| ING-03 | Phase 17 | Pending |
+| ING-04 | Phase 17 | Pending |
+| STP-01 | Phase 17 | Pending |
+| STP-02 | Phase 17 | Pending |
+| STP-03 | Phase 17 | Pending |
+| STP-04 | Phase 17 | Pending |
+| MPL-01 | Phase 18 | Pending |
+| MPL-02 | Phase 18 | Pending |
+| MPL-03 | Phase 18 | Pending |
+| MPL-04 | Phase 18 | Pending |
+| SKL-01 | Phase 19 | Pending |
+| SKL-02 | Phase 19 | Pending |
+| SKL-03 | Phase 19 | Pending |
+| SKL-04 | Phase 19 | Pending |
+| SKL-05 | Phase 19 | Pending |
 
 **Coverage:**
 - v1.1 requirements: 35 total
-- Mapped to phases: 0 (roadmap pending)
-- Unmapped: 35 ⚠️
+- Mapped to phases: 35 (phases 13–19)
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-20 after initial definition*
+*Last updated: 2026-03-20 — traceability updated after roadmap creation*

@@ -3,11 +3,11 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Agent Integration
 status: planning
-stopped_at: Defining requirements
+stopped_at: Roadmap created — ready for Phase 13 planning
 last_updated: "2026-03-20T00:00:00Z"
 last_activity: 2026-03-20
 progress:
-  total_phases: 0
+  total_phases: 7
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
@@ -17,27 +17,31 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-16)
+See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 12 — frontend-admin-panel
+**Current focus:** Phase 13 — CLI Scaffold (v1.1 Agent Integration)
 
 ## Current Position
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-03-20 — Milestone v1.1 started
+Phase: 13 — CLI Scaffold
+Plan: Not started
+Status: Roadmap approved — ready for /gsd:plan-phase 13
+Last activity: 2026-03-20 — Milestone v1.1 roadmap created (phases 13-19)
+
+```
+v1.1 Progress: [                    ] 0/7 phases
+```
 
 ## Performance Metrics
 
-**Velocity:**
+**Velocity (v1.0 reference):**
 
 - Total plans completed: 3
 - Average duration: 3.3 min
 - Total execution time: 0.17 hours
 
-**By Phase:**
+**By Phase (v1.0):**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
@@ -203,6 +207,11 @@ Recent decisions affecting current work:
 - [Phase 12-03]: PaginatedResponse uses items[] not data[]; totalPages computed as Math.ceil(total/perPage) — plan spec was wrong, fixed to match shared type
 - [Phase 12-03]: Delete mutation tests use single-row mock to avoid multi-row Eliminar button ambiguity with inline ConfirmDialog
 - [Phase 12-05]: [12-05] Raw token stored only in createdToken useState — never in query cache; onDismiss clears it permanently
+- [v1.1 Milestone]: rmapi CLI is standalone Python package in tools/rmapi/ — not a Yarn workspace; no shared-type coupling; pip install -e tools/rmapi/ makes rmapi available as shell command
+- [v1.1 Milestone]: CLI credentials exclusively from RMAPI_BASE_URL and RMAPI_TOKEN env vars — never from CLI flags (shell history exposure risk)
+- [v1.1 Milestone]: All CLI subcommands use shell=False (argument vectors) — prevents shell injection from agent-constructed arguments
+- [v1.1 Milestone]: Skill files live in skills/ at repo root so API changes and skill file updates travel in the same PR
+- [v1.1 Milestone]: skills/index.md written last after all skill file names are finalized — prevents stale catalogue
 
 ### Pending Todos
 
@@ -228,6 +237,6 @@ None yet.
 
 ## Session Continuity
 
-Last activity: 2026-03-20 - Completed quick task 260320-h8h: wire recipe delete flow from detail page ellipsis dropdown
-Stopped at: Completed quick task 260320-h8h
+Last activity: 2026-03-20 - Milestone v1.1 roadmap created (phases 13–19, 35 requirements mapped)
+Stopped at: Roadmap creation complete — next step is /gsd:plan-phase 13
 Resume file: None

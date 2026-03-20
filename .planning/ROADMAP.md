@@ -4,6 +4,8 @@
 
 This roadmap takes the project from an empty monorepo to a fully functional household recipe manager. The first six phases build the backend layer-by-layer (infrastructure, database, auth, recipe CRUD, search/sharing/meal plan, admin endpoints). The final six phases deliver the frontend, making every requirement observable to real users. Backend phases validate against the Swagger UI; frontend phases validate through the browser. Every v1 requirement is assigned to the phase where it first becomes fully verifiable.
 
+Milestone v1.1 (phases 13–19) adds AI agent access: a thin Python CLI (`rmapi`) wraps every relevant endpoint, and task-oriented skill files document usage patterns so the agent never needs API-specific code. Phase 13 (CLI scaffold) is the mandatory foundation — every later phase depends on a stable command grammar, error taxonomy, and field projection system.
+
 ## Phases
 
 **Phase Numbering:**
@@ -24,6 +26,13 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 10: Frontend Meal Planner** - Weekly/monthly calendar, assign recipes, drag-drop, edit/delete entries (completed 2026-03-19)
 - [x] **Phase 11: Frontend Profile + Household + Shared Recipe** - Profile editing, household view, public shared recipe page (completed 2026-03-19)
 - [x] **Phase 12: Frontend Admin Panel** - Admin login, setup wizard, user/household/foods/units/tokens management UI (completed 2026-03-19)
+- [ ] **Phase 13: CLI Scaffold** - rmapi binary with auth, normalized JSON errors, typed exit codes, --fields projection, --yes pattern
+- [ ] **Phase 14: Lookup Commands** - rmapi foods lookup and rmapi units list for ID resolution
+- [ ] **Phase 15: Recipe Read Commands** - rmapi recipes list and rmapi recipes get with full filter/projection support
+- [ ] **Phase 16: Recipe Write Commands** - rmapi recipes create/update/delete/duplicate/add-image
+- [ ] **Phase 17: Sub-resource Commands** - rmapi sections and ingredients and steps CRUD and reorder commands
+- [ ] **Phase 18: Meal Plan Commands** - rmapi meal-plan list/add/move/remove
+- [ ] **Phase 19: Skill Files + Index** - skills/recipe-discovery.md, skills/recipe-management.md, skills/meal-plan.md, skills/index.md
 
 ## Phase Details
 
@@ -231,10 +240,88 @@ Plans:
 - [ ] 12-04-PLAN.md — Foods management (CRUD) + Units management (CRUD with abbreviation)
 - [ ] 12-05-PLAN.md — API Tokens management (create with one-time display, list, revoke)
 
+### Phase 13: CLI Scaffold
+**Goal**: The `rmapi` binary is installed, authenticates via environment variables, outputs machine-parseable JSON to stdout, routes all errors to stderr with typed exit codes, supports `--fields` projection on every command, and guards destructive commands with `--yes`.
+**Depends on**: Phase 12 (v1.0 complete; v1.1 starts here)
+**Requirements**: CLI-01, CLI-02, CLI-03, CLI-04, CLI-05
+**Success Criteria** (what must be TRUE):
+  1. Running `rmapi --help` after `pip install -e tools/rmapi/` lists all subcommand groups without requiring any flags or environment variables
+  2. With `RMAPI_BASE_URL` and `RMAPI_TOKEN` set, `rmapi recipes list` returns valid JSON to stdout; with invalid token, stderr receives `{"code": "auth_failed", "message": "...", "status": 401}` and the process exits with code 2
+  3. Exit codes are consistent: 0 for success, 1 for general API error, 2 for auth failure, 3 for not found, 4 for validation error — verified by parsing exit code in a shell script
+  4. `rmapi recipes list --fields id,name` returns only `id` and `name` keys on each item; omitting `--fields` returns the full response
+  5. Running `rmapi recipes delete <id>` without `--yes` on a non-TTY stdin fails immediately with exit code 4 and a JSON error; with `--yes` it proceeds
+**Plans**: TBD
+
+### Phase 14: Lookup Commands
+**Goal**: The agent can resolve food names to IDs and list all units in a single call, enabling all subsequent ingredient and recipe commands that require controlled-vocabulary IDs.
+**Depends on**: Phase 13
+**Requirements**: LOOK-01, LOOK-02
+**Success Criteria** (what must be TRUE):
+  1. `rmapi foods lookup --names "tomato,chicken"` returns a JSON array of `{name, id}` objects for each matched food name, with one HTTP request to `GET /api/foods`
+  2. `rmapi units list` returns a JSON array of `{id, name, abbreviation}` for all units in the database
+  3. Food names with no match are omitted from the result (not an error); the agent can detect missing lookups by comparing input names to output names
+**Plans**: TBD
+
+### Phase 15: Recipe Read Commands
+**Goal**: The agent can search and browse the recipe list with all filter/sort/pagination options and retrieve full recipe detail with field projection — establishing the stable output shapes that all write skill files reference.
+**Depends on**: Phase 14
+**Requirements**: RCP-01, RCP-02
+**Success Criteria** (what must be TRUE):
+  1. `rmapi recipes list` returns a JSON object with `items` array and pagination metadata; `--search`, `--food-id`, `--sort`, `--order`, `--page`, and `--per-page` flags all filter and paginate correctly
+  2. `rmapi recipes get <id>` returns the full recipe detail including sections, ingredients, and steps
+  3. `rmapi recipes get <id> --fields id,name,sections` strips the response to only the named top-level fields, reducing token consumption for the agent
+**Plans**: TBD
+
+### Phase 16: Recipe Write Commands
+**Goal**: The agent can create, update, delete, duplicate, and add images to recipes — completing the full recipe lifecycle over CLI.
+**Depends on**: Phase 15
+**Requirements**: RCP-03, RCP-04, RCP-05, RCP-06, RCP-07
+**Success Criteria** (what must be TRUE):
+  1. `rmapi recipes create --name "Pasta Bolognese"` creates a recipe and returns its `id` and `slug` in JSON
+  2. `rmapi recipes update <id> --description "..." --servings 4` patches only the supplied fields; the response reflects the updated values
+  3. `rmapi recipes delete <id> --yes` deletes the recipe and exits 0; the recipe no longer appears in `rmapi recipes list`
+  4. `rmapi recipes duplicate <id>` creates an independent copy with a new `id` and returns it; both the original and the copy appear in the recipe list
+  5. `rmapi recipes add-image <id> --url <url>` downloads the image from the URL, uploads it as multipart to the API, and returns the stored image record in JSON
+**Plans**: TBD
+
+### Phase 17: Sub-resource Commands
+**Goal**: The agent can manage ingredient sections, individual ingredients, and instruction steps — enabling the full recipe creation chain (section → ingredients → steps) that the recipe-management skill documents.
+**Depends on**: Phase 16
+**Requirements**: SEC-01, SEC-02, SEC-03, SEC-04, ING-01, ING-02, ING-03, ING-04, STP-01, STP-02, STP-03, STP-04
+**Success Criteria** (what must be TRUE):
+  1. `rmapi sections add <recipe-id> --title "Sauce"` creates an ingredient section and returns its `id`; `rmapi sections update`, `rmapi sections delete --yes`, and `rmapi sections reorder` all work against the live API
+  2. `rmapi ingredients add <recipe-id> <section-id> --food-id <id> --quantity 2 --unit-id <id>` adds an ingredient and returns its `id`; update, delete, and reorder commands work correctly
+  3. `rmapi steps add <recipe-id> --body "Boil water"` adds a step and returns its `id`; update, delete, and reorder commands work correctly
+  4. The full creation chain — sections add → ingredients add (×N) → steps add (×N) — can be executed in sequence using IDs threaded from each prior command's JSON output
+**Plans**: TBD
+
+### Phase 18: Meal Plan Commands
+**Goal**: The agent can read the household meal plan by date range and add, move, and remove entries — completing the search-then-plan workflow.
+**Depends on**: Phase 15
+**Requirements**: MPL-01, MPL-02, MPL-03, MPL-04
+**Success Criteria** (what must be TRUE):
+  1. `rmapi meal-plan list --from 2026-03-20 --to 2026-03-27` returns all meal plan entries in the date range as a JSON array; each entry includes `id`, `date`, `type`, and `recipe` fields
+  2. `rmapi meal-plan add --recipe-id <id> --date 2026-03-21 --type dinner` creates an entry and returns its `id`; the entry appears in a subsequent `rmapi meal-plan list`
+  3. `rmapi meal-plan move <entry-id> --date 2026-03-22 --type lunch` updates the entry's date and meal type; the change is reflected in the next list call
+  4. `rmapi meal-plan remove <entry-id> --yes` deletes the entry; it no longer appears in the list
+**Plans**: TBD
+
+### Phase 19: Skill Files + Index
+**Goal**: The agent can discover all available skills from a lightweight index file and load task-specific skill files on demand — each file documenting exact `rmapi` command sequences, ID-threading patterns, and verified command signatures.
+**Depends on**: Phase 17, Phase 18
+**Requirements**: SKL-01, SKL-02, SKL-03, SKL-04, SKL-05
+**Success Criteria** (what must be TRUE):
+  1. `skills/index.md` lists all available skills with one-line descriptions and loads in under 500 tokens; the agent can read it at session start to discover capabilities without loading any skill files
+  2. `skills/recipe-discovery.md` contains working `rmapi` examples for search, filter, sort, field projection, and get-detail — all command signatures match the installed `rmapi --help` output
+  3. `skills/meal-plan.md` documents the read-then-mutate pattern (list entries → extract entry `id` → move/remove) with correct date format conventions and meal type values
+  4. `skills/recipe-management.md` documents the full ID-threading creation chain (lookup foods → create recipe → add section → add ingredients × N → add steps × N) with explicit error recovery guidance for each step
+  5. Every skill file has a `last-verified` frontmatter field and all `rmapi` command signatures in the file match the commands available in the installed `rmapi` binary
+**Plans**: TBD
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -250,3 +337,10 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 10. Frontend Meal Planner | 3/3 | Complete   | 2026-03-19 |
 | 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete    | 2026-03-19 |
 | 12. Frontend Admin Panel | 5/5 | Complete    | 2026-03-19 |
+| 13. CLI Scaffold | 0/TBD | Not started | - |
+| 14. Lookup Commands | 0/TBD | Not started | - |
+| 15. Recipe Read Commands | 0/TBD | Not started | - |
+| 16. Recipe Write Commands | 0/TBD | Not started | - |
+| 17. Sub-resource Commands | 0/TBD | Not started | - |
+| 18. Meal Plan Commands | 0/TBD | Not started | - |
+| 19. Skill Files + Index | 0/TBD | Not started | - |
