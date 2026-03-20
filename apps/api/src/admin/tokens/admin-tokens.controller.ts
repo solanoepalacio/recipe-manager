@@ -5,10 +5,12 @@ import {
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { AdminTokensService } from './admin-tokens.service';
 import { AdminAuthGuard } from '../../auth/guards/admin-auth.guard';
+import { Public } from '../../auth/decorators/public.decorator';
 import { AdminPaginationDto } from '../users/dto/admin-pagination.dto';
 import { CreateAdminTokenDto } from './dto/create-token.dto';
 import { CurrentAdmin } from '../../auth/decorators/current-admin.decorator';
 
+@Public()
 @ApiTags('admin-tokens')
 @UseGuards(AdminAuthGuard)
 @Controller('admin/tokens')

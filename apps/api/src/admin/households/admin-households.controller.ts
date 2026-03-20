@@ -5,10 +5,12 @@ import {
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { AdminHouseholdsService } from './admin-households.service';
 import { AdminAuthGuard } from '../../auth/guards/admin-auth.guard';
+import { Public } from '../../auth/decorators/public.decorator';
 import { AdminPaginationDto } from '../users/dto/admin-pagination.dto';
 import { CreateAdminHouseholdDto } from './dto/create-household.dto';
 import { UpdateAdminHouseholdDto } from './dto/update-household.dto';
 
+@Public()
 @ApiTags('admin-households')
 @UseGuards(AdminAuthGuard)
 @Controller('admin/households')

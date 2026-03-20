@@ -5,10 +5,12 @@ import {
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { AdminFoodsService } from './admin-foods.service';
 import { AdminAuthGuard } from '../../auth/guards/admin-auth.guard';
+import { Public } from '../../auth/decorators/public.decorator';
 import { AdminPaginationDto } from '../users/dto/admin-pagination.dto';
 import { CreateAdminFoodDto } from './dto/create-food.dto';
 import { UpdateAdminFoodDto } from './dto/update-food.dto';
 
+@Public()
 @ApiTags('admin-foods')
 @UseGuards(AdminAuthGuard)
 @Controller('admin/foods')

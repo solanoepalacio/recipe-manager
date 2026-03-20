@@ -5,11 +5,13 @@ import {
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { AdminUsersService } from './admin-users.service';
 import { AdminAuthGuard } from '../../auth/guards/admin-auth.guard';
+import { Public } from '../../auth/decorators/public.decorator';
 import { AdminPaginationDto } from './dto/admin-pagination.dto';
 import { CreateAdminUserDto } from './dto/create-user.dto';
 import { UpdateAdminUserDto } from './dto/update-user.dto';
 import { PasswordResetUrlResponse } from './dto/password-reset-url.dto';
 
+@Public()
 @ApiTags('admin-users')
 @UseGuards(AdminAuthGuard)
 @Controller('admin/users')

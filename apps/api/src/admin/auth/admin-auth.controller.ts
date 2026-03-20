@@ -27,6 +27,7 @@ export class AdminAuthController {
     return { message: 'Admin authenticated' };
   }
 
+  @Public()
   @UseGuards(AdminAuthGuard)
   @Post('logout')
   @ApiOperation({ summary: 'Admin logout' })
@@ -39,6 +40,7 @@ export class AdminAuthController {
     return { message: 'Logged out' };
   }
 
+  @Public()
   @UseGuards(AdminAuthGuard)
   @Get('me')
   @ApiOperation({ summary: 'Get current admin' })
