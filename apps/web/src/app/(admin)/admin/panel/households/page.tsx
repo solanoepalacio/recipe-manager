@@ -14,9 +14,10 @@ import type {
   AdminHouseholdResponse,
   AdminHouseholdDetailResponse,
   AdminUserResponse,
+  AdminUserCreatedResponse,
 } from '@recipe-manager/shared';
 import type { PaginatedResponse } from '@recipe-manager/shared';
-import { Gender } from '@recipe-manager/shared';
+import { Gender, UserType } from '@recipe-manager/shared';
 
 // ---------------------------------------------------------------------------
 // Types for form mode
@@ -26,6 +27,20 @@ type FormMode =
   | { type: 'editHousehold'; household: AdminHouseholdResponse }
   | { type: 'createMember'; householdId: string; householdName: string }
   | { type: 'editMember'; user: AdminUserResponse };
+
+function UserTypeBadge({ userType }: { userType: string }) {
+  const labels: Record<string, { label: string; className: string }> = {
+    [UserType.Normal]: { label: 'adulto', className: 'bg-blue-50 text-blue-600' },
+    [UserType.Kid]: { label: 'nino', className: 'bg-green-50 text-green-600' },
+    [UserType.Agent]: { label: 'agente', className: 'bg-purple-50 text-purple-600' },
+  };
+  const config = labels[userType] ?? labels[UserType.Normal];
+  return (
+    <span className={`text-[11px] font-medium px-1.5 py-0.5 rounded-[4px] ${config.className}`}>
+      {config.label}
+    </span>
+  );
+}
 
 // ---------------------------------------------------------------------------
 // Household row with collapsible members
@@ -40,6 +55,8 @@ function HouseholdRow({
   onResetPassword,
   resetUrl,
   onDismissResetUrl,
+  autoToken,
+  onDismissAutoToken,
 }: {
   household: AdminHouseholdResponse;
   onEdit: (h: AdminHouseholdResponse) => void;
@@ -50,6 +67,8 @@ function HouseholdRow({
   onResetPassword: (userId: string) => void;
   resetUrl: string | null;
   onDismissResetUrl: () => void;
+  autoToken: string | null;
+  onDismissAutoToken: () => void;
 }) {
   const [expanded, setExpanded] = useState(false);
   const [deletingMemberId, setDeletingMemberId] = useState<string | null>(null);
@@ -112,6 +131,17 @@ function HouseholdRow({
             </div>
           )}
 
+          {/* Auto-token one-time display for newly created agent */}
+          {autoToken && (
+            <div className="px-8 pt-3">
+              <OneTimeDisplay
+                value={autoToken}
+                label="Token del agente creado automaticamente. Copia este token ahora. No se mostrara de nuevo."
+                onDismiss={onDismissAutoToken}
+              />
+            </div>
+          )}
+
           {loadingMembers ? (
             <div className="px-8 py-3 flex flex-col gap-2">
               {[...Array(3)].map((_, i) => (
@@ -124,52 +154,59 @@ function HouseholdRow({
               {(detail?.members ?? []).length === 0 && (
                 <div className="px-8 py-3 text-[13px] text-secondary italic">Sin miembros.</div>
               )}
-              {(detail?.members ?? []).map((member) => (
-                <div key={member.id} className="border-b border-border/50 last:border-b-0">
-                  <div className="flex items-center gap-3 px-8 py-2 min-h-[44px]">
-                    <div className="flex-1 min-w-0">
-                      <span className="text-[14px] text-foreground">{member.name}</span>
-                      {member.email && (
-                        <span className="ml-2 text-[13px] text-secondary">{member.email}</span>
-                      )}
+              {(detail?.members ?? []).map((member) => {
+                const memberUserType = member.userType ?? UserType.Normal;
+                const isNormal = memberUserType === UserType.Normal;
+                return (
+                  <div key={member.id} className="border-b border-border/50 last:border-b-0">
+                    <div className="flex items-center gap-3 px-8 py-2 min-h-[44px]">
+                      <div className="flex-1 min-w-0 flex items-center gap-2">
+                        <span className="text-[14px] text-foreground">{member.name}</span>
+                        <UserTypeBadge userType={memberUserType} />
+                        {member.email && (
+                          <span className="text-[13px] text-secondary">{member.email}</span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3 flex-shrink-0">
+                        <button
+                          className="text-[13px] text-foreground"
+                          onClick={() => onEditMember(member)}
+                        >
+                          Editar
+                        </button>
+                        {isNormal && (
+                          <button
+                            type="button"
+                            className="text-[13px] text-secondary"
+                            onClick={() => onResetPassword(member.id)}
+                          >
+                            Restablecer contrasena
+                          </button>
+                        )}
+                        <button
+                          className="text-[13px] text-destructive"
+                          onClick={() => setDeletingMemberId(member.id)}
+                        >
+                          Eliminar
+                        </button>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-3 flex-shrink-0">
-                      <button
-                        className="text-[13px] text-foreground"
-                        onClick={() => onEditMember(member)}
-                      >
-                        Editar
-                      </button>
-                      <button
-                        type="button"
-                        className="text-[13px] text-secondary"
-                        onClick={() => onResetPassword(member.id)}
-                      >
-                        Restablecer contraseña
-                      </button>
-                      <button
-                        className="text-[13px] text-destructive"
-                        onClick={() => setDeletingMemberId(member.id)}
-                      >
-                        Eliminar
-                      </button>
-                    </div>
-                  </div>
 
-                  {deletingMemberId === member.id && (
-                    <div className="px-8 pb-2">
-                      <ConfirmDialog
-                        message="Eliminar este usuario? Esta accion no se puede deshacer."
-                        onConfirm={() => {
-                          onDeleteMember(member.id);
-                          setDeletingMemberId(null);
-                        }}
-                        onCancel={() => setDeletingMemberId(null)}
-                      />
-                    </div>
-                  )}
-                </div>
-              ))}
+                    {deletingMemberId === member.id && (
+                      <div className="px-8 pb-2">
+                        <ConfirmDialog
+                          message="Eliminar este usuario? Esta accion no se puede deshacer."
+                          onConfirm={() => {
+                            onDeleteMember(member.id);
+                            setDeletingMemberId(null);
+                          }}
+                          onCancel={() => setDeletingMemberId(null)}
+                        />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
 
               {/* Add member row */}
               <div className="px-8 py-2 min-h-[44px] flex items-center">
@@ -209,10 +246,15 @@ export default function AdminHouseholdsPage() {
   const [resetUrl, setResetUrl] = useState<string | null>(null);
   const [resetUrlForHousehold, setResetUrlForHousehold] = useState<string | null>(null);
 
+  // Auto-token from agent creation
+  const [autoToken, setAutoToken] = useState<string | null>(null);
+  const [autoTokenForHousehold, setAutoTokenForHousehold] = useState<string | null>(null);
+
   // Household form fields
   const [formHouseholdName, setFormHouseholdName] = useState('');
 
   // Member form fields
+  const [formMemberUserType, setFormMemberUserType] = useState<string>(UserType.Normal);
   const [formMemberName, setFormMemberName] = useState('');
   const [formMemberEmail, setFormMemberEmail] = useState('');
   const [formMemberPassword, setFormMemberPassword] = useState('');
@@ -264,18 +306,23 @@ export default function AdminHouseholdsPage() {
 
   // --- Member mutations ---
   const createMember = useMutation({
-    mutationFn: (body: { name: string; email: string; password: string; householdId: string; gender: string; dateOfBirth: string }) =>
-      adminApi.post<AdminUserResponse>('/admin/users', body),
-    onSuccess: (_data, vars) => {
+    mutationFn: (body: Record<string, string>) =>
+      adminApi.post<AdminUserCreatedResponse>('/admin/users', body),
+    onSuccess: (data, vars) => {
       queryClient.invalidateQueries({ queryKey: ['admin', 'households', 'detail', vars.householdId] });
       queryClient.invalidateQueries({ queryKey: queryKeys.admin.households.all });
       closeForm();
       toast.success('Miembro agregado.');
+      // If agent user was created and has an auto-token, show it
+      if (data.autoToken) {
+        setAutoToken(data.autoToken);
+        setAutoTokenForHousehold(vars.householdId);
+      }
     },
   });
 
   const updateMember = useMutation({
-    mutationFn: ({ id, body }: { id: string; body: { name?: string; email?: string; username?: string; gender?: string; dateOfBirth?: string } }) =>
+    mutationFn: ({ id, body }: { id: string; body: Record<string, string | undefined> }) =>
       adminApi.patch<AdminUserResponse>(`/admin/users/${id}`, body),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.admin.households.all });
@@ -311,6 +358,7 @@ export default function AdminHouseholdsPage() {
   function closeForm() {
     setFormMode(null);
     setFormHouseholdName('');
+    setFormMemberUserType(UserType.Normal);
     setFormMemberName('');
     setFormMemberEmail('');
     setFormMemberPassword('');
@@ -335,18 +383,23 @@ export default function AdminHouseholdsPage() {
   }
 
   function handleOpenAddMember(householdId: string, householdName: string) {
+    setFormMemberUserType(UserType.Normal);
     setFormMemberName('');
     setFormMemberEmail('');
     setFormMemberPassword('');
+    setFormMemberGender(Gender.Male);
+    setFormMemberDateOfBirth('');
     setFormMode({ type: 'createMember', householdId, householdName });
   }
 
   function handleOpenEditMember(user: AdminUserResponse) {
+    const ut = user.userType ?? UserType.Normal;
+    setFormMemberUserType(ut);
     setFormMemberName(user.name);
     setFormMemberEmail(user.email ?? '');
     setFormMemberUsername(user.username ?? '');
     setFormMemberPassword('');
-    setFormMemberGender(user.gender);
+    setFormMemberGender(user.gender ?? Gender.Male);
     setFormMemberDateOfBirth(user.dateOfBirth ? user.dateOfBirth.slice(0, 10) : '');
     setFormMode({ type: 'editMember', user });
   }
@@ -360,19 +413,37 @@ export default function AdminHouseholdsPage() {
     } else if (formMode.type === 'editHousehold') {
       updateHousehold.mutate({ id: formMode.household.id, body: { name: formHouseholdName } });
     } else if (formMode.type === 'createMember') {
-      createMember.mutate({
+      // Build payload based on userType — omit empty/irrelevant fields
+      const base: Record<string, string> = {
+        userType: formMemberUserType,
         name: formMemberName,
-        email: formMemberEmail,
-        password: formMemberPassword,
         householdId: formMode.householdId,
-        gender: formMemberGender,
-        dateOfBirth: formMemberDateOfBirth,
-      });
+      };
+      if (formMemberUserType === UserType.Normal) {
+        base.email = formMemberEmail;
+        base.password = formMemberPassword;
+        base.gender = formMemberGender;
+        base.dateOfBirth = formMemberDateOfBirth;
+      } else if (formMemberUserType === UserType.Kid) {
+        if (formMemberDateOfBirth) base.dateOfBirth = formMemberDateOfBirth;
+        if (formMemberGender) base.gender = formMemberGender;
+      }
+      // agent: only name + householdId + userType
+      createMember.mutate(base);
     } else if (formMode.type === 'editMember') {
-      updateMember.mutate({
-        id: formMode.user.id,
-        body: { name: formMemberName, email: formMemberEmail, gender: formMemberGender, dateOfBirth: formMemberDateOfBirth },
-      });
+      const body: Record<string, string | undefined> = {
+        userType: formMemberUserType,
+        name: formMemberName,
+      };
+      if (formMemberUserType === UserType.Normal) {
+        body.email = formMemberEmail || undefined;
+        body.gender = formMemberGender;
+        body.dateOfBirth = formMemberDateOfBirth || undefined;
+      } else if (formMemberUserType === UserType.Kid) {
+        body.dateOfBirth = formMemberDateOfBirth || undefined;
+        body.gender = formMemberGender || undefined;
+      }
+      updateMember.mutate({ id: formMode.user.id, body });
     }
   }
 
@@ -381,6 +452,11 @@ export default function AdminHouseholdsPage() {
     updateHousehold.isPending ||
     createMember.isPending ||
     updateMember.isPending;
+
+  const isMemberForm =
+    formMode?.type === 'createMember' || formMode?.type === 'editMember';
+  const isNormalMember = formMemberUserType === UserType.Normal;
+  const isKidMember = formMemberUserType === UserType.Kid;
 
   const rows = data?.items ?? [];
 
@@ -438,8 +514,26 @@ export default function AdminHouseholdsPage() {
               </div>
             )}
 
-            {(formMode.type === 'createMember' || formMode.type === 'editMember') && (
+            {isMemberForm && (
               <>
+                {/* Type selector — always first */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="member-type" className="text-[13px] text-foreground">
+                    Tipo de miembro *
+                  </label>
+                  <select
+                    id="member-type"
+                    value={formMemberUserType}
+                    onChange={(e) => setFormMemberUserType(e.target.value)}
+                    className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground outline-none"
+                  >
+                    <option value={UserType.Normal}>Adulto</option>
+                    <option value={UserType.Kid}>Nino/a</option>
+                    <option value={UserType.Agent}>Agente</option>
+                  </select>
+                </div>
+
+                {/* Name — always shown */}
                 <div className="flex flex-col gap-2">
                   <label htmlFor="member-name" className="text-[13px] text-foreground">
                     Nombre *
@@ -455,56 +549,29 @@ export default function AdminHouseholdsPage() {
                   />
                 </div>
 
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="member-email" className="text-[13px] text-foreground">
-                    Correo *
-                  </label>
-                  <input
-                    id="member-email"
-                    type="email"
-                    required
-                    value={formMemberEmail}
-                    onChange={(e) => setFormMemberEmail(e.target.value)}
-                    className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground placeholder:text-placeholder outline-none"
-                    placeholder="correo@ejemplo.com"
-                  />
-                </div>
+                {/* Email — normal only */}
+                {isNormalMember && (
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="member-email" className="text-[13px] text-foreground">
+                      Correo *
+                    </label>
+                    <input
+                      id="member-email"
+                      type="email"
+                      required={isNormalMember && formMode.type === 'createMember'}
+                      value={formMemberEmail}
+                      onChange={(e) => setFormMemberEmail(e.target.value)}
+                      className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground placeholder:text-placeholder outline-none"
+                      placeholder="correo@ejemplo.com"
+                    />
+                  </div>
+                )}
 
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="member-gender" className="text-[13px] text-foreground">
-                    {formMode.type === 'createMember' ? 'Genero *' : 'Genero'}
-                  </label>
-                  <select
-                    id="member-gender"
-                    value={formMemberGender}
-                    onChange={(e) => setFormMemberGender(e.target.value)}
-                    required={formMode.type === 'createMember'}
-                    className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground outline-none"
-                  >
-                    <option value={Gender.Male}>Masculino</option>
-                    <option value={Gender.Female}>Femenino</option>
-                    <option value={Gender.Other}>Otro</option>
-                  </select>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="member-dob" className="text-[13px] text-foreground">
-                    {formMode.type === 'createMember' ? 'Fecha de nacimiento *' : 'Fecha de nacimiento'}
-                  </label>
-                  <input
-                    id="member-dob"
-                    type="date"
-                    value={formMemberDateOfBirth}
-                    onChange={(e) => setFormMemberDateOfBirth(e.target.value)}
-                    required={formMode.type === 'createMember'}
-                    className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground outline-none"
-                  />
-                </div>
-
-                {formMode.type === 'createMember' && (
+                {/* Password — normal + createMember only */}
+                {isNormalMember && formMode.type === 'createMember' && (
                   <div className="flex flex-col gap-2">
                     <label htmlFor="member-password" className="text-[13px] text-foreground">
-                      Contraseña *
+                      Contrasena *
                     </label>
                     <input
                       id="member-password"
@@ -513,12 +580,50 @@ export default function AdminHouseholdsPage() {
                       value={formMemberPassword}
                       onChange={(e) => setFormMemberPassword(e.target.value)}
                       className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground placeholder:text-placeholder outline-none"
-                      placeholder="Contraseña inicial"
+                      placeholder="Contrasena inicial"
                     />
                   </div>
                 )}
 
-                {formMode.type === 'editMember' && (
+                {/* Gender — normal (required) + kid (optional) */}
+                {(isNormalMember || isKidMember) && (
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="member-gender" className="text-[13px] text-foreground">
+                      {isNormalMember ? 'Genero *' : 'Genero'}
+                    </label>
+                    <select
+                      id="member-gender"
+                      value={formMemberGender}
+                      onChange={(e) => setFormMemberGender(e.target.value)}
+                      required={isNormalMember}
+                      className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground outline-none"
+                    >
+                      <option value={Gender.Male}>Masculino</option>
+                      <option value={Gender.Female}>Femenino</option>
+                      <option value={Gender.Other}>Otro</option>
+                    </select>
+                  </div>
+                )}
+
+                {/* Date of birth — normal (required) + kid (required) */}
+                {(isNormalMember || isKidMember) && (
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="member-dob" className="text-[13px] text-foreground">
+                      Fecha de nacimiento *
+                    </label>
+                    <input
+                      id="member-dob"
+                      type="date"
+                      value={formMemberDateOfBirth}
+                      onChange={(e) => setFormMemberDateOfBirth(e.target.value)}
+                      required
+                      className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground outline-none"
+                    />
+                  </div>
+                )}
+
+                {/* Username — editMember only */}
+                {formMode.type === 'editMember' && isNormalMember && (
                   <div className="flex flex-col gap-2">
                     <label htmlFor="member-username" className="text-[13px] text-foreground">
                       Usuario
@@ -582,6 +687,11 @@ export default function AdminHouseholdsPage() {
               onDismissResetUrl={() => {
                 setResetUrl(null);
                 setResetUrlForHousehold(null);
+              }}
+              autoToken={autoTokenForHousehold === household.id ? autoToken : null}
+              onDismissAutoToken={() => {
+                setAutoToken(null);
+                setAutoTokenForHousehold(null);
               }}
             />
           ))}

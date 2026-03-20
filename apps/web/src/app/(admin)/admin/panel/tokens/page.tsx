@@ -42,11 +42,11 @@ export default function AdminTokensPage() {
       ),
   });
 
-  // Users query for the create form dropdown
-  const { data: usersData } = useQuery({
-    queryKey: queryKeys.admin.users.list({ page: 1, perPage: 100 }),
+  // Agent users query for the create form dropdown — only agent-type users can have tokens
+  const { data: agentUsersData } = useQuery({
+    queryKey: ['admin', 'users', 'agents'],
     queryFn: () =>
-      adminApi.get<PaginatedResponse<AdminUserResponse>>('/admin/users?page=1&perPage=100'),
+      adminApi.get<PaginatedResponse<AdminUserResponse>>('/admin/users?userType=agent&page=1&perPage=100'),
     enabled: showForm,
   });
 
@@ -96,18 +96,16 @@ export default function AdminTokensPage() {
     createToken.mutate({ name: formName, userId: formUserId });
   }
 
-  // Resolve user name from users query data or show userId
-  function resolveUserName(userId: string): string {
-    const user = usersData?.items.find((u) => u.id === userId);
-    return user ? `${user.name}${user.email ? ` (${user.email})` : ''}` : userId;
-  }
-
   const columns = [
     { key: 'name', label: 'Nombre' },
     {
       key: 'userId',
       label: 'Usuario',
-      render: (t: AdminTokenResponse) => resolveUserName(t.userId),
+      // Use userName + householdName from token response (populated server-side)
+      render: (t: AdminTokenResponse) =>
+        t.userName
+          ? `${t.userName}${t.householdName ? ` (${t.householdName})` : ''}`
+          : t.userId,
     },
     {
       key: 'createdAt',
@@ -178,10 +176,10 @@ export default function AdminTokensPage() {
             />
           </div>
 
-          {/* User field */}
+          {/* User field — only agent users */}
           <div className="flex flex-col gap-2">
             <label htmlFor="token-user" className="text-[13px] text-foreground">
-              Usuario *
+              Agente *
             </label>
             <select
               id="token-user"
@@ -190,13 +188,18 @@ export default function AdminTokensPage() {
               onChange={(e) => setFormUserId(e.target.value)}
               className="bg-subtle border border-border rounded-[8px] py-3 px-4 text-[15px] text-foreground outline-none"
             >
-              <option value="">Seleccionar usuario</option>
-              {usersData?.items.map((u: AdminUserResponse) => (
+              <option value="">Seleccionar agente</option>
+              {agentUsersData?.items.map((u: AdminUserResponse) => (
                 <option key={u.id} value={u.id}>
-                  {u.name}{u.email ? ` (${u.email})` : ''}
+                  {u.name}{u.householdName ? ` — ${u.householdName}` : ''}
                 </option>
               ))}
             </select>
+            {agentUsersData?.items.length === 0 && (
+              <p className="text-[12px] text-secondary">
+                No hay agentes disponibles. Crea un miembro de tipo Agente primero.
+              </p>
+            )}
           </div>
         </AdminForm>
       )}
