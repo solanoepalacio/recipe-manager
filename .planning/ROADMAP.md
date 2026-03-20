@@ -244,7 +244,11 @@ Plans:
   2. An agent reading `shared.md` can construct a correctly authenticated request, interpret any error status code, and parse any paginated response
   3. An agent reading `recipes_search.md` can call `GET /api/recipes` with any combination of search, foodId, sort, order, page, and pageSize parameters and parse the response
   4. An agent reading `recipes_get.md` can call `GET /api/recipes/:id` and extract sections, ingredients, steps, and images from the response shape
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 13-01-PLAN.md — Foundation files: skills directory, index.md (startup index), shared.md (auth, errors, pagination)
+- [ ] 13-02-PLAN.md — Read operation files: recipes_search.md (GET /api/recipes), recipes_get.md (GET /api/recipes/:id)
 
 ### Phase 14: Skill Bundle — Write Operations + Meal Plan
 **Goal**: An agent can create and edit recipes (including sections, ingredients, steps, and images) and manage meal plan entries entirely from the skill files.
@@ -276,5 +280,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 10. Frontend Meal Planner | 3/3 | Complete   | 2026-03-19 |
 | 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete    | 2026-03-19 |
 | 12. Frontend Admin Panel | 5/5 | Complete    | 2026-03-19 |
-| 13. Skill Bundle — Foundation + Read Operations | 0/? | Not started | - |
+| 13. Skill Bundle — Foundation + Read Operations | 0/2 | Not started | - |
 | 14. Skill Bundle — Write Operations + Meal Plan | 0/? | Not started | - |
