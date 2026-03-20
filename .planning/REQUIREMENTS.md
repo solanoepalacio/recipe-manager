@@ -22,11 +22,11 @@
 
 - [x] **RCP-01**: Agent can search and list recipes — `rmapi recipes list` with `--search`, `--food-id`, `--sort`, `--order`, `--page`, `--per-page`
 - [x] **RCP-02**: Agent can get full recipe detail — `rmapi recipes get <id>` with `--fields` projection to strip images/timestamps
-- [ ] **RCP-03**: Agent can create a recipe — `rmapi recipes create` with name and optional metadata (description, servings, times, source URL)
-- [ ] **RCP-04**: Agent can update recipe metadata — `rmapi recipes update <id>` with any subset of metadata fields
-- [ ] **RCP-05**: Agent can delete a recipe — `rmapi recipes delete <id> --yes`
-- [ ] **RCP-06**: Agent can duplicate a recipe — `rmapi recipes duplicate <id>`
-- [ ] **RCP-07**: Agent can upload an image to a recipe from a URL — `rmapi recipes add-image <id> --url <url>` (CLI downloads and uploads as multipart)
+- [x] **RCP-03**: Agent can create a recipe — `rmapi recipes create` with name and optional metadata (description, servings, times, source URL)
+- [x] **RCP-04**: Agent can update recipe metadata — `rmapi recipes update <id>` with any subset of metadata fields
+- [x] **RCP-05**: Agent can delete a recipe — `rmapi recipes delete <id> --yes`
+- [x] **RCP-06**: Agent can duplicate a recipe — `rmapi recipes duplicate <id>`
+- [x] **RCP-07**: Agent can upload an image to a recipe from a URL — `rmapi recipes add-image <id> --url <url>` (CLI downloads and uploads as multipart)
 
 ### Sections
 
@@ -98,11 +98,11 @@
 | LOOK-02 | Phase 14 | Complete |
 | RCP-01 | Phase 15 | Complete |
 | RCP-02 | Phase 15 | Complete |
-| RCP-03 | Phase 16 | Pending |
-| RCP-04 | Phase 16 | Pending |
-| RCP-05 | Phase 16 | Pending |
-| RCP-06 | Phase 16 | Pending |
-| RCP-07 | Phase 16 | Pending |
+| RCP-03 | Phase 16 | Complete |
+| RCP-04 | Phase 16 | Complete |
+| RCP-05 | Phase 16 | Complete |
+| RCP-06 | Phase 16 | Complete |
+| RCP-07 | Phase 16 | Complete |
 | SEC-01 | Phase 17 | Pending |
 | SEC-02 | Phase 17 | Pending |
 | SEC-03 | Phase 17 | Pending |

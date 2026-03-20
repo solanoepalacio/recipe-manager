@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 15-01-PLAN.md
-last_updated: "2026-03-20T19:57:28.863Z"
+stopped_at: Completed 16-01-PLAN.md
+last_updated: "2026-03-20T20:16:51.217Z"
 last_activity: 2026-03-20
 progress:
   total_phases: 19
-  completed_phases: 15
-  total_plans: 48
-  completed_plans: 48
+  completed_phases: 16
+  total_plans: 49
+  completed_plans: 49
 ---
 
 # Project State
@@ -20,11 +20,11 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 15 — recipe-read-commands
+**Current focus:** Phase 16 — recipe-write-commands
 
 ## Current Position
 
-Phase: 15 (recipe-read-commands) — EXECUTING
+Phase: 16 (recipe-write-commands) — EXECUTING
 Plan: 1 of 1
 
 ## Performance Metrics
@@ -91,6 +91,7 @@ Plan: 1 of 1
 | Phase 13-cli-scaffold P01 | 3 | 3 tasks | 14 files |
 | Phase 14-lookup-commands P01 | 2 | 2 tasks | 5 files |
 | Phase 15-recipe-read-commands P01 | 2 | 2 tasks | 2 files |
+| Phase 16-recipe-write-commands P01 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -216,6 +217,8 @@ Recent decisions affecting current work:
 - [Phase 14-01]: Non-matching food names silently omitted with exit code 0 — empty array is valid result, not an error (lookup semantics, not validation)
 - [Phase 15-01]: food_id maps to foodId param key; per_page maps to pageSize — API expects camelCase, Click normalizes hyphens to underscores
 - [Phase 15-01]: --fields on list uses {**data, 'items': apply_fields(data['items'], fields)} to project items while preserving pagination wrapper
+- [Phase 16-recipe-write-commands]: add-image uses requests.post directly (not http.post) for multipart upload — Authorization header only, Content-Type left to requests
+- [Phase 16-recipe-write-commands]: Sparse body dict comprehension filters None values from create/update bodies to avoid nulling fields not supplied
 
 ### Pending Todos
 
@@ -242,5 +245,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-20
-Stopped at: Completed 15-01-PLAN.md
+Stopped at: Completed 16-01-PLAN.md
 Resume file: None
