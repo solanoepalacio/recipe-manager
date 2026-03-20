@@ -26,7 +26,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 10: Frontend Meal Planner** - Weekly/monthly calendar, assign recipes, drag-drop, edit/delete entries (completed 2026-03-19)
 - [x] **Phase 11: Frontend Profile + Household + Shared Recipe** - Profile editing, household view, public shared recipe page (completed 2026-03-19)
 - [x] **Phase 12: Frontend Admin Panel** - Admin login, setup wizard, user/household/foods/units/tokens management UI (completed 2026-03-19)
-- [ ] **Phase 13: Skill Bundle — Foundation + Read Operations** - index.md, shared.md, recipes_search.md, recipes_get.md
+- [x] **Phase 13: Skill Bundle — Foundation + Read Operations** - index.md, shared.md, recipes_search.md, recipes_get.md (completed 2026-03-20)
 - [ ] **Phase 14: Skill Bundle — Write Operations + Meal Plan** - recipes_create.md, recipes_edit.md, recipes_image.md, meal_plan.md
 
 ## Phase Details
@@ -280,5 +280,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 10. Frontend Meal Planner | 3/3 | Complete   | 2026-03-19 |
 | 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete    | 2026-03-19 |
 | 12. Frontend Admin Panel | 5/5 | Complete    | 2026-03-19 |
-| 13. Skill Bundle — Foundation + Read Operations | 0/2 | Not started | - |
+| 13. Skill Bundle — Foundation + Read Operations | 2/2 | Complete   | 2026-03-20 |
 | 14. Skill Bundle — Write Operations + Meal Plan | 0/? | Not started | - |
