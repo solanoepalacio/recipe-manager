@@ -220,10 +220,10 @@ None yet.
 | 260319-qsa | add gender and dateOfBirth fields to profile and admin member forms | 2026-03-19 | 44e0ffb | [260319-qsa-add-dateofbirth-and-gender-fields-to-the](./quick/260319-qsa-add-dateofbirth-and-gender-fields-to-the/) |
 | 260319-ut2 | household navbar link and members view | 2026-03-19 | 2d9e134 | [260319-ut2-household-navbar-link-and-members-view](./quick/260319-ut2-household-navbar-link-and-members-view/) |
 | 260320-eq1 | fix admin login 403 by adding @Public() to admin controllers | 2026-03-20 | afe2110 | [260320-eq1-admin-login-is-not-working-properly-when](./quick/260320-eq1-admin-login-is-not-working-properly-when/) |
-| 260320-ffj | integrate user types: normal, kid, agent across schema/backend/frontend | 2026-03-20 | 6b33b4e | [260320-ffj-integrate-user-types-normal-users-kids-a](./quick/260320-ffj-integrate-user-types-normal-users-kids-a/) |
+| 260320-ffj | integrate user types: normal users, kids, and agents with type-specific fields and behaviors | 2026-03-20 | 5f7c7a3 | [260320-ffj-integrate-user-types-normal-users-kids-a](./quick/260320-ffj-integrate-user-types-normal-users-kids-a/) |
 
 ## Session Continuity
 
-Last activity: 2026-03-20 - Completed quick task 260320-ffj: integrate user types normal/kid/agent across schema, backend, and frontend
+Last activity: 2026-03-20 - Completed quick task 260320-ffj: integrate user types: normal users, kids, and agents with type-specific fields and behaviors
 Stopped at: Completed quick task 260320-ffj
 Resume file: None
