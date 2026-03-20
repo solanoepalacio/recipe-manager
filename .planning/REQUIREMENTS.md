@@ -1,184 +1,135 @@
-# Requirements: Recipe Manager
+# Requirements: Recipe Manager — v1.1 Agent Integration
 
-**Defined:** 2026-03-16
-**Core Value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
+**Defined:** 2026-03-20
+**Core Value:** An AI agent can manage household recipes and meal plans through the REST API using a thin CLI wrapper and task-oriented skill files — with no API-specific code in the agent itself.
 
-## v1 Requirements
+## v1.1 Requirements
 
-### Authentication
+### CLI Scaffold
 
-- [x] **AUTH-01**: User can sign in with email or username + password
-- [x] **AUTH-02**: User session persists across browser refresh (persistent by default)
-- [x] **AUTH-03**: User can sign out
-- [x] **AUTH-04**: Admin can complete first-time setup wizard (creates single Admin record; wizard inaccessible after)
-- [x] **AUTH-05**: Admin can generate a one-time password reset URL for any user (no email — shared out-of-band)
+- [ ] **CLI-01**: `rmapi` reads `RMAPI_BASE_URL` and `RMAPI_TOKEN` from environment variables; never accepts secrets via flags
+- [ ] **CLI-02**: All successful output goes to stdout as JSON; all errors go to stderr as `{"code": "...", "message": "...", "status": N}`
+- [ ] **CLI-03**: Exit codes are distinct per error class: 0 success, 1 API error, 2 auth failure, 3 not found, 4 validation error
+- [ ] **CLI-04**: All list and detail commands accept `--fields id,name,...` to strip response to named top-level fields only
+- [ ] **CLI-05**: All destructive commands (delete, remove) accept `--yes` to skip confirmation; without `--yes` on a non-TTY, the command fails fast with exit code 4
 
-### Recipes
+### Lookup Prerequisites
 
-- [x] **RCP-01**: User can create a new recipe from scratch
-- [x] **RCP-02**: User can duplicate an existing recipe (creates independent copy)
-- [x] **RCP-03**: User can set recipe name with auto-generated URL slug
-- [x] **RCP-04**: User can set recipe description, servings (qty + unit), prep/cook/total/perform times, and source URL
-- [x] **RCP-05**: User can lock a recipe to prevent editing
-- [x] **RCP-07**: User can view full recipe detail (ingredients, instructions, images)
-- [x] **RCP-08**: User can enter cook mode (full-screen, large text, step-by-step navigation)
+- [ ] **LOOK-01**: Agent can resolve multiple food names to IDs in one call — `rmapi foods lookup --names "tomato,chicken"` returns `[{name, id}]` (one HTTP request, client-side filter)
+- [ ] **LOOK-02**: Agent can list all units — `rmapi units list` returns `[{id, name, abbreviation}]`
+
+### Recipe Operations
+
+- [ ] **RCP-01**: Agent can search and list recipes — `rmapi recipes list` with `--search`, `--food-id`, `--sort`, `--order`, `--page`, `--per-page`
+- [ ] **RCP-02**: Agent can get full recipe detail — `rmapi recipes get <id>` with `--fields` projection to strip images/timestamps
+- [ ] **RCP-03**: Agent can create a recipe — `rmapi recipes create` with name and optional metadata (description, servings, times, source URL)
+- [ ] **RCP-04**: Agent can update recipe metadata — `rmapi recipes update <id>` with any subset of metadata fields
+- [ ] **RCP-05**: Agent can delete a recipe — `rmapi recipes delete <id> --yes`
+- [ ] **RCP-06**: Agent can duplicate a recipe — `rmapi recipes duplicate <id>`
+- [ ] **RCP-07**: Agent can upload an image to a recipe from a URL — `rmapi recipes add-image <id> --url <url>` (CLI downloads and uploads as multipart)
+
+### Sections
+
+- [ ] **SEC-01**: Agent can add an ingredient section — `rmapi sections add <recipe-id> --title "..."`
+- [ ] **SEC-02**: Agent can edit a section title — `rmapi sections update <recipe-id> <section-id> --title "..."`
+- [ ] **SEC-03**: Agent can delete a section — `rmapi sections delete <recipe-id> <section-id> --yes`
+- [ ] **SEC-04**: Agent can reorder sections — `rmapi sections reorder <recipe-id> --ids "id1,id2,id3"`
 
 ### Ingredients
 
-- [x] **ING-01**: User can add ingredients to a recipe with quantity, unit, food name, and optional note
-- [x] **ING-02**: User can organize ingredients into titled sections
-- [x] **ING-03**: User can reorder ingredients within a section
+- [ ] **ING-01**: Agent can add an ingredient to a section — `rmapi ingredients add <recipe-id> <section-id> --food-id --quantity --unit-id --note`
+- [ ] **ING-02**: Agent can edit an ingredient — `rmapi ingredients update <recipe-id> <section-id> <ingredient-id>` with any subset of fields
+- [ ] **ING-03**: Agent can remove an ingredient — `rmapi ingredients delete <recipe-id> <section-id> <ingredient-id> --yes`
+- [ ] **ING-04**: Agent can reorder ingredients within a section — `rmapi ingredients reorder <recipe-id> <section-id> --ids "id1,id2,id3"`
 
-### Instructions
+### Steps
 
-- [x] **INS-01**: User can add step-by-step instructions with optional step title
-- [x] **INS-02**: User can reorder instruction steps via drag-and-drop
+- [ ] **STP-01**: Agent can add a step — `rmapi steps add <recipe-id> --body "..." --title "..."`
+- [ ] **STP-02**: Agent can edit a step — `rmapi steps update <recipe-id> <step-id> --body "..." --title "..."`
+- [ ] **STP-03**: Agent can delete a step — `rmapi steps delete <recipe-id> <step-id> --yes`
+- [ ] **STP-04**: Agent can reorder steps — `rmapi steps reorder <recipe-id> --ids "id1,id2,id3"`
 
-### Images
+### Meal Plan
 
-- [x] **IMG-01**: User can upload an image for a recipe
-- [x] **IMG-02**: User can delete a recipe image
+- [ ] **MPL-01**: Agent can read meal plan entries by date range — `rmapi meal-plan list --from 2026-03-20 --to 2026-03-27`
+- [ ] **MPL-02**: Agent can add a recipe to the meal plan — `rmapi meal-plan add --recipe-id <id> --date 2026-03-21 --type dinner`
+- [ ] **MPL-03**: Agent can move a meal plan entry — `rmapi meal-plan move <entry-id> --date 2026-03-22 --type lunch`
+- [ ] **MPL-04**: Agent can remove a meal plan entry — `rmapi meal-plan remove <entry-id> --yes`
 
-### Search & Discovery
+### Skill Files
 
-- [x] **SRCH-01**: User can search recipes by name with fuzzy matching
-- [x] **SRCH-02**: User can filter recipes by food/ingredient
-- [x] **SRCH-03**: User can sort recipes by name, date created, date updated, or random (asc/desc)
-- [x] **SRCH-04**: User can paginate recipe list with configurable page size
+- [ ] **SKL-01**: `skills/index.md` lists all available skills with one-line descriptions — agent loads this at session start to discover capabilities (~200 tokens)
+- [ ] **SKL-02**: `skills/recipe-discovery.md` documents how to search, filter, and get recipe detail using `rmapi` — includes field projection guidance and ID-threading patterns
+- [ ] **SKL-03**: `skills/meal-plan.md` documents how to read and modify the meal plan — includes the search-then-add pattern and date format conventions
+- [ ] **SKL-04**: `skills/recipe-management.md` documents how to create and edit recipes — explicit ID-threading chain (lookup foods → create recipe → add section → add ingredients → add steps), error recovery guidance
+- [ ] **SKL-05**: All skill files include `last-verified` frontmatter field and reference the `rmapi` command signatures they depend on
 
-### Sharing
+## Future Requirements
 
-- [x] **SHR-01**: User can generate a shareable public link for a recipe
-- [x] **SHR-02**: Anyone with the share link can view a recipe without logging in
+### Skill Freshness
 
-### Meal Planning
+- **SKLT-01**: CI check validates skill file `rmapi` command signatures against `rmapi --help` output — fails if a command or flag referenced in a skill no longer exists
 
-- [x] **PLAN-01**: User can view a weekly meal planner (1 or 4 weeks)
-- [x] **PLAN-02**: User can assign a recipe to a date and meal type (breakfast, lunch, dinner, snack, dessert)
-- [x] **PLAN-03**: User can drag-and-drop meal plan entries to reorganize
-- [x] **PLAN-04**: User can edit or delete individual meal plan entries
+### Extended Image Support
 
-### Profile
-
-- [x] **PROF-01**: User can view and edit their profile (name, email, username)
-
-### Households
-
-- [x] **HH-01**: Users belong to a household; all recipes and meal plans are household-scoped and private to members
-- [x] **HH-02**: All household members share the same meal plan
-
-### Administration
-
-- [x] **ADM-01**: Admin can view, create, edit, and delete user accounts
-- [x] **ADM-02**: Admin can view, create, edit, and delete households
-- [x] **ADM-03**: Admin can manage the foods database (view, create, edit, delete)
-- [x] **ADM-04**: Admin can manage the units database (view, create, edit, delete)
-- [x] **ADM-05**: Admin can create long-lived API tokens tied to a user account
-- [x] **ADM-06**: Admin can view and delete existing API tokens
-
-### API & Developer Access
-
-- [x] **API-01**: Full non-admin functionality is accessible via REST API (same endpoints as UI)
-- [x] **API-02**: Agent authenticates via Bearer token (API key tied to a user account)
-- [x] **API-03**: Interactive API documentation is available at `/api/docs` (Swagger UI)
-
-### Mobile & UX
-
-- [x] **UX-01**: Application has a responsive layout (phone, tablet, desktop)
-- [x] **UX-02**: Loading indicators are shown while data is being fetched
-- [x] **UX-03**: Toast/notification system for success, error, and info states
-
-## v2 Requirements
-
-### Notifications
-
-- **NOTF-01**: User receives in-app notifications for household activity
-- **NOTF-02**: Email notifications (requires email infrastructure)
-
-### Social / Collaboration
-
-- **SOCL-01**: Users can leave comments or notes on recipes
-- **SOCL-02**: Recipe rating system
-
-### Import / Export
-
-- **IMP-01**: Import recipe from URL (scraping)
-- **IMP-02**: Export recipes to PDF
+- **IMG-01**: `rmapi recipes add-image <id> --file -` accepts image bytes from stdin — enables mili to pipe Telegram photo bytes without writing temp files
 
 ## Out of Scope
 
 | Feature | Reason |
 |---------|--------|
-| Email sending | No email infrastructure in MVP; password reset URLs shared out-of-band by admin |
-| Agent implementation | Agent consumes the same REST API as UI — its design/impl is out of scope |
-| Deployment / CI/CD | Infrastructure is out of scope for this project |
-| OAuth / social login | Email + password sufficient for v1 |
-| Mobile native app | Web-only (responsive) |
-| Nutritional information | Not part of core household recipe management value |
-| Real-time updates | No websockets; page refresh / TanStack Query refetch covers use cases |
-| Rich text descriptions | Plain text for MVP (simplifies data model) |
+| Share token management | Human-intentional action; not appropriate for agent automation |
+| Recipe lock/unlock | Irreversible human-intentional action; agent locking a recipe prevents all further edits and requires human UI intervention |
+| Image delete via rmapi | Agent adds images during creation; deletion is a human curation task |
+| Admin endpoints | Admin is human-only by design (no agent admin access) |
+| `--file` flag for image upload | Telegram photo piping deferred to future; `--url` covers the research pipeline use case |
+| Recipe sharing/public view | Out of agent scope |
 
 ## Traceability
 
-*Updated: 2026-03-16 — roadmap created (12 phases)*
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| API-03 | Phase 1: Monorepo + Shared Types | Complete |
-| HH-01 | Phase 2: Database Schema + Prisma | Complete |
-| AUTH-01 | Phase 3: Backend Auth | Complete |
-| AUTH-02 | Phase 3: Backend Auth | Complete |
-| AUTH-03 | Phase 3: Backend Auth | Complete |
-| AUTH-04 | Phase 3: Backend Auth | Complete |
-| AUTH-05 | Phase 3: Backend Auth | Complete |
-| API-02 | Phase 3: Backend Auth | Complete |
-| API-01 | Phase 4: Backend Recipe CRUD | Complete |
-| UX-01 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
-| UX-02 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
-| UX-03 | Phase 7: Frontend Setup + App Shell + Auth Flows | Complete |
-| RCP-07 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| RCP-08 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| SRCH-01 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| SRCH-02 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| SRCH-03 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| SRCH-04 | Phase 8: Frontend Recipe List + Detail + Cook Mode | Complete |
-| RCP-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-03 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-04 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-05 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| RCP-06 | Phase 9: Frontend Recipe Creation + Editing | Pending |
-| ING-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| ING-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| ING-03 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| INS-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| INS-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| IMG-01 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| IMG-02 | Phase 9: Frontend Recipe Creation + Editing | Complete |
-| PLAN-01 | Phase 10: Frontend Meal Planner | Complete |
-| PLAN-02 | Phase 10: Frontend Meal Planner | Complete |
-| PLAN-03 | Phase 10: Frontend Meal Planner | Complete |
-| PLAN-04 | Phase 10: Frontend Meal Planner | Complete |
-| HH-02 | Phase 10: Frontend Meal Planner | Complete |
-| PROF-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
-| SHR-01 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
-| SHR-02 | Phase 11: Frontend Profile + Household + Shared Recipe | Complete |
-| ADM-01 | Phase 12: Frontend Admin Panel | Complete |
-| ADM-02 | Phase 12: Frontend Admin Panel | Complete |
-| ADM-03 | Phase 12: Frontend Admin Panel | Complete |
-| ADM-04 | Phase 12: Frontend Admin Panel | Complete |
-| ADM-05 | Phase 12: Frontend Admin Panel | Complete |
-| ADM-06 | Phase 12: Frontend Admin Panel | Complete |
+| CLI-01 | — | Pending |
+| CLI-02 | — | Pending |
+| CLI-03 | — | Pending |
+| CLI-04 | — | Pending |
+| CLI-05 | — | Pending |
+| LOOK-01 | — | Pending |
+| LOOK-02 | — | Pending |
+| RCP-01 | — | Pending |
+| RCP-02 | — | Pending |
+| RCP-03 | — | Pending |
+| RCP-04 | — | Pending |
+| RCP-05 | — | Pending |
+| RCP-06 | — | Pending |
+| RCP-07 | — | Pending |
+| SEC-01 | — | Pending |
+| SEC-02 | — | Pending |
+| SEC-03 | — | Pending |
+| SEC-04 | — | Pending |
+| ING-01 | — | Pending |
+| ING-02 | — | Pending |
+| ING-03 | — | Pending |
+| ING-04 | — | Pending |
+| STP-01 | — | Pending |
+| STP-02 | — | Pending |
+| STP-03 | — | Pending |
+| STP-04 | — | Pending |
+| MPL-01 | — | Pending |
+| MPL-02 | — | Pending |
+| MPL-03 | — | Pending |
+| MPL-04 | — | Pending |
+| SKL-01 | — | Pending |
+| SKL-02 | — | Pending |
+| SKL-03 | — | Pending |
+| SKL-04 | — | Pending |
+| SKL-05 | — | Pending |
 
 **Coverage:**
-- v1 requirements: 46 total
-- Mapped to phases: 46 ✓
-- Unmapped: 0 ✓
-
-**Notes on phase assignments:**
-- Requirements are assigned to the phase where they first become fully verifiable by a user or developer. Backend phases (1-6) verify against the live API/Swagger. Frontend phases (7-12) verify through the browser.
-- Phases 5 and 6 are backend infrastructure phases with no direct requirement assignments; they deliver the API capabilities consumed by frontend phases 8, 10, 11, and 12.
+- v1.1 requirements: 35 total
+- Mapped to phases: 0 (roadmap pending)
+- Unmapped: 35 ⚠️
 
 ---
-*Requirements defined: 2026-03-16*
-*Last updated: 2026-03-16 after roadmap creation*
+*Requirements defined: 2026-03-20*
+*Last updated: 2026-03-20 after initial definition*
