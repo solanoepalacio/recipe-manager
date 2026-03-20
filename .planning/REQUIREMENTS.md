@@ -51,10 +51,10 @@
 
 ### Meal Plan
 
-- [ ] **MPL-01**: Agent can read meal plan entries by date range — `rmapi meal-plan list --from 2026-03-20 --to 2026-03-27`
-- [ ] **MPL-02**: Agent can add a recipe to the meal plan — `rmapi meal-plan add --recipe-id <id> --date 2026-03-21 --type dinner`
-- [ ] **MPL-03**: Agent can move a meal plan entry — `rmapi meal-plan move <entry-id> --date 2026-03-22 --type lunch`
-- [ ] **MPL-04**: Agent can remove a meal plan entry — `rmapi meal-plan remove <entry-id> --yes`
+- [x] **MPL-01**: Agent can read meal plan entries by date range — `rmapi meal-plan list --from 2026-03-20 --to 2026-03-27`
+- [x] **MPL-02**: Agent can add a recipe to the meal plan — `rmapi meal-plan add --recipe-id <id> --date 2026-03-21 --type dinner`
+- [x] **MPL-03**: Agent can move a meal plan entry — `rmapi meal-plan move <entry-id> --date 2026-03-22 --type lunch`
+- [x] **MPL-04**: Agent can remove a meal plan entry — `rmapi meal-plan remove <entry-id> --yes`
 
 ### Skill Files
 
@@ -115,10 +115,10 @@
 | STP-02 | Phase 17 | Complete |
 | STP-03 | Phase 17 | Complete |
 | STP-04 | Phase 17 | Complete |
-| MPL-01 | Phase 18 | Pending |
-| MPL-02 | Phase 18 | Pending |
-| MPL-03 | Phase 18 | Pending |
-| MPL-04 | Phase 18 | Pending |
+| MPL-01 | Phase 18 | Complete |
+| MPL-02 | Phase 18 | Complete |
+| MPL-03 | Phase 18 | Complete |
+| MPL-04 | Phase 18 | Complete |
 | SKL-01 | Phase 19 | Pending |
 | SKL-02 | Phase 19 | Pending |
 | SKL-03 | Phase 19 | Pending |

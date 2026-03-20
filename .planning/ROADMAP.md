@@ -31,7 +31,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 15: Recipe Read Commands** - rmapi recipes list and rmapi recipes get with full filter/projection support (completed 2026-03-20)
 - [x] **Phase 16: Recipe Write Commands** - rmapi recipes create/update/delete/duplicate/add-image (completed 2026-03-20)
 - [x] **Phase 17: Sub-resource Commands** - rmapi sections and ingredients and steps CRUD and reorder commands (completed 2026-03-20)
-- [ ] **Phase 18: Meal Plan Commands** - rmapi meal-plan list/add/move/remove
+- [x] **Phase 18: Meal Plan Commands** - rmapi meal-plan list/add/move/remove (completed 2026-03-20)
 - [ ] **Phase 19: Skill Files + Index** - skills/recipe-discovery.md, skills/recipe-management.md, skills/meal-plan.md, skills/index.md
 
 ## Phase Details
@@ -361,5 +361,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 15. Recipe Read Commands | 1/1 | Complete    | 2026-03-20 |
 | 16. Recipe Write Commands | 1/1 | Complete    | 2026-03-20 |
 | 17. Sub-resource Commands | 2/2 | Complete    | 2026-03-20 |
-| 18. Meal Plan Commands | 0/1 | Not started | - |
+| 18. Meal Plan Commands | 1/1 | Complete   | 2026-03-20 |
 | 19. Skill Files + Index | 0/TBD | Not started | - |
