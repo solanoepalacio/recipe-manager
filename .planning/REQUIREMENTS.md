@@ -17,8 +17,8 @@
 - [x] **SKILL-04**: Agent can fetch full recipe detail including sections, ingredients, steps, and images (`recipes_get.md` — GET /api/recipes/:id full response shape)
 - [x] **SKILL-05**: Agent can create a recipe with sections, ingredients (resolved food/unit IDs), and steps (`recipes_create.md` — POST /api/recipes, GET /api/foods, GET /api/units, POST sections/ingredients/steps with recommended sequence)
 - [x] **SKILL-06**: Agent can update or delete recipe metadata, sections, ingredients, and steps (`recipes_edit.md` — PATCH/DELETE for recipe, sections, ingredients, steps)
-- [ ] **SKILL-07**: Agent can upload and delete recipe images via multipart form (`recipes_image.md` — POST /api/recipes/:id/images multipart, DELETE image)
-- [ ] **SKILL-08**: Agent can read, create, update, and delete meal plan entries (`meal_plan.md` — GET/POST/PATCH/DELETE /api/meal-plan/entries with date range and mealType enum)
+- [x] **SKILL-07**: Agent can upload and delete recipe images via multipart form (`recipes_image.md` — POST /api/recipes/:id/images multipart, DELETE image)
+- [x] **SKILL-08**: Agent can read, create, update, and delete meal plan entries (`meal_plan.md` — GET/POST/PATCH/DELETE /api/meal-plan/entries with date range and mealType enum)
 
 ## v2 Requirements
 
@@ -42,8 +42,8 @@
 | SKILL-04 | Phase 13 | Complete |
 | SKILL-05 | Phase 14 | Complete |
 | SKILL-06 | Phase 14 | Complete |
-| SKILL-07 | Phase 14 | Pending |
-| SKILL-08 | Phase 14 | Pending |
+| SKILL-07 | Phase 14 | Complete |
+| SKILL-08 | Phase 14 | Complete |
 
 **Coverage:**
 - v1.1 requirements: 8 total
