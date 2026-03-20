@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 13-01-PLAN.md
-last_updated: "2026-03-20T18:46:49.783Z"
-last_activity: 2026-03-20 - Milestone v1.1 roadmap created (phases 13–19, 35 requirements mapped)
+stopped_at: Completed 14-01-PLAN.md
+last_updated: "2026-03-20T19:09:09.397Z"
+last_activity: 2026-03-20
 progress:
   total_phases: 19
-  completed_phases: 13
-  total_plans: 46
-  completed_plans: 46
+  completed_phases: 14
+  total_plans: 47
+  completed_plans: 47
 ---
 
 # Project State
@@ -20,12 +20,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 14 — cli-auth (next)
+**Current focus:** Phase 14 — lookup-commands
 
 ## Current Position
 
-Phase: 13 (cli-scaffold) — COMPLETE
-Plan: 1 of 1 (all complete)
+Phase: 14 (lookup-commands) — EXECUTING
+Plan: 1 of 1
 
 ## Performance Metrics
 
@@ -89,6 +89,7 @@ Plan: 1 of 1 (all complete)
 | Phase 12-frontend-admin-panel P04 | 4 | 2 tasks | 4 files |
 | Phase 12-frontend-admin-panel P05 | 4 | 1 tasks | 2 files |
 | Phase 13-cli-scaffold P01 | 3 | 3 tasks | 14 files |
+| Phase 14-lookup-commands P01 | 2 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -210,6 +211,8 @@ Recent decisions affecting current work:
 - [Phase 13-01]: click 8.3.1 removes mix_stderr from CliRunner — use CliRunner() with no args; result.stderr for errors, result.stdout for pure stdout
 - [Phase 13-01]: recipes list placeholder calls Config.from_env() to validate credentials even before Phase 15 implementation
 - [Phase 13-01]: pip install uses .venv at repo root — system Python 3.13 has no pip module
+- [Phase 14-01]: Client-side name filtering in foods lookup: fetch all from GET /api/foods, filter by name_set in Python (case-insensitive via .lower()) — API has no server-side name filter param
+- [Phase 14-01]: Non-matching food names silently omitted with exit code 0 — empty array is valid result, not an error (lookup semantics, not validation)
 
 ### Pending Todos
 
@@ -235,6 +238,6 @@ None yet.
 
 ## Session Continuity
 
-Last activity: 2026-03-20 - Milestone v1.1 roadmap created (phases 13–19, 35 requirements mapped)
-Stopped at: Completed 13-01-PLAN.md
+Last activity: 2026-03-20
+Stopped at: Completed 14-01-PLAN.md
 Resume file: None

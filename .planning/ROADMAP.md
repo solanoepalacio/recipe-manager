@@ -27,7 +27,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 11: Frontend Profile + Household + Shared Recipe** - Profile editing, household view, public shared recipe page (completed 2026-03-19)
 - [x] **Phase 12: Frontend Admin Panel** - Admin login, setup wizard, user/household/foods/units/tokens management UI (completed 2026-03-19)
 - [x] **Phase 13: CLI Scaffold** - rmapi binary with auth, normalized JSON errors, typed exit codes, --fields projection, --yes pattern (completed 2026-03-20)
-- [ ] **Phase 14: Lookup Commands** - rmapi foods lookup and rmapi units list for ID resolution
+- [x] **Phase 14: Lookup Commands** - rmapi foods lookup and rmapi units list for ID resolution (completed 2026-03-20)
 - [ ] **Phase 15: Recipe Read Commands** - rmapi recipes list and rmapi recipes get with full filter/projection support
 - [ ] **Phase 16: Recipe Write Commands** - rmapi recipes create/update/delete/duplicate/add-image
 - [ ] **Phase 17: Sub-resource Commands** - rmapi sections and ingredients and steps CRUD and reorder commands
@@ -344,7 +344,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete    | 2026-03-19 |
 | 12. Frontend Admin Panel | 5/5 | Complete    | 2026-03-19 |
 | 13. CLI Scaffold | 1/1 | Complete    | 2026-03-20 |
-| 14. Lookup Commands | 0/1 | Not started | - |
+| 14. Lookup Commands | 1/1 | Complete   | 2026-03-20 |
 | 15. Recipe Read Commands | 0/TBD | Not started | - |
 | 16. Recipe Write Commands | 0/TBD | Not started | - |
 | 17. Sub-resource Commands | 0/TBD | Not started | - |

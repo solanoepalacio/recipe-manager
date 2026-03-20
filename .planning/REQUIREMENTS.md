@@ -15,8 +15,8 @@
 
 ### Lookup Prerequisites
 
-- [ ] **LOOK-01**: Agent can resolve multiple food names to IDs in one call — `rmapi foods lookup --names "tomato,chicken"` returns `[{name, id}]` (one HTTP request, client-side filter)
-- [ ] **LOOK-02**: Agent can list all units — `rmapi units list` returns `[{id, name, abbreviation}]`
+- [x] **LOOK-01**: Agent can resolve multiple food names to IDs in one call — `rmapi foods lookup --names "tomato,chicken"` returns `[{name, id}]` (one HTTP request, client-side filter)
+- [x] **LOOK-02**: Agent can list all units — `rmapi units list` returns `[{id, name, abbreviation}]`
 
 ### Recipe Operations
 
@@ -94,8 +94,8 @@
 | CLI-03 | Phase 13 | Complete |
 | CLI-04 | Phase 13 | Complete |
 | CLI-05 | Phase 13 | Complete |
-| LOOK-01 | Phase 14 | Pending |
-| LOOK-02 | Phase 14 | Pending |
+| LOOK-01 | Phase 14 | Complete |
+| LOOK-02 | Phase 14 | Complete |
 | RCP-01 | Phase 15 | Pending |
 | RCP-02 | Phase 15 | Pending |
 | RCP-03 | Phase 16 | Pending |
