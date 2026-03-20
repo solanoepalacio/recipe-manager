@@ -253,7 +253,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 13-01-PLAN.md — Package scaffold + core modules (config, errors, utils, http, cli) + test suite (CLI-01 through CLI-05)
+- [x] 13-01-PLAN.md — Package scaffold + core modules (config, errors, utils, http, cli) + test suite (CLI-01 through CLI-05)
 
 ### Phase 14: Lookup Commands
 **Goal**: The agent can resolve food names to IDs and list all units in a single call, enabling all subsequent ingredient and recipe commands that require controlled-vocabulary IDs.
@@ -263,7 +263,10 @@ Plans:
   1. `rmapi foods lookup --names "tomato,chicken"` returns a JSON array of `{name, id}` objects for each matched food name, with one HTTP request to `GET /api/foods`
   2. `rmapi units list` returns a JSON array of `{id, name, abbreviation}` for all units in the database
   3. Food names with no match are omitted from the result (not an error); the agent can detect missing lookups by comparing input names to output names
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 14-01-PLAN.md — Foods lookup (client-side name filter) + Units list (pass-through) + TDD test suite
 
 ### Phase 15: Recipe Read Commands
 **Goal**: The agent can search and browse the recipe list with all filter/sort/pagination options and retrieve full recipe detail with field projection — establishing the stable output shapes that all write skill files reference.
@@ -341,7 +344,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete    | 2026-03-19 |
 | 12. Frontend Admin Panel | 5/5 | Complete    | 2026-03-19 |
 | 13. CLI Scaffold | 1/1 | Complete    | 2026-03-20 |
-| 14. Lookup Commands | 0/TBD | Not started | - |
+| 14. Lookup Commands | 0/1 | Not started | - |
 | 15. Recipe Read Commands | 0/TBD | Not started | - |
 | 16. Recipe Write Commands | 0/TBD | Not started | - |
 | 17. Sub-resource Commands | 0/TBD | Not started | - |
