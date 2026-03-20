@@ -13,8 +13,8 @@
 
 - [x] **SKILL-01**: Agent can find which skill file to read for any operation (`index.md` — startup index with one-line descriptions and read guidance)
 - [x] **SKILL-02**: Agent can authenticate and understand error codes and pagination (`shared.md` — Bearer auth, base URL, 400/401/403/404/500 meanings, pagination envelope)
-- [ ] **SKILL-03**: Agent can search and list recipes by name, food, sort, and pagination (`recipes_search.md` — GET /api/recipes with all query params, example request/response)
-- [ ] **SKILL-04**: Agent can fetch full recipe detail including sections, ingredients, steps, and images (`recipes_get.md` — GET /api/recipes/:id full response shape)
+- [x] **SKILL-03**: Agent can search and list recipes by name, food, sort, and pagination (`recipes_search.md` — GET /api/recipes with all query params, example request/response)
+- [x] **SKILL-04**: Agent can fetch full recipe detail including sections, ingredients, steps, and images (`recipes_get.md` — GET /api/recipes/:id full response shape)
 - [ ] **SKILL-05**: Agent can create a recipe with sections, ingredients (resolved food/unit IDs), and steps (`recipes_create.md` — POST /api/recipes, GET /api/foods, GET /api/units, POST sections/ingredients/steps with recommended sequence)
 - [ ] **SKILL-06**: Agent can update or delete recipe metadata, sections, ingredients, and steps (`recipes_edit.md` — PATCH/DELETE for recipe, sections, ingredients, steps)
 - [ ] **SKILL-07**: Agent can upload and delete recipe images via multipart form (`recipes_image.md` — POST /api/recipes/:id/images multipart, DELETE image)
@@ -38,8 +38,8 @@
 |-------------|-------|--------|
 | SKILL-01 | Phase 13 | Complete |
 | SKILL-02 | Phase 13 | Complete |
-| SKILL-03 | Phase 13 | Pending |
-| SKILL-04 | Phase 13 | Pending |
+| SKILL-03 | Phase 13 | Complete |
+| SKILL-04 | Phase 13 | Complete |
 | SKILL-05 | Phase 14 | Pending |
 | SKILL-06 | Phase 14 | Pending |
 | SKILL-07 | Phase 14 | Pending |

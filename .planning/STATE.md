@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 13-01-PLAN.md
-last_updated: "2026-03-20T22:48:30.367Z"
+stopped_at: Completed 13-02-PLAN.md
+last_updated: "2026-03-20T22:48:55.884Z"
 last_activity: 2026-03-20 - Roadmap created for milestone v1.1 (02_Skill) — phases 13 and 14 added
 progress:
   total_phases: 14
@@ -89,6 +89,7 @@ Plan: 1 of 2
 | Phase 12-frontend-admin-panel P04 | 4 | 2 tasks | 4 files |
 | Phase 12-frontend-admin-panel P05 | 4 | 1 tasks | 2 files |
 | Phase 13-skill-bundle-foundation-read-operations P01 | 2 | 2 tasks | 2 files |
+| Phase 13-skill-bundle-foundation-read-operations P02 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -204,6 +205,8 @@ Recent decisions affecting current work:
 - [Phase 12-05]: [12-05] Raw token stored only in createdToken useState — never in query cache; onDismiss clears it permanently
 - [Phase 13-skill-bundle-foundation-read-operations]: Pagination response field is perPage (from PaginatedResponse<T> in packages/shared/src/common.ts); query param is pageSize — documented explicitly in shared.md to prevent agent confusion
 - [Phase 13-skill-bundle-foundation-read-operations]: index.md contains zero endpoint paths — purely a directory of files with one-line descriptions per skill-bundle-spec.md requirements
+- [Phase 13-02]: recipes_search.md uses perPage in response envelope to match PaginatedResponse<T> shared type
+- [Phase 13-02]: recipes_get.md cross-references recipes_search.md as the source for obtaining the recipe :id parameter
 
 ### Pending Todos
 
@@ -231,5 +234,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-20 - Roadmap created for milestone v1.1 (02_Skill) — phases 13 and 14 added
-Stopped at: Completed 13-01-PLAN.md
+Stopped at: Completed 13-02-PLAN.md
 Resume file: None
