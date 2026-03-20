@@ -33,11 +33,13 @@ key_files:
     - apps/web/src/app/(admin)/admin/panel/tokens/page.tsx
 decisions:
   - "UserType Prisma enum values are lowercase matching TypeScript enum values (normal/kid/agent)"
-  - "gender and dateOfBirth made optional on User model to accommodate kid (no dob required is false — dob required) and agent (no dob/gender)"
-  - "Agent users auto-receive a token on creation; raw token returned as autoToken in AdminUserCreatedResponse (shown once)"
+  - "gender and dateOfBirth made optional on User model to accommodate kid and agent types"
+  - "Agent users do NOT get an auto-created token on creation — tokens are created manually via the admin tokens page"
+  - "AdminUserCreatedResponse removed from shared types since auto-token was removed after checkpoint review"
   - "Token creation restricted to agent users only via BadRequestException in admin-tokens.service"
   - "Only normal users can log in via session auth (validateUser returns null for kid/agent)"
   - "toAdminUserResponse includes household join so householdName is available in AdminUserResponse"
+  - "User-facing household page shows Agente badge only; Adulto/Nino badges removed after checkpoint review"
   - "Migration applied manually (migrate resolve --applied) due to session table drift between DB and migration history"
 metrics:
   duration: 12 min
@@ -48,7 +50,7 @@ metrics:
 
 # Phase quick Plan 260320-ffj: Integrate User Types (Normal, Kids, Agents) Summary
 
-User types (normal, kid, agent) integrated across the full stack: Prisma schema, shared types, backend validation, and frontend forms. Kids are tracked without credentials, agents get auto-assigned API tokens, and the admin UI adapts forms and lists to each type.
+User types (normal, kid, agent) integrated across the full stack: Prisma schema, shared types, backend validation, and frontend forms. Kids are tracked without credentials, agents have manually-assigned API tokens, and the admin UI adapts forms and lists to each type.
 
 ## Tasks Completed
 
@@ -56,6 +58,7 @@ User types (normal, kid, agent) integrated across the full stack: Prisma schema,
 |---|------|--------|--------|
 | 1 | Add UserType enum, update schema, shared types, and backend | 1546d78 | Done |
 | 2 | Update frontend — household member forms and admin tokens page | 6b33b4e | Done |
+| 3 | Post-checkpoint: remove auto-token creation and adulto/nino badges | bebd41f | Done |
 
 ## What Was Built
 
@@ -73,8 +76,8 @@ User types (normal, kid, agent) integrated across the full stack: Prisma schema,
 **Seed:** Added Sofia (kid, 2018) and Recipe Bot (agent, with auto-token) to dev household.
 
 **Frontend:**
-- Household page: type badges (Adulto/Nino-a/Agente) next to each member; agents show "Bot" instead of age
-- Admin households page: "Tipo de miembro" selector as first form field; conditional fields per type; password reset hidden for kid/agent; agent creation shows one-time token via OneTimeDisplay
+- Household page: "Agente" badge shown next to agent member names only; normal and kid members are unlabeled; agents show "Bot" instead of age
+- Admin households page: "Tipo de miembro" selector as first form field; conditional fields per type; password reset hidden for kid/agent members
 - Admin tokens page: user dropdown filters to agent users only; token table shows `userName (householdName)` from server
 
 ## Deviations from Plan
@@ -111,6 +114,24 @@ User types (normal, kid, agent) integrated across the full stack: Prisma schema,
 - **Fix:** Used `prisma migrate diff` with a shadow DB to generate the SQL, created the migration directory manually, applied SQL directly via psql, then ran `prisma migrate resolve --applied`
 - **Commit:** 1546d78
 
+### Post-checkpoint Changes (human-directed)
+
+**5. Remove auto-token creation for agent users**
+- **Directed by:** Human checkpoint review
+- **Reason:** Tokens should be created manually from the tokens page, not auto-generated
+- **Changes:**
+  - `admin-users.service.ts`: removed auto-token creation block from `create()`, return type changed from `AdminUserCreatedResponse` to `AdminUserResponse`
+  - `packages/shared/src/api/admin.ts`: removed `AdminUserCreatedResponse` interface
+  - `apps/web/src/app/(admin)/admin/panel/households/page.tsx`: removed `autoToken` state, `autoTokenForHousehold` state, `OneTimeDisplay` for agent token, `AdminUserCreatedResponse` import, and related HouseholdRow props
+- **Commit:** bebd41f
+
+**6. Remove "Adulto" and "Nino/a" badges from user-facing household page**
+- **Directed by:** Human checkpoint review
+- **Reason:** Only the agent badge adds useful information for the household view; labeling every member is noisy
+- **Changes:**
+  - `apps/web/src/app/(app)/household/page.tsx`: replaced `UserTypeBadge` (all three types) with `AgentBadge` (agent-only); removed unused `isKid` variable
+- **Commit:** bebd41f
+
 ## Self-Check: PASSED
 
 - SUMMARY.md: FOUND
@@ -119,3 +140,4 @@ User types (normal, kid, agent) integrated across the full stack: Prisma schema,
 - Commit 1546d78 (Task 1): FOUND
 - Commit 6b33b4e (Task 2): FOUND
 - Commit bd7321b (pre-existing fixes): FOUND
+- Commit bebd41f (post-checkpoint fixes): FOUND
