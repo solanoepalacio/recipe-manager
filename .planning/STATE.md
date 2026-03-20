@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: complete
-stopped_at: Completed quick task 260319-ut2
-last_updated: "2026-03-19T22:37:00Z"
-last_activity: 2026-03-19
+stopped_at: Completed quick task 260320-eq1
+last_updated: "2026-03-20T00:10:00Z"
+last_activity: 2026-03-20
 progress:
   total_phases: 12
   completed_phases: 12
@@ -219,9 +219,10 @@ None yet.
 | 260319-qas | make gender and dateOfBirth required on User model | 2026-03-19 | 4edfcb5 | [260319-qas-we-need-to-make-two-small-changes-to-the](./quick/260319-qas-we-need-to-make-two-small-changes-to-the/) |
 | 260319-qsa | add gender and dateOfBirth fields to profile and admin member forms | 2026-03-19 | 44e0ffb | [260319-qsa-add-dateofbirth-and-gender-fields-to-the](./quick/260319-qsa-add-dateofbirth-and-gender-fields-to-the/) |
 | 260319-ut2 | household navbar link and members view | 2026-03-19 | 2d9e134 | [260319-ut2-household-navbar-link-and-members-view](./quick/260319-ut2-household-navbar-link-and-members-view/) |
+| 260320-eq1 | fix admin login 403 by adding @Public() to admin controllers | 2026-03-20 | afe2110 | [260320-eq1-admin-login-is-not-working-properly-when](./quick/260320-eq1-admin-login-is-not-working-properly-when/) |
 
 ## Session Continuity
 
-Last activity: 2026-03-20 - Completed quick task 260319-ut2: household navbar link and members view
-Stopped at: Completed quick task 260319-ut2
+Last activity: 2026-03-20 - Completed quick task 260320-eq1: fix admin login 403 by adding @Public() to admin controllers
+Stopped at: Completed quick task 260320-eq1
 Resume file: None
