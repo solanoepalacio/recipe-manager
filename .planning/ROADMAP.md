@@ -335,7 +335,11 @@ Plans:
   3. `skills/meal-plan.md` documents the read-then-mutate pattern (list entries → extract entry `id` → move/remove) with correct date format conventions and meal type values
   4. `skills/recipe-management.md` documents the full ID-threading creation chain (lookup foods → create recipe → add section → add ingredients × N → add steps × N) with explicit error recovery guidance for each step
   5. Every skill file has a `last-verified` frontmatter field and all `rmapi` command signatures in the file match the commands available in the installed `rmapi` binary
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 19-01-PLAN.md — Write recipe-discovery.md and recipe-management.md skill files
+- [ ] 19-02-PLAN.md — Write meal-plan.md skill file and index.md catalogue
 
 ## Progress
 
