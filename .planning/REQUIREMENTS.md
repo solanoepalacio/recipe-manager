@@ -37,10 +37,10 @@
 
 ### Ingredients
 
-- [ ] **ING-01**: Agent can add an ingredient to a section — `rmapi ingredients add <recipe-id> <section-id> --food-id --quantity --unit-id --note`
-- [ ] **ING-02**: Agent can edit an ingredient — `rmapi ingredients update <recipe-id> <section-id> <ingredient-id>` with any subset of fields
-- [ ] **ING-03**: Agent can remove an ingredient — `rmapi ingredients delete <recipe-id> <section-id> <ingredient-id> --yes`
-- [ ] **ING-04**: Agent can reorder ingredients within a section — `rmapi ingredients reorder <recipe-id> <section-id> --ids "id1,id2,id3"`
+- [x] **ING-01**: Agent can add an ingredient to a section — `rmapi ingredients add <recipe-id> <section-id> --food-id --quantity --unit-id --note`
+- [x] **ING-02**: Agent can edit an ingredient — `rmapi ingredients update <recipe-id> <section-id> <ingredient-id>` with any subset of fields
+- [x] **ING-03**: Agent can remove an ingredient — `rmapi ingredients delete <recipe-id> <section-id> <ingredient-id> --yes`
+- [x] **ING-04**: Agent can reorder ingredients within a section — `rmapi ingredients reorder <recipe-id> <section-id> --ids "id1,id2,id3"`
 
 ### Steps
 
@@ -107,10 +107,10 @@
 | SEC-02 | Phase 17 | Complete |
 | SEC-03 | Phase 17 | Complete |
 | SEC-04 | Phase 17 | Complete |
-| ING-01 | Phase 17 | Pending |
-| ING-02 | Phase 17 | Pending |
-| ING-03 | Phase 17 | Pending |
-| ING-04 | Phase 17 | Pending |
+| ING-01 | Phase 17 | Complete |
+| ING-02 | Phase 17 | Complete |
+| ING-03 | Phase 17 | Complete |
+| ING-04 | Phase 17 | Complete |
 | STP-01 | Phase 17 | Complete |
 | STP-02 | Phase 17 | Complete |
 | STP-03 | Phase 17 | Complete |

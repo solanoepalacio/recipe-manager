@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 17-01-PLAN.md
-last_updated: "2026-03-20T20:41:17.179Z"
+stopped_at: Completed 17-02-PLAN.md
+last_updated: "2026-03-20T20:44:30.996Z"
 last_activity: 2026-03-20
 progress:
   total_phases: 19
-  completed_phases: 16
+  completed_phases: 17
   total_plans: 51
-  completed_plans: 50
+  completed_plans: 51
 ---
 
 # Project State
@@ -93,6 +93,7 @@ Plan: 1 of 2
 | Phase 15-recipe-read-commands P01 | 2 | 2 tasks | 2 files |
 | Phase 16-recipe-write-commands P01 | 2 | 2 tasks | 2 files |
 | Phase 17-sub-resource-commands P01 | 2 | 2 tasks | 6 files |
+| Phase 17-sub-resource-commands P02 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -222,6 +223,8 @@ Recent decisions affecting current work:
 - [Phase 16-recipe-write-commands]: Sparse body dict comprehension filters None values from create/update bodies to avoid nulling fields not supplied
 - [Phase 17-01]: step_body used as Python param name for --body option in steps commands to avoid shadowing the body dict variable in sparse comprehension
 - [Phase 17-01]: reorder commands emit {ok: True} unconditionally because PUT /reorder returns empty body on the backend
+- [Phase 17-02]: 3-level nesting for all ingredient paths: /api/recipes/{recipe_id}/sections/{section_id}/ingredients
+- [Phase 17-02]: foodId is required on ingredients add (required=True on --food-id option); --quantity uses type=float for decimal support
 
 ### Pending Todos
 
@@ -248,5 +251,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-20
-Stopped at: Completed 17-01-PLAN.md
+Stopped at: Completed 17-02-PLAN.md
 Resume file: None
