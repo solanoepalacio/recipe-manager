@@ -56,6 +56,10 @@ export class MealPlanService {
   }
 
   async createEntry(householdId: string, dto: CreateMealPlanEntryDto): Promise<MealPlanEntryResponse> {
+    const recipe = await this.prisma.recipe.findUnique({ where: { id: dto.recipeId } });
+    if (!recipe) throw new NotFoundException(`Recipe ${dto.recipeId} not found`);
+    if (recipe.householdId !== householdId) throw new ForbiddenException('Access denied');
+
     const mealPlan = await this.getOrCreateMealPlan(householdId);
     const entry = await this.prisma.mealPlanEntry.create({
       data: {
@@ -81,6 +85,11 @@ export class MealPlanService {
 
   async updateEntry(entryId: string, householdId: string, dto: UpdateMealPlanEntryDto): Promise<MealPlanEntryResponse> {
     await this.findEntryAndVerifyOwnership(entryId, householdId);
+    if (dto.recipeId !== undefined) {
+      const recipe = await this.prisma.recipe.findUnique({ where: { id: dto.recipeId } });
+      if (!recipe) throw new NotFoundException(`Recipe ${dto.recipeId} not found`);
+      if (recipe.householdId !== householdId) throw new ForbiddenException('Access denied');
+    }
     const updated = await this.prisma.mealPlanEntry.update({
       where: { id: entryId },
       data: {
