@@ -186,6 +186,7 @@ export class RecipesService {
         totalTime: dto.totalTime,
         performTime: dto.performTime,
         sourceUrl: dto.sourceUrl,
+        sections: { create: [{ title: null, order: 0 }] },
       },
       include: RECIPE_INCLUDE,
     });

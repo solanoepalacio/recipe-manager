@@ -35,6 +35,8 @@ describe('RecipesService', () => {
   });
 
   describe('create', () => {
+    const defaultSectionMock = { id: 'sec1', title: null, order: 0, ingredients: [] };
+
     it('generates a unique slug from recipe name', async () => {
       mockPrisma.recipe.findFirst.mockResolvedValueOnce(null); // slug available
       mockPrisma.recipe.create.mockResolvedValueOnce({
@@ -54,7 +56,7 @@ describe('RecipesService', () => {
         shareToken: null,
         createdAt: new Date('2026-01-01'),
         updatedAt: new Date('2026-01-01'),
-        sections: [],
+        sections: [defaultSectionMock],
         steps: [],
         images: [],
       });
@@ -85,12 +87,50 @@ describe('RecipesService', () => {
         shareToken: null,
         createdAt: new Date('2026-01-01'),
         updatedAt: new Date('2026-01-01'),
-        sections: [],
+        sections: [defaultSectionMock],
         steps: [],
         images: [],
       });
       const result = await service.create('u1', 'hh1', { name: 'Pasta Bolognese' });
       expect(result.slug).toBe('pasta-bolognese-2');
+    });
+
+    it('creates a default ingredient section with null title', async () => {
+      mockPrisma.recipe.findFirst.mockResolvedValueOnce(null); // slug available
+      mockPrisma.recipe.create.mockResolvedValueOnce({
+        id: 'r1',
+        householdId: 'hh1',
+        createdById: 'u1',
+        name: 'Test Recipe',
+        slug: 'test-recipe',
+        description: null,
+        servingsQty: null,
+        servingsUnit: null,
+        prepTime: null,
+        cookTime: null,
+        totalTime: null,
+        performTime: null,
+        sourceUrl: null,
+        shareToken: null,
+        createdAt: new Date('2026-01-01'),
+        updatedAt: new Date('2026-01-01'),
+        sections: [defaultSectionMock],
+        steps: [],
+        images: [],
+      });
+      const result = await service.create('u1', 'hh1', { name: 'Test Recipe' });
+      expect(result.sections).toHaveLength(1);
+      expect(result.sections[0].title).toBeNull();
+      expect(result.sections[0].order).toBe(0);
+      expect(result.sections[0].ingredients).toHaveLength(0);
+      // Verify the create call included nested section create
+      expect(mockPrisma.recipe.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({
+            sections: { create: [{ title: null, order: 0 }] },
+          }),
+        }),
+      );
     });
   });
 
