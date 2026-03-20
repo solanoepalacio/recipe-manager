@@ -129,7 +129,7 @@ model Recipe {
 model IngredientSection {
   id          String             @id @default(uuid())
   recipeId    String
-  recipe      Recipe             @relation(fields: [recipeId], references: [id])
+  recipe      Recipe             @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   title       String?
   order       Int
   ingredients RecipeIngredient[]
@@ -138,7 +138,7 @@ model IngredientSection {
 model RecipeIngredient {
   id        String            @id @default(uuid())
   sectionId String
-  section   IngredientSection @relation(fields: [sectionId], references: [id])
+  section   IngredientSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
   foodId    String
   food      Food              @relation(fields: [foodId], references: [id])
   unitId    String?
@@ -151,7 +151,7 @@ model RecipeIngredient {
 model InstructionStep {
   id       String  @id @default(uuid())
   recipeId String
-  recipe   Recipe  @relation(fields: [recipeId], references: [id])
+  recipe   Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   title    String?
   body     String
   order    Int
@@ -160,7 +160,7 @@ model InstructionStep {
 model RecipeImage {
   id        String   @id @default(uuid())
   recipeId  String
-  recipe    Recipe   @relation(fields: [recipeId], references: [id])
+  recipe    Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   url       String
   order     Int
   createdAt DateTime @default(now())
@@ -180,7 +180,7 @@ model MealPlanEntry {
   mealPlanId String
   mealPlan   MealPlan @relation(fields: [mealPlanId], references: [id])
   recipeId   String
-  recipe     Recipe   @relation(fields: [recipeId], references: [id])
+  recipe     Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   date       DateTime @db.Date
   mealType   MealType
   createdAt  DateTime @default(now())
