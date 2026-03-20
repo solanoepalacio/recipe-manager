@@ -4,7 +4,7 @@ import { randomBytes, createHash } from 'crypto';
 import * as bcrypt from 'bcrypt';
 import { $Enums } from '@prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
-import { AdminUserResponse, AdminUserCreatedResponse, PaginatedResponse } from '@recipe-manager/shared';
+import { AdminUserResponse, PaginatedResponse } from '@recipe-manager/shared';
 import { CreateAdminUserDto } from './dto/create-user.dto';
 import { UpdateAdminUserDto } from './dto/update-user.dto';
 
@@ -60,7 +60,7 @@ export class AdminUsersService {
     return toAdminUserResponse(user);
   }
 
-  async create(dto: CreateAdminUserDto): Promise<AdminUserCreatedResponse> {
+  async create(dto: CreateAdminUserDto): Promise<AdminUserResponse> {
     const household = await this.prisma.household.findUnique({ where: { id: dto.householdId } });
     if (!household) throw new NotFoundException(`Household ${dto.householdId} not found`);
 
@@ -92,27 +92,7 @@ export class AdminUsersService {
       select: USER_SELECT,
     });
 
-    const response = toAdminUserResponse(user) as AdminUserCreatedResponse;
-
-    // For agent users: auto-create an API token
-    if (userType === 'agent') {
-      const admin = await this.prisma.admin.findFirst();
-      if (admin) {
-        const rawToken = randomBytes(32).toString('hex');
-        const tokenHash = createHash('sha256').update(rawToken).digest('hex');
-        await this.prisma.apiToken.create({
-          data: {
-            name: `Auto: ${user.name}`,
-            userId: user.id,
-            createdById: admin.id,
-            tokenHash,
-          },
-        });
-        response.autoToken = rawToken;
-      }
-    }
-
-    return response;
+    return toAdminUserResponse(user);
   }
 
   async update(id: string, dto: UpdateAdminUserDto): Promise<AdminUserResponse> {

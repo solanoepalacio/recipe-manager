@@ -18,11 +18,6 @@ export interface AdminUserResponse {
   updatedAt: string;
 }
 
-/** Returned by POST /admin/users when userType=agent — autoToken shown once */
-export interface AdminUserCreatedResponse extends AdminUserResponse {
-  autoToken?: string;
-}
-
 export interface AdminHouseholdResponse {
   id: string;
   name: string;

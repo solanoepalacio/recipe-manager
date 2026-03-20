@@ -14,7 +14,6 @@ import type {
   AdminHouseholdResponse,
   AdminHouseholdDetailResponse,
   AdminUserResponse,
-  AdminUserCreatedResponse,
 } from '@recipe-manager/shared';
 import type { PaginatedResponse } from '@recipe-manager/shared';
 import { Gender, UserType } from '@recipe-manager/shared';
@@ -55,8 +54,6 @@ function HouseholdRow({
   onResetPassword,
   resetUrl,
   onDismissResetUrl,
-  autoToken,
-  onDismissAutoToken,
 }: {
   household: AdminHouseholdResponse;
   onEdit: (h: AdminHouseholdResponse) => void;
@@ -67,8 +64,6 @@ function HouseholdRow({
   onResetPassword: (userId: string) => void;
   resetUrl: string | null;
   onDismissResetUrl: () => void;
-  autoToken: string | null;
-  onDismissAutoToken: () => void;
 }) {
   const [expanded, setExpanded] = useState(false);
   const [deletingMemberId, setDeletingMemberId] = useState<string | null>(null);
@@ -127,17 +122,6 @@ function HouseholdRow({
                 value={resetUrl}
                 label="Comparte esta URL con el usuario de forma segura. Expira tras su uso."
                 onDismiss={onDismissResetUrl}
-              />
-            </div>
-          )}
-
-          {/* Auto-token one-time display for newly created agent */}
-          {autoToken && (
-            <div className="px-8 pt-3">
-              <OneTimeDisplay
-                value={autoToken}
-                label="Token del agente creado automaticamente. Copia este token ahora. No se mostrara de nuevo."
-                onDismiss={onDismissAutoToken}
               />
             </div>
           )}
@@ -246,10 +230,6 @@ export default function AdminHouseholdsPage() {
   const [resetUrl, setResetUrl] = useState<string | null>(null);
   const [resetUrlForHousehold, setResetUrlForHousehold] = useState<string | null>(null);
 
-  // Auto-token from agent creation
-  const [autoToken, setAutoToken] = useState<string | null>(null);
-  const [autoTokenForHousehold, setAutoTokenForHousehold] = useState<string | null>(null);
-
   // Household form fields
   const [formHouseholdName, setFormHouseholdName] = useState('');
 
@@ -307,17 +287,12 @@ export default function AdminHouseholdsPage() {
   // --- Member mutations ---
   const createMember = useMutation({
     mutationFn: (body: Record<string, string>) =>
-      adminApi.post<AdminUserCreatedResponse>('/admin/users', body),
-    onSuccess: (data, vars) => {
+      adminApi.post<AdminUserResponse>('/admin/users', body),
+    onSuccess: (_data, vars) => {
       queryClient.invalidateQueries({ queryKey: ['admin', 'households', 'detail', vars.householdId] });
       queryClient.invalidateQueries({ queryKey: queryKeys.admin.households.all });
       closeForm();
       toast.success('Miembro agregado.');
-      // If agent user was created and has an auto-token, show it
-      if (data.autoToken) {
-        setAutoToken(data.autoToken);
-        setAutoTokenForHousehold(vars.householdId);
-      }
     },
   });
 
@@ -687,11 +662,6 @@ export default function AdminHouseholdsPage() {
               onDismissResetUrl={() => {
                 setResetUrl(null);
                 setResetUrlForHousehold(null);
-              }}
-              autoToken={autoTokenForHousehold === household.id ? autoToken : null}
-              onDismissAutoToken={() => {
-                setAutoToken(null);
-                setAutoTokenForHousehold(null);
               }}
             />
           ))}

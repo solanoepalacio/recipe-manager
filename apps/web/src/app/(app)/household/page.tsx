@@ -9,16 +9,10 @@ function computeAge(dateOfBirth: string): number {
   return Math.floor((Date.now() - new Date(dateOfBirth).getTime()) / 31557600000);
 }
 
-function UserTypeBadge({ userType }: { userType: UserType | string }) {
-  const labels: Record<string, { label: string; className: string }> = {
-    [UserType.Normal]: { label: 'Adulto', className: 'bg-blue-50 text-blue-600' },
-    [UserType.Kid]: { label: 'Nino/a', className: 'bg-green-50 text-green-600' },
-    [UserType.Agent]: { label: 'Agente', className: 'bg-purple-50 text-purple-600' },
-  };
-  const config = labels[userType] ?? labels[UserType.Normal];
+function AgentBadge() {
   return (
-    <span className={`text-[11px] font-medium px-1.5 py-0.5 rounded-[4px] ${config.className}`}>
-      {config.label}
+    <span className="text-[11px] font-medium px-1.5 py-0.5 rounded-[4px] bg-purple-50 text-purple-600">
+      Agente
     </span>
   );
 }
@@ -65,7 +59,6 @@ export default function HouseholdPage() {
           </>
         ) : (
           household?.members.map((member) => {
-            const isKid = member.userType === UserType.Kid;
             const isAgent = member.userType === UserType.Agent;
             const initial = member.name.charAt(0).toUpperCase();
             const subtext = isAgent
@@ -91,7 +84,7 @@ export default function HouseholdPage() {
                     <span className="text-[15px] font-semibold text-foreground">
                       {member.name}
                     </span>
-                    <UserTypeBadge userType={member.userType} />
+                    {isAgent && <AgentBadge />}
                   </div>
                   {subtext && (
                     <span className="text-[13px] text-secondary">
