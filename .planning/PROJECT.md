@@ -86,7 +86,7 @@ Households can organize, discover, and cook their recipes together — from a se
 
 ## Context
 
-All design artifacts are finalized in `mvp_plans/`. High-fidelity HTML wireframes for all views live in `mvp_plans/hifi/`. The project enters the **implementation phase** now.
+All design artifacts are finalized in `plans/01_App/`. High-fidelity HTML wireframes for all views live in `plans/01_App/hifi/`. The project enters the **implementation phase** now.
 
 Key architectural decisions already locked:
 - **Monorepo**: Yarn v4 workspaces — `apps/api`, `apps/web`, `packages/shared`
@@ -106,6 +106,20 @@ Key architectural decisions already locked:
 - **Admin access**: Admin endpoints use a completely separate auth guard (`AdminAuthGuard`); no role field on User
 - **Scope**: Deployment, CI, and agent implementation are explicitly out of scope
 
+## Current Milestone: v1.1 — 02_Skill
+
+**Goal:** Produce a self-contained skill bundle (`skills/recipe-manager/`) of Markdown files that enables any AI agent to perform all supported recipe-manager operations via the REST API — with no prior knowledge of the API required.
+
+**Target features:**
+- `index.md` — startup index listing all files and when to read each
+- `shared.md` — auth header, base URL, error codes, pagination envelope
+- `recipes_search.md` — GET /api/recipes with all query params
+- `recipes_get.md` — GET /api/recipes/:id full detail response shape
+- `recipes_create.md` — create recipe, add sections/ingredients/steps, resolve foods/units
+- `recipes_edit.md` — update/delete recipe metadata, sections, ingredients, steps
+- `recipes_image.md` — multipart image upload and delete
+- `meal_plan.md` — list, create, update, delete meal plan entries
+
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
@@ -119,4 +133,4 @@ Key architectural decisions already locked:
 | Foods/Units pre-populated by admin | Controlled vocabulary; no user-generated food names | — Pending |
 
 ---
-*Last updated: 2026-03-18 — Phase 09 complete: recipe creation and editing UI (FAB, editor tabs, metadata form, ingredient editor, step editor, image upload, recipe settings with lock/duplicate) shipped*
+*Last updated: 2026-03-20 — Milestone v1.1 started: skill bundle for AI agent consumption of recipe-manager API*

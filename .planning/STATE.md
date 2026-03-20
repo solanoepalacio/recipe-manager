@@ -1,16 +1,16 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: complete
-stopped_at: Completed quick task 260320-eq1
-last_updated: "2026-03-20T00:10:00Z"
+milestone: v1.1
+milestone_name: 02_Skill
+status: defining_requirements
+stopped_at: Milestone v1.1 started — defining requirements
+last_updated: "2026-03-20T00:00:00Z"
 last_activity: 2026-03-20
 progress:
-  total_phases: 12
-  completed_phases: 12
-  total_plans: 45
-  completed_plans: 45
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
 ---
 
 # Project State
@@ -24,8 +24,10 @@ See: .planning/PROJECT.md (updated 2026-03-16)
 
 ## Current Position
 
-Phase: 12 (frontend-admin-panel) — EXECUTING
-Plan: 1 of 5
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-03-20 — Milestone v1.1 started
 
 ## Performance Metrics
 
@@ -96,7 +98,7 @@ Plan: 1 of 5
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-- All design artifacts finalized in mvp_plans/ — no design decisions pending
+- All design artifacts finalized in plans/01_App/ — no design decisions pending
 - packages/shared is compiler-enforced API boundary (backend DTOs implement shared interfaces)
 - AnyAuthGuard applied globally; @Public() opt-out for login, setup, and shared recipe routes
 - Admin is a separate entity (not a User role); exactly one Admin per installation
