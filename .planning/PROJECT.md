@@ -14,6 +14,15 @@ Households can organize, discover, and cook their recipes together — from a se
 
 (None yet — ship to validate)
 
+## Current Milestone: v1.1 Agent Integration
+
+**Goal:** Enable an AI agent to manage household recipes and meal plans through the REST API via a thin CLI wrapper and task-oriented skill files.
+
+**Target features:**
+- `rmapi` CLI tool (auth, base URL, field projection, normalized errors) wrapping all recipe and meal plan endpoints
+- Skill files (.md) documenting task patterns for the agent (recipe discovery, recipe management, meal plan management)
+- Skills index so the agent can discover available capabilities
+
 ### Active
 
 #### Authentication & Setup
@@ -119,4 +128,4 @@ Key architectural decisions already locked:
 | Foods/Units pre-populated by admin | Controlled vocabulary; no user-generated food names | — Pending |
 
 ---
-*Last updated: 2026-03-18 — Phase 09 complete: recipe creation and editing UI (FAB, editor tabs, metadata form, ingredient editor, step editor, image upload, recipe settings with lock/duplicate) shipped*
+*Last updated: 2026-03-20 — Milestone v1.1 started: agent integration (rmapi CLI + skill files)*
