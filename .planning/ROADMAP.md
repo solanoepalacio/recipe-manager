@@ -291,7 +291,10 @@ Plans:
   3. `rmapi recipes delete <id> --yes` deletes the recipe and exits 0; the recipe no longer appears in `rmapi recipes list`
   4. `rmapi recipes duplicate <id>` creates an independent copy with a new `id` and returns it; both the original and the copy appear in the recipe list
   5. `rmapi recipes add-image <id> --url <url>` downloads the image from the URL, uploads it as multipart to the API, and returns the stored image record in JSON
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 16-01-PLAN.md — TDD: recipes create/update/delete/duplicate/add-image (5 commands, 11 tests)
 
 ### Phase 17: Sub-resource Commands
 **Goal**: The agent can manage ingredient sections, individual ingredients, and instruction steps — enabling the full recipe creation chain (section → ingredients → steps) that the recipe-management skill documents.
@@ -349,7 +352,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 13. CLI Scaffold | 1/1 | Complete    | 2026-03-20 |
 | 14. Lookup Commands | 1/1 | Complete    | 2026-03-20 |
 | 15. Recipe Read Commands | 1/1 | Complete    | 2026-03-20 |
-| 16. Recipe Write Commands | 0/TBD | Not started | - |
+| 16. Recipe Write Commands | 0/1 | Not started | - |
 | 17. Sub-resource Commands | 0/TBD | Not started | - |
 | 18. Meal Plan Commands | 0/TBD | Not started | - |
 | 19. Skill Files + Index | 0/TBD | Not started | - |
