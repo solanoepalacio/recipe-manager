@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 16-01-PLAN.md
-last_updated: "2026-03-20T20:19:26.906Z"
+stopped_at: Completed 17-01-PLAN.md
+last_updated: "2026-03-20T20:41:17.179Z"
 last_activity: 2026-03-20
 progress:
   total_phases: 19
   completed_phases: 16
-  total_plans: 49
-  completed_plans: 49
+  total_plans: 51
+  completed_plans: 50
 ---
 
 # Project State
@@ -20,12 +20,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 16 — recipe-write-commands
+**Current focus:** Phase 17 — sub-resource-commands
 
 ## Current Position
 
-Phase: 16 (recipe-write-commands) — EXECUTING
-Plan: 1 of 1
+Phase: 17 (sub-resource-commands) — EXECUTING
+Plan: 1 of 2
 
 ## Performance Metrics
 
@@ -92,6 +92,7 @@ Plan: 1 of 1
 | Phase 14-lookup-commands P01 | 2 | 2 tasks | 5 files |
 | Phase 15-recipe-read-commands P01 | 2 | 2 tasks | 2 files |
 | Phase 16-recipe-write-commands P01 | 2 | 2 tasks | 2 files |
+| Phase 17-sub-resource-commands P01 | 2 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -219,6 +220,8 @@ Recent decisions affecting current work:
 - [Phase 15-01]: --fields on list uses {**data, 'items': apply_fields(data['items'], fields)} to project items while preserving pagination wrapper
 - [Phase 16-recipe-write-commands]: add-image uses requests.post directly (not http.post) for multipart upload — Authorization header only, Content-Type left to requests
 - [Phase 16-recipe-write-commands]: Sparse body dict comprehension filters None values from create/update bodies to avoid nulling fields not supplied
+- [Phase 17-01]: step_body used as Python param name for --body option in steps commands to avoid shadowing the body dict variable in sparse comprehension
+- [Phase 17-01]: reorder commands emit {ok: True} unconditionally because PUT /reorder returns empty body on the backend
 
 ### Pending Todos
 
@@ -245,5 +248,5 @@ None yet.
 ## Session Continuity
 
 Last activity: 2026-03-20
-Stopped at: Completed 16-01-PLAN.md
+Stopped at: Completed 17-01-PLAN.md
 Resume file: None

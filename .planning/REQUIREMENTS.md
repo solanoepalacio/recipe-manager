@@ -30,10 +30,10 @@
 
 ### Sections
 
-- [ ] **SEC-01**: Agent can add an ingredient section — `rmapi sections add <recipe-id> --title "..."`
-- [ ] **SEC-02**: Agent can edit a section title — `rmapi sections update <recipe-id> <section-id> --title "..."`
-- [ ] **SEC-03**: Agent can delete a section — `rmapi sections delete <recipe-id> <section-id> --yes`
-- [ ] **SEC-04**: Agent can reorder sections — `rmapi sections reorder <recipe-id> --ids "id1,id2,id3"`
+- [x] **SEC-01**: Agent can add an ingredient section — `rmapi sections add <recipe-id> --title "..."`
+- [x] **SEC-02**: Agent can edit a section title — `rmapi sections update <recipe-id> <section-id> --title "..."`
+- [x] **SEC-03**: Agent can delete a section — `rmapi sections delete <recipe-id> <section-id> --yes`
+- [x] **SEC-04**: Agent can reorder sections — `rmapi sections reorder <recipe-id> --ids "id1,id2,id3"`
 
 ### Ingredients
 
@@ -44,10 +44,10 @@
 
 ### Steps
 
-- [ ] **STP-01**: Agent can add a step — `rmapi steps add <recipe-id> --body "..." --title "..."`
-- [ ] **STP-02**: Agent can edit a step — `rmapi steps update <recipe-id> <step-id> --body "..." --title "..."`
-- [ ] **STP-03**: Agent can delete a step — `rmapi steps delete <recipe-id> <step-id> --yes`
-- [ ] **STP-04**: Agent can reorder steps — `rmapi steps reorder <recipe-id> --ids "id1,id2,id3"`
+- [x] **STP-01**: Agent can add a step — `rmapi steps add <recipe-id> --body "..." --title "..."`
+- [x] **STP-02**: Agent can edit a step — `rmapi steps update <recipe-id> <step-id> --body "..." --title "..."`
+- [x] **STP-03**: Agent can delete a step — `rmapi steps delete <recipe-id> <step-id> --yes`
+- [x] **STP-04**: Agent can reorder steps — `rmapi steps reorder <recipe-id> --ids "id1,id2,id3"`
 
 ### Meal Plan
 
@@ -103,18 +103,18 @@
 | RCP-05 | Phase 16 | Complete |
 | RCP-06 | Phase 16 | Complete |
 | RCP-07 | Phase 16 | Complete |
-| SEC-01 | Phase 17 | Pending |
-| SEC-02 | Phase 17 | Pending |
-| SEC-03 | Phase 17 | Pending |
-| SEC-04 | Phase 17 | Pending |
+| SEC-01 | Phase 17 | Complete |
+| SEC-02 | Phase 17 | Complete |
+| SEC-03 | Phase 17 | Complete |
+| SEC-04 | Phase 17 | Complete |
 | ING-01 | Phase 17 | Pending |
 | ING-02 | Phase 17 | Pending |
 | ING-03 | Phase 17 | Pending |
 | ING-04 | Phase 17 | Pending |
-| STP-01 | Phase 17 | Pending |
-| STP-02 | Phase 17 | Pending |
-| STP-03 | Phase 17 | Pending |
-| STP-04 | Phase 17 | Pending |
+| STP-01 | Phase 17 | Complete |
+| STP-02 | Phase 17 | Complete |
+| STP-03 | Phase 17 | Complete |
+| STP-04 | Phase 17 | Complete |
 | MPL-01 | Phase 18 | Pending |
 | MPL-02 | Phase 18 | Pending |
 | MPL-03 | Phase 18 | Pending |
