@@ -320,7 +320,10 @@ Plans:
   2. `rmapi meal-plan add --recipe-id <id> --date 2026-03-21 --type dinner` creates an entry and returns its `id`; the entry appears in a subsequent `rmapi meal-plan list`
   3. `rmapi meal-plan move <entry-id> --date 2026-03-22 --type lunch` updates the entry's date and meal type; the change is reflected in the next list call
   4. `rmapi meal-plan remove <entry-id> --yes` deletes the entry; it no longer appears in the list
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 18-01-PLAN.md — TDD: meal-plan list/add/move/remove (4 subcommands, 8 tests) + cli.py registration
 
 ### Phase 19: Skill Files + Index
 **Goal**: The agent can discover all available skills from a lightweight index file and load task-specific skill files on demand — each file documenting exact `rmapi` command sequences, ID-threading patterns, and verified command signatures.
@@ -358,5 +361,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 15. Recipe Read Commands | 1/1 | Complete    | 2026-03-20 |
 | 16. Recipe Write Commands | 1/1 | Complete    | 2026-03-20 |
 | 17. Sub-resource Commands | 2/2 | Complete    | 2026-03-20 |
-| 18. Meal Plan Commands | 0/TBD | Not started | - |
+| 18. Meal Plan Commands | 0/1 | Not started | - |
 | 19. Skill Files + Index | 0/TBD | Not started | - |
