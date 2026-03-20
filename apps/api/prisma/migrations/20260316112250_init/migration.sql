@@ -94,7 +94,6 @@ CREATE TABLE "Recipe" (
     "performTime" INTEGER,
     "sourceUrl" TEXT,
     "isLocked" BOOLEAN NOT NULL DEFAULT false,
-    "landscapeView" BOOLEAN NOT NULL DEFAULT false,
     "shareToken" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
