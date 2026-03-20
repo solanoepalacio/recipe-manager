@@ -1,0 +1,22 @@
+[project]
+name = "rmapi"
+version = "0.1.0"
+description = "Recipe Manager API CLI"
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.1",
+    "requests>=2.32",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+rmapi = "rmapi.cli:cli"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
