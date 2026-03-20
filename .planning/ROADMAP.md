@@ -305,7 +305,11 @@ Plans:
   2. `rmapi ingredients add <recipe-id> <section-id> --food-id <id> --quantity 2 --unit-id <id>` adds an ingredient and returns its `id`; update, delete, and reorder commands work correctly
   3. `rmapi steps add <recipe-id> --body "Boil water"` adds a step and returns its `id`; update, delete, and reorder commands work correctly
   4. The full creation chain — sections add → ingredients add (×N) → steps add (×N) — can be executed in sequence using IDs threaded from each prior command's JSON output
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 17-01-PLAN.md — TDD: sections (add/update/delete/reorder) + steps (add/update/delete/reorder) + cli.py registration
+- [ ] 17-02-PLAN.md — TDD: ingredients (add/update/delete/reorder) with 3-level nested paths
 
 ### Phase 18: Meal Plan Commands
 **Goal**: The agent can read the household meal plan by date range and add, move, and remove entries — completing the search-then-plan workflow.
@@ -353,6 +357,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 14. Lookup Commands | 1/1 | Complete    | 2026-03-20 |
 | 15. Recipe Read Commands | 1/1 | Complete    | 2026-03-20 |
 | 16. Recipe Write Commands | 1/1 | Complete    | 2026-03-20 |
-| 17. Sub-resource Commands | 0/TBD | Not started | - |
+| 17. Sub-resource Commands | 0/2 | Not started | - |
 | 18. Meal Plan Commands | 0/TBD | Not started | - |
 | 19. Skill Files + Index | 0/TBD | Not started | - |
