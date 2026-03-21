@@ -41,7 +41,7 @@ API key auth requires no session: on each request the guard hashes the incoming 
 | Library | Version | Purpose | Why Standard |
 |---------|---------|---------|--------------|
 | `express-session` | ^1.19.0 | Server-side session middleware | Official NestJS docs recommended approach for cookie sessions |
-| `connect-pg-simple` | ^10.0.0 | PostgreSQL session store for express-session | Decided in auth design (mvp_plans/02_auth_design.md); no extra infra |
+| `connect-pg-simple` | ^10.0.0 | PostgreSQL session store for express-session | Decided in auth design (plans/01_App/02_auth_design.md); no extra infra |
 | `bcrypt` | ^5.1.x | Password hashing for User and Admin | Widely used, easy to configure, fine for new projects |
 | `@types/express-session` | ^1.18.x | TypeScript types for express-session | express-session does not ship its own types |
 | `@types/bcrypt` | ^5.0.x | TypeScript types for bcrypt | Required for TS compilation |
@@ -629,8 +629,8 @@ describe('SessionAuthGuard', () => {
 - NestJS official docs (docs.nestjs.com/custom-decorators) — createParamDecorator
 - connect-pg-simple README (github.com/voxpelli/node-connect-pg-simple) — version 10.0.0, createTableIfMissing option
 - Project: `apps/api/prisma/schema.prisma` — actual field names (resetToken, resetTokenExpiry)
-- Project: `mvp_plans/02_auth_design.md` — locked auth design decisions
-- Project: `mvp_plans/03_api_design.md` — endpoint contract
+- Project: `plans/01_App/02_auth_design.md` — locked auth design decisions
+- Project: `plans/01_App/03_api_design.md` — endpoint contract
 
 ### Secondary (MEDIUM confidence)
 

@@ -520,7 +520,7 @@ vi.mock('@dnd-kit/sortable', () => ({
 - `packages/shared/src/enums.ts` — confirmed `MealType` enum values
 - `apps/web/vitest.config.ts` — confirmed test framework (Vitest + jsdom)
 - `.planning/phases/10-frontend-meal-planner/10-UI-SPEC.md` — full component and interaction contract
-- `mvp_plans/03_api_design.md` — confirmed meal plan endpoint signatures
+- `plans/01_App/03_api_design.md` — confirmed meal plan endpoint signatures
 
 ### Secondary (MEDIUM confidence)
 

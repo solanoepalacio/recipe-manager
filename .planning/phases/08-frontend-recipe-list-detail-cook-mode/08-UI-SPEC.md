@@ -21,9 +21,9 @@ When this spec is ambiguous or silent on a detail, open the hi-fi file and match
 
 | View | File |
 |------|------|
-| Recipe list + app shell (search, filter, sort, pagination) | `mvp_plans/hifi/02_app_shell.html` |
-| Recipe detail (ingredients, instructions, images, metadata) | `mvp_plans/hifi/03_recipe_detail.html` |
-| Cook mode (full-screen, step navigation) | `mvp_plans/hifi/05_cook_mode.html` |
+| Recipe list + app shell (search, filter, sort, pagination) | `plans/01_App/hifi/02_app_shell.html` |
+| Recipe detail (ingredients, instructions, images, metadata) | `plans/01_App/hifi/03_recipe_detail.html` |
+| Cook mode (full-screen, step navigation) | `plans/01_App/hifi/05_cook_mode.html` |
 
 ---
 

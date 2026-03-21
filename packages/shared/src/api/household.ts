@@ -7,7 +7,7 @@
  *   GET /api/household/members/:id
  *   PATCH /api/household/members/:id
  *   DELETE /api/household/members/:id
- * Sources: mvp_plans/03_api_design.md + mvp_plans/01_tech_stack_and_data_model.md
+ * Sources: plans/01_App/03_api_design.md + plans/01_App/01_tech_stack_and_data_model.md
  */
 import { Gender, UserType } from '../enums';
 

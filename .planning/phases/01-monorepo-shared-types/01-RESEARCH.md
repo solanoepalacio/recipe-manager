@@ -16,7 +16,7 @@
 **Shared types coverage:**
 - Only create type files for domains needed in Phase 1–3: `auth.ts`, `setup.ts`, `profile.ts`, `household.ts`, `common.ts`, `enums.ts`
 - Type files for later domains (recipes, ingredients, steps, images, meal-plan, foods, units, admin) are omitted from the package and barrel export — they will be added by the phase that implements them
-- Fields must be pulled from both `mvp_plans/01_tech_stack_and_data_model.md` (entity field names and types) and `mvp_plans/03_api_design.md` (request/response shapes). Both sources must be reconciled before writing types.
+- Fields must be pulled from both `plans/01_App/01_tech_stack_and_data_model.md` (entity field names and types) and `plans/01_App/03_api_design.md` (request/response shapes). Both sources must be reconciled before writing types.
 - `common.ts` exports `PaginatedResponse<T>` and `ErrorResponse` (needed universally)
 - `enums.ts` exports `Gender` and `MealType`
 
@@ -488,7 +488,7 @@ Verified patterns from official sources and project design artifacts:
 ### PaginatedResponse and ErrorResponse (common.ts)
 ```typescript
 // packages/shared/src/common.ts
-// Response shape from mvp_plans/03_api_design.md: { items, total, page, perPage }
+// Response shape from plans/01_App/03_api_design.md: { items, total, page, perPage }
 export interface PaginatedResponse<T> {
   items: T[];
   total: number;
@@ -507,7 +507,7 @@ export interface ErrorResponse {
 ### Enums (enums.ts)
 ```typescript
 // packages/shared/src/enums.ts
-// From mvp_plans/01_tech_stack_and_data_model.md
+// From plans/01_App/01_tech_stack_and_data_model.md
 export enum Gender {
   Male = 'male',
   Female = 'female',
@@ -636,9 +636,9 @@ app.useGlobalPipes(
 - [docs.nestjs.com/techniques/validation](https://docs.nestjs.com/techniques/validation) — ValidationPipe configuration
 - [nextjs.org/docs/app/guides/single-page-applications](https://nextjs.org/docs/app/guides/single-page-applications) — Next.js 15 SPA guidance; fetched directly 2026-03-16
 - [yarnpkg.com/features/workspaces](https://yarnpkg.com/features/workspaces) — workspace protocol, glob patterns; fetched directly 2026-03-16
-- `mvp_plans/07_project_structure.md` — Authoritative directory structure and conventions for this project
-- `mvp_plans/01_tech_stack_and_data_model.md` — Entity fields for shared type derivation
-- `mvp_plans/03_api_design.md` — Request/response shapes for shared type derivation
+- `plans/01_App/07_project_structure.md` — Authoritative directory structure and conventions for this project
+- `plans/01_App/01_tech_stack_and_data_model.md` — Entity fields for shared type derivation
+- `plans/01_App/03_api_design.md` — Request/response shapes for shared type derivation
 
 ### Secondary (MEDIUM confidence)
 - [prisma.io/docs/guides/nestjs](https://www.prisma.io/docs/guides/nestjs) — PrismaService implementation pattern (fetched; confirmed `PrismaClient` extension + `OnModuleInit`)
@@ -654,7 +654,7 @@ app.useGlobalPipes(
 
 **Confidence breakdown:**
 - Standard stack: HIGH — all packages are project decisions already locked; versions from npm current stable
-- Architecture: HIGH — all patterns derived directly from `mvp_plans/07_project_structure.md` (authoritative) + verified from official docs
+- Architecture: HIGH — all patterns derived directly from `plans/01_App/07_project_structure.md` (authoritative) + verified from official docs
 - Pitfalls: HIGH — Prisma/NestJS/Yarn interactions are well-documented; direct source confirmation for key items
 
 **Research date:** 2026-03-16

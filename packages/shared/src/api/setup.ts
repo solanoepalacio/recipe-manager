@@ -1,7 +1,7 @@
 /**
  * Setup domain types.
  * Endpoints: GET /api/setup, POST /api/setup
- * Sources: mvp_plans/03_api_design.md + mvp_plans/01_tech_stack_and_data_model.md
+ * Sources: plans/01_App/03_api_design.md + plans/01_App/01_tech_stack_and_data_model.md
  */
 
 /** GET /api/setup — check if setup is required */

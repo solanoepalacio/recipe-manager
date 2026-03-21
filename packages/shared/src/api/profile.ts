@@ -1,7 +1,7 @@
 /**
  * Profile domain types.
  * Endpoints: GET /api/profile, PATCH /api/profile
- * Sources: mvp_plans/03_api_design.md + mvp_plans/01_tech_stack_and_data_model.md
+ * Sources: plans/01_App/03_api_design.md + plans/01_App/01_tech_stack_and_data_model.md
  */
 import { Gender } from '../enums';
 

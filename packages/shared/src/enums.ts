@@ -1,6 +1,6 @@
 /**
  * User gender field.
- * From mvp_plans/01_tech_stack_and_data_model.md: User.gender
+ * From plans/01_App/01_tech_stack_and_data_model.md: User.gender
  */
 export enum Gender {
   Male = 'male',
@@ -22,7 +22,7 @@ export enum UserType {
 
 /**
  * Meal plan entry meal type.
- * From mvp_plans/01_tech_stack_and_data_model.md: MealPlanEntry.mealType
+ * From plans/01_App/01_tech_stack_and_data_model.md: MealPlanEntry.mealType
  * Values: breakfast | lunch | dinner | snack | dessert
  */
 export enum MealType {

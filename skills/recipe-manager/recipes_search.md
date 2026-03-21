@@ -22,7 +22,7 @@ Authentication required (see `shared.md`). Returns recipes belonging to the auth
 ## When to use search vs foodId
 
 - Use `search` to find recipes by name (e.g., "tortilla", "pollo").
-- Use `foodId` to find recipes that use a specific ingredient. Obtain the food ID from `GET /api/foods?search=<name>` (see `recipes_create.md`).
+- Use `foodId` to find recipes that use a specific ingredient. Obtain the food ID from `GET /api/foods` (see `recipes_create.md`) — the endpoint returns all foods as a plain array with no filtering; scan the array by name to find the matching `id`.
 - Both can be combined: `?search=tortilla&foodId=<uuid>` returns recipes named "tortilla" that also contain the specified food.
 
 ## Response
@@ -97,4 +97,4 @@ Note: the response envelope uses `perPage` (not `pageSize`). The query parameter
 ## Cross-references
 
 - To fetch the full detail of a recipe, use the `id` from a list item with `GET /api/recipes/:id` (see `recipes_get.md`).
-- To obtain a `foodId` for filtering, use `GET /api/foods?search=<name>` (see `recipes_create.md`).
+- To obtain a `foodId` for filtering, use `GET /api/foods` (see `recipes_create.md`) and scan the returned array by name.

@@ -373,7 +373,7 @@ The design doc (`03_api_design.md` line 154) specifies `GET /api/recipes/shared/
 - `.planning/phases/11-frontend-profile-household-shared-recipe/11-UI-SPEC.md` — approved visual + interaction contract
 
 ### Secondary (MEDIUM confidence)
-- `mvp_plans/03_api_design.md` — design doc; API route for public recipe (`/api/recipes/shared/:token`) differs from implementation; implementation wins
+- `plans/01_App/03_api_design.md` — design doc; API route for public recipe (`/api/recipes/shared/:token`) differs from implementation; implementation wins
 - STATE.md accumulated decisions — routing and auth patterns established in Phases 7-10
 
 ---

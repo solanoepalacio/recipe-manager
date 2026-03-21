@@ -58,7 +58,7 @@ Build the full frontend admin panel: admin login at `/admin/login`, first-time s
 - `.planning/phases/12-frontend-admin-panel/12-UI-SPEC.md` — Complete visual and interaction spec: shell layout, components, copy, color, spacing, interaction contracts for every admin screen. Status: draft (checker sign-off pending but content is the authoritative design guide).
 
 ### API contract
-- `mvp_plans/03_api_design.md` — All admin endpoints: `/admin/auth/login`, `/admin/auth/logout`, `/admin/users`, `/admin/households`, `/admin/foods`, `/admin/units`, `/admin/tokens`. Also `/setup` (GET + POST). Route shapes, guards, query params.
+- `plans/01_App/03_api_design.md` — All admin endpoints: `/admin/auth/login`, `/admin/auth/logout`, `/admin/users`, `/admin/households`, `/admin/foods`, `/admin/units`, `/admin/tokens`. Also `/setup` (GET + POST). Route shapes, guards, query params.
 
 ### Shared types
 - `packages/shared/src/api/admin.ts` — Existing admin response types (`AdminUserResponse`, `AdminHouseholdResponse`, `AdminFoodResponse`, `AdminUnitResponse`, `AdminTokenResponse`, `AdminTokenCreatedResponse`). `AdminMeResponse` must be added here in plan 12-01.
@@ -70,7 +70,7 @@ Build the full frontend admin panel: admin login at `/admin/login`, first-time s
 - `apps/web/src/app/(app)/layout.tsx` — `ProtectedLayout` redirect pattern; admin layout guard follows the same shape
 
 ### Project conventions
-- `mvp_plans/07_project_structure.md` — Folder structure, naming conventions, test layout
+- `plans/01_App/07_project_structure.md` — Folder structure, naming conventions, test layout
 
 </canonical_refs>
 

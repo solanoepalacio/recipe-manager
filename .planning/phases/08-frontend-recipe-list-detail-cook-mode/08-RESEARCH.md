@@ -25,7 +25,7 @@
 
 Phase 8 builds three pages on top of the shell established in Phase 7: the recipe list page (`/recipes`), the recipe detail page (`/recipes/:slug`), and the cook mode page (`/recipes/:slug/cook`). All three pages are pure client components in an existing Next.js 15 SPA. The backend API (Phases 4 and 5) delivers everything needed — recipe list with search/filter/sort/pagination, recipe detail with all sub-resources, and the shared-type contracts are already finalized in `packages/shared`.
 
-The stack is completely locked: Next.js 15, React 19, TanStack Query v5, Tailwind v4, Lucide React, Sonner, Vitest + Testing Library. No new libraries are needed. The design system is fully specified in the hi-fi wireframes (`mvp_plans/hifi/`). The only state management needed is TanStack Query for server state and `useState` for local UI state (filter values, current cook step, accordion open/close).
+The stack is completely locked: Next.js 15, React 19, TanStack Query v5, Tailwind v4, Lucide React, Sonner, Vitest + Testing Library. No new libraries are needed. The design system is fully specified in the hi-fi wireframes (`plans/01_App/hifi/`). The only state management needed is TanStack Query for server state and `useState` for local UI state (filter values, current cook step, accordion open/close).
 
 One pre-existing failing test must be addressed in Plan 08-01: `AppShell.test.tsx` line 26 expects `Buscar recetas...` placeholder text inside AppShell, but that search UI was moved to `recipes/page.tsx` during Phase 7 post-checkpoint fixes. The test must be updated to remove or adjust this assertion before implementing the real search input in the recipes page.
 
@@ -459,12 +459,12 @@ Sticky behavior: recipe header locks below top bar on scroll (CSS position:stick
 ### Primary (HIGH confidence)
 
 - Direct codebase inspection — `apps/web/src/`, `packages/shared/src/api/recipes.ts`, `apps/web/package.json`
-- `mvp_plans/hifi/02_app_shell.html` — recipe list card layout, search bar, filter actions
-- `mvp_plans/hifi/03_recipe_detail.html` — detail page top bar (sand variant), section accordion, info grid, sticky header
-- `mvp_plans/hifi/05_cook_mode.html` — cook mode step states (done/current/pending), top bar exit, step check-off UX
-- `mvp_plans/06_hifi_wireframes.md` — design system tokens, component patterns
-- `mvp_plans/07_project_structure.md` — frontend conventions, URL structure, route groups, component organization
-- `mvp_plans/03_api_design.md` — API endpoints, `RecipeQueryParams`, `PaginatedResponse` shape
+- `plans/01_App/hifi/02_app_shell.html` — recipe list card layout, search bar, filter actions
+- `plans/01_App/hifi/03_recipe_detail.html` — detail page top bar (sand variant), section accordion, info grid, sticky header
+- `plans/01_App/hifi/05_cook_mode.html` — cook mode step states (done/current/pending), top bar exit, step check-off UX
+- `plans/01_App/06_hifi_wireframes.md` — design system tokens, component patterns
+- `plans/01_App/07_project_structure.md` — frontend conventions, URL structure, route groups, component organization
+- `plans/01_App/03_api_design.md` — API endpoints, `RecipeQueryParams`, `PaginatedResponse` shape
 - `.planning/STATE.md` — Phase 7 post-checkpoint decision: search/filter moved from AppShell to /recipes page only
 - `apps/web/src/components/__tests__/AppShell.test.tsx` — confirmed failing test at line 26
 

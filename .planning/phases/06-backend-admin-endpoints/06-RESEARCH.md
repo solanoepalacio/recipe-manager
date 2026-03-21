@@ -388,8 +388,8 @@ Phase 6 has no formal requirement IDs (it is infrastructure for Phase 12). The s
 - Existing codebase — `apps/api/src/auth/guards/admin-auth.guard.ts` — guard implementation
 - Existing codebase — `apps/api/src/recipes/recipes.service.ts` — pagination pattern
 - Existing codebase — `apps/api/prisma/schema.prisma` — full data model
-- `mvp_plans/02_auth_design.md` — admin auth design decisions
-- `mvp_plans/03_api_design.md` — full admin endpoint contract
+- `plans/01_App/02_auth_design.md` — admin auth design decisions
+- `plans/01_App/03_api_design.md` — full admin endpoint contract
 
 ### Secondary (MEDIUM confidence)
 

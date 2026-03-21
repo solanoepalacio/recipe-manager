@@ -625,7 +625,7 @@ Phase 5 has no formal requirement IDs (it is infrastructure for later phases), b
 - Codebase inspection: `apps/api/src/recipes/recipes.module.ts` — sub-module registration pattern
 - Codebase inspection: `apps/api/prisma/schema.prisma` — `Recipe.shareToken @unique`, `MealPlan` one-to-one with `Household`, `MealPlanEntry.date @db.Date`, `MealType` enum
 - Codebase inspection: `packages/shared/src/common.ts` — `PaginatedResponse<T>` shape: `{ items, total, page, perPage }`
-- Codebase inspection: `mvp_plans/03_api_design.md` — authoritative REST contract for all Phase 5 endpoints
+- Codebase inspection: `plans/01_App/03_api_design.md` — authoritative REST contract for all Phase 5 endpoints
 - Codebase inspection: `apps/api/src/auth/decorators/public.decorator.ts` — `@Public()` implementation
 - Codebase inspection: `apps/api/src/auth/guards/any-auth.guard.ts` — global guard checks `IS_PUBLIC_KEY`
 - Codebase inspection: `apps/api/jest.config.ts` — test configuration confirmed

@@ -543,8 +543,8 @@ const { mutate: createToken } = useMutation({
 - `packages/shared/src/api/admin.ts` — all existing admin response types; AdminMeResponse to be added
 - `packages/shared/src/api/setup.ts` — SetupStatusResponse, CreateAdminRequest shapes
 - `apps/api/src/admin/auth/admin-auth.controller.ts` — existing controller; GET /admin/auth/me added here
-- `mvp_plans/03_api_design.md` — all admin endpoint shapes verified
-- `mvp_plans/07_project_structure.md` — route group conventions and folder structure
+- `plans/01_App/03_api_design.md` — all admin endpoint shapes verified
+- `plans/01_App/07_project_structure.md` — route group conventions and folder structure
 - `.planning/phases/12-frontend-admin-panel/12-UI-SPEC.md` — authoritative visual + interaction spec
 - `apps/web/src/components/ui/ConfirmDialog.tsx` — confirmed inline (not modal), prop signature
 - `apps/web/src/components/recipes/PaginationControls.tsx` — confirmed 10/20/50 options (mismatch with spec's 25)

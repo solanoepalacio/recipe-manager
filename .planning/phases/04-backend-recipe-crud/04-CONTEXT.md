@@ -49,17 +49,17 @@ Full non-admin REST API for recipes and all sub-resources (ingredient sections, 
 **Downstream agents MUST read these before planning or implementing.**
 
 ### API contract
-- `mvp_plans/03_api_design.md` — Authoritative REST contract: all recipe, section, ingredient, step, and image endpoints, route nesting, query params, guard assignments, reorder endpoint shape (`PUT .../reorder` with `{ ids }`)
+- `plans/01_App/03_api_design.md` — Authoritative REST contract: all recipe, section, ingredient, step, and image endpoints, route nesting, query params, guard assignments, reorder endpoint shape (`PUT .../reorder` with `{ ids }`)
 
 ### Data model
-- `mvp_plans/01_tech_stack_and_data_model.md` — Recipe, IngredientSection, RecipeIngredient, InstructionStep, RecipeImage entity fields and relations; ERD
+- `plans/01_App/01_tech_stack_and_data_model.md` — Recipe, IngredientSection, RecipeIngredient, InstructionStep, RecipeImage entity fields and relations; ERD
 
 ### Shared types source of truth
 - `packages/shared/src/index.ts` — Current barrel export; new recipe types must be added and exported here
 - `packages/shared/src/api/auth.ts` — Reference for how prior domain types are structured (MeResponse pattern)
 
 ### Project conventions
-- `mvp_plans/07_project_structure.md` — Folder structure, naming conventions, test layout (`tests/` unit, `integration_tests/` integration)
+- `plans/01_App/07_project_structure.md` — Folder structure, naming conventions, test layout (`tests/` unit, `integration_tests/` integration)
 
 ### Scope changes (apply before planning)
 - Remove `isLocked` field from `apps/api/prisma/schema.prisma` (Recipe model)

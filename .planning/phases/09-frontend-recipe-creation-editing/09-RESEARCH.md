@@ -33,7 +33,7 @@ Phase 9 is the largest frontend phase in the roadmap. It implements a tabbed cre
 
 There is one critical backend gap: `isLocked` was explicitly removed from the Prisma schema in Phase 4 (STATE.md decision: "isLocked removed from Recipe model before service code written"). However, RCP-05 requires lock state to "persist after page refresh," meaning it cannot be localStorage-only. Plan 09-05 must add `isLocked` back to the Prisma schema, the shared types, and the PATCH endpoint before the frontend lock toggle can work.
 
-The UI design is fully specified in wireframes (`mvp_plans/05_ui_views.md` Screen 0–6). The core interaction model is: a floating action button (FAB) on the recipe list opens a name-prompt bottom sheet, the user enters a name, `POST /api/recipes` creates the recipe, and the app navigates to the creation view. Further editing uses this same view (the detail page's "Editar receta" button currently renders as a disabled placeholder). Drag-and-drop for ingredient reorder and step reorder is required — no drag library is currently installed in the web package, so one must be added.
+The UI design is fully specified in wireframes (`plans/01_App/05_ui_views.md` Screen 0–6). The core interaction model is: a floating action button (FAB) on the recipe list opens a name-prompt bottom sheet, the user enters a name, `POST /api/recipes` creates the recipe, and the app navigates to the creation view. Further editing uses this same view (the detail page's "Editar receta" button currently renders as a disabled placeholder). Drag-and-drop for ingredient reorder and step reorder is required — no drag library is currently installed in the web package, so one must be added.
 
 **Primary recommendation:** Use `@dnd-kit/core` + `@dnd-kit/sortable` for drag-and-drop (lightweight, no global DOM event patching, excellent React/Next.js compatibility). Install it as part of Plan 09-03 (step editor) or earlier if needed for ingredient reorder in Plan 09-02.
 
@@ -520,8 +520,8 @@ All endpoints already exist in the backend (Phase 4). No new backend work requir
 ### Primary (HIGH confidence)
 
 - Existing codebase — `apps/web/src/`, `packages/shared/src/api/recipes.ts`, `apps/api/src/recipes/` — direct code inspection
-- `mvp_plans/05_ui_views.md` — authoritative wireframe spec for Recipe Creation screens
-- `mvp_plans/03_api_design.md` — REST contract reference
+- `plans/01_App/05_ui_views.md` — authoritative wireframe spec for Recipe Creation screens
+- `plans/01_App/03_api_design.md` — REST contract reference
 - `.planning/STATE.md` — accumulated decisions, including the isLocked removal decision
 
 ### Secondary (MEDIUM confidence)

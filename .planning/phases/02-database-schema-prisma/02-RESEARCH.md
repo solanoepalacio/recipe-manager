@@ -61,7 +61,7 @@ apps/api/
 │   └── seed.ts             # Seed script — this phase writes it
 ```
 
-This matches `mvp_plans/07_project_structure.md` exactly.
+This matches `plans/01_App/07_project_structure.md` exactly.
 
 ### Pattern 1: UUID primary keys with `@default(cuid())` vs `@default(uuid())`
 
@@ -574,8 +574,8 @@ npx prisma migrate reset
 
 ### Primary (HIGH confidence)
 - Prisma 6.19.2 installed at `apps/api/node_modules/@prisma/client` — confirmed via `node -e` version check
-- `mvp_plans/01_tech_stack_and_data_model.md` — authoritative entity definitions, field types, relations
-- `mvp_plans/07_project_structure.md` — canonical file locations
+- `plans/01_App/01_tech_stack_and_data_model.md` — authoritative entity definitions, field types, relations
+- `plans/01_App/07_project_structure.md` — canonical file locations
 - `.planning/REQUIREMENTS.md` — HH-01 requirement text
 - `apps/api/prisma/schema.prisma` — current stub (generator + datasource only)
 - `packages/shared/src/enums.ts` — Gender and MealType enum values (lowercase)

@@ -50,7 +50,7 @@ Exceptions:
 - `20px (px-5)`: Inherited from Phase 7–8 codebase — `px-5` is the established horizontal page padding; aligning with existing components to avoid layout shift
 - `12px (py-3)`: 12px vertical padding on the Guardar pill provides correct visual weight for a pill-shaped fixed CTA; also used for drag-handle row touch target top/bottom padding
 
-**Source:** `mvp_plans/06_hifi_wireframes.md` component patterns; `apps/web/src/components/layout/Drawer.tsx` and `TopBar.tsx` for existing `px-5/px-6` patterns.
+**Source:** `plans/01_App/06_hifi_wireframes.md` component patterns; `apps/web/src/components/layout/Drawer.tsx` and `TopBar.tsx` for existing `px-5/px-6` patterns.
 
 ---
 
@@ -70,7 +70,7 @@ Exceptions:
 - Step number badge: 13px, weight 600, `text-background` on `bg-foreground` circle (matches InstructionList).
 - Placeholder text: `text-placeholder` (`#C8C4BD`).
 
-**Source:** `mvp_plans/06_hifi_wireframes.md` typography table; `apps/web/src/components/recipes/InstructionList.tsx`, `IngredientList.tsx`, `DetailTopBar.tsx` — direct code inspection.
+**Source:** `plans/01_App/06_hifi_wireframes.md` typography table; `apps/web/src/components/recipes/InstructionList.tsx`, `IngredientList.tsx`, `DetailTopBar.tsx` — direct code inspection.
 
 ---
 
@@ -94,7 +94,7 @@ Exceptions:
 - Dashed upload zone border: `2px dashed #E0DCD5` (`border-dashed border-border`).
 - Drag handle icon (`GripVertical` from Lucide): `text-placeholder` in idle, `text-secondary` while dragging.
 
-**Source:** `apps/web/src/app/globals.css` — token definitions; `mvp_plans/06_hifi_wireframes.md` color table; `apps/web/src/components/layout/Drawer.tsx` scrim pattern.
+**Source:** `apps/web/src/app/globals.css` — token definitions; `plans/01_App/06_hifi_wireframes.md` color table; `apps/web/src/components/layout/Drawer.tsx` scrim pattern.
 
 ---
 

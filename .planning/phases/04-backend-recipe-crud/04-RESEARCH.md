@@ -719,9 +719,9 @@ const RECIPE_INCLUDE = {
 - Codebase inspection: `apps/api/jest.config.ts` — test configuration
 - Codebase inspection: `apps/api/prisma/schema.prisma` — confirmed `isLocked` is still present (must be removed)
 - Codebase inspection: `packages/shared/src/api/auth.ts` — shared type pattern
-- `mvp_plans/03_api_design.md` — authoritative REST contract (all endpoints verified)
-- `mvp_plans/01_tech_stack_and_data_model.md` — entity fields verified
-- `mvp_plans/07_project_structure.md` — folder structure, naming conventions
+- `plans/01_App/03_api_design.md` — authoritative REST contract (all endpoints verified)
+- `plans/01_App/01_tech_stack_and_data_model.md` — entity fields verified
+- `plans/01_App/07_project_structure.md` — folder structure, naming conventions
 - Package inspection: `multer` v2.1.1 present in monorepo `node_modules`; `@nestjs/platform-express` v11.1.16
 
 ### Secondary (MEDIUM confidence)

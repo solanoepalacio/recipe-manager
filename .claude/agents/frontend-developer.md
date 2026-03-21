@@ -28,11 +28,11 @@ Before writing any code, identify what to read based on the task type:
 
 | Task type | Read |
 |-----------|------|
-| UI primitives (Button, Input, Modal, etc.) | `mvp_plans/06_hifi_wireframes.md`, `mvp_plans/hifi/` HTML files |
-| Layout components (TopBar, Drawer, AppShell) | `mvp_plans/06_hifi_wireframes.md`, `mvp_plans/05_ui_views.md` |
-| Auth/setup pages | `mvp_plans/05_ui_views.md`, `mvp_plans/06_hifi_wireframes.md`, `mvp_plans/02_auth_design.md` |
-| App pages | `mvp_plans/05_ui_views.md`, `mvp_plans/06_hifi_wireframes.md`, relevant hi-fi HTML in `mvp_plans/hifi/`, relevant shared types |
-| Integration tests | `mvp_plans/04_user_flows.md`, all relevant artifacts |
+| UI primitives (Button, Input, Modal, etc.) | `plans/01_App/06_hifi_wireframes.md`, `plans/01_App/hifi/` HTML files |
+| Layout components (TopBar, Drawer, AppShell) | `plans/01_App/06_hifi_wireframes.md`, `plans/01_App/05_ui_views.md` |
+| Auth/setup pages | `plans/01_App/05_ui_views.md`, `plans/01_App/06_hifi_wireframes.md`, `plans/01_App/02_auth_design.md` |
+| App pages | `plans/01_App/05_ui_views.md`, `plans/01_App/06_hifi_wireframes.md`, relevant hi-fi HTML in `plans/01_App/hifi/`, relevant shared types |
+| Integration tests | `plans/01_App/04_user_flows.md`, all relevant artifacts |
 
 Also read existing adjacent components to maintain pattern consistency before implementing.
 

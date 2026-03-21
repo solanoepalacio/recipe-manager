@@ -23,7 +23,7 @@ git log main..impl/{task-id}-{short-name} --oneline
 ```
 
 For context on what was expected, read:
-- The task's verification criteria from `mvp_plans/implementation_progress.md`
+- The task's verification criteria from `plans/01_App/implementation_progress.md`
 - The relevant design artifact(s) referenced in the task type
 
 ---

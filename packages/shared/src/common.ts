@@ -1,7 +1,7 @@
 /**
  * Paginated list response wrapper.
  * Matches the API convention: { items, total, page, perPage }
- * from mvp_plans/03_api_design.md.
+ * from plans/01_App/03_api_design.md.
  */
 export interface PaginatedResponse<T> {
   items: T[];

@@ -22,11 +22,11 @@
 
 Phase 7 transforms the bare Next.js scaffold (`apps/web/src/app/layout.tsx` + `page.tsx`) into a working SPA with Tailwind v4 design tokens, an app shell (TopBar + Drawer), auth flows backed by the existing NestJS session-cookie API, and global UX primitives (loading skeletons, toast notifications).
 
-The project structure is pre-designed in `mvp_plans/07_project_structure.md` and the visual contract is locked in `07-UI-SPEC.md`. No design decisions remain open. The implementation work is installing and configuring the correct libraries, wiring client-side auth detection against `GET /api/auth/me`, and implementing the components exactly as specified.
+The project structure is pre-designed in `plans/01_App/07_project_structure.md` and the visual contract is locked in `07-UI-SPEC.md`. No design decisions remain open. The implementation work is installing and configuring the correct libraries, wiring client-side auth detection against `GET /api/auth/me`, and implementing the components exactly as specified.
 
 The critical architectural choice is **client-side-only auth detection**: because the backend uses HttpOnly express-session cookies (not readable by JS), the frontend must call `GET /api/auth/me` on mount to determine login state. This means the auth check is async, so every protected page shows a skeleton until the check resolves. There is no JWT token the frontend can read; middleware-based redirects cannot verify session validity without a token in a readable cookie.
 
-**Primary recommendation:** Install Tailwind v4 (CSS-first config via `@theme` in globals.css — no `tailwind.config.ts` needed), TanStack Query v5 (`@tanstack/react-query`), `lucide-react`, and `sonner`. Implement auth via React Context + `useEffect` fetch of `/api/auth/me`. Use Next.js App Router route groups exactly as specified in `mvp_plans/07_project_structure.md`.
+**Primary recommendation:** Install Tailwind v4 (CSS-first config via `@theme` in globals.css — no `tailwind.config.ts` needed), TanStack Query v5 (`@tanstack/react-query`), `lucide-react`, and `sonner`. Implement auth via React Context + `useEffect` fetch of `/api/auth/me`. Use Next.js App Router route groups exactly as specified in `plans/01_App/07_project_structure.md`.
 
 ---
 
@@ -41,7 +41,7 @@ The critical architectural choice is **client-side-only auth detection**: becaus
 | tailwindcss | ^4.x | Utility CSS + design tokens | v4 is stable (Jan 2025), CSS-first config, no tailwind.config.ts needed |
 | @tailwindcss/postcss | ^4.x | PostCSS plugin for Tailwind v4 | Required v4 plugin (replaces postcss-based v3 setup) |
 | postcss | ^8.x | Build pipeline | Required by @tailwindcss/postcss |
-| @tanstack/react-query | ^5.x | Server state, caching, loading states | Project decision per mvp_plans/07_project_structure.md |
+| @tanstack/react-query | ^5.x | Server state, caching, loading states | Project decision per plans/01_App/07_project_structure.md |
 | lucide-react | latest | Icon set | Locked by UI-SPEC — all icons are lucide |
 | sonner | latest | Toast notifications | Lightest (2-3KB), zero dependencies, call `toast()` from anywhere |
 
@@ -58,7 +58,7 @@ The critical architectural choice is **client-side-only auth detection**: becaus
 | sonner | react-hot-toast | Both are ~equal size; sonner is slightly more recent, has richer default styles, adopted by shadcn ecosystem |
 | sonner | react-toastify | react-toastify is heavier (~20KB); unnecessary for this design |
 | Tailwind v4 | Tailwind v3 | v3 would require `tailwind.config.ts`; UI-SPEC was written expecting v4's CSS token system; v4 is the current stable release |
-| TanStack Query | SWR | Project decision locked in mvp_plans/07_project_structure.md — use TanStack Query |
+| TanStack Query | SWR | Project decision locked in plans/01_App/07_project_structure.md — use TanStack Query |
 
 **Installation:**
 ```bash
@@ -72,7 +72,7 @@ yarn workspace @recipe-manager/web add -D @tanstack/react-query-devtools
 
 ### Recommended Project Structure
 
-The full structure is pre-defined in `mvp_plans/07_project_structure.md`. Phase 7 creates these paths:
+The full structure is pre-defined in `plans/01_App/07_project_structure.md`. Phase 7 creates these paths:
 
 ```
 apps/web/src/
@@ -475,7 +475,7 @@ This self-hosts the font and eliminates the CDN dependency.
 ### Query Keys Factory
 
 ```typescript
-// Source: mvp_plans/07_project_structure.md
+// Source: plans/01_App/07_project_structure.md
 // apps/web/src/lib/query-keys.ts
 export const queryKeys = {
   auth: {
@@ -639,7 +639,7 @@ Vitest is preferred over Jest for Next.js 15 + React 19: fewer compatibility iss
 - [Sonner GitHub](https://github.com/emilkowalski/sonner) — install and usage
 - [Next.js Authentication Guide](https://nextjs.org/docs/app/building-your-application/authentication) — HttpOnly cookie auth pattern
 - [Next.js Route Groups](https://nextjs.org/docs/app/api-reference/file-conventions/route-groups) — (auth)/(app)/(admin) layout pattern
-- `mvp_plans/07_project_structure.md` — canonical project structure, component locations, query key factory pattern, api-client design
+- `plans/01_App/07_project_structure.md` — canonical project structure, component locations, query key factory pattern, api-client design
 - `07-UI-SPEC.md` — design tokens, component specs, interaction contracts, breakpoints
 
 ### Secondary (MEDIUM confidence)
@@ -659,7 +659,7 @@ Vitest is preferred over Jest for Next.js 15 + React 19: fewer compatibility iss
 **Confidence breakdown:**
 
 - Standard stack: HIGH — versions confirmed from package.json; Tailwind v4 stable confirmed; library choices locked by project design docs
-- Architecture: HIGH — project structure is pre-designed in mvp_plans/07_project_structure.md; patterns verified against official docs
+- Architecture: HIGH — project structure is pre-designed in plans/01_App/07_project_structure.md; patterns verified against official docs
 - Auth pattern: HIGH — HttpOnly cookie + fetch `/api/auth/me` is the canonical approach for this backend; confirmed by auth design doc
 - Pitfalls: MEDIUM — CORS pitfall based on dev experience cross-verified with Next.js rewrite docs; other pitfalls from official docs
 - Test setup: MEDIUM — Vitest recommendation from Next.js 15 docs; specific file structure is by convention

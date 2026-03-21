@@ -1,12 +1,12 @@
 # CLAUDE.md — Recipe Manager
 
-The **pre-implementation design phase is complete**. All design artifacts are finalized in `mvp_plans/`. The project is now in the **implementation phase**.
+The **pre-implementation design phase is complete**. All design artifacts are finalized in `plans/01_App/`. The project is now in the **implementation phase**.
 
 ---
 
 ## What We're Building
 
-A full-stack recipe manager application. The feature scope is defined in `mvp_plans/user_stories.md`.
+A full-stack recipe manager application. The feature scope is defined in `plans/01_App/user_stories.md`.
 
 Key constraints:
 - The backend API has two clients: the **UI** (human users, session auth) and an **agent** (API key auth). Both use the same endpoints for all non-admin functionality.
@@ -42,7 +42,7 @@ Agent definitions live in `.claude/agents/`.
 
 ## Design Artifacts
 
-All planning documents live in `mvp_plans/`. Filenames follow the pattern `{step-number}_{short_name}.md`.
+All planning documents live in `plans/01_App/`. Filenames follow the pattern `{step-number}_{short_name}.md`.
 
 | File | Purpose |
 |------|---------|

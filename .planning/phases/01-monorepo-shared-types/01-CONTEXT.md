@@ -16,7 +16,7 @@ Set up the Yarn v4 monorepo with three workspaces (`apps/api`, `apps/web`, `pack
 ### Shared types coverage
 - Only create type files for domains needed in **Phase 1–3**: `auth.ts`, `setup.ts`, `profile.ts`, `household.ts`, `common.ts`, `enums.ts`
 - Type files for later domains (recipes, ingredients, steps, images, meal-plan, foods, units, admin) are **omitted** from the package and barrel export — they will be added by the phase that implements them
-- Fields must be pulled from **both** `mvp_plans/01_tech_stack_and_data_model.md` (entity field names and types) **and** `mvp_plans/03_api_design.md` (request/response shapes). Both sources must be reconciled before writing types.
+- Fields must be pulled from **both** `plans/01_App/01_tech_stack_and_data_model.md` (entity field names and types) **and** `plans/01_App/03_api_design.md` (request/response shapes). Both sources must be reconciled before writing types.
 - `common.ts` exports `PaginatedResponse<T>` and `ErrorResponse` (needed universally)
 - `enums.ts` exports `Gender` and `MealType`
 
@@ -44,14 +44,14 @@ Set up the Yarn v4 monorepo with three workspaces (`apps/api`, `apps/web`, `pack
 **Downstream agents MUST read these before planning or implementing.**
 
 ### Monorepo structure and conventions
-- `mvp_plans/07_project_structure.md` — Authoritative directory structure, package names (`@recipe-manager/api`, `@recipe-manager/web`, `@recipe-manager/shared`), tsconfig strategy, backend/frontend conventions, test layout
+- `plans/01_App/07_project_structure.md` — Authoritative directory structure, package names (`@recipe-manager/api`, `@recipe-manager/web`, `@recipe-manager/shared`), tsconfig strategy, backend/frontend conventions, test layout
 
 ### Shared types source of truth
-- `mvp_plans/01_tech_stack_and_data_model.md` — Entity field names, types, and relationships for auth, profile, household domains
-- `mvp_plans/03_api_design.md` — Request/response shapes for every endpoint; what each domain type needs to express
+- `plans/01_App/01_tech_stack_and_data_model.md` — Entity field names, types, and relationships for auth, profile, household domains
+- `plans/01_App/03_api_design.md` — Request/response shapes for every endpoint; what each domain type needs to express
 
 ### Scope
-- `mvp_plans/user_stories.md` — MVP feature requirements (read to understand what shared types must support long-term)
+- `plans/01_App/user_stories.md` — MVP feature requirements (read to understand what shared types must support long-term)
 
 </canonical_refs>
 

@@ -27,10 +27,10 @@ You will be given a task ID, description, branch name, and verification criteria
 Before writing any code:
 
 1. Read the design artifacts relevant to this task:
-   - Shared types task → `mvp_plans/01_tech_stack_and_data_model.md`, `mvp_plans/03_api_design.md`
-   - Database task → `mvp_plans/01_tech_stack_and_data_model.md`, `mvp_plans/02_auth_design.md`
-   - API module task → `mvp_plans/03_api_design.md`, `mvp_plans/02_auth_design.md`, relevant files in `packages/shared/src/api/`
-   - Auth task → `mvp_plans/02_auth_design.md`, `mvp_plans/03_api_design.md`
+   - Shared types task → `plans/01_App/01_tech_stack_and_data_model.md`, `plans/01_App/03_api_design.md`
+   - Database task → `plans/01_App/01_tech_stack_and_data_model.md`, `plans/01_App/02_auth_design.md`
+   - API module task → `plans/01_App/03_api_design.md`, `plans/01_App/02_auth_design.md`, relevant files in `packages/shared/src/api/`
+   - Auth task → `plans/01_App/02_auth_design.md`, `plans/01_App/03_api_design.md`
 
 2. Read existing adjacent modules to understand patterns (e.g., before implementing `household`, read `profile` module). Pattern consistency is mandatory.
 
