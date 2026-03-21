@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: API Ergonomics
 status: unknown
-stopped_at: Completed 18-01-PLAN.md
-last_updated: "2026-03-21T14:18:45.751Z"
+stopped_at: Completed 19-01-PLAN.md
+last_updated: "2026-03-21T14:39:28.724Z"
 progress:
   total_phases: 5
   completed_phases: 4
-  total_plans: 5
-  completed_plans: 5
+  total_plans: 7
+  completed_plans: 6
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 18 — Compound Recipe Create
+**Current focus:** Phase 19 — skill-bundle-updates
 
 ## Current Position
 
-Phase: 18 (Compound Recipe Create) — EXECUTING
-Plan: 1 of 1
+Phase: 19 (skill-bundle-updates) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
@@ -47,6 +47,7 @@ Plan: 1 of 1
 | Phase 16-slug-uuid-dual-lookup P01 | 1 | 2 tasks | 4 files | 6 min |
 | Phase 17-batch-ingredient-add P01 | 3 | 2 tasks | 5 files |
 | Phase 18-compound-recipe-create P01 | 3 | 2 tasks | 4 files |
+| Phase 19-skill-bundle-updates P01 | 3 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,8 @@ Recent decisions affecting v1.2:
 - [Phase 18-compound-recipe-create]: generateUniqueSlug stays OUTSIDE $transaction (read-only, avoids locking issues)
 - [Phase 18-compound-recipe-create]: dto.ingredients?.length guard treats both undefined and empty array as no-ingredients case
 - [Phase 18-compound-recipe-create]: BadRequestException (not NotFoundException) for P2003, error message: Invalid ingredient data: food or unit not found
+- [Phase 19-skill-bundle-updates]: Compound path listed first in Recommended sequence — unambiguously the primary agent workflow for recipe creation (3 calls)
+- [Phase 19-skill-bundle-updates]: ?name= documented in shared.md independently so it is discoverable without reading recipes_create.md
 
 ### Pending Todos
 
@@ -100,6 +103,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T14:15:41.207Z
-Stopped at: Completed 18-01-PLAN.md
+Last session: 2026-03-21T14:39:28.722Z
+Stopped at: Completed 19-01-PLAN.md
 Resume file: None
