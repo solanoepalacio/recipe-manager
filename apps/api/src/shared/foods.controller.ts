@@ -1,5 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Controller, Get, Query } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
 import { PrismaService } from '../prisma/prisma.service';
 
 @ApiTags('foods')
@@ -10,8 +10,11 @@ export class FoodsController {
   @Get()
   @ApiOperation({ summary: 'List all available foods (for ingredient pickers)' })
   @ApiResponse({ status: 200, description: 'List of all foods ordered by name' })
-  findAll() {
+  @ApiQuery({ name: 'name', required: false, description: 'Filter foods by name substring (case-insensitive)', type: String })
+  findAll(@Query('name') name?: string) {
+    const trimmed = name?.trim();
     return this.prisma.food.findMany({
+      where: trimmed ? { name: { contains: trimmed, mode: 'insensitive' } } : undefined,
       select: { id: true, name: true },
       orderBy: { name: 'asc' },
     });
