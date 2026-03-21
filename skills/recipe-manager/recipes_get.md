@@ -3,14 +3,36 @@
 ## Endpoint
 
 ```
-GET /api/recipes/:id
+GET /api/recipes/:idOrSlug
 ```
 
-Authentication required (see `shared.md`). Returns the full recipe if it belongs to the authenticated user's household.
+Authentication required (see `shared.md`). Returns the full recipe if it belongs to the authenticated user's household. The `:idOrSlug` parameter accepts either a UUID (`a1b2c3d4-e5f6-7890-abcd-ef1234567890`) or a human-readable slug (`tortilla-espanola`).
 
 - `200` — success, returns full recipe detail
-- `403` — recipe belongs to a different household
-- `404` — recipe not found
+- `404` — recipe not found (also returned if the recipe belongs to a different household — no information leak)
+
+## Slug lookup
+
+The slug is the URL-friendly version of the recipe name, visible in the `slug` field of every recipe response (e.g., `"slug": "tortilla-espanola"`). You can obtain slugs from:
+
+- The `slug` field in search results (`GET /api/recipes` — see `recipes_search.md`)
+- The `slug` field in a `RecipeDetailResponse` after creating or fetching a recipe
+
+Example — fetch by slug:
+
+```
+GET /api/recipes/tortilla-espanola
+```
+
+This returns the same `RecipeDetailResponse` shape as fetching by UUID. If the slug does not exist or belongs to a different household, the response is `404`.
+
+Example — fetch by UUID (unchanged):
+
+```
+GET /api/recipes/a1b2c3d4-e5f6-7890-abcd-ef1234567890
+```
+
+Both paths return identical response shapes.
 
 ## Response shape
 
@@ -83,7 +105,12 @@ Top-level fields:
 
 ## Example
 
-Request:
+Request (by slug):
+```
+GET /api/recipes/tortilla-espanola
+```
+
+Request (by UUID):
 ```
 GET /api/recipes/a1b2c3d4-e5f6-7890-abcd-ef1234567890
 ```
@@ -165,5 +192,6 @@ Response:
 ## Cross-references
 
 - The `id` from this response is used as `:id` in all sub-resource endpoints: sections, ingredients, steps, and images (see `recipes_edit.md`, `recipes_image.md`).
-- To find a recipe `id`, search via `GET /api/recipes` (see `recipes_search.md`).
+- To find a recipe `id` or `slug`, search via `GET /api/recipes` (see `recipes_search.md`).
+- To find a recipe `slug`, search via `GET /api/recipes` (see `recipes_search.md`) — each result includes a `slug` field.
 - Sub-resource `id` values (section, ingredient, step, image) are used for update and delete operations in `recipes_edit.md` and `recipes_image.md`.
