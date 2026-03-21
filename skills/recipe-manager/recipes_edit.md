@@ -108,6 +108,63 @@ All fields are optional:
 
 `IngredientResponse` (same shape as in `recipes_get.md` nested ingredients).
 
+## Add multiple ingredients (batch)
+
+### Endpoint
+
+```
+POST /api/recipes/:id/sections/:sectionId/ingredients/batch
+```
+
+Authentication required (see `shared.md`). Adds multiple ingredients to a section in a single atomic call. If any `foodId` or `unitId` is invalid, the entire batch is rolled back — no partial inserts.
+
+New ingredients are appended after existing ingredients in the section (order values continue from the current maximum).
+
+- `201` — all ingredients created, returns updated section
+- `400` — validation error
+- `403` — recipe belongs to a different household
+- `404` — recipe, section not found, or invalid food/unit ID
+
+### Request body
+
+```json
+{
+  "ingredients": [
+    { "foodId": "f1f2f3f4-...", "unitId": "u1u2u3u4-...", "quantity": 6 },
+    { "foodId": "f5f6f7f8-...", "unitId": "u5u6u7u8-...", "quantity": 0.5, "note": "cortadas finas" }
+  ]
+}
+```
+
+Each ingredient item:
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| foodId | string (UUID) | Yes | Food ID from `GET /api/foods` |
+| unitId | string (UUID) | No | Unit ID from `GET /api/units` |
+| quantity | number | No | Amount (can be decimal) |
+| note | string | No | Additional note |
+
+### Response
+
+Returns the full `SectionResponse` for the section, including all existing and newly added ingredients with hydrated `foodName` and `unitName`:
+
+```json
+{
+  "id": "s1s2s3s4-...",
+  "title": null,
+  "order": 0,
+  "ingredients": [
+    { "id": "i1i2i3i4-...", "foodId": "f1f2f3f4-...", "foodName": "Huevo", "unitId": "u1u2u3u4-...", "unitName": "unidad", "quantity": 6, "note": null, "order": 0 },
+    { "id": "i5i6i7i8-...", "foodId": "f5f6f7f8-...", "foodName": "Patata", "unitId": "u5u6u7u8-...", "unitName": "kg", "quantity": 0.5, "note": "cortadas finas", "order": 1 }
+  ]
+}
+```
+
+### When to use
+
+Use batch add instead of single-ingredient POST when adding 2+ ingredients during an edit flow. For recipe creation, prefer the compound create path in `recipes_create.md` which inlines ingredients in the initial POST.
+
 ## Update a step
 
 ### Endpoint
@@ -152,4 +209,5 @@ Status codes for all delete operations: `200` (success), `403` (recipe belongs t
 - To find a recipe by name: see `recipes_search.md`.
 - To manage images (upload/delete): see `recipes_image.md`.
 - To create new sub-resources (sections, ingredients, steps): see `recipes_create.md`.
+- To add multiple ingredients at once: use batch add above, or compound create in `recipes_create.md`.
 - Authentication and error codes: see `shared.md`.
