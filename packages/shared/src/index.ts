@@ -22,5 +22,6 @@ export * from './api/household';
 export * from './common';
 export * from './enums';
 export * from './api/recipes';
+export * from './api/foods-units';
 export * from './api/meal-plan';
 export * from './api/admin';

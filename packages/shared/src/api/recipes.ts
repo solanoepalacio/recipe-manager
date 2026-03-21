@@ -66,6 +66,16 @@ export interface CreateRecipeRequest {
   totalTime?: number;
   performTime?: number;
   sourceUrl?: string;
+  ingredients?: Array<{
+    foodId: string;
+    unitId?: string;
+    quantity?: number;
+    note?: string;
+  }>;
+  steps?: Array<{
+    title?: string;
+    body: string;
+  }>;
 }
 
 export interface UpdateRecipeRequest {
