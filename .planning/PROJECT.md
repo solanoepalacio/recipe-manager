@@ -129,4 +129,4 @@ Key architectural decisions already locked:
 | Foods/Units pre-populated by admin | Controlled vocabulary; no user-generated food names | — Pending |
 
 ---
-*Last updated: 2026-03-21 — Phase 15 complete: shared types extended (FoodItem, UnitItem, BatchCreateIngredientsRequest, extended CreateRecipeRequest) and ?name= filter live on /api/foods and /api/units*
+*Last updated: 2026-03-21 — Phase 16 complete: GET /api/recipes/:id now accepts both UUID and human-readable slug; cross-household slug returns 404 (not 403); write ops unchanged*
