@@ -129,4 +129,4 @@ Key architectural decisions already locked:
 | Foods/Units pre-populated by admin | Controlled vocabulary; no user-generated food names | — Pending |
 
 ---
-*Last updated: 2026-03-21 — Phase 16 complete: GET /api/recipes/:id now accepts both UUID and human-readable slug; cross-household slug returns 404 (not 403); write ops unchanged*
+*Last updated: 2026-03-21 — Phase 17 complete: POST /api/recipes/:id/sections/:sectionId/ingredients/batch live — atomic batch insert, MAX+1 ordering, FK rollback, hydrated SectionResponse*
