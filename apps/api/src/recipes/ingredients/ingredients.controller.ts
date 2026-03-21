@@ -3,15 +3,29 @@ import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { IngredientsService } from './ingredients.service';
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
 import { UpdateIngredientDto } from './dto/update-ingredient.dto';
+import { BatchCreateIngredientsDto } from './dto/batch-create-ingredient.dto';
 import { ReorderDto } from '../dto/reorder.dto';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import { SectionResponse } from '@recipe-manager/shared';
 
 @ApiTags('recipes')
 @Controller('recipes/:id/sections/:sectionId/ingredients')
 export class IngredientsController {
   constructor(private readonly ingredientsService: IngredientsService) {}
 
-  // CRITICAL: reorder before :ingredientId to prevent route collision
+  // CRITICAL: batch and reorder before :ingredientId to prevent route collision
+  @Post('batch')
+  @ApiOperation({ summary: 'Add multiple ingredients to a section atomically' })
+  @ApiResponse({ status: 201, description: 'Ingredients created, returns updated section' })
+  batchCreate(
+    @Param('id') recipeId: string,
+    @Param('sectionId') sectionId: string,
+    @CurrentUser() user: any,
+    @Body() dto: BatchCreateIngredientsDto,
+  ): Promise<SectionResponse> {
+    return this.ingredientsService.batchCreate(recipeId, user.householdId, sectionId, dto);
+  }
+
   @Put('reorder')
   @ApiOperation({ summary: 'Reorder ingredients within a section' })
   @ApiResponse({ status: 200 })
