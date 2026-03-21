@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Patch, Delete, Body, Param, Query } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiQuery, ApiParam } from '@nestjs/swagger';
 import { RecipesService } from './recipes.service';
 import { CreateRecipeDto } from './dto/create-recipe.dto';
 import { UpdateRecipeDto } from './dto/update-recipe.dto';
@@ -32,9 +32,12 @@ export class RecipesController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a recipe by ID' })
+  @ApiOperation({ summary: 'Get a recipe by UUID or slug' })
+  @ApiParam({
+    name: 'id',
+    description: 'Recipe UUID (e.g. 550e8400-e29b-41d4-a716-446655440000) or human-readable slug (e.g. tortilla-de-patatas)',
+  })
   @ApiResponse({ status: 200, description: 'Recipe detail' })
-  @ApiResponse({ status: 403, description: 'Access denied' })
   @ApiResponse({ status: 404, description: 'Not found' })
   findOne(@Param('id') id: string, @CurrentUser() user: any) {
     return this.recipesService.findOne(id, user.householdId);
