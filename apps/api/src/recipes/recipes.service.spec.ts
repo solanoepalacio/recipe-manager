@@ -20,7 +20,7 @@ describe('RecipesService', () => {
   let service: RecipesService;
 
   beforeEach(async () => {
-    jest.clearAllMocks();
+    jest.resetAllMocks();
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         RecipesService,
@@ -140,14 +140,86 @@ describe('RecipesService', () => {
       await expect(service.findOne('nonexistent', 'hh1')).rejects.toThrow(NotFoundException);
     });
 
-    it('throws ForbiddenException when recipe belongs to different household', async () => {
+    it('throws NotFoundException when recipe belongs to different household (cross-household 404)', async () => {
       mockPrisma.recipe.findUnique.mockResolvedValueOnce({
-        id: 'r1',
+        id: '550e8400-e29b-41d4-a716-446655440000',
         householdId: 'hh-other',
         sections: [], steps: [], images: [],
         createdAt: new Date(), updatedAt: new Date(),
       });
-      await expect(service.findOne('r1', 'hh1')).rejects.toThrow(ForbiddenException);
+      await expect(service.findOne('550e8400-e29b-41d4-a716-446655440000', 'hh1')).rejects.toThrow(NotFoundException);
+    });
+  });
+
+  describe('findOne — dual lookup', () => {
+    const VALID_UUID = '550e8400-e29b-41d4-a716-446655440000';
+    const baseRecipe = {
+      id: VALID_UUID,
+      householdId: 'hh1',
+      createdById: 'u1',
+      name: 'Tortilla de Patatas',
+      slug: 'tortilla-de-patatas',
+      description: null,
+      servingsQty: null,
+      servingsUnit: null,
+      prepTime: null,
+      cookTime: null,
+      totalTime: null,
+      performTime: null,
+      sourceUrl: null,
+      shareToken: null,
+      isLocked: false,
+      createdAt: new Date('2026-01-01'),
+      updatedAt: new Date('2026-01-01'),
+      sections: [],
+      steps: [],
+      images: [],
+    };
+
+    it('UUID path: calls findUnique and returns RecipeDetailResponse', async () => {
+      mockPrisma.recipe.findUnique.mockResolvedValueOnce(baseRecipe);
+      const result = await service.findOne(VALID_UUID, 'hh1');
+      expect(mockPrisma.recipe.findUnique).toHaveBeenCalledWith(
+        expect.objectContaining({ where: { id: VALID_UUID }, include: expect.any(Object) }),
+      );
+      expect(result.id).toBe(VALID_UUID);
+      expect(result.slug).toBe('tortilla-de-patatas');
+    });
+
+    it('UUID cross-household: throws NotFoundException (not ForbiddenException)', async () => {
+      mockPrisma.recipe.findUnique.mockResolvedValueOnce({ ...baseRecipe, householdId: 'hh-other' });
+      const rejection = service.findOne(VALID_UUID, 'hh1');
+      await expect(rejection).rejects.toThrow(NotFoundException);
+      await expect(rejection).rejects.not.toThrow(ForbiddenException);
+    });
+
+    it('UUID not found: throws NotFoundException', async () => {
+      mockPrisma.recipe.findUnique.mockResolvedValue(null);
+      await expect(service.findOne(VALID_UUID, 'hh1')).rejects.toThrow(NotFoundException);
+    });
+
+    it('slug path: calls findFirst with householdId + slug', async () => {
+      mockPrisma.recipe.findFirst.mockResolvedValueOnce(baseRecipe);
+      const result = await service.findOne('tortilla-de-patatas', 'hh1');
+      expect(mockPrisma.recipe.findFirst).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { householdId: 'hh1', slug: 'tortilla-de-patatas' },
+          include: expect.any(Object),
+        }),
+      );
+      expect(result.id).toBe(VALID_UUID);
+    });
+
+    it('slug not found: throws NotFoundException', async () => {
+      mockPrisma.recipe.findFirst.mockResolvedValueOnce(null);
+      await expect(service.findOne('tortilla-de-patatas', 'hh1')).rejects.toThrow(NotFoundException);
+    });
+
+    it('ambiguous string (not UUID format): calls findFirst (not findUnique)', async () => {
+      mockPrisma.recipe.findFirst.mockResolvedValueOnce(baseRecipe);
+      await service.findOne('abc123', 'hh1');
+      expect(mockPrisma.recipe.findFirst).toHaveBeenCalled();
+      expect(mockPrisma.recipe.findUnique).not.toHaveBeenCalled();
     });
   });
 

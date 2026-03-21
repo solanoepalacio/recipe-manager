@@ -112,6 +112,10 @@ function toSectionResponse(section: {
   };
 }
 
+function isUuid(value: string): boolean {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+}
+
 export function toRecipeDetailResponse(recipe: any): RecipeDetailResponse {
   return {
     id: recipe.id,
@@ -167,6 +171,24 @@ export class RecipesService {
     });
     if (!recipe) throw new NotFoundException(`Recipe ${recipeId} not found`);
     if (recipe.householdId !== householdId) throw new ForbiddenException('Access denied');
+    return recipe;
+  }
+
+  async findByIdOrSlug(idOrSlug: string, householdId: string) {
+    let recipe: any;
+    if (isUuid(idOrSlug)) {
+      recipe = await this.prisma.recipe.findUnique({
+        where: { id: idOrSlug },
+        include: RECIPE_INCLUDE,
+      });
+      if (recipe && recipe.householdId !== householdId) recipe = null;
+    } else {
+      recipe = await this.prisma.recipe.findFirst({
+        where: { householdId, slug: idOrSlug },
+        include: RECIPE_INCLUDE,
+      });
+    }
+    if (!recipe) throw new NotFoundException(`Recipe ${idOrSlug} not found`);
     return recipe;
   }
 
@@ -255,7 +277,7 @@ export class RecipesService {
   }
 
   async findOne(id: string, householdId: string): Promise<RecipeDetailResponse> {
-    const recipe = await this.findAndVerifyOwnership(id, householdId);
+    const recipe = await this.findByIdOrSlug(id, householdId);
     return toRecipeDetailResponse(recipe);
   }
 
