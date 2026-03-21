@@ -295,7 +295,7 @@ Plans:
   2. `GET /api/units?name=taza` returns only units whose name contains "taza" (case-insensitive); omitting the param returns the full list unchanged
   3. `packages/shared` exports `FoodItem`, `UnitItem`, `BatchCreateIngredientsRequest`, and the extended `CreateRecipeRequest` with optional `ingredients` and `steps` arrays; `yarn build` in `apps/web` succeeds with no type errors
   4. Swagger UI shows `?name` as an optional query parameter on both `/api/foods` and `/api/units` endpoints
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 15-01: Extend packages/shared (FoodItem, UnitItem, BatchCreateIngredientsRequest, CreateRecipeRequest optional arrays) + verify ValidationPipe transform:true in main.ts
