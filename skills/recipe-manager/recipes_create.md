@@ -26,42 +26,77 @@ Authentication required (see `shared.md`). Creates a new recipe in the authentic
 | totalTime | integer | No | Total time in minutes |
 | performTime | integer | No | Active hands-on time in minutes |
 | sourceUrl | string | No | Must be a valid URL if provided |
+| ingredients | array | No | Inline ingredients for the default section (see Compound create below) |
+| steps | array | No | Inline instruction steps (see Compound create below) |
 
 ### Response
 
 Full `RecipeDetailResponse` — same shape as `GET /api/recipes/:id` (see `recipes_get.md`). The response includes a `sections` array with one auto-created default section. Use `sections[0].id` as the `:sectionId` when adding ingredients without creating additional sections.
 
+## Compound create (recommended)
+
+`POST /api/recipes` accepts optional `ingredients[]` and `steps[]` arrays to create the recipe, all ingredients, and all steps in a single atomic call. If any ingredient references an invalid `foodId` or `unitId`, the entire request is rolled back — no orphaned recipe is created.
+
+### ingredients[] item shape
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| foodId | string (UUID) | Yes | Food ID from `GET /api/foods` |
+| unitId | string (UUID) | No | Unit ID from `GET /api/units` |
+| quantity | number | No | Amount (can be decimal) |
+| note | string | No | Additional note (e.g., "finely chopped") |
+
+All ingredients are added to the auto-created default section in array order.
+
+### steps[] item shape
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| body | string | Yes | Instruction text |
+| title | string | No | Optional step heading |
+
+Steps are ordered by array position.
+
+### Error handling
+
+- `201` — recipe + all ingredients + all steps created atomically
+- `400` with message `"Invalid ingredient data: food or unit not found"` — a `foodId` or `unitId` does not exist; entire request rolled back, no recipe created
+
 ## Resolve food and unit IDs
 
 Ingredients require a `foodId` (required) and optionally a `unitId`. Resolve these from the reference lists before adding ingredients.
 
-### List all foods
+### Resolve food IDs
 
 ```
-GET /api/foods
+GET /api/foods?name=huevo
 ```
 
-Authentication required (see `shared.md`). Returns ALL foods as a plain array (not paginated). No query parameters are supported — the endpoint does not accept a `search` parameter. Scan the array by `name` (case-insensitive match recommended) to find the matching `id`.
+Authentication required (see `shared.md`). The optional `?name=` parameter filters by case-insensitive substring match. Omit it to retrieve the full list. See `shared.md` > Filtering reference lists for details.
 
-Response item shape:
+Response:
 
 ```json
-{ "id": "uuid", "name": "Huevo" }
+[{ "id": "f1f2f3f4-...", "name": "Huevo" }]
 ```
 
-### List all units
+Use the returned `id` as `foodId` in the `ingredients[]` array.
+
+### Resolve unit IDs
 
 ```
-GET /api/units
+GET /api/units?name=kilo
 ```
 
-Authentication required (see `shared.md`). Returns ALL units as a plain array (not paginated). No query parameters are supported.
+Authentication required (see `shared.md`). Same filtering behavior as foods. See `shared.md` > Filtering reference lists for details.
 
-Response item shape:
+Response:
 
 ```json
-{ "id": "uuid", "name": "kilogramo", "abbreviation": "kg" }
+[{ "id": "u1u2u3u4-...", "name": "kilogramo", "abbreviation": "kg" }]
 ```
+
+Use the returned `id` as `unitId` in the `ingredients[]` array (optional).
 
 ## Add a section
 
@@ -157,15 +192,55 @@ Authentication required (see `shared.md`). Adds an instruction step to the recip
 
 ## Recommended sequence
 
-1. **Create the recipe** — `POST /api/recipes` with at least `name`. The response includes `id` (the recipe ID) and `sections[0].id` (the auto-created default section ID).
-2. **Resolve food and unit IDs** — `GET /api/foods` and `GET /api/units`. Scan each list by name to find the matching `id`. Cache the results for reuse across ingredients.
-3. **Add ingredients to the default section** — `POST /api/recipes/:id/sections/:sectionId/ingredients` using `sections[0].id` from step 1 as `:sectionId`. Repeat for each ingredient.
-4. **(Optional) Add named sections** — `POST /api/recipes/:id/sections` with a `title`. Use the returned `id` as `:sectionId` for ingredients in that section.
-5. **Add steps** — `POST /api/recipes/:id/steps` for each instruction step. Steps are ordered by creation order.
+### Compound path (3 calls)
 
-## Example
+1. **Resolve food IDs** — `GET /api/foods?name=<name>` for each unique food. Cache results across ingredients.
+2. **Resolve unit IDs** — `GET /api/units?name=<name>` for each unique unit (skip if no units needed).
+3. **Create the recipe with ingredients and steps** — `POST /api/recipes` with `name`, metadata fields, `ingredients[]`, and `steps[]`.
 
-Step 1 — Create recipe:
+Total: 1 call per unique food + 1 call per unique unit + 1 POST = typically 3 calls for a simple recipe.
+
+### Sequential path (fallback — 11+ calls)
+
+Use this only if you need to add ingredients to multiple named sections (compound create adds all ingredients to the single default section).
+
+1. **Create the recipe** — `POST /api/recipes` with at least `name`. Response includes `id` and `sections[0].id`.
+2. **Resolve food and unit IDs** — `GET /api/foods?name=<name>` and `GET /api/units?name=<name>`.
+3. **Add ingredients one by one** — `POST /api/recipes/:id/sections/:sectionId/ingredients` per ingredient.
+4. **(Optional) Add named sections** — `POST /api/recipes/:id/sections` with a `title`.
+5. **Add steps one by one** — `POST /api/recipes/:id/steps` per step.
+
+## Example: Compound create
+
+Step 1 — Resolve food IDs:
+
+```
+GET /api/foods?name=huevo
+```
+
+Response: `[{ "id": "f1f2f3f4-...", "name": "Huevo" }]`
+
+```
+GET /api/foods?name=patata
+```
+
+Response: `[{ "id": "f5f6f7f8-...", "name": "Patata" }]`
+
+Step 2 — Resolve unit IDs:
+
+```
+GET /api/units?name=unidad
+```
+
+Response: `[{ "id": "u1u2u3u4-...", "name": "unidad", "abbreviation": "ud" }]`
+
+```
+GET /api/units?name=kilo
+```
+
+Response: `[{ "id": "u5u6u7u8-...", "name": "kilogramo", "abbreviation": "kg" }]`
+
+Step 3 — Create recipe with everything:
 
 ```
 POST /api/recipes
@@ -174,38 +249,49 @@ POST /api/recipes
 Request body:
 
 ```json
-{ "name": "Tortilla espanola", "servingsQty": 4, "servingsUnit": "porciones", "prepTime": 15, "cookTime": 20, "totalTime": 35 }
+{
+  "name": "Tortilla espanola",
+  "servingsQty": 4,
+  "servingsUnit": "porciones",
+  "prepTime": 15,
+  "cookTime": 20,
+  "totalTime": 35,
+  "ingredients": [
+    { "foodId": "f1f2f3f4-...", "quantity": 6, "unitId": "u1u2u3u4-..." },
+    { "foodId": "f5f6f7f8-...", "quantity": 0.5, "unitId": "u5u6u7u8-...", "note": "cortadas finas" }
+  ],
+  "steps": [
+    { "body": "Batir los huevos con sal." },
+    { "body": "Freir las patatas en aceite hasta dorar." }
+  ]
+}
 ```
 
 Response (abbreviated):
 
 ```json
-{ "id": "r1r2r3r4-...", "sections": [{ "id": "s1s2s3s4-...", "title": null, "order": 0, "ingredients": [] }], "steps": [], "images": [] }
+{
+  "id": "r1r2r3r4-...",
+  "name": "Tortilla espanola",
+  "slug": "tortilla-espanola",
+  "sections": [{
+    "id": "s1s2s3s4-...",
+    "title": null,
+    "order": 0,
+    "ingredients": [
+      { "id": "i1i2i3i4-...", "foodId": "f1f2f3f4-...", "foodName": "Huevo", "unitId": "u1u2u3u4-...", "unitName": "unidad", "quantity": 6, "note": null, "order": 0 },
+      { "id": "i5i6i7i8-...", "foodId": "f5f6f7f8-...", "foodName": "Patata", "unitId": "u5u6u7u8-...", "unitName": "kg", "quantity": 0.5, "note": "cortadas finas", "order": 1 }
+    ]
+  }],
+  "steps": [
+    { "id": "st1st2st3-...", "title": null, "body": "Batir los huevos con sal.", "order": 0 },
+    { "id": "st4st5st6-...", "title": null, "body": "Freir las patatas en aceite hasta dorar.", "order": 1 }
+  ],
+  "images": []
+}
 ```
 
-Step 2 — Add ingredient (after resolving foodId and unitId from `GET /api/foods` and `GET /api/units`):
-
-```
-POST /api/recipes/r1r2r3r4-.../sections/s1s2s3s4-.../ingredients
-```
-
-Request body:
-
-```json
-{ "foodId": "f1f2f3f4-...", "quantity": 6, "unitId": "u1u2u3u4-...", "note": null }
-```
-
-Step 3 — Add step:
-
-```
-POST /api/recipes/r1r2r3r4-.../steps
-```
-
-Request body:
-
-```json
-{ "body": "Batir los huevos con sal." }
-```
+Total calls: 5 (2 food lookups + 2 unit lookups + 1 POST). A recipe with 1 food and no units: 2 calls total.
 
 ## Cross-references
 
@@ -213,3 +299,4 @@ Request body:
 - To upload images after creating the recipe: see `recipes_image.md`.
 - To edit or delete any sub-resource after creation: see `recipes_edit.md`.
 - Authentication and error codes: see `shared.md`.
+- Food and unit filtering with ?name=: see `shared.md` > Filtering reference lists.
