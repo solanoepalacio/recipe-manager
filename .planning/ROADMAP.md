@@ -281,7 +281,7 @@ Plans:
 - [x] **Phase 15: Shared Types + Name Filters** - Extend packages/shared contract; add ?name= filter to GET /api/foods and GET /api/units (completed -) (completed 2026-03-21)
 - [x] **Phase 16: Slug/UUID Dual Lookup** - GET /api/recipes/:idOrSlug accepts both UUID and slug; household-scoped (completed -) (completed 2026-03-21)
 - [x] **Phase 17: Batch Ingredient Add** - POST /api/recipes/:id/sections/:sectionId/ingredients/batch; atomic insert returning SectionResponse (completed -) (completed 2026-03-21)
-- [ ] **Phase 18: Compound Recipe Create** - POST /api/recipes with optional ingredients[] + steps[]; atomic via prisma.$transaction (completed -)
+- [x] **Phase 18: Compound Recipe Create** - POST /api/recipes with optional ingredients[] + steps[]; atomic via prisma.$transaction (completed -) (completed 2026-03-21)
 - [ ] **Phase 19: Skill Bundle Updates** - Update recipes_create.md, recipes_get.md, recipes_edit.md; document ?name= filter in shared.md (completed -)
 
 ## Phase Details
@@ -382,5 +382,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 15. Shared Types + Name Filters | 2/2 | Complete    | 2026-03-21 | - |
 | 16. Slug/UUID Dual Lookup | 1/1 | Complete    | 2026-03-21 | - |
 | 17. Batch Ingredient Add | 1/1 | Complete    | 2026-03-21 | - |
-| 18. Compound Recipe Create | v1.2 | 0/1 | Not started | - |
+| 18. Compound Recipe Create | 1/1 | Complete   | 2026-03-21 | - |
 | 19. Skill Bundle Updates | v1.2 | 0/2 | Not started | - |

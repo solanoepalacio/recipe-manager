@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: API Ergonomics
 status: unknown
-stopped_at: Completed 17-01-PLAN.md
-last_updated: "2026-03-21T12:27:33.755Z"
+stopped_at: Completed 18-01-PLAN.md
+last_updated: "2026-03-21T14:15:41.209Z"
 progress:
   total_phases: 5
-  completed_phases: 3
-  total_plans: 4
-  completed_plans: 4
+  completed_phases: 4
+  total_plans: 5
+  completed_plans: 5
 ---
 
 # Project State
@@ -19,11 +19,11 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 17 — Batch Ingredient Add
+**Current focus:** Phase 18 — Compound Recipe Create
 
 ## Current Position
 
-Phase: 17 (Batch Ingredient Add) — EXECUTING
+Phase: 18 (Compound Recipe Create) — EXECUTING
 Plan: 1 of 1
 
 ## Performance Metrics
@@ -46,6 +46,7 @@ Plan: 1 of 1
 | Phase 15-shared-types-name-filters P02 | 2 | 2 tasks | 2 files |
 | Phase 16-slug-uuid-dual-lookup P01 | 1 | 2 tasks | 4 files | 6 min |
 | Phase 17-batch-ingredient-add P01 | 3 | 2 tasks | 5 files |
+| Phase 18-compound-recipe-create P01 | 3 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -69,6 +70,9 @@ Recent decisions affecting v1.2:
 - [Phase 16-01]: jest.resetAllMocks() preferred over jest.clearAllMocks() in beforeEach when tests use mockResolvedValueOnce — prevents Once-queue leakage across tests
 - [Phase 17-batch-ingredient-add]: Mappers (toIngredientResponse, toSectionResponse) duplicated in ingredients.service.ts to avoid cross-service coupling
 - [Phase 17-batch-ingredient-add]: POST batch route placed as first IngredientsController method to prevent route collision with :ingredientId parameterized routes
+- [Phase 18-compound-recipe-create]: generateUniqueSlug stays OUTSIDE $transaction (read-only, avoids locking issues)
+- [Phase 18-compound-recipe-create]: dto.ingredients?.length guard treats both undefined and empty array as no-ingredients case
+- [Phase 18-compound-recipe-create]: BadRequestException (not NotFoundException) for P2003, error message: Invalid ingredient data: food or unit not found
 
 ### Pending Todos
 
@@ -96,6 +100,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T12:25:08.496Z
-Stopped at: Completed 17-01-PLAN.md
+Last session: 2026-03-21T14:15:41.207Z
+Stopped at: Completed 18-01-PLAN.md
 Resume file: None
