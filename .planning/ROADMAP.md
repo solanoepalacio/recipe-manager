@@ -324,7 +324,7 @@ Plans:
   2. New ingredients appended to a non-empty section receive correct `order` values (no collisions with existing ingredients)
   3. The returned `SectionResponse` includes fully hydrated `foodName` and `unitName` for every ingredient (no undefined fields)
   4. A failed insert (e.g., invalid foodId) rolls back all items in the batch — no partial inserts
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
 - [ ] 17-01: Define SECTION_WITH_INGREDIENTS_INCLUDE constant + batch-create-ingredient.dto.ts + IngredientsService.batchCreate (MAX(order) start, createMany, re-fetch) + IngredientsController POST batch route + integration tests
