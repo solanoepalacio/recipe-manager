@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: API Ergonomics
 status: unknown
-stopped_at: Completed 19-01-PLAN.md
-last_updated: "2026-03-21T14:39:28.724Z"
+stopped_at: Completed 19-02-PLAN.md
+last_updated: "2026-03-21T14:40:09.716Z"
 progress:
   total_phases: 5
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 7
-  completed_plans: 6
+  completed_plans: 7
 ---
 
 # Project State
@@ -48,6 +48,7 @@ Plan: 2 of 2
 | Phase 17-batch-ingredient-add P01 | 3 | 2 tasks | 5 files |
 | Phase 18-compound-recipe-create P01 | 3 | 2 tasks | 4 files |
 | Phase 19-skill-bundle-updates P01 | 3 | 2 tasks | 2 files |
+| Phase 19-skill-bundle-updates P02 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,8 @@ Recent decisions affecting v1.2:
 - [Phase 18-compound-recipe-create]: BadRequestException (not NotFoundException) for P2003, error message: Invalid ingredient data: food or unit not found
 - [Phase 19-skill-bundle-updates]: Compound path listed first in Recommended sequence — unambiguously the primary agent workflow for recipe creation (3 calls)
 - [Phase 19-skill-bundle-updates]: ?name= documented in shared.md independently so it is discoverable without reading recipes_create.md
+- [Phase 19-02]: recipes_get.md uses :idOrSlug endpoint display to make slug acceptance unambiguous; 403 removed (slug lookup always 404 for cross-household — no information leak)
+- [Phase 19-02]: Batch ingredient section placed after Update an ingredient to group ingredient operations together in recipes_edit.md
 
 ### Pending Todos
 
@@ -103,6 +106,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T14:39:28.722Z
-Stopped at: Completed 19-01-PLAN.md
+Last session: 2026-03-21T14:40:09.714Z
+Stopped at: Completed 19-02-PLAN.md
 Resume file: None

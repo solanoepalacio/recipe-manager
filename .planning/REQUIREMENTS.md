@@ -34,8 +34,8 @@
 
 - [x] **SKILL-09**: Agent reading skill files can discover and use `?name=` filter on foods and units for targeted ID resolution
 - [x] **SKILL-10**: Agent reading `recipes_create.md` can use compound create to build a full recipe in ≤3 calls (previously 11)
-- [ ] **SKILL-11**: Agent reading `recipes_get.md` (or `recipes_search.md`) can navigate directly to a recipe by slug
-- [ ] **SKILL-12**: Agent reading `recipes_edit.md` can use batch ingredient add for the edit flow
+- [x] **SKILL-11**: Agent reading `recipes_get.md` (or `recipes_search.md`) can navigate directly to a recipe by slug
+- [x] **SKILL-12**: Agent reading `recipes_edit.md` can use batch ingredient add for the edit flow
 
 ## v2 Requirements
 
@@ -68,8 +68,8 @@
 | ERGO-03 | Phase 18 | Complete |
 | SKILL-09 | Phase 19 | Complete |
 | SKILL-10 | Phase 19 | Complete |
-| SKILL-11 | Phase 19 | Pending |
-| SKILL-12 | Phase 19 | Pending |
+| SKILL-11 | Phase 19 | Complete |
+| SKILL-12 | Phase 19 | Complete |
 
 **Coverage (v1.1):**
 - v1.1 requirements: 8 total
