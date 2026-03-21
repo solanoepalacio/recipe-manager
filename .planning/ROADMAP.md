@@ -310,7 +310,7 @@ Plans:
   2. A slug belonging to a different household returns 404 (not 403), preventing slug-existence leaks across households
   3. A UUID that does not exist returns 404; a valid UUID continues to work exactly as before
   4. Swagger UI documents `:id` as accepting either a UUID or a slug
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
 - [ ] 16-01: Add isUuid helper + RecipesService.findByIdOrSlug (UUID v4 regex, slug branch with householdId in where predicate, 404-only on miss) + RecipesController wiring + integration tests
