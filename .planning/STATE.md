@@ -4,7 +4,7 @@ milestone: v1.2
 milestone_name: API Ergonomics
 status: unknown
 stopped_at: Completed 18-01-PLAN.md
-last_updated: "2026-03-21T14:15:41.209Z"
+last_updated: "2026-03-21T14:18:45.751Z"
 progress:
   total_phases: 5
   completed_phases: 4

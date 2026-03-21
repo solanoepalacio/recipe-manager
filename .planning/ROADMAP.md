@@ -382,5 +382,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 15. Shared Types + Name Filters | 2/2 | Complete    | 2026-03-21 | - |
 | 16. Slug/UUID Dual Lookup | 1/1 | Complete    | 2026-03-21 | - |
 | 17. Batch Ingredient Add | 1/1 | Complete    | 2026-03-21 | - |
-| 18. Compound Recipe Create | 1/1 | Complete   | 2026-03-21 | - |
+| 18. Compound Recipe Create | 1/1 | Complete    | 2026-03-21 | - |
 | 19. Skill Bundle Updates | v1.2 | 0/2 | Not started | - |
