@@ -106,19 +106,15 @@ Key architectural decisions already locked:
 - **Admin access**: Admin endpoints use a completely separate auth guard (`AdminAuthGuard`); no role field on User
 - **Scope**: Deployment, CI, and agent implementation are explicitly out of scope
 
-## Current Milestone: v1.1 — 02_Skill
+## Current Milestone: v1.2 — API Ergonomics
 
-**Goal:** Produce a self-contained skill bundle (`skills/recipe-manager/`) of Markdown files that enables any AI agent to perform all supported recipe-manager operations via the REST API — with no prior knowledge of the API required.
+**Goal:** Make the REST API significantly more ergonomic for agent clients without breaking the UI client — all changes are purely additive.
 
 **Target features:**
-- `index.md` — startup index listing all files and when to read each
-- `shared.md` — auth header, base URL, error codes, pagination envelope
-- `recipes_search.md` — GET /api/recipes with all query params
-- `recipes_get.md` — GET /api/recipes/:id full detail response shape
-- `recipes_create.md` — create recipe, add sections/ingredients/steps, resolve foods/units
-- `recipes_edit.md` — update/delete recipe metadata, sections, ingredients, steps
-- `recipes_image.md` — multipart image upload and delete
-- `meal_plan.md` — list, create, update, delete meal plan entries
+- `?name=` filter on `GET /api/foods` and `GET /api/units` for targeted ID resolution
+- Compound recipe create — optional `ingredients` and `steps` arrays in `POST /api/recipes`
+- Slug-based recipe lookup — `GET /api/recipes/:id` falls back to slug when value is not a UUID
+- Batch ingredient add — `POST /api/recipes/:id/sections/:sectionId/ingredients/batch`
 
 ## Key Decisions
 
@@ -133,4 +129,4 @@ Key architectural decisions already locked:
 | Foods/Units pre-populated by admin | Controlled vocabulary; no user-generated food names | — Pending |
 
 ---
-*Last updated: 2026-03-20 — Milestone v1.1 started: skill bundle for AI agent consumption of recipe-manager API*
+*Last updated: 2026-03-20 — Milestone v1.2 started: API ergonomics improvements for agent clients*
