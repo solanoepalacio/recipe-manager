@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: API Ergonomics
-status: unknown
-stopped_at: Completed 15-02-PLAN.md
-last_updated: "2026-03-21T10:37:50.018Z"
+status: active
+stopped_at: Completed 16-01-PLAN.md
+last_updated: "2026-03-21T11:26:00.000Z"
 progress:
   total_phases: 5
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 3
+  completed_plans: 3
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 15 — Shared Types + Name Filters
+**Current focus:** Phase 16 — Slug/UUID Dual Lookup
 
 ## Current Position
 
-Phase: 15 (Shared Types + Name Filters) — EXECUTING
-Plan: 1 of 2
+Phase: 16 (Slug/UUID Dual Lookup) — COMPLETE
+Plan: 1 of 1 (all complete)
 
 ## Performance Metrics
 
@@ -44,6 +44,7 @@ Plan: 1 of 2
 *Updated after each plan completion*
 | Phase 15-shared-types-name-filters P01 | 1 | 2 tasks | 4 files |
 | Phase 15-shared-types-name-filters P02 | 2 | 2 tasks | 2 files |
+| Phase 16-slug-uuid-dual-lookup P01 | 1 | 2 tasks | 4 files | 6 min |
 
 ## Accumulated Context
 
@@ -62,6 +63,9 @@ Recent decisions affecting v1.2:
 - [Phase 15-01]: Inlined ingredient/step shapes in CreateRecipeRequest to keep compound create interface self-contained
 - [Phase 15-01]: transform: true added to ValidationPipe in plan 15-01 (not 18) to avoid mid-phase main.ts edits
 - [Phase 15-02]: Conditional where clause with undefined (not empty object) when name is omitted so Prisma sees no filter at all
+- [Phase 16-01]: isUuid is a module-level function (not class method) — no DI needed, placed above @Injectable
+- [Phase 16-01]: findByIdOrSlug sets recipe=null on cross-household UUID (404), findAndVerifyOwnership unchanged for write ops (403)
+- [Phase 16-01]: jest.resetAllMocks() preferred over jest.clearAllMocks() in beforeEach when tests use mockResolvedValueOnce — prevents Once-queue leakage across tests
 
 ### Pending Todos
 
@@ -89,6 +93,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T10:35:16.940Z
-Stopped at: Completed 15-02-PLAN.md
+Last session: 2026-03-21T11:26:00.000Z
+Stopped at: Completed 16-01-PLAN.md
 Resume file: None
