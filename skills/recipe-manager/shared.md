@@ -77,3 +77,28 @@ List endpoints return a paginated envelope:
 | perPage | integer | Number of items per page |
 
 **Important:** The response field is `perPage` (not `pageSize`). The query parameter for requesting page size is `pageSize`. These are different names — do not confuse them.
+
+## Filtering reference lists
+
+The food and unit reference endpoints accept an optional `?name=` query parameter for targeted lookups.
+
+| Endpoint | Filter param | Behavior |
+|----------|-------------|----------|
+| `GET /api/foods?name=tomate` | `name` (optional) | Returns only foods whose name contains "tomate" (case-insensitive substring match) |
+| `GET /api/units?name=taza` | `name` (optional) | Returns only units whose name contains "taza" (case-insensitive substring match) |
+
+When the `name` parameter is **omitted or empty**, the full list is returned unchanged (backward-compatible).
+
+Example — resolve the food ID for "Huevo":
+
+```
+GET /api/foods?name=huevo
+```
+
+Response:
+
+```json
+[{ "id": "f1f2f3f4-...", "name": "Huevo" }]
+```
+
+Use the returned `id` as `foodId` when creating ingredients. This replaces the need to fetch the entire foods list and scan it client-side.
