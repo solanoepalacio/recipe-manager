@@ -61,6 +61,15 @@
 | SKILL-06 | Phase 14 | Complete |
 | SKILL-07 | Phase 14 | Complete |
 | SKILL-08 | Phase 14 | Complete |
+| ERGO-01 | Phase 15 | Pending |
+| ERGO-02 | Phase 15 | Pending |
+| ERGO-04 | Phase 16 | Pending |
+| ERGO-05 | Phase 17 | Pending |
+| ERGO-03 | Phase 18 | Pending |
+| SKILL-09 | Phase 19 | Pending |
+| SKILL-10 | Phase 19 | Pending |
+| SKILL-11 | Phase 19 | Pending |
+| SKILL-12 | Phase 19 | Pending |
 
 **Coverage (v1.1):**
 - v1.1 requirements: 8 total
@@ -69,9 +78,9 @@
 
 **Coverage (v1.2):**
 - v1.2 requirements: 9 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 9 ⚠️
+- Mapped to phases: 9
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-20 — v1.2 requirements added (phases 15+)*
+*Last updated: 2026-03-20 — v1.2 traceability complete (phases 15–19)*

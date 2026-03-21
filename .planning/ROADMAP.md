@@ -1,12 +1,15 @@
 # Roadmap: Recipe Manager
 
-## Overview
+## Milestones
 
-This roadmap takes the project from an empty monorepo to a fully functional household recipe manager. The first six phases build the backend layer-by-layer (infrastructure, database, auth, recipe CRUD, search/sharing/meal plan, admin endpoints). The final six phases deliver the frontend, making every requirement observable to real users. Backend phases validate against the Swagger UI; frontend phases validate through the browser. Every v1 requirement is assigned to the phase where it first becomes fully verifiable.
-
-Milestone v1.1 (phases 13–14) produces the skill bundle — a set of Markdown files that teach an AI agent to consume the recipe-manager REST API with no prior knowledge.
+- ✅ **v1.0 MVP** - Phases 1-12 (shipped 2026-03-19)
+- ✅ **v1.1 Skill Bundle** - Phases 13-14 (shipped 2026-03-20)
+- 🚧 **v1.2 API Ergonomics** - Phases 15-19 (in progress)
 
 ## Phases
+
+<details>
+<summary>✅ v1.0 MVP (Phases 1-12) — SHIPPED 2026-03-19</summary>
 
 **Phase Numbering:**
 - Integer phases (1, 2, 3): Planned milestone work
@@ -26,10 +29,6 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 10: Frontend Meal Planner** - Weekly/monthly calendar, assign recipes, drag-drop, edit/delete entries (completed 2026-03-19)
 - [x] **Phase 11: Frontend Profile + Household + Shared Recipe** - Profile editing, household view, public shared recipe page (completed 2026-03-19)
 - [x] **Phase 12: Frontend Admin Panel** - Admin login, setup wizard, user/household/foods/units/tokens management UI (completed 2026-03-19)
-- [x] **Phase 13: Skill Bundle — Foundation + Read Operations** - index.md, shared.md, recipes_search.md, recipes_get.md (completed 2026-03-20)
-- [x] **Phase 14: Skill Bundle — Write Operations + Meal Plan** - recipes_create.md, recipes_edit.md, recipes_image.md, meal_plan.md (completed 2026-03-20)
-
-## Phase Details
 
 ### Phase 1: Monorepo + Shared Types
 **Goal**: The monorepo compiles cleanly, the shared types package exports the full API boundary, and Swagger is reachable at /api/docs.
@@ -229,11 +228,19 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 12-01-PLAN.md — Backend GET /admin/auth/me + AdminMeResponse type + admin-api-client + AdminAuthProvider + admin login + setup wizard
-- [ ] 12-02-PLAN.md — Admin panel shell: AdminSidebar, AdminTable, AdminForm, OneTimeDisplay, panel layout, query keys, PaginationControls update
-- [ ] 12-03-PLAN.md — Users management (CRUD + password reset URL) + Households management (CRUD + cascade warning)
-- [ ] 12-04-PLAN.md — Foods management (CRUD) + Units management (CRUD with abbreviation)
-- [ ] 12-05-PLAN.md — API Tokens management (create with one-time display, list, revoke)
+- [x] 12-01-PLAN.md — Backend GET /admin/auth/me + AdminMeResponse type + admin-api-client + AdminAuthProvider + admin login + setup wizard
+- [x] 12-02-PLAN.md — Admin panel shell: AdminSidebar, AdminTable, AdminForm, OneTimeDisplay, panel layout, query keys, PaginationControls update
+- [x] 12-03-PLAN.md — Users management (CRUD + password reset URL) + Households management (CRUD + cascade warning)
+- [x] 12-04-PLAN.md — Foods management (CRUD) + Units management (CRUD with abbreviation)
+- [x] 12-05-PLAN.md — API Tokens management (create with one-time display, list, revoke)
+
+</details>
+
+<details>
+<summary>✅ v1.1 Skill Bundle (Phases 13-14) — SHIPPED 2026-03-20</summary>
+
+- [x] **Phase 13: Skill Bundle — Foundation + Read Operations** - index.md, shared.md, recipes_search.md, recipes_get.md (completed 2026-03-20)
+- [x] **Phase 14: Skill Bundle — Write Operations + Meal Plan** - recipes_create.md, recipes_edit.md, recipes_image.md, meal_plan.md (completed 2026-03-20)
 
 ### Phase 13: Skill Bundle — Foundation + Read Operations
 **Goal**: An agent can authenticate, understand shared conventions, and perform all read operations on recipes without prior knowledge of the API.
@@ -262,27 +269,118 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 14-01-PLAN.md — Recipe write operations: recipes_create.md (POST recipe + food/unit resolution + sections + ingredients + steps with recommended sequence), recipes_edit.md (PATCH/DELETE for recipe, sections, ingredients, steps)
-- [ ] 14-02-PLAN.md — Image and meal plan: recipes_image.md (multipart upload + delete), meal_plan.md (list/create/update/delete entries with MealType enum)
+- [x] 14-01-PLAN.md — Recipe write operations: recipes_create.md (POST recipe + food/unit resolution + sections + ingredients + steps with recommended sequence), recipes_edit.md (PATCH/DELETE for recipe, sections, ingredients, steps)
+- [x] 14-02-PLAN.md — Image and meal plan: recipes_image.md (multipart upload + delete), meal_plan.md (list/create/update/delete entries with MealType enum)
+
+</details>
+
+### 🚧 v1.2 API Ergonomics (In Progress)
+
+**Milestone Goal:** Make the REST API significantly more ergonomic for agent clients — all four changes are purely additive, with no breaking changes to the UI client.
+
+- [ ] **Phase 15: Shared Types + Name Filters** - Extend packages/shared contract; add ?name= filter to GET /api/foods and GET /api/units (completed -)
+- [ ] **Phase 16: Slug/UUID Dual Lookup** - GET /api/recipes/:idOrSlug accepts both UUID and slug; household-scoped (completed -)
+- [ ] **Phase 17: Batch Ingredient Add** - POST /api/recipes/:id/sections/:sectionId/ingredients/batch; atomic insert returning SectionResponse (completed -)
+- [ ] **Phase 18: Compound Recipe Create** - POST /api/recipes with optional ingredients[] + steps[]; atomic via prisma.$transaction (completed -)
+- [ ] **Phase 19: Skill Bundle Updates** - Update recipes_create.md, recipes_get.md, recipes_edit.md; document ?name= filter in shared.md (completed -)
+
+## Phase Details
+
+### Phase 15: Shared Types + Name Filters
+**Goal**: The shared package contract is extended for all v1.2 changes, and agents can filter foods and units by name substring in a single request.
+**Depends on**: Phase 14
+**Requirements**: ERGO-01, ERGO-02
+**Success Criteria** (what must be TRUE):
+  1. `GET /api/foods?name=tomate` returns only foods whose name contains "tomate" (case-insensitive); omitting the param returns the full list unchanged
+  2. `GET /api/units?name=taza` returns only units whose name contains "taza" (case-insensitive); omitting the param returns the full list unchanged
+  3. `packages/shared` exports `FoodItem`, `UnitItem`, `BatchCreateIngredientsRequest`, and the extended `CreateRecipeRequest` with optional `ingredients` and `steps` arrays; `yarn build` in `apps/web` succeeds with no type errors
+  4. Swagger UI shows `?name` as an optional query parameter on both `/api/foods` and `/api/units` endpoints
+**Plans**: TBD
+
+Plans:
+- [ ] 15-01: Extend packages/shared (FoodItem, UnitItem, BatchCreateIngredientsRequest, CreateRecipeRequest optional arrays) + verify ValidationPipe transform:true in main.ts
+- [ ] 15-02: Add ?name= filter to FoodsController and UnitsController (conditional Prisma where, @ApiQuery, integration tests)
+
+### Phase 16: Slug/UUID Dual Lookup
+**Goal**: Agents and UI clients can navigate directly to a recipe by its human-readable slug without maintaining a UUID cache, and the existing UUID path is unchanged.
+**Depends on**: Phase 15
+**Requirements**: ERGO-04
+**Success Criteria** (what must be TRUE):
+  1. `GET /api/recipes/tortilla-de-patatas` returns the same `RecipeDetailResponse` shape as `GET /api/recipes/<uuid>` for the same recipe
+  2. A slug belonging to a different household returns 404 (not 403), preventing slug-existence leaks across households
+  3. A UUID that does not exist returns 404; a valid UUID continues to work exactly as before
+  4. Swagger UI documents `:id` as accepting either a UUID or a slug
+**Plans**: TBD
+
+Plans:
+- [ ] 16-01: Add isUuid helper + RecipesService.findByIdOrSlug (UUID v4 regex, slug branch with householdId in where predicate, 404-only on miss) + RecipesController wiring + integration tests
+
+### Phase 17: Batch Ingredient Add
+**Goal**: Agents can add multiple ingredients to a section in a single atomic call, with correct ordering and fully hydrated food/unit names in the response.
+**Depends on**: Phase 15
+**Requirements**: ERGO-05
+**Success Criteria** (what must be TRUE):
+  1. `POST /api/recipes/:id/sections/:sectionId/ingredients/batch` with an array of ingredients inserts all items atomically and returns the updated `SectionResponse`
+  2. New ingredients appended to a non-empty section receive correct `order` values (no collisions with existing ingredients)
+  3. The returned `SectionResponse` includes fully hydrated `foodName` and `unitName` for every ingredient (no undefined fields)
+  4. A failed insert (e.g., invalid foodId) rolls back all items in the batch — no partial inserts
+**Plans**: TBD
+
+Plans:
+- [ ] 17-01: Define SECTION_WITH_INGREDIENTS_INCLUDE constant + batch-create-ingredient.dto.ts + IngredientsService.batchCreate (MAX(order) start, createMany, re-fetch) + IngredientsController POST batch route + integration tests
+
+### Phase 18: Compound Recipe Create
+**Goal**: Agents can create a complete recipe with sections, ingredients, and steps in a single API call that is fully atomic — a FK failure rolls back the entire recipe row.
+**Depends on**: Phase 17
+**Requirements**: ERGO-03
+**Success Criteria** (what must be TRUE):
+  1. `POST /api/recipes` with optional `ingredients[]` and `steps[]` arrays creates the recipe, all ingredients, and all steps in a single transaction and returns a fully hydrated `RecipeDetailResponse`
+  2. A request with an invalid `foodId` or `unitId` in the ingredients array returns an error and leaves no orphaned recipe row in the database
+  3. `POST /api/recipes` with no `ingredients` or `steps` arrays behaves identically to the pre-v1.2 create endpoint (no regression)
+  4. Swagger UI documents the new optional array fields on the `POST /api/recipes` request body
+**Plans**: TBD
+
+Plans:
+- [ ] 18-01: Extend CreateRecipeDto with @ValidateNested({ each: true }) arrays + wrap RecipesService.create in prisma.$transaction + integration tests (success path, FK failure rollback, backward-compat no-arrays path)
+
+### Phase 19: Skill Bundle Updates
+**Goal**: Agent skill files reflect all four v1.2 API changes so an agent reading the updated files can use every new capability without consulting the source code.
+**Depends on**: Phase 18
+**Requirements**: SKILL-09, SKILL-10, SKILL-11, SKILL-12
+**Success Criteria** (what must be TRUE):
+  1. An agent reading the updated `recipes_create.md` can build a full recipe in 3 calls or fewer using the compound create path (previously required 11+ calls)
+  2. An agent reading the updated `recipes_get.md` or `recipes_search.md` can navigate directly to a recipe by slug without needing a UUID
+  3. An agent reading the updated `recipes_edit.md` can add multiple ingredients to a section in a single call using the batch endpoint
+  4. An agent reading the updated `shared.md` (or `recipes_create.md`) understands the `?name=` filter and can resolve a food or unit ID in one targeted call
+**Plans**: TBD
+
+Plans:
+- [ ] 19-01: Update recipes_create.md (compound create path, call-count comparison, ?name= filter for ID resolution) + update shared.md (?name= filter documentation)
+- [ ] 19-02: Update recipes_get.md (slug navigation example) + update recipes_edit.md (batch ingredient add endpoint and pattern)
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 
-| Phase | Plans Complete | Status | Completed |
-|-------|----------------|--------|-----------|
-| 1. Monorepo + Shared Types | 3/3 | Complete   | 2026-03-16 |
-| 2. Database Schema + Prisma | 2/2 | Complete | 2026-03-16 |
-| 3. Backend Auth | 4/4 | Complete   | 2026-03-16 |
-| 4. Backend Recipe CRUD | 4/4 | Complete   | 2026-03-16 |
-| 5. Backend Search, Sharing, Meal Plan | 4/4 | Complete   | 2026-03-16 |
-| 6. Backend Admin Endpoints | 5/5 | Complete   | 2026-03-18 |
-| 7. Frontend Setup + App Shell + Auth Flows | 4/4 | Complete   | 2026-03-18 |
-| 8. Frontend Recipe List + Detail + Cook Mode | 3/3 | Complete | 2026-03-18 |
-| 9. Frontend Recipe Creation + Editing | 5/5 | Complete   | 2026-03-18 |
-| 10. Frontend Meal Planner | 3/3 | Complete   | 2026-03-19 |
-| 11. Frontend Profile + Household + Shared Recipe | 3/3 | Complete    | 2026-03-19 |
-| 12. Frontend Admin Panel | 5/5 | Complete    | 2026-03-19 |
-| 13. Skill Bundle — Foundation + Read Operations | 2/2 | Complete    | 2026-03-20 |
-| 14. Skill Bundle — Write Operations + Meal Plan | 2/2 | Complete    | 2026-03-20 |
+| Phase | Milestone | Plans Complete | Status | Completed |
+|-------|-----------|----------------|--------|-----------|
+| 1. Monorepo + Shared Types | v1.0 | 3/3 | Complete | 2026-03-16 |
+| 2. Database Schema + Prisma | v1.0 | 2/2 | Complete | 2026-03-16 |
+| 3. Backend Auth | v1.0 | 4/4 | Complete | 2026-03-16 |
+| 4. Backend Recipe CRUD | v1.0 | 4/4 | Complete | 2026-03-16 |
+| 5. Backend Search, Sharing, Meal Plan | v1.0 | 4/4 | Complete | 2026-03-16 |
+| 6. Backend Admin Endpoints | v1.0 | 5/5 | Complete | 2026-03-18 |
+| 7. Frontend Setup + App Shell + Auth Flows | v1.0 | 4/4 | Complete | 2026-03-18 |
+| 8. Frontend Recipe List + Detail + Cook Mode | v1.0 | 3/3 | Complete | 2026-03-18 |
+| 9. Frontend Recipe Creation + Editing | v1.0 | 5/5 | Complete | 2026-03-18 |
+| 10. Frontend Meal Planner | v1.0 | 3/3 | Complete | 2026-03-19 |
+| 11. Frontend Profile + Household + Shared Recipe | v1.0 | 3/3 | Complete | 2026-03-19 |
+| 12. Frontend Admin Panel | v1.0 | 5/5 | Complete | 2026-03-19 |
+| 13. Skill Bundle — Foundation + Read Operations | v1.1 | 2/2 | Complete | 2026-03-20 |
+| 14. Skill Bundle — Write Operations + Meal Plan | v1.1 | 2/2 | Complete | 2026-03-20 |
+| 15. Shared Types + Name Filters | v1.2 | 0/2 | Not started | - |
+| 16. Slug/UUID Dual Lookup | v1.2 | 0/1 | Not started | - |
+| 17. Batch Ingredient Add | v1.2 | 0/1 | Not started | - |
+| 18. Compound Recipe Create | v1.2 | 0/1 | Not started | - |
+| 19. Skill Bundle Updates | v1.2 | 0/2 | Not started | - |
