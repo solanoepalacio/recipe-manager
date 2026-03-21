@@ -2,15 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: API Ergonomics
-status: ready_to_plan
-stopped_at: v1.2 roadmap created — Phase 15 ready to plan
-last_updated: "2026-03-20T00:00:00.000Z"
-last_activity: 2026-03-20
+status: unknown
+stopped_at: Completed 15-01-PLAN.md
+last_updated: "2026-03-21T10:33:28.503Z"
 progress:
   total_phases: 5
   completed_phases: 0
-  total_plans: 7
-  completed_plans: 0
+  total_plans: 2
+  completed_plans: 1
 ---
 
 # Project State
@@ -20,20 +19,17 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 15 — Shared Types + Name Filters (v1.2 start)
+**Current focus:** Phase 15 — Shared Types + Name Filters
 
 ## Current Position
 
-Phase: 15 of 19 (Shared Types + Name Filters)
-Plan: 0 of 2 in current phase
-Status: Ready to plan
-Last activity: 2026-03-20 — v1.2 roadmap created (phases 15–19)
-
-Progress: [█████████████░░░░░░░] 65% (v1.0 + v1.1 complete; v1.2 not started)
+Phase: 15 (Shared Types + Name Filters) — EXECUTING
+Plan: 1 of 2
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 49 (phases 1–14)
 - Average duration: ~3.4 min
 - Total execution time: ~2.8 hours
@@ -46,6 +42,7 @@ Progress: [█████████████░░░░░░░] 65% (v1
 | 14. Write Ops + Meal Plan | 2 | 1.5 min |
 
 *Updated after each plan completion*
+| Phase 15-shared-types-name-filters P01 | 1 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -61,6 +58,8 @@ Recent decisions affecting v1.2:
 - v1.2: Compound create must use prisma.$transaction wrapping the full create — no separate creates outside transaction
 - v1.2: Batch ingredient add must compute MAX(order) once before batch, not per-item — prevents order collisions on non-empty sections
 - [Phase 14-02]: recipes_create.md documents GET /api/foods and GET /api/units as full-list endpoints with no search parameter (actual v1.1 implementation has no ?name= filter — v1.2 adds it)
+- [Phase 15-01]: Inlined ingredient/step shapes in CreateRecipeRequest to keep compound create interface self-contained
+- [Phase 15-01]: transform: true added to ValidationPipe in plan 15-01 (not 18) to avoid mid-phase main.ts edits
 
 ### Pending Todos
 
@@ -88,6 +87,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-20
-Stopped at: v1.2 roadmap created; Phase 15 ready to plan
+Last session: 2026-03-21T10:33:28.502Z
+Stopped at: Completed 15-01-PLAN.md
 Resume file: None
