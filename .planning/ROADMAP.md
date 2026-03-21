@@ -352,11 +352,11 @@ Plans:
   2. An agent reading the updated `recipes_get.md` or `recipes_search.md` can navigate directly to a recipe by slug without needing a UUID
   3. An agent reading the updated `recipes_edit.md` can add multiple ingredients to a section in a single call using the batch endpoint
   4. An agent reading the updated `shared.md` (or `recipes_create.md`) understands the `?name=` filter and can resolve a food or unit ID in one targeted call
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
-- [ ] 19-01: Update recipes_create.md (compound create path, call-count comparison, ?name= filter for ID resolution) + update shared.md (?name= filter documentation)
-- [ ] 19-02: Update recipes_get.md (slug navigation example) + update recipes_edit.md (batch ingredient add endpoint and pattern)
+- [ ] 19-01-PLAN.md — Update recipes_create.md (compound create path, call-count comparison, ?name= filter for ID resolution) + update shared.md (?name= filter documentation)
+- [ ] 19-02-PLAN.md — Update recipes_get.md (slug navigation example) + update recipes_edit.md (batch ingredient add endpoint and pattern)
 
 ## Progress
 
