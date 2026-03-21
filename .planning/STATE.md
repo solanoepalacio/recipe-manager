@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: API Ergonomics
-status: complete
+status: unknown
 stopped_at: Completed 17-01-PLAN.md
-last_updated: "2026-03-21T12:25:08.498Z"
+last_updated: "2026-03-21T12:27:33.755Z"
 progress:
   total_phases: 5
   completed_phases: 3
