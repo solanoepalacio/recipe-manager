@@ -28,7 +28,7 @@
 - [x] **ERGO-02**: User can filter units by name substring (`GET /api/units?name=<value>`) — case-insensitive; without param, full list returned unchanged
 - [ ] **ERGO-03**: User can create a recipe with inline ingredients and steps in a single request (`POST /api/recipes` with optional `ingredients[]` + `steps[]`) — all inserted atomically; existing single-field create unchanged
 - [x] **ERGO-04**: User can look up a recipe by its slug (`GET /api/recipes/tortilla-de-patatas`) — same response shape and household scoping as UUID lookup; UUID still works unchanged
-- [ ] **ERGO-05**: User can add multiple ingredients to a section in one call (`POST /api/recipes/:id/sections/:sectionId/ingredients/batch`) — atomic insert, returns updated `SectionResponse`
+- [x] **ERGO-05**: User can add multiple ingredients to a section in one call (`POST /api/recipes/:id/sections/:sectionId/ingredients/batch`) — atomic insert, returns updated `SectionResponse`
 
 ### Skill Bundle
 
@@ -64,7 +64,7 @@
 | ERGO-01 | Phase 15 | Complete |
 | ERGO-02 | Phase 15 | Complete |
 | ERGO-04 | Phase 16 | Complete |
-| ERGO-05 | Phase 17 | Pending |
+| ERGO-05 | Phase 17 | Complete |
 | ERGO-03 | Phase 18 | Pending |
 | SKILL-09 | Phase 19 | Pending |
 | SKILL-10 | Phase 19 | Pending |

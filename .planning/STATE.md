@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: API Ergonomics
-status: unknown
-stopped_at: Completed 16-01-PLAN.md
-last_updated: "2026-03-21T11:29:43.705Z"
+status: complete
+stopped_at: Completed 17-01-PLAN.md
+last_updated: "2026-03-21T12:25:08.498Z"
 progress:
   total_phases: 5
-  completed_phases: 2
-  total_plans: 3
-  completed_plans: 3
+  completed_phases: 3
+  total_plans: 4
+  completed_plans: 4
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Households can organize, discover, and cook their recipes together — from a searchable library to a weekly meal plan to an in-kitchen cook mode.
-**Current focus:** Phase 16 — Slug/UUID Dual Lookup
+**Current focus:** Phase 17 — Batch Ingredient Add
 
 ## Current Position
 
-Phase: 16 (Slug/UUID Dual Lookup) — COMPLETE
-Plan: 1 of 1 (all complete)
+Phase: 17 (Batch Ingredient Add) — EXECUTING
+Plan: 1 of 1
 
 ## Performance Metrics
 
@@ -45,6 +45,7 @@ Plan: 1 of 1 (all complete)
 | Phase 15-shared-types-name-filters P01 | 1 | 2 tasks | 4 files |
 | Phase 15-shared-types-name-filters P02 | 2 | 2 tasks | 2 files |
 | Phase 16-slug-uuid-dual-lookup P01 | 1 | 2 tasks | 4 files | 6 min |
+| Phase 17-batch-ingredient-add P01 | 3 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,8 @@ Recent decisions affecting v1.2:
 - [Phase 16-01]: isUuid is a module-level function (not class method) — no DI needed, placed above @Injectable
 - [Phase 16-01]: findByIdOrSlug sets recipe=null on cross-household UUID (404), findAndVerifyOwnership unchanged for write ops (403)
 - [Phase 16-01]: jest.resetAllMocks() preferred over jest.clearAllMocks() in beforeEach when tests use mockResolvedValueOnce — prevents Once-queue leakage across tests
+- [Phase 17-batch-ingredient-add]: Mappers (toIngredientResponse, toSectionResponse) duplicated in ingredients.service.ts to avoid cross-service coupling
+- [Phase 17-batch-ingredient-add]: POST batch route placed as first IngredientsController method to prevent route collision with :ingredientId parameterized routes
 
 ### Pending Todos
 
@@ -93,6 +96,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T11:26:00.000Z
-Stopped at: Completed 16-01-PLAN.md
+Last session: 2026-03-21T12:25:08.496Z
+Stopped at: Completed 17-01-PLAN.md
 Resume file: None
