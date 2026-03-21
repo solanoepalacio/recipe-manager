@@ -1,10 +1,12 @@
 // apps/api/src/recipes/recipes.service.spec.ts
 import { Test, TestingModule } from '@nestjs/testing';
-import { NotFoundException, ForbiddenException } from '@nestjs/common';
+import { NotFoundException, ForbiddenException, BadRequestException } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { RecipesService } from './recipes.service';
 import { PrismaService } from '../prisma/prisma.service';
 
 const mockPrisma = {
+  $transaction: jest.fn(),
   recipe: {
     findFirst: jest.fn(),
     findUnique: jest.fn(),
@@ -21,6 +23,7 @@ describe('RecipesService', () => {
 
   beforeEach(async () => {
     jest.resetAllMocks();
+    mockPrisma.$transaction.mockImplementation(async (fn: any) => fn(mockPrisma));
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         RecipesService,
@@ -131,6 +134,77 @@ describe('RecipesService', () => {
           }),
         }),
       );
+    });
+  });
+
+  describe('create -- compound', () => {
+    const defaultSectionMock = { id: 'sec1', title: null, order: 0, ingredients: [] };
+
+    it('passes ingredients to nested section create and steps to recipe create', async () => {
+      mockPrisma.recipe.findFirst.mockResolvedValueOnce(null);
+      mockPrisma.recipe.create.mockResolvedValueOnce({
+        id: 'r1', householdId: 'hh1', createdById: 'u1',
+        name: 'Compound Recipe', slug: 'compound-recipe',
+        description: null, servingsQty: null, servingsUnit: null,
+        prepTime: null, cookTime: null, totalTime: null, performTime: null,
+        sourceUrl: null, shareToken: null, isLocked: false,
+        createdAt: new Date('2026-01-01'), updatedAt: new Date('2026-01-01'),
+        sections: [{ id: 'sec1', title: null, order: 0, ingredients: [
+          { id: 'ing1', foodId: 'f1', food: { name: 'Tomate' }, unitId: 'u1', unit: { name: 'gramo' }, quantity: { toNumber: () => 100 }, note: null, order: 0 },
+        ] }],
+        steps: [{ id: 'st1', title: null, body: 'Cortar', order: 0 }],
+        images: [],
+      });
+
+      const result = await service.create('u1', 'hh1', {
+        name: 'Compound Recipe',
+        ingredients: [{ foodId: 'f1', unitId: 'u1', quantity: 100 }],
+        steps: [{ body: 'Cortar' }],
+      });
+
+      expect(mockPrisma.$transaction).toHaveBeenCalledTimes(1);
+      const createCall = mockPrisma.recipe.create.mock.calls[0][0];
+      expect(createCall.data.sections.create[0].ingredients.create).toHaveLength(1);
+      expect(createCall.data.sections.create[0].ingredients.create[0].foodId).toBe('f1');
+      expect(createCall.data.steps.create).toHaveLength(1);
+      expect(createCall.data.steps.create[0].body).toBe('Cortar');
+      expect(result.sections[0].ingredients).toHaveLength(1);
+      expect(result.steps).toHaveLength(1);
+    });
+
+    it('empty arrays behave same as no arrays', async () => {
+      mockPrisma.recipe.findFirst.mockResolvedValueOnce(null);
+      mockPrisma.recipe.create.mockResolvedValueOnce({
+        id: 'r2', householdId: 'hh1', createdById: 'u1',
+        name: 'Simple', slug: 'simple',
+        description: null, servingsQty: null, servingsUnit: null,
+        prepTime: null, cookTime: null, totalTime: null, performTime: null,
+        sourceUrl: null, shareToken: null, isLocked: false,
+        createdAt: new Date('2026-01-01'), updatedAt: new Date('2026-01-01'),
+        sections: [{ id: 'sec1', title: null, order: 0, ingredients: [] }],
+        steps: [], images: [],
+      });
+
+      await service.create('u1', 'hh1', { name: 'Simple', ingredients: [], steps: [] });
+
+      const createCall = mockPrisma.recipe.create.mock.calls[0][0];
+      expect(createCall.data.sections.create[0].ingredients).toBeUndefined();
+      expect(createCall.data.steps).toBeUndefined();
+    });
+
+    it('throws BadRequestException on P2003 FK error', async () => {
+      mockPrisma.recipe.findFirst.mockResolvedValueOnce(null);
+      const fkError = new Error('FK constraint') as any;
+      fkError.code = 'P2003';
+      Object.setPrototypeOf(fkError, Prisma.PrismaClientKnownRequestError.prototype);
+      mockPrisma.$transaction.mockRejectedValueOnce(fkError);
+
+      await expect(
+        service.create('u1', 'hh1', {
+          name: 'Bad Recipe',
+          ingredients: [{ foodId: 'nonexistent' }],
+        }),
+      ).rejects.toThrow(BadRequestException);
     });
   });
 

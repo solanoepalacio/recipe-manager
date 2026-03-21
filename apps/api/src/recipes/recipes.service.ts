@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import { Injectable, NotFoundException, ForbiddenException, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import {
   RecipeDetailResponse,
@@ -194,25 +194,67 @@ export class RecipesService {
 
   async create(userId: string, householdId: string, dto: CreateRecipeDto): Promise<RecipeDetailResponse> {
     const slug = await this.generateUniqueSlug(dto.name, householdId);
-    const recipe = await this.prisma.recipe.create({
-      data: {
-        householdId,
-        createdById: userId,
-        name: dto.name,
-        slug,
-        description: dto.description,
-        servingsQty: dto.servingsQty,
-        servingsUnit: dto.servingsUnit,
-        prepTime: dto.prepTime,
-        cookTime: dto.cookTime,
-        totalTime: dto.totalTime,
-        performTime: dto.performTime,
-        sourceUrl: dto.sourceUrl,
-        sections: { create: [{ title: null, order: 0 }] },
-      },
-      include: RECIPE_INCLUDE,
-    });
-    return toRecipeDetailResponse(recipe);
+
+    try {
+      const recipe = await this.prisma.$transaction(async (tx: any) => {
+        return tx.recipe.create({
+          data: {
+            householdId,
+            createdById: userId,
+            name: dto.name,
+            slug,
+            description: dto.description,
+            servingsQty: dto.servingsQty,
+            servingsUnit: dto.servingsUnit,
+            prepTime: dto.prepTime,
+            cookTime: dto.cookTime,
+            totalTime: dto.totalTime,
+            performTime: dto.performTime,
+            sourceUrl: dto.sourceUrl,
+            sections: {
+              create: [{
+                title: null,
+                order: 0,
+                ...(dto.ingredients?.length
+                  ? {
+                      ingredients: {
+                        create: dto.ingredients.map((item, i) => ({
+                          foodId: item.foodId,
+                          unitId: item.unitId ?? null,
+                          quantity: item.quantity ?? null,
+                          note: item.note ?? null,
+                          order: i,
+                        })),
+                      },
+                    }
+                  : {}),
+              }],
+            },
+            ...(dto.steps?.length
+              ? {
+                  steps: {
+                    create: dto.steps.map((step, i) => ({
+                      title: step.title ?? null,
+                      body: step.body,
+                      order: i,
+                    })),
+                  },
+                }
+              : {}),
+          },
+          include: RECIPE_INCLUDE,
+        });
+      });
+      return toRecipeDetailResponse(recipe);
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2003'
+      ) {
+        throw new BadRequestException('Invalid ingredient data: food or unit not found');
+      }
+      throw error;
+    }
   }
 
   async findAll(householdId: string, query: RecipeQueryDto = {}): Promise<PaginatedResponse<RecipeListItem>> {
