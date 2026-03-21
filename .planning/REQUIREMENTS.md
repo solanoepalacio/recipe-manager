@@ -20,6 +20,23 @@
 - [x] **SKILL-07**: Agent can upload and delete recipe images via multipart form (`recipes_image.md` — POST /api/recipes/:id/images multipart, DELETE image)
 - [x] **SKILL-08**: Agent can read, create, update, and delete meal plan entries (`meal_plan.md` — GET/POST/PATCH/DELETE /api/meal-plan/entries with date range and mealType enum)
 
+## v1.2 Requirements
+
+### API Ergonomics
+
+- [ ] **ERGO-01**: User can filter foods by name substring (`GET /api/foods?name=<value>`) — case-insensitive; without param, full list returned unchanged
+- [ ] **ERGO-02**: User can filter units by name substring (`GET /api/units?name=<value>`) — case-insensitive; without param, full list returned unchanged
+- [ ] **ERGO-03**: User can create a recipe with inline ingredients and steps in a single request (`POST /api/recipes` with optional `ingredients[]` + `steps[]`) — all inserted atomically; existing single-field create unchanged
+- [ ] **ERGO-04**: User can look up a recipe by its slug (`GET /api/recipes/tortilla-de-patatas`) — same response shape and household scoping as UUID lookup; UUID still works unchanged
+- [ ] **ERGO-05**: User can add multiple ingredients to a section in one call (`POST /api/recipes/:id/sections/:sectionId/ingredients/batch`) — atomic insert, returns updated `SectionResponse`
+
+### Skill Bundle
+
+- [ ] **SKILL-09**: Agent reading skill files can discover and use `?name=` filter on foods and units for targeted ID resolution
+- [ ] **SKILL-10**: Agent reading `recipes_create.md` can use compound create to build a full recipe in ≤3 calls (previously 11)
+- [ ] **SKILL-11**: Agent reading `recipes_get.md` (or `recipes_search.md`) can navigate directly to a recipe by slug
+- [ ] **SKILL-12**: Agent reading `recipes_edit.md` can use batch ingredient add for the edit flow
+
 ## v2 Requirements
 
 *(None defined yet)*
@@ -45,11 +62,16 @@
 | SKILL-07 | Phase 14 | Complete |
 | SKILL-08 | Phase 14 | Complete |
 
-**Coverage:**
+**Coverage (v1.1):**
 - v1.1 requirements: 8 total
 - Mapped to phases: 8
 - Unmapped: 0 ✓
 
+**Coverage (v1.2):**
+- v1.2 requirements: 9 total
+- Mapped to phases: 0 (pending roadmap)
+- Unmapped: 9 ⚠️
+
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-20 — traceability updated after roadmap creation (phases 13–14)*
+*Last updated: 2026-03-20 — v1.2 requirements added (phases 15+)*
