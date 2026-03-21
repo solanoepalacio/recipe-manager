@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: API Ergonomics
 status: unknown
-stopped_at: Completed 15-01-PLAN.md
-last_updated: "2026-03-21T10:33:28.503Z"
+stopped_at: Completed 15-02-PLAN.md
+last_updated: "2026-03-21T10:35:16.942Z"
 progress:
   total_phases: 5
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 2
-  completed_plans: 1
+  completed_plans: 2
 ---
 
 # Project State
@@ -43,6 +43,7 @@ Plan: 1 of 2
 
 *Updated after each plan completion*
 | Phase 15-shared-types-name-filters P01 | 1 | 2 tasks | 4 files |
+| Phase 15-shared-types-name-filters P02 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -60,6 +61,7 @@ Recent decisions affecting v1.2:
 - [Phase 14-02]: recipes_create.md documents GET /api/foods and GET /api/units as full-list endpoints with no search parameter (actual v1.1 implementation has no ?name= filter — v1.2 adds it)
 - [Phase 15-01]: Inlined ingredient/step shapes in CreateRecipeRequest to keep compound create interface self-contained
 - [Phase 15-01]: transform: true added to ValidationPipe in plan 15-01 (not 18) to avoid mid-phase main.ts edits
+- [Phase 15-02]: Conditional where clause with undefined (not empty object) when name is omitted so Prisma sees no filter at all
 
 ### Pending Todos
 
@@ -87,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T10:33:28.502Z
-Stopped at: Completed 15-01-PLAN.md
+Last session: 2026-03-21T10:35:16.940Z
+Stopped at: Completed 15-02-PLAN.md
 Resume file: None

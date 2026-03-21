@@ -278,7 +278,7 @@ Plans:
 
 **Milestone Goal:** Make the REST API significantly more ergonomic for agent clients — all four changes are purely additive, with no breaking changes to the UI client.
 
-- [ ] **Phase 15: Shared Types + Name Filters** - Extend packages/shared contract; add ?name= filter to GET /api/foods and GET /api/units (completed -)
+- [x] **Phase 15: Shared Types + Name Filters** - Extend packages/shared contract; add ?name= filter to GET /api/foods and GET /api/units (completed -) (completed 2026-03-21)
 - [ ] **Phase 16: Slug/UUID Dual Lookup** - GET /api/recipes/:idOrSlug accepts both UUID and slug; household-scoped (completed -)
 - [ ] **Phase 17: Batch Ingredient Add** - POST /api/recipes/:id/sections/:sectionId/ingredients/batch; atomic insert returning SectionResponse (completed -)
 - [ ] **Phase 18: Compound Recipe Create** - POST /api/recipes with optional ingredients[] + steps[]; atomic via prisma.$transaction (completed -)
@@ -379,7 +379,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 12. Frontend Admin Panel | v1.0 | 5/5 | Complete | 2026-03-19 |
 | 13. Skill Bundle — Foundation + Read Operations | v1.1 | 2/2 | Complete | 2026-03-20 |
 | 14. Skill Bundle — Write Operations + Meal Plan | v1.1 | 2/2 | Complete | 2026-03-20 |
-| 15. Shared Types + Name Filters | 1/2 | In Progress|  | - |
+| 15. Shared Types + Name Filters | 2/2 | Complete   | 2026-03-21 | - |
 | 16. Slug/UUID Dual Lookup | v1.2 | 0/1 | Not started | - |
 | 17. Batch Ingredient Add | v1.2 | 0/1 | Not started | - |
 | 18. Compound Recipe Create | v1.2 | 0/1 | Not started | - |
