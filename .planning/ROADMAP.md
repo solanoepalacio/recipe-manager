@@ -380,7 +380,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 13. Skill Bundle — Foundation + Read Operations | v1.1 | 2/2 | Complete | 2026-03-20 |
 | 14. Skill Bundle — Write Operations + Meal Plan | v1.1 | 2/2 | Complete | 2026-03-20 |
 | 15. Shared Types + Name Filters | 2/2 | Complete    | 2026-03-21 | - |
-| 16. Slug/UUID Dual Lookup | 1/1 | Complete   | 2026-03-21 | - |
+| 16. Slug/UUID Dual Lookup | 1/1 | Complete    | 2026-03-21 | - |
 | 17. Batch Ingredient Add | v1.2 | 0/1 | Not started | - |
 | 18. Compound Recipe Create | v1.2 | 0/1 | Not started | - |
 | 19. Skill Bundle Updates | v1.2 | 0/2 | Not started | - |
