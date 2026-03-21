@@ -129,4 +129,4 @@ Key architectural decisions already locked:
 | Foods/Units pre-populated by admin | Controlled vocabulary; no user-generated food names | — Pending |
 
 ---
-*Last updated: 2026-03-21 — Phase 17 complete: POST /api/recipes/:id/sections/:sectionId/ingredients/batch live — atomic batch insert, MAX+1 ordering, FK rollback, hydrated SectionResponse*
+*Last updated: 2026-03-21 — Phase 18 complete: POST /api/recipes now accepts optional ingredients[] and steps[] arrays, creating all entities atomically via prisma.$transaction — FK failure rolls back entire recipe row*
