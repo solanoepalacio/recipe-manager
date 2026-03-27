@@ -59,6 +59,7 @@ export default function RecipeDetailPage() {
       api.patch<RecipeDetailResponse>(`/recipes/${recipeId}`, data),
     onSuccess: (updated) => {
       queryClient.setQueryData(queryKeys.recipes.detail(slug), updated);
+      window.umami?.track('recipe-edit', { recipeId: recipeId!, recipeName: updated.name });
       toast.success('Guardado');
     },
     onError: () => toast.error('Error al guardar. Intenta de nuevo.'),
@@ -79,6 +80,7 @@ export default function RecipeDetailPage() {
     onSuccess: (data) => {
       setShareToken(data.shareToken);
       setShareSheetOpen(true);
+      window.umami?.track('share-link-generate', { recipeId: recipeId!, recipeName: recipe!.name });
     },
     onError: () => toast.error('No se pudo generar el enlace. Intenta de nuevo.'),
   });

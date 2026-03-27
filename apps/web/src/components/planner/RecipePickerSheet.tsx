@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   MealType,
@@ -33,6 +33,7 @@ export function RecipePickerSheet({
 }: RecipePickerSheetProps) {
   const [search, setSearch] = useState('');
   const [selectedMealType, setSelectedMealType] = useState<MealType>(MealType.Lunch);
+  const pendingRecipeRef = useRef<RecipeListItem | null>(null);
 
   const debouncedSearch = useDebounce(search, 300);
 
@@ -59,6 +60,13 @@ export function RecipePickerSheet({
       api.post<MealPlanEntryResponse>('/meal-plan/entries', body),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['meal-plan'] });
+      if (pendingRecipeRef.current) {
+        window.umami?.track('meal-plan-add', {
+          recipeId: pendingRecipeRef.current.id,
+          recipeName: pendingRecipeRef.current.name,
+        });
+        pendingRecipeRef.current = null;
+      }
       toast.success('Receta agregada al planificador.');
       onEntryCreated();
       onClose();
@@ -69,6 +77,7 @@ export function RecipePickerSheet({
   });
 
   function handleSelectRecipe(recipe: RecipeListItem) {
+    pendingRecipeRef.current = recipe;
     createMutation.mutate({
       recipeId: recipe.id,
       date,

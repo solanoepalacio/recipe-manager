@@ -52,6 +52,7 @@ export function EditEntrySheet({ isOpen, onClose, entry, from, to }: EditEntrySh
     mutationFn: () => api.delete<void>(`/meal-plan/entries/${entry!.id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: weekKey });
+      window.umami?.track('meal-plan-remove', { recipeId: entry!.recipeId, recipeName: entry!.recipeName });
       toast.success('Entrada eliminada.');
       onClose();
     },

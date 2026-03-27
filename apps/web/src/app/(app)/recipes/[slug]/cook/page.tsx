@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useSearchParams, useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
@@ -16,12 +16,20 @@ export default function CookModePage() {
   const recipeId = searchParams.get('id');
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
+  const cookModeTracked = useRef(false);
 
   const { data: recipe, isLoading, isError } = useQuery({
     queryKey: queryKeys.recipes.detail(slug),
     queryFn: () => api.get<RecipeDetailResponse>(`/recipes/${recipeId}`),
     enabled: Boolean(recipeId),
   });
+
+  useEffect(() => {
+    if (recipe && !cookModeTracked.current) {
+      cookModeTracked.current = true;
+      window.umami?.track('cook-mode-start', { recipeId: recipe.id, recipeName: recipe.name });
+    }
+  }, [recipe]);
 
   const steps = recipe?.steps ?? [];
   const isComplete = currentStep >= steps.length && steps.length > 0;

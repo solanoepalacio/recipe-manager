@@ -21,6 +21,7 @@ export function RecipeNamePrompt({ isOpen, onClose, onCreated }: RecipeNamePromp
     setIsSubmitting(true);
     try {
       const recipe = await api.post<RecipeDetailResponse>('/recipes', { name: name.trim() });
+      window.umami?.track('recipe-create', { recipeId: recipe.id, recipeName: recipe.name });
       onCreated(recipe);
       onClose();
       setName('');

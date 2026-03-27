@@ -81,6 +81,13 @@ export default function RecipeListPage() {
     setPage(1);
   }, [debouncedSearch, sortOption, foodId]);
 
+  // Track recipe search events
+  useEffect(() => {
+    if (debouncedSearch) {
+      window.umami?.track('recipe-search', { query: debouncedSearch });
+    }
+  }, [debouncedSearch]);
+
   // Queries
   const { data, isLoading, isError } = useQuery({
     queryKey: queryKeys.recipes.list({
