@@ -8,8 +8,9 @@ import { SharedModule } from './shared/shared.module';
 import { MealPlanModule } from './meal-plan/meal-plan.module';
 import { ProfileModule } from './profile/profile.module';
 import { HouseholdModule } from './household/household.module';
+import { UmamiModule } from './umami/umami.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, AdminModule, SetupModule, RecipesModule, SharedModule, MealPlanModule, ProfileModule, HouseholdModule],
+  imports: [UmamiModule, PrismaModule, AuthModule, AdminModule, SetupModule, RecipesModule, SharedModule, MealPlanModule, ProfileModule, HouseholdModule],
 })
 export class AppModule {}

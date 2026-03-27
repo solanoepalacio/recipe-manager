@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { randomBytes } from 'crypto';
 import { PrismaService } from '../../prisma/prisma.service';
+import { UmamiService } from '../../umami/umami.service';
 import { toRecipeDetailResponse } from '../recipes.service';
 import { RecipeDetailResponse } from '@recipe-manager/shared';
 
@@ -20,7 +21,10 @@ const SHARING_RECIPE_INCLUDE = {
 
 @Injectable()
 export class SharingService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly umamiService: UmamiService,
+  ) {}
 
   async generateToken(recipeId: string, householdId: string): Promise<{ shareToken: string }> {
     const recipe = await this.prisma.recipe.findUnique({ where: { id: recipeId } });
@@ -50,6 +54,10 @@ export class SharingService {
       include: SHARING_RECIPE_INCLUDE,
     });
     if (!recipe) throw new NotFoundException('Shared recipe not found');
+    this.umamiService.trackEvent('share-link-view', {
+      recipeId: recipe.id,
+      recipeName: recipe.name,
+    });
     return toRecipeDetailResponse(recipe);
   }
 }

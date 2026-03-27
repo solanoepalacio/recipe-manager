@@ -13,6 +13,7 @@
     "seed:dev": "tsx prisma/seed-dev.ts"
   },
   "dependencies": {
+    "@nestjs/axios": "^4.0.1",
     "@nestjs/common": "^11.0.0",
     "@nestjs/config": "^4.0.0",
     "@nestjs/core": "^11.0.0",
@@ -20,6 +21,7 @@
     "@nestjs/swagger": "^8.0.0",
     "@prisma/client": "^6.0.0",
     "@recipe-manager/shared": "workspace:*",
+    "axios": "^1.14.0",
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.0",
     "class-validator": "^0.14.0",
