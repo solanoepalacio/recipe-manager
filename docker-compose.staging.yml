@@ -1,0 +1,43 @@
+# Staging deployment. Reverse proxy + api + web only.
+# Postgres runs on the local network — set DATABASE_URL in .env accordingly.
+#
+#   docker compose -f docker-compose.staging.yml up -d --build
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "${CADDY_HTTP_PORT:-80}:80"
+    environment:
+      STAGING_HOST: ${STAGING_HOST:-:80}
+    volumes:
+      - ./Caddyfile.staging:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+      - web
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    restart: unless-stopped
+    # TODO
+    # this leaks vars of the other container to this one.
+    # not a catastrophe on our setup, but a tech debt never the less.
+    env_file: .env
+    volumes:
+      - api_uploads:/app/apps/api/uploads
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:
+  api_uploads:

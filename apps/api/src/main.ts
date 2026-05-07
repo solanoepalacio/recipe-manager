@@ -13,6 +13,10 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
+  // Trust X-Forwarded-Proto from the reverse proxy so express-session sees
+  // requests as "secure" and emits Secure cookies. See docs/secure-cookie-setup.md.
+  app.set('trust proxy', 1);
+
   // Ensure uploads directory exists (created fresh on each deploy)
   const uploadsDir = join(process.cwd(), 'uploads');
   fs.mkdirSync(uploadsDir, { recursive: true });

@@ -1,0 +1,23 @@
+# STAGING_HOST controls the site address.
+#   :80                       → HTTP on any hostname (default; works for IP / localhost)
+#   staging.yourapp.com       → HTTPS auto-issued via Let's Encrypt
+{$STAGING_HOST} {
+	# X-Forwarded-Proto is forced to https because the only ingress to this
+	# Caddy is via cloudflared, which terminates the public-internet TLS leg.
+	# See docs/secure-cookie-setup.md.
+	handle /api/* {
+		reverse_proxy api:3001 {
+			header_up X-Forwarded-Proto https
+		}
+	}
+
+	handle /uploads/* {
+		reverse_proxy api:3001 {
+			header_up X-Forwarded-Proto https
+		}
+	}
+
+	handle {
+		reverse_proxy web:3000
+	}
+}
