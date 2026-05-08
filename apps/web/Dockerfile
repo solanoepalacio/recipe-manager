@@ -27,6 +27,11 @@ RUN corepack enable
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
+ARG NEXT_PUBLIC_UMAMI_SCRIPT_URL
+ARG NEXT_PUBLIC_UMAMI_WEBSITE_ID
+ENV NEXT_PUBLIC_UMAMI_SCRIPT_URL=$NEXT_PUBLIC_UMAMI_SCRIPT_URL
+ENV NEXT_PUBLIC_UMAMI_WEBSITE_ID=$NEXT_PUBLIC_UMAMI_WEBSITE_ID
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY package.json yarn.lock .yarnrc.yml tsconfig.base.json ./
 COPY packages/shared ./packages/shared
