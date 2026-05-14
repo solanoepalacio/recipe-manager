@@ -36,6 +36,7 @@ services:
       args:
         NEXT_PUBLIC_UMAMI_SCRIPT_URL: ${NEXT_PUBLIC_UMAMI_SCRIPT_URL}
         NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+        INTERNAL_API_URL: ${INTERNAL_API_URL}
     env_file:
       - apps/web/.env
     restart: unless-stopped
