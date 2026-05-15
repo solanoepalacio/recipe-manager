@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { NotFoundException, ForbiddenException } from '@nestjs/common';
 import { SharingService } from './sharing.service';
 import { PrismaService } from '../../prisma/prisma.service';
+import { UmamiService } from '../../umami/umami.service';
 
 const mockPrisma = {
   recipe: {
@@ -9,6 +10,8 @@ const mockPrisma = {
     update: jest.fn(),
   },
 };
+
+const mockUmami = { trackEvent: jest.fn() };
 
 const baseRecipe = {
   id: 'r1',
@@ -41,6 +44,7 @@ describe('SharingService', () => {
       providers: [
         SharingService,
         { provide: PrismaService, useValue: mockPrisma },
+        { provide: UmamiService, useValue: mockUmami },
       ],
     }).compile();
     service = module.get<SharingService>(SharingService);
@@ -52,7 +56,7 @@ describe('SharingService', () => {
 
   describe('generateToken', () => {
     it('returns a 64-char hex shareToken and updates the recipe', async () => {
-      mockPrisma.recipe.findUnique.mockResolvedValueOnce(baseRecipe);
+      mockPrisma.recipe.findUnique.mockResolvedValueOnce({ ...baseRecipe, shareToken: null });
       mockPrisma.recipe.update.mockResolvedValueOnce({ ...baseRecipe, shareToken: 'newtoken' });
       const result = await service.generateToken('r1', 'hh1');
       expect(result.shareToken).toMatch(/^[a-f0-9]{64}$/);

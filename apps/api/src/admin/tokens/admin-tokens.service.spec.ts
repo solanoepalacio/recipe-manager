@@ -34,7 +34,7 @@ describe('AdminTokensService', () => {
   });
 
   it('create stores SHA-256 hash and returns raw token once', async () => {
-    prisma.user.findUnique.mockResolvedValue({ id: 'u1' });
+    prisma.user.findUnique.mockResolvedValue({ id: 'u1', userType: 'agent' });
     prisma.apiToken.create.mockImplementation(async ({ data }) => ({
       id: 't2', name: data.name, userId: data.userId, createdById: data.createdById,
       tokenHash: data.tokenHash, createdAt: new Date(), lastUsedAt: null,
