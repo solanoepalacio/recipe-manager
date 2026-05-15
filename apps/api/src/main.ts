@@ -31,6 +31,8 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
+      // Return ALL validation errors per request (incl. nested arrays) so UI + agent clients can fix multiple fields in one round-trip.
+      stopAtFirstError: false,
     }),
   );
 
