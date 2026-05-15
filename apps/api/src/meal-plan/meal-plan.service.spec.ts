@@ -16,6 +16,9 @@ const mockPrisma = {
     update: jest.fn(),
     delete: jest.fn(),
   },
+  recipe: {
+    findUnique: jest.fn(),
+  },
 };
 
 const baseEntry = {
@@ -50,6 +53,7 @@ describe('MealPlanService', () => {
 
   describe('createEntry', () => {
     it('creates an entry and lazy-creates the MealPlan via upsert', async () => {
+      mockPrisma.recipe.findUnique.mockResolvedValueOnce({ id: 'r1', householdId: 'hh1' });
       mockPrisma.mealPlan.upsert.mockResolvedValueOnce({ id: 'mp1', householdId: 'hh1' });
       mockPrisma.mealPlanEntry.create.mockResolvedValueOnce(baseEntry);
       const result = await service.createEntry('hh1', {
@@ -64,6 +68,7 @@ describe('MealPlanService', () => {
     });
 
     it('returns MealPlanEntryResponse with recipeName and recipeSlug', async () => {
+      mockPrisma.recipe.findUnique.mockResolvedValueOnce({ id: 'r1', householdId: 'hh1' });
       mockPrisma.mealPlan.upsert.mockResolvedValueOnce({ id: 'mp1', householdId: 'hh1' });
       mockPrisma.mealPlanEntry.create.mockResolvedValueOnce(baseEntry);
       const result = await service.createEntry('hh1', {
