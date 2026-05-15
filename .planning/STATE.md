@@ -104,9 +104,10 @@ None yet.
 | 260320-h8h | wire recipe delete flow from detail page ellipsis dropdown | 2026-03-20 | 6553a0a | [260320-h8h-recipes-can-t-be-deleted-currently-when-](./quick/260320-h8h-recipes-can-t-be-deleted-currently-when-/) |
 | 260320-mb4 | I found a bug: when scheduling a meal for today, the hoy view still shows no hay recetas para hoy | 2026-03-20 | 29f3360 | [260320-mb4-i-found-a-bug-when-scheduling-a-meal-for](./quick/260320-mb4-i-found-a-bug-when-scheduling-a-meal-for/) |
 | 260327-n75 | implement basic analytics full-stack with Umami | 2026-03-27 | 0205f1b | [260327-n75-i-want-to-implement-basic-analytics-full](./quick/260327-n75-i-want-to-implement-basic-analytics-full/) |
+| 260515-kiq | return all validation errors from global ValidationPipe (stopAtFirstError: false) + e2e tests | 2026-05-15 | dfe6862 | [260515-kiq-change-the-global-nestjs-validationpipe-](./quick/260515-kiq-change-the-global-nestjs-validationpipe-/) |
 
 ## Session Continuity
 
-Last session: 2026-03-27T19:51:11Z
-Stopped at: Completed 260327-n75 quick task
+Last session: 2026-05-15T17:46:28Z
+Stopped at: Completed quick task 260515-kiq: return all validation errors from global ValidationPipe
 Resume file: None
