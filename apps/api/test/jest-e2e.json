@@ -9,6 +9,6 @@
     }]
   },
   "moduleNameMapper": {
-    "^@recipe-manager/shared(.*)$": "<rootDir>/../packages/shared/src/index.ts"
+    "^@recipe-manager/shared(.*)$": "<rootDir>/../../packages/shared/src/index.ts"
   }
 }
