@@ -105,9 +105,10 @@ None yet.
 | 260320-mb4 | I found a bug: when scheduling a meal for today, the hoy view still shows no hay recetas para hoy | 2026-03-20 | 29f3360 | [260320-mb4-i-found-a-bug-when-scheduling-a-meal-for](./quick/260320-mb4-i-found-a-bug-when-scheduling-a-meal-for/) |
 | 260327-n75 | implement basic analytics full-stack with Umami | 2026-03-27 | 0205f1b | [260327-n75-i-want-to-implement-basic-analytics-full](./quick/260327-n75-i-want-to-implement-basic-analytics-full/) |
 | 260515-kiq | return all validation errors from global ValidationPipe (stopAtFirstError: false) + e2e tests | 2026-05-15 | dfe6862 | [260515-kiq-change-the-global-nestjs-validationpipe-](./quick/260515-kiq-change-the-global-nestjs-validationpipe-/) |
+| 260515-kxk | fix failing apps/api unit tests (vitest→jest in auth.spec; align service specs with current production contracts) | 2026-05-15 | 8e4a85a | [260515-kxk-fix-failing-apps-api-unit-tests-vitest-j](./quick/260515-kxk-fix-failing-apps-api-unit-tests-vitest-j/) |
 
 ## Session Continuity
 
-Last session: 2026-05-15T17:46:28Z
-Stopped at: Completed quick task 260515-kiq: return all validation errors from global ValidationPipe
+Last session: 2026-05-15T18:04:16Z
+Stopped at: Completed quick task 260515-kxk: fix failing apps/api unit tests
 Resume file: None
