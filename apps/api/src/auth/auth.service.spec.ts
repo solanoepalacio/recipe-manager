@@ -1,14 +1,13 @@
 // apps/api/src/auth/auth.service.spec.ts
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { AuthService } from './auth.service';
 import * as bcrypt from 'bcrypt';
 
 describe('AuthService', () => {
   let service: AuthService;
-  let prisma: { user: { findFirst: ReturnType<typeof vi.fn> } };
+  let prisma: { user: { findFirst: jest.Mock } };
 
   beforeEach(() => {
-    prisma = { user: { findFirst: vi.fn() } };
+    prisma = { user: { findFirst: jest.fn() } };
     service = new AuthService(prisma as any);
   });
 
@@ -30,14 +29,14 @@ describe('AuthService', () => {
 
   it('returns user when credentials are valid', async () => {
     const hash = await bcrypt.hash('secret', 10);
-    const user = { id: 'u1', email: 'x@x.com', passwordHash: hash };
+    const user = { id: 'u1', email: 'x@x.com', passwordHash: hash, userType: 'normal' };
     prisma.user.findFirst.mockResolvedValue(user);
     expect(await service.validateUser('x@x.com', 'secret')).toBe(user);
   });
 
   it('queries by email', async () => {
     const hash = await bcrypt.hash('pw', 10);
-    const user = { id: 'u1', email: 'x@x.com', passwordHash: hash };
+    const user = { id: 'u1', email: 'x@x.com', passwordHash: hash, userType: 'normal' };
     prisma.user.findFirst.mockResolvedValue(user);
     await service.validateUser('x@x.com', 'pw');
     expect(prisma.user.findFirst).toHaveBeenCalledWith(
