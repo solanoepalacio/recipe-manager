@@ -2,14 +2,15 @@
 
 ## Milestones
 
-- ✅ **v1.0 MVP** - Phases 1-12 (shipped 2026-03-19)
-- ✅ **v1.1 Skill Bundle** - Phases 13-14 (shipped 2026-03-20)
-- 🚧 **v1.2 API Ergonomics** - Phases 15-19 (in progress)
+- ✅ **v1.0 MVP** — Phases 1–12 (shipped 2026-03-19)
+- ✅ **v1.1 Skill Bundle** — Phases 13–14 (shipped 2026-03-20)
+- ✅ **v1.2 API Ergonomics** — Phases 15–19 (shipped 2026-03-21, closed 2026-05-18)
+- 📋 **vNext** — to be planned via `/gsd:new-milestone`
 
 ## Phases
 
 <details>
-<summary>✅ v1.0 MVP (Phases 1-12) — SHIPPED 2026-03-19</summary>
+<summary>✅ v1.0 MVP (Phases 1–12) — SHIPPED 2026-03-19</summary>
 
 **Phase Numbering:**
 - Integer phases (1, 2, 3): Planned milestone work
@@ -17,351 +18,55 @@
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [x] **Phase 1: Monorepo + Shared Types** - Yarn workspaces, packages/shared type foundations, Swagger configured (completed 2026-03-16)
-- [x] **Phase 2: Database Schema + Prisma** - Full Prisma schema, migrations, seed data, household scoping enforced (completed 2026-03-16)
-- [x] **Phase 3: Backend Auth** - User sessions, API key auth, admin auth, setup wizard, password reset (completed 2026-03-16)
-- [x] **Phase 4: Backend Recipe CRUD** - Recipe, section, ingredient, step, image endpoints; full non-admin REST API (completed 2026-03-16)
-- [x] **Phase 5: Backend Search, Sharing, Meal Plan** - Fuzzy search, filtering, sorting, share tokens, meal plan endpoints (completed 2026-03-16)
-- [x] **Phase 6: Backend Admin Endpoints** - Admin CRUD for users, households, foods, units, tokens (completed 2026-03-18)
-- [x] **Phase 7: Frontend Setup + App Shell + Auth Flows** - Project scaffold, responsive shell, login/logout, UX primitives (completed 2026-03-18)
-- [x] **Phase 8: Frontend Recipe List + Detail + Cook Mode** - Recipe browsing, search, filter, sort, detail view, cook mode (completed 2026-03-18)
-- [x] **Phase 9: Frontend Recipe Creation + Editing** - Create/edit form, ingredients, sections, steps, images, lock (completed 2026-03-18)
-- [x] **Phase 10: Frontend Meal Planner** - Weekly/monthly calendar, assign recipes, drag-drop, edit/delete entries (completed 2026-03-19)
-- [x] **Phase 11: Frontend Profile + Household + Shared Recipe** - Profile editing, household view, public shared recipe page (completed 2026-03-19)
-- [x] **Phase 12: Frontend Admin Panel** - Admin login, setup wizard, user/household/foods/units/tokens management UI (completed 2026-03-19)
+- [x] **Phase 1: Monorepo + Shared Types** — Yarn workspaces, packages/shared type foundations, Swagger configured (completed 2026-03-16)
+- [x] **Phase 2: Database Schema + Prisma** — Full Prisma schema, migrations, seed data, household scoping enforced (completed 2026-03-16)
+- [x] **Phase 3: Backend Auth** — User sessions, API key auth, admin auth, setup wizard, password reset (completed 2026-03-16)
+- [x] **Phase 4: Backend Recipe CRUD** — Recipe, section, ingredient, step, image endpoints; full non-admin REST API (completed 2026-03-16)
+- [x] **Phase 5: Backend Search, Sharing, Meal Plan** — Fuzzy search, filtering, sorting, share tokens, meal plan endpoints (completed 2026-03-16)
+- [x] **Phase 6: Backend Admin Endpoints** — Admin CRUD for users, households, foods, units, tokens (completed 2026-03-18)
+- [x] **Phase 7: Frontend Setup + App Shell + Auth Flows** — Project scaffold, responsive shell, login/logout, UX primitives (completed 2026-03-18)
+- [x] **Phase 8: Frontend Recipe List + Detail + Cook Mode** — Recipe browsing, search, filter, sort, detail view, cook mode (completed 2026-03-18)
+- [x] **Phase 9: Frontend Recipe Creation + Editing** — Create/edit form, ingredients, sections, steps, images, lock (completed 2026-03-18)
+- [x] **Phase 10: Frontend Meal Planner** — Weekly/monthly calendar, assign recipes, drag-drop, edit/delete entries (completed 2026-03-19)
+- [x] **Phase 11: Frontend Profile + Household + Shared Recipe** — Profile editing, household view, public shared recipe page (completed 2026-03-19)
+- [x] **Phase 12: Frontend Admin Panel** — Admin login, setup wizard, user/household/foods/units/tokens management UI (completed 2026-03-19)
 
-### Phase 1: Monorepo + Shared Types
-**Goal**: The monorepo compiles cleanly, the shared types package exports the full API boundary, and Swagger is reachable at /api/docs.
-**Depends on**: Nothing (first phase)
-**Requirements**: API-03
-**Success Criteria** (what must be TRUE):
-  1. `yarn build` succeeds across all three workspaces with no type errors
-  2. `@recipe-manager/shared` exports typed interfaces for every API domain (auth, recipes, ingredients, steps, images, meal-plan, admin, etc.)
-  3. The NestJS API starts and Swagger UI is accessible at `/api/docs` with at least a placeholder spec
-  4. A developer can import a shared type in both `apps/api` and `apps/web` and the compiler enforces the contract
-**Plans**: 3 plans
-
-Plans:
-- [x] 01-01: Monorepo scaffold (Yarn v4 workspaces, root tsconfig, .yarnrc.yml, package.json per workspace)
-- [x] 01-02: packages/shared — all domain type files, enums, PaginatedResponse, ErrorResponse, barrel export
-- [x] 01-03: NestJS bootstrap — main.ts, AppModule, PrismaModule, global ValidationPipe, Swagger setup at /api/docs
-
-### Phase 2: Database Schema + Prisma
-**Goal**: The full Prisma schema is migrated, the database is seeded with foods and units, and household scoping is structurally enforced.
-**Depends on**: Phase 1
-**Requirements**: HH-01
-**Success Criteria** (what must be TRUE):
-  1. `prisma migrate deploy` applies all migrations against a fresh PostgreSQL database with no errors
-  2. `prisma db seed` populates the foods and units tables with production-ready seed data
-  3. Every household-scoped table (Recipe, MealPlan, MealPlanEntry) has a non-nullable `householdId` foreign key enforced at the database level
-  4. All entities from the data model (User, Admin, ApiToken, Food, Unit, Recipe, IngredientSection, RecipeIngredient, InstructionStep, RecipeImage, MealPlan, MealPlanEntry) exist as Prisma models with correct relations
-**Plans**: 2 plans
-
-Plans:
-- [x] 02-01-PLAN.md — Wave 0 infrastructure + full Prisma schema (13 models, 2 enums, compound unique constraints)
-- [x] 02-02-PLAN.md — Initial migration (prisma migrate dev --name init) + seed script (50 foods, 13 units, idempotent upsert)
-
-### Phase 3: Backend Auth
-**Goal**: Users can authenticate via session cookie or API key; admins can authenticate via a separate session; the setup wizard creates the single Admin record; password reset URLs can be generated.
-**Depends on**: Phase 2
-**Requirements**: AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05, API-02
-**Success Criteria** (what must be TRUE):
-  1. `POST /auth/login` with valid email+password returns a session cookie; subsequent authenticated requests succeed without re-sending credentials
-  2. `POST /auth/logout` destroys the server-side session; the session cookie is cleared
-  3. A request with `Authorization: Bearer <valid-api-key>` is authenticated as the associated user with no session cookie required
-  4. `POST /setup` creates the Admin record when no Admin exists; the endpoint returns 404 after setup is complete
-  5. Admin can call the password reset endpoint and receive a one-time reset URL containing a raw token; using the URL clears the token fields on the User row
-**Plans**: 4 plans
-
-Plans:
-- [x] 03-01-PLAN.md — Guards + decorators (SessionAuthGuard, ApiKeyAuthGuard, AnyAuthGuard as APP_GUARD, AdminAuthGuard, @Public(), @CurrentUser()) + unit tests
-- [x] 03-02-PLAN.md — Session middleware (express-session + connect-pg-simple), AuthService, AuthController (login/logout/me), AdminAuthService, AdminAuthController
-- [x] 03-03-PLAN.md — SetupModule (SetupGuard, SetupService, SetupController GET/POST /setup)
-- [x] 03-04-PLAN.md — AdminUsersService (password reset URL generation), AdminUsersController (POST /admin/users/:id/password-reset-url)
-
-### Phase 4: Backend Recipe CRUD
-**Goal**: The full non-admin REST API is complete for recipes, sections, ingredients, steps, and images — all household-scoped, all documented in Swagger.
-**Depends on**: Phase 3
-**Requirements**: API-01
-**Success Criteria** (what must be TRUE):
-  1. An authenticated request to `POST /recipes` creates a recipe with an auto-generated slug scoped to the household; the response matches the shared `RecipeDetailResponse` type
-  2. All nested sub-resources (sections, ingredients, steps, images) have working CRUD endpoints accessible at their nested routes
-  3. Image upload stores the file at `apps/api/uploads/` with a UUID filename; the relative URL is stored in DB; image delete removes the record and the file from disk
-  4. All recipe endpoints appear in Swagger with correct request/response schemas derived from shared types
-**Plans**: 4 plans
-
-Plans:
-- [x] 04-01-PLAN.md — Schema cleanup (remove isLocked) + shared recipe types + static serving + Wave-0 test scaffolds
-- [x] 04-02-PLAN.md — RecipesService (CRUD, slug, household scoping) + RecipesController + RecipesModule
-- [x] 04-03-PLAN.md — Sections sub-module (CRUD, reorder) + Ingredients sub-module (CRUD, reorder)
-- [x] 04-04-PLAN.md — Steps sub-module (CRUD, reorder) + Images sub-module (Multer upload, delete) + final RecipesModule
-
-### Phase 5: Backend Search, Sharing, Meal Plan
-**Goal**: Recipe search (fuzzy, filter, sort, paginate), public share tokens, and meal plan CRUD endpoints are all functional and Swagger-documented.
-**Depends on**: Phase 4
-**Requirements**: (none — infrastructure for Phases 8, 10, 11)
-**Success Criteria** (what must be TRUE):
-  1. `GET /recipes?search=choco&fuzzy=true` returns recipes matching the fuzzy query, filtered to the authenticated user's household
-  2. `GET /recipes?food=<foodId>&sort=name&order=asc&page=1&pageSize=10` returns a correctly filtered, sorted, paginated response matching `PaginatedResponse<RecipeListItem>`
-  3. `POST /recipes/:id/share` generates a unique share token; `GET /shared/:token` returns the full recipe detail with no auth required
-  4. `POST /meal-plan/entries` creates a meal plan entry for the household; `PATCH` and `DELETE` on existing entries work correctly
-**Plans**: 4 plans
-
-Plans:
-- [x] 05-01-PLAN.md — Recipe search (RecipeListItem shared type, RecipeQueryDto, updated findAll with filter/sort/paginate/random)
-- [x] 05-02-PLAN.md — Sharing sub-module (SharingService, SharingController, SharedController @Public(), RecipesModule update)
-- [x] 05-03-PLAN.md — Meal plan module (MealPlanModule, MealPlanService CRUD, MealPlanController, shared meal-plan types, AppModule update)
-- [x] 05-04-PLAN.md — SharedModule (FoodsController GET /foods, UnitsController GET /units, AppModule update)
-
-### Phase 6: Backend Admin Endpoints
-**Goal**: All admin CRUD endpoints for users, households, foods, units, and API tokens are functional behind AdminAuthGuard and documented in Swagger.
-**Depends on**: Phase 3
-**Requirements**: (none — infrastructure for Phase 12)
-**Success Criteria** (what must be TRUE):
-  1. Admin can call `GET /admin/users` and receive a paginated list of all users; create, edit, delete endpoints work and enforce AdminAuthGuard
-  2. Admin can call household CRUD endpoints (`GET/POST/PATCH/DELETE /admin/households`) successfully
-  3. Admin can call foods and units CRUD endpoints; created foods and units appear in the seed-queryable lists used by recipe ingredient forms
-  4. Admin can call `POST /admin/tokens` to create an API token tied to a user; the raw token is returned once; `GET /admin/tokens` and `DELETE /admin/tokens/:id` work correctly
-**Plans**: 5 plans
-
-Plans:
-- [x] 06-01-PLAN.md — Shared admin types (packages/shared/src/api/admin.ts) + CurrentAdmin decorator + Wave-0 test scaffolds
-- [x] 06-02-PLAN.md — Admin users CRUD (expand AdminUsersService + AdminUsersController with findAll/findOne/create/update/remove)
-- [x] 06-03-PLAN.md — Admin households CRUD (AdminHouseholdsService with cascade $transaction delete + AdminHouseholdsController)
-- [x] 06-04-PLAN.md — Admin foods + units CRUD (AdminFoodsService/Controller + AdminUnitsService/Controller)
-- [x] 06-05-PLAN.md — Admin tokens (AdminTokensService raw-token-once + AdminTokensController + final AdminModule wiring)
-
-### Phase 7: Frontend Setup + App Shell + Auth Flows
-**Goal**: The Next.js SPA scaffolds with a responsive app shell, all routes are in place, users can log in and log out, and the core UX primitives (loading states, toast notifications) are operational.
-**Depends on**: Phase 3
-**Requirements**: UX-01, UX-02, UX-03
-**Success Criteria** (what must be TRUE):
-  1. The app shell (top bar + drawer navigation) renders correctly on phone, tablet, and desktop without horizontal scroll or layout breakage
-  2. An unauthenticated user visiting any protected route is redirected to `/login`; successful login redirects to `/recipes`
-  3. Loading spinner/skeleton is visible while any TanStack Query fetch is in flight
-  4. A toast notification appears and auto-dismisses for success, error, and informational states from anywhere in the app
-**Plans**: 4 plans
-
-Plans:
-- [x] 07-01-PLAN.md — deps install, Tailwind v4 design tokens, api-client, QueryClient+Toaster, vitest Wave 0
-- [x] 07-02-PLAN.md — TopBar, Drawer, AppShell components; route groups (app)/(auth); AppShell tests
-- [x] 07-03-PLAN.md — AuthProvider, useAuth, ProtectedLayout redirect, full LoginPage form + auth tests
-- [x] 07-04-PLAN.md — Skeleton component, Toast tests, human verification checkpoint
-
-### Phase 8: Frontend Recipe List + Detail + Cook Mode
-**Goal**: Users can browse their household recipe library with search, filter, sort, and pagination; they can view a full recipe detail page and enter cook mode.
-**Depends on**: Phase 5, Phase 7
-**Requirements**: RCP-07, RCP-08, SRCH-01, SRCH-02, SRCH-03, SRCH-04
-**Success Criteria** (what must be TRUE):
-  1. The `/recipes` page displays recipe cards for all household recipes; typing in the search box updates results with fuzzy matching
-  2. Filtering by food/ingredient and sorting by name, date, or random all update the displayed list correctly
-  3. Pagination controls let the user navigate pages and change page size
-  4. The `/recipes/:slug` page shows the full recipe (ingredients, instructions, images, metadata)
-  5. The `/recipes/:slug/cook` page enters full-screen cook mode with large text and step-by-step navigation controls
-**Plans**: 3 plans
-
-Plans:
-- [x] 08-01-PLAN.md — Recipe list page: useDebounce, RecipeCard, RecipeListFilters, PaginationControls, full page with search/filter/sort/pagination
-- [x] 08-02-PLAN.md — Recipe detail page: DetailTopBar, SectionAccordion, InfoGrid, IngredientList, InstructionList, full detail view
-- [x] 08-03-PLAN.md — Cook mode page: full-screen overlay, CookStep component, step state machine, check-off navigation, completion state
-
-### Phase 9: Frontend Recipe Creation + Editing
-**Goal**: Users can create recipes from scratch, duplicate existing ones, and edit all recipe content (metadata, ingredients in sections, instruction steps, images) including locking.
-**Depends on**: Phase 4, Phase 7
-**Requirements**: RCP-01, RCP-02, RCP-03, RCP-04, RCP-05, ING-01, ING-02, ING-03, INS-01, INS-02, IMG-01, IMG-02
-**Success Criteria** (what must be TRUE):
-  1. A user can fill out the new recipe form and submit; the recipe appears in the list with a correct auto-generated slug
-  2. A user can duplicate a recipe; the copy is independent with a new name and appears in the household list
-  3. The ingredient editor allows adding ingredients (food picker, unit picker, quantity, note), organizing them into titled sections, and reordering within sections
-  4. The step editor allows adding, editing, and reordering instruction steps via drag-and-drop
-  5. A user can upload an image and see it on the recipe; deleting it removes it from the view
-  6. A user can lock a recipe (edit controls disappear); this state persists after page refresh
-**Plans**: 5 plans
-
-Plans:
-- [x] 09-01-PLAN.md — FAB + name prompt bottom sheet, edit mode toggle on detail page, EditorTabs, MetadataForm (Basico tab), Guardar pill
-- [x] 09-02-PLAN.md — Ingredient editor: IngredientSectionEditor, IngredientRow, IngredientPicker with food/unit search, @dnd-kit reorder
-- [x] 09-03-PLAN.md — Step editor: StepEditor, StepRow with drag-and-drop reorder, add/delete steps
-- [x] 09-04-PLAN.md — Image management: ImageUpload with FormData, image grid, ConfirmDialog, delete confirmation
-- [x] 09-05-PLAN.md — Backend isLocked + duplicate endpoint, RecipeSettings (lock toggle + duplicate), lock guard on detail page
-
-### Phase 10: Frontend Meal Planner
-**Goal**: Users can view the household meal plan as a weekly or monthly calendar, assign recipes to dates and meal types, drag-drop entries to reorganize, and edit or delete entries.
-**Depends on**: Phase 5, Phase 7
-**Requirements**: PLAN-01, PLAN-02, PLAN-03, PLAN-04, HH-02
-**Success Criteria** (what must be TRUE):
-  1. The `/planner` page renders a calendar grid showing 1 week or 4 weeks, switchable by the user
-  2. A user can assign a recipe to a date and meal type (breakfast, lunch, dinner, snack, dessert); the entry appears in the correct calendar cell
-  3. Dragging a meal plan entry to a different date or meal type slot updates it on the server and reflects in the UI
-  4. A user can edit an entry (change recipe or meal type) or delete it; changes are visible to all household members after refresh
-**Plans**: 3 plans
-
-Plans:
-- [x] 10-01-PLAN.md — Planner layout: date utils, WeekNav, WeekToggle, DayAccordion, MealEntryRow, MealTypeChips, PlannerPage with data fetching + delete mutation, Wave 0 test scaffold
-- [x] 10-02-PLAN.md — Assign recipe: RecipePickerSheet with search + meal type chips, ConfirmDialog cancelLabel prop, create entry mutation, wired into PlannerPage
-- [x] 10-03-PLAN.md — Drag-and-drop + edit/delete: useDraggable on MealEntryRow, useDroppable on DayAccordion, DndContext + optimistic PATCH, EditEntrySheet with save/delete
-
-### Phase 11: Frontend Profile + Household + Shared Recipe
-**Goal**: Users can view and edit their own profile, see household membership, and anyone with a share link can view a recipe publicly without logging in.
-**Depends on**: Phase 4, Phase 7
-**Requirements**: PROF-01, SHR-01, SHR-02
-**Success Criteria** (what must be TRUE):
-  1. The `/profile` page displays the current user's name, email, and username; editing and saving updates the data and confirms with a toast
-  2. A user can generate a shareable public link from a recipe detail page; copying the link is accessible in one click
-  3. Visiting `/shared/:token` in an unauthenticated browser tab shows the full recipe detail (no login prompt, no app shell)
-**Plans**: 3 plans
-
-Plans:
-- [x] 11-01-PLAN.md — Profile page: display + edit form, PATCH /profile, Drawer nav link, ProfilePage tests
-- [x] 11-02-PLAN.md — Share link: wire Compartir button to POST /share, BottomSheet with copy-to-clipboard, ShareLinkFlow tests
-- [x] 11-03-PLAN.md — Public shared recipe page: /shared/[token] route outside (app), PublicLayout, read-only detail, SharedRecipePage tests
-
-### Phase 12: Frontend Admin Panel
-**Goal**: Admins can log in, complete the setup wizard on first install, and manage all system data (users, households, foods, units, API tokens) through a dedicated admin panel.
-**Depends on**: Phase 6, Phase 7
-**Requirements**: ADM-01, ADM-02, ADM-03, ADM-04, ADM-05, ADM-06
-**Success Criteria** (what must be TRUE):
-  1. The `/setup` page is accessible when no Admin exists; completing the form creates the Admin and redirects to `/admin/login`; visiting `/setup` afterward shows a 404 or redirect
-  2. The `/admin/panel` page shows tabs or sections for Users, Households, Foods, Units, and Tokens; all CRUD actions work end-to-end
-  3. Admin can generate a password reset URL for any user from the Users section; the URL is displayed for out-of-band sharing
-  4. Admin can create an API token tied to a user; the raw token is shown exactly once; existing tokens are listed with name and creation date; tokens can be deleted
-**Plans**: 5 plans
-
-Plans:
-- [x] 12-01-PLAN.md — Backend GET /admin/auth/me + AdminMeResponse type + admin-api-client + AdminAuthProvider + admin login + setup wizard
-- [x] 12-02-PLAN.md — Admin panel shell: AdminSidebar, AdminTable, AdminForm, OneTimeDisplay, panel layout, query keys, PaginationControls update
-- [x] 12-03-PLAN.md — Users management (CRUD + password reset URL) + Households management (CRUD + cascade warning)
-- [x] 12-04-PLAN.md — Foods management (CRUD) + Units management (CRUD with abbreviation)
-- [x] 12-05-PLAN.md — API Tokens management (create with one-time display, list, revoke)
+> Full phase details (goals, success criteria, plans) live in earlier versions of this file (see git history). Per-milestone archives are at `.planning/milestones/v1.0-*.md` when created.
 
 </details>
 
 <details>
-<summary>✅ v1.1 Skill Bundle (Phases 13-14) — SHIPPED 2026-03-20</summary>
+<summary>✅ v1.1 Skill Bundle (Phases 13–14) — SHIPPED 2026-03-20</summary>
 
-- [x] **Phase 13: Skill Bundle — Foundation + Read Operations** - index.md, shared.md, recipes_search.md, recipes_get.md (completed 2026-03-20)
-- [x] **Phase 14: Skill Bundle — Write Operations + Meal Plan** - recipes_create.md, recipes_edit.md, recipes_image.md, meal_plan.md (completed 2026-03-20)
+- [x] **Phase 13: Skill Bundle — Foundation + Read Operations** — `index.md`, `shared.md`, `recipes_search.md`, `recipes_get.md` (completed 2026-03-20)
+- [x] **Phase 14: Skill Bundle — Write Operations + Meal Plan** — `recipes_create.md`, `recipes_edit.md`, `recipes_image.md`, `meal_plan.md` (completed 2026-03-20)
 
-### Phase 13: Skill Bundle — Foundation + Read Operations
-**Goal**: An agent can authenticate, understand shared conventions, and perform all read operations on recipes without prior knowledge of the API.
-**Depends on**: Nothing (documentation only — no code dependencies)
-**Requirements**: SKILL-01, SKILL-02, SKILL-03, SKILL-04
-**Success Criteria** (what must be TRUE):
-  1. An agent reading only `index.md` knows which file to open for any recipe-manager operation and does not need to guess
-  2. An agent reading `shared.md` can construct a correctly authenticated request, interpret any error status code, and parse any paginated response
-  3. An agent reading `recipes_search.md` can call `GET /api/recipes` with any combination of search, foodId, sort, order, page, and pageSize parameters and parse the response
-  4. An agent reading `recipes_get.md` can call `GET /api/recipes/:id` and extract sections, ingredients, steps, and images from the response shape
-**Plans**: 2 plans
-
-Plans:
-- [x] 13-01-PLAN.md — Foundation files: skills directory, index.md (startup index), shared.md (auth, errors, pagination)
-- [x] 13-02-PLAN.md — Read operation files: recipes_search.md (GET /api/recipes), recipes_get.md (GET /api/recipes/:id)
-
-### Phase 14: Skill Bundle — Write Operations + Meal Plan
-**Goal**: An agent can create and edit recipes (including sections, ingredients, steps, and images) and manage meal plan entries entirely from the skill files.
-**Depends on**: Phase 13
-**Requirements**: SKILL-05, SKILL-06, SKILL-07, SKILL-08
-**Success Criteria** (what must be TRUE):
-  1. An agent reading `recipes_create.md` can resolve food and unit IDs, create a recipe, add sections with ingredients, and add steps — in the correct sequence — without consulting any other source
-  2. An agent reading `recipes_edit.md` can update or delete recipe metadata, a section, an ingredient, or a step using only the IDs obtained from `recipes_get.md`
-  3. An agent reading `recipes_image.md` can upload a multipart image and delete an existing image using only the recipe `id`
-  4. An agent reading `meal_plan.md` can list entries for a date range, create an entry with a valid mealType value, update an entry, and delete an entry
-**Plans**: 2 plans
-
-Plans:
-- [x] 14-01-PLAN.md — Recipe write operations: recipes_create.md (POST recipe + food/unit resolution + sections + ingredients + steps with recommended sequence), recipes_edit.md (PATCH/DELETE for recipe, sections, ingredients, steps)
-- [x] 14-02-PLAN.md — Image and meal plan: recipes_image.md (multipart upload + delete), meal_plan.md (list/create/update/delete entries with MealType enum)
+**Audit:** `.planning/v1.1-MILESTONE-AUDIT.md`
 
 </details>
 
-### 🚧 v1.2 API Ergonomics (In Progress)
+<details>
+<summary>✅ v1.2 API Ergonomics (Phases 15–19) — SHIPPED 2026-03-21 / CLOSED 2026-05-18</summary>
 
-**Milestone Goal:** Make the REST API significantly more ergonomic for agent clients — all four changes are purely additive, with no breaking changes to the UI client.
+- [x] **Phase 15: Shared Types + Name Filters** — Extend packages/shared contract; add `?name=` filter to `GET /api/foods` and `GET /api/units` (completed 2026-03-21)
+- [x] **Phase 16: Slug/UUID Dual Lookup** — `GET /api/recipes/:idOrSlug` accepts both UUID and slug, household-scoped, 404-only on miss (completed 2026-03-21)
+- [x] **Phase 17: Batch Ingredient Add** — `POST /api/recipes/:id/sections/:sectionId/ingredients/batch`; atomic insert returning `SectionResponse` (completed 2026-03-21)
+- [x] **Phase 18: Compound Recipe Create** — `POST /api/recipes` with optional `ingredients[]` + `steps[]`; atomic via `prisma.$transaction` (completed 2026-03-21)
+- [x] **Phase 19: Skill Bundle Updates** — Update `recipes_create.md`, `recipes_get.md`, `recipes_edit.md`; document `?name=` filter in `shared.md` (completed 2026-03-21)
 
-- [x] **Phase 15: Shared Types + Name Filters** - Extend packages/shared contract; add ?name= filter to GET /api/foods and GET /api/units (completed -) (completed 2026-03-21)
-- [x] **Phase 16: Slug/UUID Dual Lookup** - GET /api/recipes/:idOrSlug accepts both UUID and slug; household-scoped (completed -) (completed 2026-03-21)
-- [x] **Phase 17: Batch Ingredient Add** - POST /api/recipes/:id/sections/:sectionId/ingredients/batch; atomic insert returning SectionResponse (completed -) (completed 2026-03-21)
-- [x] **Phase 18: Compound Recipe Create** - POST /api/recipes with optional ingredients[] + steps[]; atomic via prisma.$transaction (completed -) (completed 2026-03-21)
-- [x] **Phase 19: Skill Bundle Updates** - Update recipes_create.md, recipes_get.md, recipes_edit.md; document ?name= filter in shared.md (completed -) (completed 2026-03-21)
+**Archive:** `.planning/milestones/v1.2-ROADMAP.md` and `.planning/milestones/v1.2-REQUIREMENTS.md`
 
-## Phase Details
+</details>
 
-### Phase 15: Shared Types + Name Filters
-**Goal**: The shared package contract is extended for all v1.2 changes, and agents can filter foods and units by name substring in a single request.
-**Depends on**: Phase 14
-**Requirements**: ERGO-01, ERGO-02
-**Success Criteria** (what must be TRUE):
-  1. `GET /api/foods?name=tomate` returns only foods whose name contains "tomate" (case-insensitive); omitting the param returns the full list unchanged
-  2. `GET /api/units?name=taza` returns only units whose name contains "taza" (case-insensitive); omitting the param returns the full list unchanged
-  3. `packages/shared` exports `FoodItem`, `UnitItem`, `BatchCreateIngredientsRequest`, and the extended `CreateRecipeRequest` with optional `ingredients` and `steps` arrays; `yarn build` in `apps/web` succeeds with no type errors
-  4. Swagger UI shows `?name` as an optional query parameter on both `/api/foods` and `/api/units` endpoints
-**Plans**: 2 plans
+### 📋 vNext — TBD
 
-Plans:
-- [ ] 15-01: Extend packages/shared (FoodItem, UnitItem, BatchCreateIngredientsRequest, CreateRecipeRequest optional arrays) + verify ValidationPipe transform:true in main.ts
-- [ ] 15-02: Add ?name= filter to FoodsController and UnitsController (conditional Prisma where, @ApiQuery, integration tests)
+_Next milestone scope to be defined via `/gsd:new-milestone`._
 
-### Phase 16: Slug/UUID Dual Lookup
-**Goal**: Agents and UI clients can navigate directly to a recipe by its human-readable slug without maintaining a UUID cache, and the existing UUID path is unchanged.
-**Depends on**: Phase 15
-**Requirements**: ERGO-04
-**Success Criteria** (what must be TRUE):
-  1. `GET /api/recipes/tortilla-de-patatas` returns the same `RecipeDetailResponse` shape as `GET /api/recipes/<uuid>` for the same recipe
-  2. A slug belonging to a different household returns 404 (not 403), preventing slug-existence leaks across households
-  3. A UUID that does not exist returns 404; a valid UUID continues to work exactly as before
-  4. Swagger UI documents `:id` as accepting either a UUID or a slug
-**Plans**: 1 plan
+Carry-over from v1.2:
 
-Plans:
-- [ ] 16-01: Add isUuid helper + RecipesService.findByIdOrSlug (UUID v4 regex, slug branch with householdId in where predicate, 404-only on miss) + RecipesController wiring + integration tests
-
-### Phase 17: Batch Ingredient Add
-**Goal**: Agents can add multiple ingredients to a section in a single atomic call, with correct ordering and fully hydrated food/unit names in the response.
-**Depends on**: Phase 15
-**Requirements**: ERGO-05
-**Success Criteria** (what must be TRUE):
-  1. `POST /api/recipes/:id/sections/:sectionId/ingredients/batch` with an array of ingredients inserts all items atomically and returns the updated `SectionResponse`
-  2. New ingredients appended to a non-empty section receive correct `order` values (no collisions with existing ingredients)
-  3. The returned `SectionResponse` includes fully hydrated `foodName` and `unitName` for every ingredient (no undefined fields)
-  4. A failed insert (e.g., invalid foodId) rolls back all items in the batch — no partial inserts
-**Plans**: 1 plan
-
-Plans:
-- [ ] 17-01: Define SECTION_WITH_INGREDIENTS_INCLUDE constant + batch-create-ingredient.dto.ts + IngredientsService.batchCreate (MAX(order) start, createMany, re-fetch) + IngredientsController POST batch route + integration tests
-
-### Phase 18: Compound Recipe Create
-**Goal**: Agents can create a complete recipe with sections, ingredients, and steps in a single API call that is fully atomic — a FK failure rolls back the entire recipe row.
-**Depends on**: Phase 17
-**Requirements**: ERGO-03
-**Success Criteria** (what must be TRUE):
-  1. `POST /api/recipes` with optional `ingredients[]` and `steps[]` arrays creates the recipe, all ingredients, and all steps in a single transaction and returns a fully hydrated `RecipeDetailResponse`
-  2. A request with an invalid `foodId` or `unitId` in the ingredients array returns an error and leaves no orphaned recipe row in the database
-  3. `POST /api/recipes` with no `ingredients` or `steps` arrays behaves identically to the pre-v1.2 create endpoint (no regression)
-  4. Swagger UI documents the new optional array fields on the `POST /api/recipes` request body
-**Plans**: 1 plan
-
-Plans:
-- [ ] 18-01-PLAN.md — Extend CreateRecipeDto with @ValidateNested({ each: true }) arrays + wrap RecipesService.create in prisma.$transaction + integration tests (success path, FK failure rollback, backward-compat no-arrays path)
-
-### Phase 19: Skill Bundle Updates
-**Goal**: Agent skill files reflect all four v1.2 API changes so an agent reading the updated files can use every new capability without consulting the source code.
-**Depends on**: Phase 18
-**Requirements**: SKILL-09, SKILL-10, SKILL-11, SKILL-12
-**Success Criteria** (what must be TRUE):
-  1. An agent reading the updated `recipes_create.md` can build a full recipe in 3 calls or fewer using the compound create path (previously required 11+ calls)
-  2. An agent reading the updated `recipes_get.md` or `recipes_search.md` can navigate directly to a recipe by slug without needing a UUID
-  3. An agent reading the updated `recipes_edit.md` can add multiple ingredients to a section in a single call using the batch endpoint
-  4. An agent reading the updated `shared.md` (or `recipes_create.md`) understands the `?name=` filter and can resolve a food or unit ID in one targeted call
-**Plans**: 2 plans
-
-Plans:
-- [ ] 19-01-PLAN.md — Update recipes_create.md (compound create path, call-count comparison, ?name= filter for ID resolution) + update shared.md (?name= filter documentation)
-- [ ] 19-02-PLAN.md — Update recipes_get.md (slug navigation example) + update recipes_edit.md (batch ingredient add endpoint and pattern)
+- Pending high-priority todo: Fix agent empty-body validation loop on recipe/meal-plan creation (see `.planning/todos/pending/fix-agent-empty-body-loop.md`)
 
 ## Progress
-
-**Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -379,8 +84,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 12. Frontend Admin Panel | v1.0 | 5/5 | Complete | 2026-03-19 |
 | 13. Skill Bundle — Foundation + Read Operations | v1.1 | 2/2 | Complete | 2026-03-20 |
 | 14. Skill Bundle — Write Operations + Meal Plan | v1.1 | 2/2 | Complete | 2026-03-20 |
-| 15. Shared Types + Name Filters | 2/2 | Complete    | 2026-03-21 | - |
-| 16. Slug/UUID Dual Lookup | 1/1 | Complete    | 2026-03-21 | - |
-| 17. Batch Ingredient Add | 1/1 | Complete    | 2026-03-21 | - |
-| 18. Compound Recipe Create | 1/1 | Complete    | 2026-03-21 | - |
-| 19. Skill Bundle Updates | 2/2 | Complete    | 2026-03-21 | - |
+| 15. Shared Types + Name Filters | v1.2 | 2/2 | Complete | 2026-03-21 |
+| 16. Slug/UUID Dual Lookup | v1.2 | 1/1 | Complete | 2026-03-21 |
+| 17. Batch Ingredient Add | v1.2 | 1/1 | Complete | 2026-03-21 |
+| 18. Compound Recipe Create | v1.2 | 1/1 | Complete | 2026-03-21 |
+| 19. Skill Bundle Updates | v1.2 | 2/2 | Complete | 2026-03-21 |
