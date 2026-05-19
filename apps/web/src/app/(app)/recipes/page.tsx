@@ -13,6 +13,7 @@ import { RecipeListFilters } from '@/components/recipes/RecipeListFilters';
 import { PaginationControls } from '@/components/recipes/PaginationControls';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { RecipeNamePrompt } from '@/components/recipes/editor/RecipeNamePrompt';
+import { AppFooter } from '@/components/layout/AppFooter';
 
 // Sort options
 const SORT_OPTIONS = [
@@ -142,65 +143,70 @@ export default function RecipeListPage() {
         />
       )}
 
-      {/* Search bar + filter actions */}
-      <RecipeListFilters
-        searchValue={searchInput}
-        onSearchChange={setSearchInput}
-        sortLabel={sortLabel}
-        onSortClick={() => {
-          setShowSortDropdown((v) => !v);
-          setShowFoodFilter(false);
-        }}
-        filterLabel={filterLabel}
-        onFilterClick={() => {
-          setShowFoodFilter((v) => !v);
-          setShowSortDropdown(false);
-        }}
-        isSortActive={isSortActive}
-        isFilterActive={isFilterActive}
-      />
+      {/* Sticky sub-header: search bar + filter actions + their dropdowns.
+          Dropdowns live inside the sticky wrapper so they anchor below the bar
+          on scroll (their natural static position) instead of staying at the
+          top of the page-root container. */}
+      <div className="sticky top-0 z-30 bg-background">
+        <RecipeListFilters
+          searchValue={searchInput}
+          onSearchChange={setSearchInput}
+          sortLabel={sortLabel}
+          onSortClick={() => {
+            setShowSortDropdown((v) => !v);
+            setShowFoodFilter(false);
+          }}
+          filterLabel={filterLabel}
+          onFilterClick={() => {
+            setShowFoodFilter((v) => !v);
+            setShowSortDropdown(false);
+          }}
+          isSortActive={isSortActive}
+          isFilterActive={isFilterActive}
+        />
 
-      {/* Sort dropdown */}
-      {showSortDropdown && (
-        <div className="absolute left-5 right-5 z-50 bg-background border border-border rounded-xl shadow-sm overflow-hidden">
-          {SORT_OPTIONS.map((opt) => (
+        {/* Sort dropdown */}
+        {showSortDropdown && (
+          <div className="absolute left-5 right-5 z-50 bg-background border border-border rounded-xl shadow-sm overflow-hidden">
+            {SORT_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => handleSortSelect(opt.value)}
+                className={`w-full text-left px-5 py-3 text-[13px] text-foreground ${
+                  sortOption === opt.value ? 'font-semibold bg-subtle' : ''
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Food filter dropdown */}
+        {showFoodFilter && (
+          <div className="absolute left-5 right-5 z-50 bg-background border border-border rounded-xl shadow-sm overflow-hidden">
             <button
-              key={opt.value}
-              onClick={() => handleSortSelect(opt.value)}
+              onClick={() => handleFoodSelect(null)}
               className={`w-full text-left px-5 py-3 text-[13px] text-foreground ${
-                sortOption === opt.value ? 'font-semibold bg-subtle' : ''
+                foodId === null ? 'font-semibold bg-subtle' : ''
               }`}
             >
-              {opt.label}
+              Todos los ingredientes
             </button>
-          ))}
-        </div>
-      )}
-
-      {/* Food filter dropdown */}
-      {showFoodFilter && (
-        <div className="absolute left-5 right-5 z-50 bg-background border border-border rounded-xl shadow-sm overflow-hidden">
-          <button
-            onClick={() => handleFoodSelect(null)}
-            className={`w-full text-left px-5 py-3 text-[13px] text-foreground ${
-              foodId === null ? 'font-semibold bg-subtle' : ''
-            }`}
-          >
-            Todos los ingredientes
-          </button>
-          {foods?.map((food) => (
-            <button
-              key={food.id}
-              onClick={() => handleFoodSelect(food.id)}
-              className={`w-full text-left px-5 py-3 text-[13px] text-foreground ${
-                foodId === food.id ? 'font-semibold bg-subtle' : ''
-              }`}
-            >
-              {food.name}
-            </button>
-          ))}
-        </div>
-      )}
+            {foods?.map((food) => (
+              <button
+                key={food.id}
+                onClick={() => handleFoodSelect(food.id)}
+                className={`w-full text-left px-5 py-3 text-[13px] text-foreground ${
+                  foodId === food.id ? 'font-semibold bg-subtle' : ''
+                }`}
+              >
+                {food.name}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
       {/* Content area */}
       <div className="px-5">
@@ -253,18 +259,20 @@ export default function RecipeListPage() {
         )}
       </div>
 
-      {/* Pagination */}
+      {/* Pagination — docked to AppShell footer slot so it stays at viewport bottom */}
       {!isLoading && !isError && data && data.total > 0 && (
-        <PaginationControls
-          page={page}
-          totalPages={totalPages}
-          pageSize={pageSize}
-          onPageChange={setPage}
-          onPageSizeChange={(size) => {
-            setPageSize(size);
-            setPage(1);
-          }}
-        />
+        <AppFooter>
+          <PaginationControls
+            page={page}
+            totalPages={totalPages}
+            pageSize={pageSize}
+            onPageChange={setPage}
+            onPageSizeChange={(size) => {
+              setPageSize(size);
+              setPage(1);
+            }}
+          />
+        </AppFooter>
       )}
 
       {/* FAB */}

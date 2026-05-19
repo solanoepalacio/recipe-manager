@@ -141,12 +141,14 @@ export default function PlannerPage() {
 
   return (
     <div>
-      <WeekNav
-        label={formatWeekLabel(range.from, range.to)}
-        onPrev={handlePrev}
-        onNext={handleNext}
-        onLabelClick={() => setCalendarOpen(true)}
-      />
+      <div className="sticky top-0 z-20 bg-background">
+        <WeekNav
+          label={formatWeekLabel(range.from, range.to)}
+          onPrev={handlePrev}
+          onNext={handleNext}
+          onLabelClick={() => setCalendarOpen(true)}
+        />
+      </div>
 
       {isLoading ? (
         <div className="flex flex-col gap-1 px-4 py-2">

@@ -1,8 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { TopBar } from './TopBar';
 import { Drawer } from './Drawer';
+import { AppFooterContext, AppFooterProvider } from './AppFooterContext';
 
 interface AppShellProps {
   children: React.ReactNode;
@@ -20,13 +21,15 @@ function titleFromPathname(pathname: string): string {
   return 'Recetas';
 }
 
-export function AppShell({ children, user, onLogout, householdName }: AppShellProps) {
+function AppShellInner({ children, user, onLogout, householdName }: AppShellProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
   const title = titleFromPathname(pathname);
+  const footerCtx = useContext(AppFooterContext);
+  const footerVisible = (footerCtx?.activeCount ?? 0) > 0;
 
   return (
-    <div className="flex flex-col min-h-screen bg-background overflow-x-hidden">
+    <div className="flex flex-col h-dvh overflow-hidden bg-background">
       <TopBar title={title} onMenuClick={() => setDrawerOpen(true)} />
 
       <Drawer
@@ -37,11 +40,23 @@ export function AppShell({ children, user, onLogout, householdName }: AppShellPr
         householdName={householdName}
       />
 
-      {/* Page content */}
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto overflow-x-hidden">
         {children}
       </main>
 
+      <div
+        ref={(el) => footerCtx?.setSlot(el)}
+        data-testid={footerVisible ? 'app-footer' : undefined}
+        className={`shrink-0 border-t border-border bg-background ${footerVisible ? '' : 'hidden'}`}
+      />
     </div>
+  );
+}
+
+export function AppShell(props: AppShellProps) {
+  return (
+    <AppFooterProvider>
+      <AppShellInner {...props} />
+    </AppFooterProvider>
   );
 }
