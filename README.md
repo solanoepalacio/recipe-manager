@@ -127,6 +127,29 @@ accounts:
 | User | `test@example.com` | `password123` |
 | Admin | `admin@example.com` | `admin123` |
 
+### Agent / automation access
+
+The dev seed also creates an **agent (bot) member** in the test household with a
+**deterministic** id and API key, so a test-automation harness can know these
+values up front (hard-code the same ones in your automation env):
+
+| Value | Default |
+|-------|---------|
+| Household id | `dev-household-id` |
+| Agent (bot) user id | `dev-agent-user-id` |
+| API token | `dev-agent-api-token-do-not-use-in-production` |
+
+Agent requests authenticate with the token as a Bearer header — they hit the
+same endpoints as the UI (no admin access):
+
+```bash
+curl -H "Authorization: Bearer dev-agent-api-token-do-not-use-in-production" \
+  http://localhost:3001/api/household
+```
+
+To use your own token value, set `DEV_AGENT_API_TOKEN` in `apps/api/.env` before
+running `seed:dev` (re-running the seed updates the stored token).
+
 ---
 
 ## 7. Run the apps

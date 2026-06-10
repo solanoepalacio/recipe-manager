@@ -9,6 +9,7 @@
 
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
+import { createHash } from 'crypto';
 
 const prisma = new PrismaClient();
 
@@ -28,6 +29,25 @@ const TEST_ADMIN = {
   password: 'admin123',
   name: 'Admin',
 };
+
+// ---------------------------------------------------------------------------
+// Deterministic identifiers for test automation.
+//
+// These are fixed so an external automation/test harness can know the
+// household id, the agent (bot) user id, and the agent's API key *before*
+// the seed runs — just hard-code the same values in the harness env.
+//
+// The API key authenticates agent requests via:  Authorization: Bearer <token>
+// (the API stores only sha256(token); see ApiKeyAuthGuard).
+//
+// Override the token without editing source by setting DEV_AGENT_API_TOKEN
+// (e.g. in apps/api/.env, which Prisma loads into process.env for the seed).
+// ---------------------------------------------------------------------------
+const DEV_HOUSEHOLD_ID = 'dev-household-id';
+const DEV_AGENT_USER_ID = 'dev-agent-user-id';
+const DEV_AGENT_TOKEN_ID = 'dev-agent-token-id';
+const DEV_AGENT_API_TOKEN =
+  process.env.DEV_AGENT_API_TOKEN ?? 'dev-agent-api-token-do-not-use-in-production';
 
 // ---------------------------------------------------------------------------
 // Helper: look up a food/unit by name (must already exist from seed.ts)
@@ -232,15 +252,15 @@ async function main() {
 
   // 1. Household
   const household = await prisma.household.upsert({
-    where: { id: 'dev-household-id' },
+    where: { id: DEV_HOUSEHOLD_ID },
     update: { name: 'Test Household' },
-    create: { id: 'dev-household-id', name: 'Test Household' },
+    create: { id: DEV_HOUSEHOLD_ID, name: 'Test Household' },
   });
   console.log(`✓ Household: ${household.name} (${household.id})`);
 
   // 2. Admin
   const adminHash = await bcrypt.hash(TEST_ADMIN.password, 10);
-  await prisma.admin.upsert({
+  const admin = await prisma.admin.upsert({
     where: { email: TEST_ADMIN.email },
     update: {},
     create: { name: TEST_ADMIN.name, email: TEST_ADMIN.email, passwordHash: adminHash },
@@ -279,34 +299,43 @@ async function main() {
   }
   console.log('✓ Kid member: Sofia');
 
-  // 4b. Agent member
-  const existingAgent = await prisma.user.findFirst({ where: { name: 'Recipe Bot', householdId: household.id } });
-  let agentUser = existingAgent;
-  if (!agentUser) {
-    agentUser = await prisma.user.create({
-      data: {
-        name: 'Recipe Bot',
-        householdId: household.id,
-        userType: 'agent',
-      },
-    });
-  }
-  console.log('✓ Agent member: Recipe Bot');
+  // 4b. Agent member (deterministic id for automation).
+  // Remove any legacy agent rows from earlier seed runs (random ids) and their
+  // tokens, so the deterministic agent below stays the single canonical bot.
+  await prisma.apiToken.deleteMany({
+    where: { user: { householdId: household.id, userType: 'agent', id: { not: DEV_AGENT_USER_ID } } },
+  });
+  await prisma.user.deleteMany({
+    where: { householdId: household.id, userType: 'agent', id: { not: DEV_AGENT_USER_ID } },
+  });
 
-  // Auto-create a token for the agent if none exists
-  const existingToken = await prisma.apiToken.findFirst({ where: { userId: agentUser.id } });
-  if (!existingToken) {
-    const { randomBytes, createHash } = await import('crypto');
-    const admin = await prisma.admin.findFirst();
-    if (admin) {
-      const rawToken = randomBytes(32).toString('hex');
-      const tokenHash = createHash('sha256').update(rawToken).digest('hex');
-      await prisma.apiToken.create({
-        data: { name: 'Auto: Recipe Bot', userId: agentUser.id, createdById: admin.id, tokenHash },
-      });
-      console.log(`✓ Agent token created for Recipe Bot`);
-    }
-  }
+  const agentUser = await prisma.user.upsert({
+    where: { id: DEV_AGENT_USER_ID },
+    update: { name: 'Recipe Bot', householdId: household.id, userType: 'agent' },
+    create: {
+      id: DEV_AGENT_USER_ID,
+      name: 'Recipe Bot',
+      householdId: household.id,
+      userType: 'agent',
+    },
+  });
+  console.log(`✓ Agent member: Recipe Bot (${agentUser.id})`);
+
+  // Deterministic API token for the agent. We store only sha256(token); the raw
+  // token is fixed/known so automation can send `Authorization: Bearer <token>`.
+  const tokenHash = createHash('sha256').update(DEV_AGENT_API_TOKEN).digest('hex');
+  await prisma.apiToken.upsert({
+    where: { id: DEV_AGENT_TOKEN_ID },
+    update: { tokenHash, userId: agentUser.id, name: 'Auto: Recipe Bot' },
+    create: {
+      id: DEV_AGENT_TOKEN_ID,
+      name: 'Auto: Recipe Bot',
+      userId: agentUser.id,
+      createdById: admin.id,
+      tokenHash,
+    },
+  });
+  console.log('✓ Agent API token set (deterministic)');
 
   // 5. Recipes
   console.log(`\nSeeding ${RECIPES.length} recipes...\n`);
@@ -384,6 +413,11 @@ async function main() {
   console.log('\n✅ Dev seed complete!\n');
   console.log(`   Login: ${TEST_USER.email}  /  ${TEST_USER.password}`);
   console.log('   API:   http://localhost:3001\n');
+  console.log('   Automation (agent) — deterministic values:');
+  console.log(`     Household id: ${DEV_HOUSEHOLD_ID}`);
+  console.log(`     Agent id:     ${DEV_AGENT_USER_ID}`);
+  console.log(`     API token:    ${DEV_AGENT_API_TOKEN}`);
+  console.log('     Usage:        Authorization: Bearer <API token>\n');
 }
 
 main()
